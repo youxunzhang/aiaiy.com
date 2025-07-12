@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站地图 - AI工具导航</title>
+    <meta name="description" content="AI工具导航网站地图 - 快速找到您需要的所有页面和工具分类">
+    <meta name="keywords" content="网站地图,AI工具导航,导航地图,工具分类">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --primary-indigo: #6366F1;
+            --primary-purple: #8B5CF6;
+            --primary-pink: #EC4899;
+            --primary-rose: #F43F5E;
+            --primary-orange: #F97316;
+            --primary-amber: #F59E0B;
+            --primary-yellow: #EAB308;
+            --primary-lime: #84CC16;
+            --primary-green: #22C55E;
+            --primary-emerald: #10B981;
+            --primary-teal: #14B8A6;
+            --primary-cyan: #06B6D4;
+            --primary-sky: #0EA5E9;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sitemap-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sitemap-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .sitemap-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .sitemap-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .section-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .stagger-animation {
+            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border-radius: 1rem 1rem 0 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">AI</span>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        网站地图
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">web航海</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">图片导航</a>
+                    <a href="links.html" class="text-blue-600 hover:underline text-sm font-semibold">友情链接</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">音乐导航</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">设计师导航</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-20 mb-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="floating-animation mb-8">
+                <div class="w-24 h-24 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                    <span class="text-white font-bold text-3xl">🗺️</span>
+                </div>
+            </div>
+            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                网站地图
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
+                AI工具导航网站地图 - 快速找到您需要的所有页面和工具分类
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-16">
+        <!-- 主要页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    🏠 主要页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="https://www.seodog.cn" target="_blank" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">AI工具导航首页</h3>
+                    <p class="text-gray-600 text-sm">seodog.cn</p>
+                    <p class="text-gray-500 text-xs mt-2">AI工具导航主站，包含大模型、文字处理、图片处理等工具</p>
+                </a>
+                <a href="sitemap.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">网站地图</h3>
+                    <p class="text-gray-600 text-sm">sitemap.html</p>
+                    <p class="text-gray-500 text-xs mt-2">本页面 - 网站结构导航地图</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 专业导航页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    🧭 专业导航页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="chuhai.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">出海</h3>
+                    <p class="text-gray-600 text-sm">chuhai.html</p>
+                    <p class="text-gray-500 text-xs mt-2">出海相关网站导航，包含各种创业和商业工具</p>
+                </a>
+                <a href="game.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">游戏导航</h3>
+                    <p class="text-gray-600 text-sm">game.html</p>
+                    <p class="text-gray-500 text-xs mt-2">全球主流游戏平台和游戏资讯网站导航</p>
+                </a>
+                <a href="hanghai.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Web航海</h3>
+                    <p class="text-gray-600 text-sm">hanghai.html</p>
+                    <p class="text-gray-500 text-xs mt-2">航海工具导航，包含市场分析、开发者工具等</p>
+                </a>
+                <a href="img.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">图片导航</h3>
+                    <p class="text-gray-600 text-sm">img.html</p>
+                    <p class="text-gray-500 text-xs mt-2">图片处理、AI绘画、素材网站导航</p>
+                </a>
+                <a href="music.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">音乐导航</h3>
+                    <p class="text-gray-600 text-sm">music.html</p>
+                    <p class="text-gray-500 text-xs mt-2">音乐平台、音频工具、K歌社区导航</p>
+                </a>
+                <a href="designer.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">设计师导航</h3>
+                    <p class="text-gray-600 text-sm">designer.html</p>
+                    <p class="text-gray-500 text-xs mt-2">设计师专用工具和资源导航</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 其他页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    📄 其他页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="links.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">友情链接</h3>
+                    <p class="text-gray-600 text-sm">links.html</p>
+                    <p class="text-gray-500 text-xs mt-2">合作伙伴和友情网站链接</p>
+                </a>
+                <a href="V1.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">V1版本</h3>
+                    <p class="text-gray-600 text-sm">V1.html</p>
+                    <p class="text-gray-500 text-xs mt-2">网站V1版本页面</p>
+                </a>
+                <a href="gametest.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">游戏测试</h3>
+                    <p class="text-gray-600 text-sm">gametest.html</p>
+                    <p class="text-gray-500 text-xs mt-2">游戏测试页面，体验最新游戏</p>
+                </a>
+                <a href="words.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">词汇查询</h3>
+                    <p class="text-gray-600 text-sm">words.html</p>
+                    <p class="text-gray-500 text-xs mt-2">Cyberpunk词汇查询与快捷工具</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 网站功能说明 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    ⚙️ 网站功能说明
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🔍 搜索功能</h3>
+                    <p class="text-gray-600 text-sm">首页提供AI工具搜索功能</p>
+                    <p class="text-gray-500 text-xs mt-2">支持按工具名称和描述搜索</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">📱 响应式设计</h3>
+                    <p class="text-gray-600 text-sm">适配各种设备屏幕</p>
+                    <p class="text-gray-500 text-xs mt-2">手机、平板、电脑完美显示</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🎨 现代化UI</h3>
+                    <p class="text-gray-600 text-sm">采用苹果风格设计</p>
+                    <p class="text-gray-500 text-xs mt-2">毛玻璃效果和渐变色彩</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🚀 快速导航</h3>
+                    <p class="text-gray-600 text-sm">一键直达目标页面</p>
+                    <p class="text-gray-500 text-xs mt-2">减少用户查找时间</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">📊 分类管理</h3>
+                    <p class="text-gray-600 text-sm">按功能分类整理</p>
+                    <p class="text-gray-500 text-xs mt-2">便于用户快速定位</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🔗 外部链接</h3>
+                    <p class="text-gray-600 text-sm">安全的外部链接跳转</p>
+                    <p class="text-gray-500 text-xs mt-2">新窗口打开，保护用户体验</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系信息 -->
+        <section class="fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    📞 联系信息
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">微信联系</h3>
+                    <p class="text-gray-600 text-sm">zhangyouxun2013</p>
+                    <p class="text-gray-500 text-xs mt-2">添加微信获取更多支持</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">网站信息</h3>
+                    <p class="text-gray-600 text-sm">© 2024 AI工具导航</p>
+                    <p class="text-gray-500 text-xs mt-2">精选优质AI工具，提升工作效率</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">AI</span>
+                </div>
+                <span class="text-xl font-semibold">网站地图</span>
+            </div>
+            <p class="text-gray-600 mb-4">AI工具导航网站结构总览</p>
+            <p class="text-sm text-gray-500">© 2024 AI工具导航. 联系我们 wx zhangyouxun2013</p>
+        </div>
+    </footer>
+</body>
+</html> 

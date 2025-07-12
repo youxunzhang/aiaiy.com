@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Navigator - The Ultimate AI Tools Directory | Discover the Best AI Solutions</title>
+    <meta name="description" content="AI Navigator is your comprehensive directory of the best AI tools, including language models, image generators, video creators, writing assistants, and more. Find the perfect AI solution for your needs.">
+    <meta name="keywords" content="AI tools, artificial intelligence, AI navigation, AI directory, ChatGPT, image generation, video AI, writing AI, AI assistants">
+    <meta name="author" content="AI Navigator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="AI Navigator - The Ultimate AI Tools Directory">
+    <meta property="og:description" content="Discover the best AI tools and solutions for your needs. Comprehensive directory of artificial intelligence applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ainavigator.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Navigator - The Ultimate AI Tools Directory">
+    <meta name="twitter:description" content="Discover the best AI tools and solutions for your needs">
+    <link rel="canonical" href="https://ainavigator.com">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AI Navigator",
+        "description": "The ultimate directory of AI tools and solutions",
+        "url": "https://ainavigator.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ainavigator.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --primary-indigo: #6366F1;
+            --primary-purple: #8B5CF6;
+            --primary-pink: #EC4899;
+            --primary-rose: #F43F5E;
+            --primary-orange: #F97316;
+            --primary-amber: #F59E0B;
+            --primary-yellow: #EAB308;
+            --primary-lime: #84CC16;
+            --primary-green: #22C55E;
+            --primary-emerald: #10B981;
+            --primary-teal: #14B8A6;
+            --primary-cyan: #06B6D4;
+            --primary-sky: #0EA5E9;
+            --primary-blue-alt: #2563EB;
+            --primary-indigo-alt: #4F46E5;
+            --primary-purple-alt: #7C3AED;
+            --primary-pink-alt: #DB2777;
+            --primary-rose-alt: #E11D48;
+            --primary-orange-alt: #EA580C;
+            --primary-amber-alt: #D97706;
+            --primary-yellow-alt: #CA8A04;
+            --primary-lime-alt: #65A30D;
+            --primary-green-alt: #16A34A;
+            --primary-emerald-alt: #059669;
+            --primary-teal-alt: #0D9488;
+            --primary-cyan-alt: #0891B2;
+            --primary-sky-alt: #0284C7;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .tool-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .tool-card-content {
+            flex: 1;
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .category-header:hover::before {
+            left: 100%;
+        }
+        
+        .category-language-models { background: linear-gradient(135deg, var(--primary-blue), var(--primary-sky)); }
+        .category-writing { background: linear-gradient(135deg, var(--primary-emerald), var(--primary-teal)); }
+        .category-image { background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink)); }
+        .category-video { background: linear-gradient(135deg, var(--primary-orange), var(--primary-rose)); }
+        .category-agents { background: linear-gradient(135deg, var(--primary-rose), var(--primary-pink)); }
+        .category-audio { background: linear-gradient(135deg, var(--primary-teal), var(--primary-cyan)); }
+        .category-coding { background: linear-gradient(135deg, var(--primary-gray-800), var(--primary-gray-700)); }
+        .category-web { background: linear-gradient(135deg, var(--primary-blue), var(--primary-indigo)); }
+        .category-assistants { background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink)); }
+        .category-social { background: linear-gradient(135deg, var(--primary-orange), var(--primary-amber)); }
+        .category-utilities { background: linear-gradient(135deg, var(--primary-gray-600), var(--primary-gray-500)); }
+        .category-analytics { background: linear-gradient(135deg, var(--primary-cyan), var(--primary-sky)); }
+        .category-news { background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink)); }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .section-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            width: 100%;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .stats-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .tool-card {
+                margin-bottom: 16px;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .gradient-text {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .section-container {
+                margin: 0 0.5rem;
+            }
+            
+            .category-header {
+                font-size: 1.5rem;
+                padding: 1rem;
+            }
+            
+            .tool-card {
+                padding: 0.75rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 1rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.8rem;
+            }
+            
+            .tool-logo {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gradient-text {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .grid {
+                gap: 0.5rem;
+            }
+            
+            .tool-card {
+                padding: 0.5rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.75rem;
+            }
+            
+            .tool-logo {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu-button {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .mobile-menu-button span {
+            width: 100%;
+            height: 3px;
+            background: #3B82F6;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 40;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-content {
+            padding: 5rem 2rem 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #E5E7EB;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-nav a:hover {
+            color: #3B82F6;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .stagger-animation {
+            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+        .tool-card:nth-child(5) { animation-delay: 0.5s; }
+        .tool-card:nth-child(6) { animation-delay: 0.6s; }
+        .tool-card:nth-child(7) { animation-delay: 0.7s; }
+        .tool-card:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-lg">AI</span>
+                        </div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            AI Navigator
+                        </h1>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 desktop-menu">
+                    <a href="index.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Home</a>
+                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
+                    <a href="image.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Image</a>
+                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
+                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
+                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
+                    <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
+                </div>
+                <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <a href="index.html" onclick="closeMobileMenu()">Home</a>
+            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
+            <a href="image.html" onclick="closeMobileMenu()">Image</a>
+            <a href="video.html" onclick="closeMobileMenu()">Video</a>
+            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
+            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
+            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-16 mb-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                AI Navigator
+            </h1>
+            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
+                Discover the Best AI Tools & Solutions
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
+                Your comprehensive directory of cutting-edge artificial intelligence tools
+            </p>
+            
+            <!-- Search Box -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" placeholder="Search AI tools..." class="search-box">
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="stats-card">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                    <div class="text-gray-600 text-sm">AI Tools</div>
+                </div>
+                <div class="stats-card">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">50+</div>
+                    <div class="text-gray-600 text-sm">Categories</div>
+                </div>
+                <div class="stats-card">
+                    <div class="text-3xl font-bold text-green-600 mb-2">10K+</div>
+                    <div class="text-gray-600 text-sm">Users</div>
+                </div>
+                <div class="stats-card">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+                    <div class="text-gray-600 text-sm">Updated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-16" role="main">
+        <article>
+            <header>
+                <h2 class="sr-only">AI Navigator - Comprehensive AI Tools Directory</h2>
+            </header>
+            
+            <!-- Language Models -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-language-models text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🤖 Language Models
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://chat.openai.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">ChatGPT</h3>
+                                    <p class="text-gray-600 text-sm">OpenAI's AI Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://claude.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Claude</h3>
+                                    <p class="text-gray-600 text-sm">Anthropic AI Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://gemini.google.com/app" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Gemini</h3>
+                                    <p class="text-gray-600 text-sm">Google's AI Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.perplexity.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Perplexity</h3>
+                                    <p class="text-gray-600 text-sm">AI Search Engine</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://x.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Grok</h3>
+                                    <p class="text-gray-600 text-sm">X.AI Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Generation -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-image text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🎨 Image Generation
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://openai.com/dall-e-2" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">D</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">DALL-E 2</h3>
+                                    <p class="text-gray-600 text-sm">OpenAI Image Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://midjourney.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">M</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Midjourney</h3>
+                                    <p class="text-gray-600 text-sm">AI Art Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://stability.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #EA580C);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Stable Diffusion</h3>
+                                    <p class="text-gray-600 text-sm">Open Source AI Art</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.remove.bg/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">R</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Remove.bg</h3>
+                                    <p class="text-gray-600 text-sm">Background Remover</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://unsplash.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">U</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Unsplash</h3>
+                                    <p class="text-gray-600 text-sm">High-Quality Photos</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Video Creation -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-video text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🎬 Video Creation
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://app.heygen.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">H</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">HeyGen</h3>
+                                    <p class="text-gray-600 text-sm">AI Video Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://pika.art/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Pika Labs</h3>
+                                    <p class="text-gray-600 text-sm">AI Video Creation</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://runwayml.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">R</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Runway</h3>
+                                    <p class="text-gray-600 text-sm">AI Video Editor</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.descript.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">D</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Descript</h3>
+                                    <p class="text-gray-600 text-sm">AI Video Editing</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.synthesia.io/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Synthesia</h3>
+                                    <p class="text-gray-600 text-sm">AI Video Avatars</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Writing Tools -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-writing text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        ✍️ Writing Tools
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://www.grammarly.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Grammarly</h3>
+                                    <p class="text-gray-600 text-sm">Writing Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.notion.so/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">N</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Notion</h3>
+                                    <p class="text-gray-600 text-sm">All-in-One Workspace</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.copy.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Copy.ai</h3>
+                                    <p class="text-gray-600 text-sm">AI Copywriting</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://jasper.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">J</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Jasper</h3>
+                                    <p class="text-gray-600 text-sm">AI Content Creator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.surgehq.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Surge</h3>
+                                    <p class="text-gray-600 text-sm">AI Writing Platform</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coding Tools -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-coding text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        💻 Coding Tools
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://github.com/features/copilot" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">GitHub Copilot</h3>
+                                    <p class="text-gray-600 text-sm">AI Code Assistant</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://cursor.sh/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Cursor</h3>
+                                    <p class="text-gray-600 text-sm">AI-Powered Editor</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.replit.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">R</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Replit</h3>
+                                    <p class="text-gray-600 text-sm">Online IDE</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.tabnine.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">T</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Tabnine</h3>
+                                    <p class="text-gray-600 text-sm">AI Code Completion</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.codeium.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Codeium</h3>
+                                    <p class="text-gray-600 text-sm">Free AI Coding</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
+                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenuButton.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        function closeMobileMenu() {
+            mobileMenuButton.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchBox.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

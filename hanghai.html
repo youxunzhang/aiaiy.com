@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="航海工具导航 - 您的快捷航海工具箱，一站式访问全球顶尖航海工具与网站，涵盖开发者工具、市场分析、网站服务等领域。">
+    <meta name="keywords" content="航海工具导航, 航海工具, 开发者工具, Google Trends, Google Ads, Cloudflare, Github Copilot, 航海导航站">
+    <title>航海工具导航 - 您的智能航海助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --primary-indigo: #6366F1;
+            --primary-purple: #8B5CF6;
+            --primary-pink: #EC4899;
+            --primary-rose: #F43F5E;
+            --primary-orange: #F97316;
+            --primary-amber: #F59E0B;
+            --primary-yellow: #EAB308;
+            --primary-lime: #84CC16;
+            --primary-green: #22C55E;
+            --primary-emerald: #10B981;
+            --primary-teal: #14B8A6;
+            --primary-cyan: #06B6D4;
+            --primary-sky: #0EA5E9;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .section-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .stagger-animation {
+            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .block.p-6 {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .block.p-6::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .block.p-6:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .block.p-6:hover::before {
+            transform: scaleX(1);
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+        }
+        
+        .mobile-menu-button {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .mobile-menu-button span {
+            width: 100%;
+            height: 3px;
+            background: #3B82F6;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 40;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-content {
+            padding: 5rem 2rem 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #E5E7EB;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-nav a:hover {
+            color: #3B82F6;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="https://www.seodog.cn" target="_blank" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-lg">AI</span>
+                        </div>
+                    </a>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        AI工具导航
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-4 desktop-menu">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI web航海</a>
+                    <a href="words.html" class="text-blue-600 hover:underline text-sm font-semibold">AI文字</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">AI图片</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">AI音乐</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">AI设计师</a>
+                    <a href="ainum.html" class="text-blue-600 hover:underline text-sm font-semibold">AI数字人</a>
+                    <a href="sitemap.html" class="text-blue-600 hover:underline text-sm font-semibold">网站地图</a>
+                </div>
+                <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <a href="https://www.seodog.cn" onclick="closeMobileMenu()">首页</a>
+            <a href="chuhai.html" onclick="closeMobileMenu()">AI出海</a>
+            <a href="game.html" onclick="closeMobileMenu()">游戏</a>
+            <a href="hanghai.html" onclick="closeMobileMenu()">AI web航海</a>
+            <a href="words.html" onclick="closeMobileMenu()">AI文字</a>
+            <a href="img.html" onclick="closeMobileMenu()">AI图片</a>
+            <a href="music.html" onclick="closeMobileMenu()">AI音乐</a>
+            <a href="designer.html" onclick="closeMobileMenu()">AI设计师</a>
+            <a href="ainum.html" onclick="closeMobileMenu()">AI数字人</a>
+            <a href="sitemap.html" onclick="closeMobileMenu()">网站地图</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-12 mb-8">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="gradient-text text-4xl md:text-5xl font-bold mb-4">
+                航海工具导航
+            </h2>
+            <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto font-light">
+                您的快捷航海工作站，一键直达常用工具
+            </p>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-4 pb-16">
+
+        <main>
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        市场与数据分析
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
+                    <a href="https://trends.google.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Google Trends</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">探索全球搜索趋势，洞察市场热点与用户兴趣。
+                        </p>
+                    </a>
+                    <a href="https://ads.google.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Google Ads</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">谷歌广告平台，利用AI驱动的广告系列提升营销效果。
+                        </p>
+                    </a>
+                    <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Google Analytics</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">网站流量与数据分析平台。</p>
+                    </a>
+                    <a href="https://adsense.google.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Google AdSense</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">网站变现与广告平台。</p>
+                    </a>
+                    <a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">阿里云万网</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">阿里云域名注册与网站服务。</p>
+                    </a>
+                    <a href="https://trends.google.com/trending?geo=GB&category=6&hours=168" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">趋势英国</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">英国地区热门搜索趋势分析。</p>
+                    </a>
+                    <a href="https://trends.google.com/trending?geo=FR&category=6&hours=168" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">趋势法国</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">法国地区热门搜索趋势分析。</p>
+                    </a>
+                    <a href="https://trends.google.com/trending?geo=US&hl=zh-CN&category=6" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">趋势美国</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">美国地区热门搜索趋势分析。</p>
+                    </a>
+                    <a href="https://www.similarweb.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">SimilarWeb</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">网站流量分析与竞争对手研究平台。</p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        开发者与网站服务
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
+                    <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">GitHub Copilot</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">您的AI编程伙伴，实时生成代码建议，提升开发效率。
+                        </p>
+                    </a>
+                    <a href="https://www.cloudflare.com/zh-cn/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Cloudflare</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">全球领先的CDN与安全服务，为您的网站保驾护航。
+                        </p>
+                    </a>
+                    <a href="https://www.spaceship.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Spaceship</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">新一代域名注册与网站服务平台，简化您的在线业务。
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        新兴AI应用与平台
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8">
+                    <a href="https://bolt.new/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">bolt.new</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">AI驱动的全栈Web开发环境，在浏览器中构建和部署应用。
+                        </p>
+                    </a>
+                    <a href="https://trickle.so/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">trickle.so</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">AI网站构建器，快速将您的想法变为可交互的网站或应用。
+                        </p>
+                    </a>
+                    <a href="https://cloud.onlinegames.io/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Cloud Online Games</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">云游戏平台，无需强大硬件即可畅玩最新游戏大作。
+                        </p>
+                    </a>
+                    <a href="https://x.com/home" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">X (Twitter)</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">全球社交媒体平台，实时获取最新资讯。</p>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Instagram</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">图片与视频分享社交平台。</p>
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="block p-6 bg-[var(--bg-secondary)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <h3 class="font-semibold text-lg text-[var(--text-primary)]">Facebook</h3>
+                        <p class="mt-2 text-sm text-[var(--text-secondary)]">全球最大的社交媒体平台。</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 py-6 border-t border-[var(--border-color)]">
+            <p class="text-[var(--text-secondary)] text-sm">&copy; 2025 航海工具导航. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // 移动端菜单功能
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
+
+        function toggleMobileMenu() {
+            mobileMenuButton.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuButton.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // 点击菜单外部关闭菜单
+        mobileNav.addEventListener('click', function(e) {
+            if (e.target === mobileNav) {
+                closeMobileMenu();
+            }
+        });
+
+        // 监听窗口大小变化，在大屏幕时关闭移动菜单
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // 触摸手势支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        mobileNav.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        mobileNav.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // 向左滑动，关闭菜单
+                    closeMobileMenu();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

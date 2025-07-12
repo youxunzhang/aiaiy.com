@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Tools - Best AI Image Generators & Editors | AI Navigator</title>
+    <meta name="description" content="Discover the best AI image generation tools, photo editors, and image creation platforms. From DALL-E to Midjourney, find the perfect AI image solution.">
+    <meta name="keywords" content="AI image generator, AI art, image creation, photo editor, DALL-E, Midjourney, Stable Diffusion">
+    <meta name="author" content="AI Navigator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="AI Image Tools - Best AI Image Generators & Editors">
+    <meta property="og:description" content="Discover the best AI image generation tools and photo editors">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ainavigator.com/image">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Image Tools - Best AI Image Generators & Editors">
+    <meta name="twitter:description" content="Discover the best AI image generation tools and photo editors">
+    <link rel="canonical" href="https://ainavigator.com/image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --primary-indigo: #6366F1;
+            --primary-purple: #8B5CF6;
+            --primary-pink: #EC4899;
+            --primary-rose: #F43F5E;
+            --primary-orange: #F97316;
+            --primary-amber: #F59E0B;
+            --primary-yellow: #EAB308;
+            --primary-lime: #84CC16;
+            --primary-green: #22C55E;
+            --primary-emerald: #10B981;
+            --primary-teal: #14B8A6;
+            --primary-cyan: #06B6D4;
+            --primary-sky: #0EA5E9;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--primary-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .tool-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .tool-card-content {
+            flex: 1;
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+            color: white;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .category-header:hover::before {
+            left: 100%;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink), var(--primary-rose));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .section-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            width: 100%;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        .stagger-animation {
+            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .tool-card:nth-child(1) { animation-delay: 0.1s; }
+        .tool-card:nth-child(2) { animation-delay: 0.2s; }
+        .tool-card:nth-child(3) { animation-delay: 0.3s; }
+        .tool-card:nth-child(4) { animation-delay: 0.4s; }
+        .tool-card:nth-child(5) { animation-delay: 0.5s; }
+        .tool-card:nth-child(6) { animation-delay: 0.6s; }
+        .tool-card:nth-child(7) { animation-delay: 0.7s; }
+        .tool-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-button {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .mobile-menu-button span {
+            width: 100%;
+            height: 3px;
+            background: #3B82F6;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 40;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-content {
+            padding: 5rem 2rem 2rem;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #E5E7EB;
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-nav a:hover {
+            color: #3B82F6;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-card {
+                margin-bottom: 16px;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .gradient-text {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .section-container {
+                margin: 0 0.5rem;
+            }
+            
+            .category-header {
+                font-size: 1.5rem;
+                padding: 1rem;
+            }
+            
+            .tool-card {
+                padding: 0.75rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 1rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.8rem;
+            }
+            
+            .tool-logo {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gradient-text {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .grid {
+                gap: 0.5rem;
+            }
+            
+            .tool-card {
+                padding: 0.5rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.75rem;
+            }
+            
+            .tool-logo {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-lg">AI</span>
+                        </div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            AI Navigator
+                        </h1>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 desktop-menu">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Home</a>
+                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
+                    <a href="image.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Image</a>
+                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
+                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
+                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
+                    <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
+                </div>
+                <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <a href="index.html" onclick="closeMobileMenu()">Home</a>
+            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
+            <a href="image.html" onclick="closeMobileMenu()">Image</a>
+            <a href="video.html" onclick="closeMobileMenu()">Video</a>
+            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
+            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
+            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-16 mb-8">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                AI Image Tools
+            </h1>
+            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
+                Create Stunning Images with AI
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
+                Discover the best AI image generators, photo editors, and creative tools
+            </p>
+            
+            <!-- Search Box -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <input type="text" placeholder="Search image tools..." class="search-box">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-16" role="main">
+        <article>
+            <header>
+                <h2 class="sr-only">AI Image Tools - Comprehensive Image Generation Directory</h2>
+            </header>
+            
+            <!-- AI Image Generators -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🎨 AI Image Generators
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://openai.com/dall-e-2" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">D</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">DALL-E 2</h3>
+                                    <p class="text-gray-600 text-sm">OpenAI Image Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://midjourney.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">M</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Midjourney</h3>
+                                    <p class="text-gray-600 text-sm">AI Art Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://stability.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #EA580C);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Stable Diffusion</h3>
+                                    <p class="text-gray-600 text-sm">Open Source AI Art</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.bing.com/create" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">B</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Bing Image Creator</h3>
+                                    <p class="text-gray-600 text-sm">Microsoft AI Art</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.canva.com/ai-image-generator/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Canva AI</h3>
+                                    <p class="text-gray-600 text-sm">Design AI Generator</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Editing -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🖼️ Photo Editing
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://www.remove.bg/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">R</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Remove.bg</h3>
+                                    <p class="text-gray-600 text-sm">Background Remover</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.photoroom.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">PhotoRoom</h3>
+                                    <p class="text-gray-600 text-sm">AI Photo Editor</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.adobe.com/products/photoshop.html" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Photoshop</h3>
+                                    <p class="text-gray-600 text-sm">Professional Editor</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.figma.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">F</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Figma</h3>
+                                    <p class="text-gray-600 text-sm">Design & Prototyping</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.gimp.org/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">GIMP</h3>
+                                    <p class="text-gray-600 text-sm">Free Photo Editor</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stock Photos -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        📸 Stock Photos
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://unsplash.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">U</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Unsplash</h3>
+                                    <p class="text-gray-600 text-sm">High-Quality Photos</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.pexels.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Pexels</h3>
+                                    <p class="text-gray-600 text-sm">Free Stock Photos</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://pixabay.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">P</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Pixabay</h3>
+                                    <p class="text-gray-600 text-sm">Free Image Library</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.shutterstock.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Shutterstock</h3>
+                                    <p class="text-gray-600 text-sm">Premium Stock Photos</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.gettyimages.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">G</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Getty Images</h3>
+                                    <p class="text-gray-600 text-sm">Professional Photos</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design Tools -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🎨 Design Tools
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
+                        <a href="https://www.canva.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">C</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Canva</h3>
+                                    <p class="text-gray-600 text-sm">Design Platform</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.sketch.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">S</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Sketch</h3>
+                                    <p class="text-gray-600 text-sm">Design Software</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.invisionapp.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">I</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">InVision</h3>
+                                    <p class="text-gray-600 text-sm">Prototyping Tool</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.adobe.com/products/illustrator.html" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">A</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Illustrator</h3>
+                                    <p class="text-gray-600 text-sm">Vector Graphics</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.affinity.serif.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                            <div class="tool-card-header">
+                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">A</div>
+                                <div class="tool-card-content">
+                                    <h3 class="font-semibold text-lg mb-2">Affinity</h3>
+                                    <p class="text-gray-600 text-sm">Creative Suite</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center">
+                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
+                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenuButton.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
+        function closeMobileMenu() {
+            mobileMenuButton.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchBox.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
