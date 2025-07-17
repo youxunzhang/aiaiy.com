@@ -72,11 +72,20 @@
             --gray-700: #374151;
             --gray-800: #1F2937;
             --gray-900: #111827;
+            
+            /* Mobile-specific variables */
+            --mobile-touch-target: 44px;
+            --mobile-spacing: 0.75rem;
+            --mobile-border-radius: 0.75rem;
+            --mobile-font-size-small: 0.875rem;
+            --mobile-font-size-base: 1rem;
+            --mobile-font-size-large: 1.125rem;
+            --vh: 1vh; /* Dynamic viewport height for mobile */
         }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #667eea 0%, rgba(139, 92, 246, 0.1) 100%);
             color: var(--gray-900);
             line-height: 1.6;
         }
@@ -302,6 +311,125 @@
             .desktop-menu {
                 display: none;
             }
+            
+            /* Mobile-specific optimizations */
+            .search-box {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 1rem;
+                border-radius: 0.75rem;
+            }
+            
+            .search-box + button {
+                position: absolute;
+                right: 0.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .stats-card {
+                padding: 1rem;
+                min-height: 80px;
+            }
+            
+            .stats-card .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            .stats-card .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            /* Mobile grid adjustments */
+            .grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-5 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            
+            /* Mobile featured tools */
+            .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            /* Mobile quick actions */
+            .grid.grid-cols-2.md\\:grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            
+            /* Mobile footer */
+            .grid.grid-cols-1.md\\:grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            /* Mobile navigation improvements */
+            .mobile-nav a {
+                padding: 1.25rem 0;
+                font-size: 1.125rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+            
+            /* Mobile tool cards improvements */
+            .tool-card {
+                min-height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            
+            .tool-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .tool-card-content {
+                width: 100%;
+            }
+            
+            /* Mobile search suggestions */
+            .search-suggestions {
+                position: fixed;
+                top: 50%;
+                left: 1rem;
+                right: 1rem;
+                transform: translateY(-50%);
+                max-height: 60vh;
+                overflow-y: auto;
+            }
+            
+            /* Mobile scroll to top button */
+            .fixed.bottom-8.right-8 {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem;
+            }
+            
+            /* Mobile trust indicators */
+            .flex.flex-wrap.justify-center.items-center.gap-6 {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            /* Mobile hero text adjustments */
+            .hero-section h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            
+            .hero-section p {
+                font-size: 1.125rem;
+                line-height: 1.4;
+            }
+            
+            /* Mobile popular searches */
+            .text-sm.text-gray-500.mt-2 {
+                font-size: 0.875rem;
+                text-align: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -338,6 +466,173 @@
                 width: 24px;
                 height: 24px;
                 font-size: 12px;
+            }
+            
+            /* Extra small screen optimizations */
+            .hero-section {
+                padding: 1.5rem 0.75rem;
+            }
+            
+            .gradient-text {
+                font-size: 1.75rem;
+                line-height: 1.1;
+            }
+            
+            .hero-section h2 {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            .hero-section p {
+                font-size: 0.875rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Mobile search box */
+            .search-box {
+                padding: 0.875rem;
+                font-size: 16px;
+            }
+            
+            .search-box + button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.75rem;
+            }
+            
+            /* Mobile stats */
+            .stats-card {
+                padding: 0.75rem;
+                min-height: 70px;
+            }
+            
+            .stats-card .text-3xl {
+                font-size: 1.25rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .stats-card .text-sm {
+                font-size: 0.625rem;
+            }
+            
+            /* Mobile grid for very small screens */
+            .grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-5 {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .grid.grid-cols-2.md\\:grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            /* Mobile section containers */
+            .section-container {
+                margin: 0 0.25rem;
+                border-radius: 1rem;
+            }
+            
+            .category-header {
+                font-size: 1.25rem;
+                padding: 0.75rem;
+                border-radius: 1rem 1rem 0 0;
+            }
+            
+            .grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-5.gap-4.p-8 {
+                padding: 0.75rem;
+                gap: 0.5rem;
+            }
+            
+            /* Mobile tool cards for small screens */
+            .tool-card {
+                min-height: 90px;
+                padding: 0.75rem;
+            }
+            
+            .tool-card-header {
+                gap: 0.25rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.875rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.7rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            /* Mobile featured tools */
+            .grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-6 {
+                gap: 0.75rem;
+            }
+            
+            .bg-gradient-to-br.from-blue-50.to-purple-50.p-6.rounded-xl {
+                padding: 1rem;
+            }
+            
+            /* Mobile quick actions */
+            .w-16.h-16.bg-gradient-to-r.from-blue-500.to-purple-600.rounded-full {
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .w-8.h-8.text-white {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            
+            /* Mobile footer */
+            .container.mx-auto.px-4.py-12 {
+                padding: 2rem 0.75rem;
+            }
+            
+            .grid.grid-cols-1.md\\:grid-cols-4.gap-8 {
+                gap: 1.5rem;
+            }
+            
+            /* Mobile navigation */
+            .mobile-nav-content {
+                padding: 4rem 1rem 1rem;
+            }
+            
+            .mobile-nav a {
+                padding: 1rem 0;
+                font-size: 1rem;
+            }
+            
+            /* Mobile search suggestions */
+            .search-suggestions {
+                left: 0.5rem;
+                right: 0.5rem;
+                max-height: 50vh;
+            }
+            
+            /* Mobile scroll to top */
+            .fixed.bottom-8.right-8.bg-blue-600 {
+                bottom: 0.75rem;
+                right: 0.75rem;
+                padding: 0.5rem;
+            }
+            
+            .w-6.h-6 {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+            
+            /* Mobile trust indicators */
+            .flex.flex-wrap.justify-center.items-center.gap-6 {
+                gap: 0.75rem;
+            }
+            
+            .text-sm.text-gray-500 {
+                font-size: 0.75rem;
+            }
+            
+            /* Mobile popular searches */
+            .text-sm.text-gray-500.mt-2 {
+                font-size: 0.75rem;
+                margin-top: 0.5rem;
             }
         }
         
@@ -454,6 +749,171 @@
         .tool-card:nth-child(6) { animation-delay: 0.6s; }
         .tool-card:nth-child(7) { animation-delay: 0.7s; }
         .tool-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Larger touch targets */
+            .tool-card {
+                min-height: 120px;
+                padding: 1rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 1rem;
+                line-height: 1.3;
+            }
+            
+            .tool-card p {
+                font-size: 0.875rem;
+                line-height: 1.4;
+            }
+            
+            /* Enhanced touch feedback */
+            .tool-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+            
+            .tool-card:hover {
+                transform: none;
+            }
+            
+            /* Mobile navigation touch improvements */
+            .mobile-nav a {
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            
+            .mobile-nav a:active {
+                background-color: rgba(59, 130, 246, 0.1);
+            }
+            
+            /* Search box touch optimization */
+            .search-box {
+                min-height: 48px;
+                font-size: 16px;
+            }
+            
+            .search-box + button {
+                min-height: 48px;
+                min-width: 60px;
+            }
+            
+            /* Stats cards touch optimization */
+            .stats-card {
+                min-height: 100px;
+                padding: 1.25rem;
+            }
+            
+            /* Quick actions touch optimization */
+            .w-16.h-16.bg-gradient-to-r.from-blue-500.to-purple-600.rounded-full {
+                min-width: 64px;
+                min-height: 64px;
+            }
+            
+            /* Featured tools touch optimization */
+            .bg-gradient-to-br.from-blue-50.to-purple-50.p-6.rounded-xl {
+                min-height: 120px;
+                padding: 1.25rem;
+            }
+            
+            /* Footer touch optimization */
+            .flex.space-x-4 a {
+                min-width: 48px;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Scroll to top touch optimization */
+            .fixed.bottom-8.right-8.bg-blue-600 {
+                min-width: 56px;
+                min-height: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Search suggestions touch optimization */
+            .search-suggestion {
+                min-height: 40px;
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            /* Newsletter input touch optimization */
+            .flex input[type="email"] {
+                min-height: 48px;
+                font-size: 16px;
+            }
+            
+            .flex button {
+                min-height: 48px;
+                min-width: 80px;
+            }
+        }
+        
+        /* Landscape mobile optimization */
+        @media (max-width: 896px) and (orientation: landscape) {
+            .hero-section {
+                padding: 1rem 0.75rem;
+            }
+            
+            .gradient-text {
+                font-size: 2rem;
+            }
+            
+            .hero-section h2 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .stats-card {
+                padding: 0.75rem;
+                min-height: 60px;
+            }
+            
+            .stats-card .text-3xl {
+                font-size: 1.25rem;
+            }
+            
+            .stats-card .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            /* Landscape grid adjustments */
+            .grid.grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .grid.grid-cols-2.md\\:grid-cols-4 {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
+            }
+            
+            /* Landscape tool cards */
+            .tool-card {
+                min-height: 80px;
+                padding: 0.5rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.875rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -478,6 +938,9 @@
                     <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
                     <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
                     <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
+                    <a href="game.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Gaming</a>
+                    <a href="music.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Music</a>
+                    <a href="chuhai.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Global</a>
                     <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
                 </div>
                 <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
@@ -498,6 +961,9 @@
             <a href="video.html" onclick="closeMobileMenu()">Video</a>
             <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
             <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
+            <a href="game.html" onclick="closeMobileMenu()">Gaming</a>
+            <a href="music.html" onclick="closeMobileMenu()">Music</a>
+            <a href="chuhai.html" onclick="closeMobileMenu()">Global</a>
             <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
         </div>
     </nav>
@@ -505,38 +971,71 @@
     <!-- Hero Section -->
     <section class="hero-section py-16 mb-8">
         <div class="container mx-auto px-4 text-center">
+            <div class="mb-6">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-2 rounded-full mb-4">
+                    🚀 Trusted by 50,000+ professionals worldwide
+                </span>
+            </div>
             <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                AI Navigator
+                The Ultimate AI Tools Directory
             </h1>
             <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
-                Discover the Best AI Tools & Solutions
+                Discover, Compare & Master the Best AI Solutions
             </h2>
             <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
-                Your comprehensive directory of cutting-edge artificial intelligence tools
+                From ChatGPT to Midjourney, find the perfect AI tools to supercharge your productivity and creativity
             </p>
             
             <!-- Search Box -->
             <div class="max-w-2xl mx-auto mb-8">
-                <input type="text" placeholder="Search AI tools..." class="search-box">
+                <div class="relative">
+                    <input type="text" placeholder="Search 500+ AI tools..." class="search-box">
+                    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Search
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-2">Popular: ChatGPT, Midjourney, Claude, DALL-E</p>
             </div>
             
             <!-- Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <div class="stats-card">
                     <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
-                    <div class="text-gray-600 text-sm">AI Tools</div>
+                    <div class="text-gray-600 text-sm">Curated Tools</div>
                 </div>
                 <div class="stats-card">
-                    <div class="text-3xl font-bold text-purple-600 mb-2">50+</div>
-                    <div class="text-gray-600 text-sm">Categories</div>
+                    <div class="text-3xl font-bold text-purple-600 mb-2">50K+</div>
+                    <div class="text-gray-600 text-sm">Active Users</div>
                 </div>
                 <div class="stats-card">
-                    <div class="text-3xl font-bold text-green-600 mb-2">10K+</div>
-                    <div class="text-gray-600 text-sm">Users</div>
+                    <div class="text-3xl font-bold text-green-600 mb-2">4.9★</div>
+                    <div class="text-gray-600 text-sm">User Rating</div>
                 </div>
                 <div class="stats-card">
-                    <div class="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-                    <div class="text-gray-600 text-sm">Updated</div>
+                    <div class="text-3xl font-bold text-orange-600 mb-2">Daily</div>
+                    <div class="text-gray-600 text-sm">Updates</div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    Free to use
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    No registration required
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    Expert-curated
                 </div>
             </div>
         </div>
@@ -553,51 +1052,121 @@
             <section class="mb-16 fade-in">
                 <div class="section-container overflow-hidden">
                     <h2 class="category-header category-language-models text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🤖 Language Models
+                        🤖 Language Models & AI Assistants
                     </h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://chat.openai.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                        <a href="https://chat.openai.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all group">
                             <div class="tool-card-header">
                                 <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">C</div>
                                 <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">ChatGPT</h3>
-                                    <p class="text-gray-600 text-sm">OpenAI's AI Assistant</p>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-lg">ChatGPT</h3>
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">OpenAI's conversational AI</p>
+                                    <div class="flex items-center gap-1 mb-2">
+                                        <div class="flex text-yellow-400">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        </div>
+                                        <span class="text-xs text-gray-500">4.9</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400">Most popular AI assistant</div>
                                 </div>
                             </div>
                         </a>
-                        <a href="https://claude.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                        <a href="https://claude.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all group">
                             <div class="tool-card-header">
                                 <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">C</div>
                                 <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Claude</h3>
-                                    <p class="text-gray-600 text-sm">Anthropic AI Assistant</p>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-lg">Claude</h3>
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">Anthropic's safety-focused AI</p>
+                                    <div class="flex items-center gap-1 mb-2">
+                                        <div class="flex text-yellow-400">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        </div>
+                                        <span class="text-xs text-gray-500">4.8</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400">Best for analysis & writing</div>
                                 </div>
                             </div>
                         </a>
-                        <a href="https://gemini.google.com/app" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                        <a href="https://gemini.google.com/app" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all group">
                             <div class="tool-card-header">
                                 <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
                                 <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Gemini</h3>
-                                    <p class="text-gray-600 text-sm">Google's AI Assistant</p>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-lg">Gemini</h3>
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">Google's multimodal AI</p>
+                                    <div class="flex items-center gap-1 mb-2">
+                                        <div class="flex text-yellow-400">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        </div>
+                                        <span class="text-xs text-gray-500">4.7</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400">Great for research & images</div>
                                 </div>
                             </div>
                         </a>
-                        <a href="https://www.perplexity.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                        <a href="https://www.perplexity.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all group">
                             <div class="tool-card-header">
                                 <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">P</div>
                                 <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Perplexity</h3>
-                                    <p class="text-gray-600 text-sm">AI Search Engine</p>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-lg">Perplexity</h3>
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">AI-powered search engine</p>
+                                    <div class="flex items-center gap-1 mb-2">
+                                        <div class="flex text-yellow-400">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        </div>
+                                        <span class="text-xs text-gray-500">4.6</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400">Best for research & citations</div>
                                 </div>
                             </div>
                         </a>
-                        <a href="https://x.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                        <a href="https://x.ai/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all group">
                             <div class="tool-card-header">
                                 <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">G</div>
                                 <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Grok</h3>
-                                    <p class="text-gray-600 text-sm">X.AI Assistant</p>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h3 class="font-semibold text-lg">Grok</h3>
+                                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Premium</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-2">X.AI's conversational AI</p>
+                                    <div class="flex items-center gap-1 mb-2">
+                                        <div class="flex text-yellow-400">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        </div>
+                                        <span class="text-xs text-gray-500">4.5</span>
+                                    </div>
+                                    <div class="text-xs text-gray-400">Real-time information access</div>
                                 </div>
                             </div>
                         </a>
@@ -828,15 +1397,189 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Quick Actions -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-utilities text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        ⚡ Quick Actions
+                    </h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-8">
+                        <a href="writing.html" class="tool-card p-6 rounded-xl hover:shadow-lg transition-all text-center group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Writing Tools</h3>
+                            <p class="text-gray-600 text-sm">AI writing assistants & content creators</p>
+                        </a>
+                        <a href="image.html" class="tool-card p-6 rounded-xl hover:shadow-lg transition-all text-center group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Image Generation</h3>
+                            <p class="text-gray-600 text-sm">AI art generators & image editors</p>
+                        </a>
+                        <a href="video.html" class="tool-card p-6 rounded-xl hover:shadow-lg transition-all text-center group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Video Creation</h3>
+                            <p class="text-gray-600 text-sm">AI video generators & editors</p>
+                        </a>
+                        <a href="coding.html" class="tool-card p-6 rounded-xl hover:shadow-lg transition-all text-center group">
+                            <div class="w-16 h-16 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2">Coding Tools</h3>
+                            <p class="text-gray-600 text-sm">AI code assistants & IDEs</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Tools -->
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="category-header category-news text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                        🌟 Featured Tools
+                    </h2>
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold text-lg">C</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg">ChatGPT</h3>
+                                        <p class="text-sm text-gray-600">Most Popular AI Assistant</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mb-4">The world's most popular AI chatbot, perfect for conversations, writing, and problem-solving.</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    <a href="https://chat.openai.com/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Try Now →</a>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold text-lg">M</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg">Midjourney</h3>
+                                        <p class="text-sm text-gray-600">Best AI Art Generator</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mb-4">Create stunning artwork and illustrations with the most advanced AI image generation technology.</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Premium</span>
+                                    <a href="https://midjourney.com/" target="_blank" class="text-purple-600 hover:text-purple-800 text-sm font-semibold">Try Now →</a>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl border border-green-200">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4">
+                                        <span class="text-white font-bold text-lg">G</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg">GitHub Copilot</h3>
+                                        <p class="text-sm text-gray-600">Best Coding Assistant</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 mb-4">AI-powered code completion that helps you write better code faster in your favorite IDE.</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free</span>
+                                    <a href="https://github.com/features/copilot" target="_blank" class="text-green-600 hover:text-green-800 text-sm font-semibold">Try Now →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </article>
     </main>
 
     <!-- Footer -->
     <footer class="glass-effect mt-16">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center">
-                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <span class="text-white font-bold text-lg">AI</span>
+                        </div>
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            AI Navigator
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 mb-6 max-w-md">
+                        Your comprehensive directory of the best AI tools and solutions. Discover, compare, and master artificial intelligence tools to supercharge your productivity.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="writing.html" class="text-gray-600 hover:text-blue-600 transition-colors">Writing Tools</a></li>
+                        <li><a href="image.html" class="text-gray-600 hover:text-blue-600 transition-colors">Image Generation</a></li>
+                        <li><a href="video.html" class="text-gray-600 hover:text-blue-600 transition-colors">Video Creation</a></li>
+                        <li><a href="coding.html" class="text-gray-600 hover:text-blue-600 transition-colors">Coding Tools</a></li>
+                        <li><a href="sitemap.html" class="text-gray-600 hover:text-blue-600 transition-colors">Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Stay Updated</h4>
+                    <p class="text-gray-600 text-sm mb-4">Get the latest AI tools and updates delivered to your inbox.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-8 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-600 text-sm">© 2024 AI Navigator. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-600 hover:text-blue-600 text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600 text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-600 hover:text-blue-600 text-sm transition-colors">Contact Us</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -863,16 +1606,96 @@
         searchBox.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             
+            if (searchTerm.length === 0) {
+                // Show all cards when search is empty
+                toolCards.forEach(card => {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                });
+                return;
+            }
+            
+            let hasResults = false;
+            
             toolCards.forEach(card => {
                 const title = card.querySelector('h3').textContent.toLowerCase();
                 const description = card.querySelector('p').textContent.toLowerCase();
                 
                 if (title.includes(searchTerm) || description.includes(searchTerm)) {
                     card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                    hasResults = true;
                 } else {
                     card.style.display = 'none';
+                    card.style.opacity = '0.5';
+                    card.style.transform = 'scale(0.95)';
                 }
             });
+            
+            // Show "no results" message if needed
+            let noResultsMsg = document.querySelector('.no-results-message');
+            if (!hasResults && searchTerm.length > 2) {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.className = 'no-results-message text-center py-8 text-gray-500';
+                    noResultsMsg.innerHTML = `
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <p class="text-lg font-medium">No tools found for "${searchTerm}"</p>
+                        <p class="text-sm">Try searching for different keywords or browse our categories</p>
+                    `;
+                    document.querySelector('main').appendChild(noResultsMsg);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        });
+
+        // Add search suggestions
+        const popularSearches = ['ChatGPT', 'Midjourney', 'Claude', 'DALL-E', 'GitHub Copilot'];
+        const searchSuggestions = document.createElement('div');
+        searchSuggestions.className = 'search-suggestions absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 z-10 hidden';
+        searchSuggestions.innerHTML = `
+            <div class="p-4">
+                <p class="text-sm text-gray-500 mb-2">Popular searches:</p>
+                <div class="flex flex-wrap gap-2">
+                    ${popularSearches.map(term => `
+                        <button class="search-suggestion px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm transition-colors">
+                            ${term}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        const searchContainer = searchBox.parentElement;
+        searchContainer.style.position = 'relative';
+        searchContainer.appendChild(searchSuggestions);
+        
+        // Show/hide suggestions
+        searchBox.addEventListener('focus', function() {
+            if (this.value.length === 0) {
+                searchSuggestions.classList.remove('hidden');
+            }
+        });
+        
+        searchBox.addEventListener('blur', function() {
+            setTimeout(() => {
+                searchSuggestions.classList.add('hidden');
+            }, 200);
+        });
+        
+        // Handle suggestion clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('search-suggestion')) {
+                searchBox.value = e.target.textContent;
+                searchBox.dispatchEvent(new Event('input'));
+                searchSuggestions.classList.add('hidden');
+                searchBox.focus();
+            }
         });
 
         // Smooth scrolling for anchor links
@@ -886,6 +1709,310 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Add smooth animations and micro-interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats on scroll
+            const statsCards = document.querySelectorAll('.stats-card');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'countUp 2s ease-out forwards';
+                    }
+                });
+            }, observerOptions);
+            
+            statsCards.forEach(card => {
+                statsObserver.observe(card);
+            });
+            
+            // Add loading state to search
+            const searchButton = document.querySelector('.search-box + button');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    this.innerHTML = '<svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+                    setTimeout(() => {
+                        this.innerHTML = 'Search';
+                    }, 1000);
+                });
+            }
+            
+            // Add tooltip functionality
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach(card => {
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                
+                card.addEventListener('mouseenter', function() {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'absolute z-50 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 transition-opacity duration-200';
+                    tooltip.textContent = `${title}: ${description}`;
+                    tooltip.style.left = this.offsetLeft + 'px';
+                    tooltip.style.top = (this.offsetTop - 40) + 'px';
+                    
+                    document.body.appendChild(tooltip);
+                    setTimeout(() => tooltip.style.opacity = '1', 10);
+                    
+                    this.tooltip = tooltip;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (this.tooltip) {
+                        this.tooltip.remove();
+                        this.tooltip = null;
+                    }
+                });
+            });
+            
+            // Add scroll to top functionality
+            const scrollToTopBtn = document.createElement('button');
+            scrollToTopBtn.innerHTML = `
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                </svg>
+            `;
+            scrollToTopBtn.className = 'fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 opacity-0 pointer-events-none z-50';
+            document.body.appendChild(scrollToTopBtn);
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.style.opacity = '1';
+                    scrollToTopBtn.style.pointerEvents = 'auto';
+                } else {
+                    scrollToTopBtn.style.opacity = '0';
+                    scrollToTopBtn.style.pointerEvents = 'none';
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes countUp {
+                from { transform: scale(0.8); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+            
+            .tool-card {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .tool-card:hover {
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            
+            .search-box:focus {
+                transform: scale(1.02);
+            }
+            
+            .category-header {
+                transition: all 0.3s ease;
+            }
+            
+            .category-header:hover {
+                transform: translateY(-2px);
+            }
+            
+            .stats-card {
+                transition: all 0.3s ease;
+            }
+            
+            .stats-card:hover {
+                transform: translateY(-4px);
+            }
+            
+            .fade-in {
+                animation: fadeInUp 0.8s ease-out;
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile-specific enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile search improvements
+            const searchBox = document.querySelector('.search-box');
+            const searchButton = document.querySelector('.search-box + button');
+            
+            if (searchBox && searchButton) {
+                // Mobile search button functionality
+                searchButton.addEventListener('click', function() {
+                    const searchTerm = searchBox.value.trim();
+                    if (searchTerm) {
+                        // Trigger search
+                        searchBox.dispatchEvent(new Event('input'));
+                        
+                        // Add mobile feedback
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 150);
+                    }
+                });
+                
+                // Mobile keyboard handling
+                searchBox.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        searchButton.click();
+                    }
+                });
+            }
+            
+            // Mobile touch feedback for tool cards
+            const toolCards = document.querySelectorAll('.tool-card');
+            toolCards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+            
+            // Mobile navigation improvements
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (mobileMenuButton && mobileNav) {
+                // Prevent body scroll when menu is open
+                mobileMenuButton.addEventListener('click', function() {
+                    if (mobileNav.classList.contains('active')) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileNav.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                        if (mobileNav.classList.contains('active')) {
+                            mobileMenuButton.classList.remove('active');
+                            mobileNav.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                });
+                
+                // Swipe to close mobile menu
+                let startX = 0;
+                let currentX = 0;
+                
+                mobileNav.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                });
+                
+                mobileNav.addEventListener('touchmove', function(e) {
+                    currentX = e.touches[0].clientX;
+                });
+                
+                mobileNav.addEventListener('touchend', function() {
+                    const diffX = startX - currentX;
+                    if (diffX > 50) { // Swipe left to close
+                        mobileMenuButton.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+            
+            // Mobile search suggestions improvements
+            const searchSuggestions = document.querySelector('.search-suggestions');
+            if (searchSuggestions) {
+                // Close suggestions when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!searchSuggestions.contains(e.target) && e.target !== searchBox) {
+                        searchSuggestions.classList.add('hidden');
+                    }
+                });
+                
+                // Mobile-friendly suggestion selection
+                const suggestions = searchSuggestions.querySelectorAll('.search-suggestion');
+                suggestions.forEach(suggestion => {
+                    suggestion.addEventListener('touchstart', function() {
+                        this.style.backgroundColor = '#e5e7eb';
+                    });
+                    
+                    suggestion.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.backgroundColor = '';
+                        }, 150);
+                    });
+                });
+            }
+            
+            // Mobile scroll performance optimization
+            let ticking = false;
+            function updateScrollToTop() {
+                const scrollToTopBtn = document.querySelector('.fixed.bottom-8.right-8');
+                if (scrollToTopBtn) {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.style.opacity = '1';
+                        scrollToTopBtn.style.pointerEvents = 'auto';
+                    } else {
+                        scrollToTopBtn.style.opacity = '0';
+                        scrollToTopBtn.style.pointerEvents = 'none';
+                    }
+                }
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollToTop);
+                    ticking = true;
+                }
+            });
+            
+            // Mobile viewport height fix for iOS
+            function setVH() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
+            
+            // Mobile performance optimizations
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.setAttribute('loading', 'lazy');
+            });
+            
+            // Mobile touch highlight removal
+            const touchElements = document.querySelectorAll('a, button, .tool-card');
+            touchElements.forEach(element => {
+                element.style.webkitTapHighlightColor = 'transparent';
             });
         });
     </script>
