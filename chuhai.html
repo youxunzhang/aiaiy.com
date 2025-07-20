@@ -1,233 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Business Tools - International Business & Cross-Border Solutions | AI Navigator</title>
-    <meta name="description" content="Discover the best global business tools, international platforms, and cross-border solutions. From e-commerce to global marketing, find tools for international expansion.">
-    <meta name="keywords" content="global business, international tools, cross-border, e-commerce, global marketing, international expansion">
-    <meta name="author" content="AI Navigator">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Global Business Tools - International Business & Cross-Border Solutions">
-    <meta property="og:description" content="Discover the best global business tools and international platforms">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ainavigator.com/global">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Global Business Tools - International Business & Cross-Border Solutions">
-    <meta name="twitter:description" content="Discover the best global business tools and international platforms">
-    <link rel="canonical" href="https://ainavigator.com/global">
+    <title>出海 - AI工具导航</title>
+    <meta name="description" content="出海 - 精选出海相关网站导航，助力全球化与跨境发展。">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #3B82F6;
-            --primary-indigo: #6366F1;
-            --primary-purple: #8B5CF6;
-            --primary-pink: #EC4899;
-            --primary-rose: #F43F5E;
-            --primary-orange: #F97316;
-            --primary-amber: #F59E0B;
-            --primary-yellow: #EAB308;
-            --primary-lime: #84CC16;
-            --primary-green: #22C55E;
-            --primary-emerald: #10B981;
-            --primary-teal: #14B8A6;
-            --primary-cyan: #06B6D4;
-            --primary-sky: #0EA5E9;
-            --gray-50: #F9FAFB;
-            --gray-100: #F3F4F6;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-400: #9CA3AF;
-            --gray-500: #6B7280;
-            --gray-600: #4B5563;
-            --gray-700: #374151;
-            --gray-800: #1F2937;
-            --gray-900: #111827;
+            --apple-blue: #007AFF;
+            --apple-gray: #8E8E93;
+            --apple-light-gray: #F2F2F7;
+            --apple-dark: #1D1D1F;
         }
-        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, rgba(102, 126, 234, 0.1) 100%);
-            color: var(--gray-900);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #F2F2F7 0%, #E5E5EA 100%);
+            color: var(--apple-dark);
         }
-        
         .glass-effect {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tool-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
-            position: relative;
-            overflow: hidden;
-            min-height: 120px;
-        }
-        
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-green), var(--primary-emerald));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.98);
-        }
-        
-        .tool-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .tool-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tool-card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
-        
-        .tool-card-content {
-            flex: 1;
-        }
-        
-        .category-header {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-emerald));
-            color: white;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .category-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .category-header:hover::before {
-            left: 100%;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-emerald), var(--primary-teal));
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .section-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 500px;
+        .site-card {
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(0,0,0,0.07);
+            border-radius: 0.75rem;
         }
-        
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        .site-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
         }
-        
-        .fade-in {
-            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
-        }
-        
-        .stagger-animation {
-            animation: staggerFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes staggerFadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        .tool-card:nth-child(1) { animation-delay: 0.1s; }
-        .tool-card:nth-child(2) { animation-delay: 0.2s; }
-        .tool-card:nth-child(3) { animation-delay: 0.3s; }
-        .tool-card:nth-child(4) { animation-delay: 0.4s; }
-        .tool-card:nth-child(5) { animation-delay: 0.5s; }
-        .tool-card:nth-child(6) { animation-delay: 0.6s; }
-        .tool-card:nth-child(7) { animation-delay: 0.7s; }
-        .tool-card:nth-child(8) { animation-delay: 0.8s; }
         
         /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+        }
+        
         .mobile-menu-button {
             display: none;
             flex-direction: column;
@@ -299,89 +112,8 @@
         }
         
         @media (max-width: 768px) {
-            .tool-card {
-                margin-bottom: 16px;
-            }
-            
-            .hero-section {
-                padding: 2rem 1rem;
-            }
-            
-            .gradient-text {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-            
-            .section-container {
-                margin: 0 0.5rem;
-            }
-            
-            .category-header {
-                font-size: 1.5rem;
-                padding: 1rem;
-            }
-            
-            .tool-card {
-                padding: 0.75rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 1rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.8rem;
-            }
-            
-            .tool-logo {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .desktop-menu {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .gradient-text {
-                font-size: 2rem;
-            }
-            
-            .hero-section p {
-                font-size: 1rem;
-            }
-            
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .grid {
-                gap: 0.5rem;
-            }
-            
-            .tool-card {
-                padding: 0.5rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 0.9rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.75rem;
-            }
-            
-            .tool-logo {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
+            .mobile-menu-button {
+                display: flex;
             }
         }
     </style>
@@ -392,26 +124,26 @@
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
+                    <a href="https://www.seodog.cn" target="_blank" class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                             <span class="text-white font-bold text-lg">AI</span>
                         </div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            AI Navigator
-                        </h1>
                     </a>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        AI工具导航
+                    </h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-6 desktop-menu">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Home</a>
-                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
-                    <a href="image.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Image</a>
-                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
-                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
-                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
-                    <a href="game.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Gaming</a>
-                    <a href="music.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Music</a>
-                    <a href="chuhai.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Global</a>
-                    <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
+                <div class="hidden md:flex items-center space-x-4 desktop-menu">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI web航海</a>
+                    <a href="words.html" class="text-blue-600 hover:underline text-sm font-semibold">AI文字</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">AI图片</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">AI音乐</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">AI设计师</a>
+                    <a href="ainum.html" class="text-blue-600 hover:underline text-sm font-semibold">AI数字人</a>
+                    <a href="sitemap.html" class="text-blue-600 hover:underline text-sm font-semibold">网站地图</a>
                 </div>
                 <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
                     <span></span>
@@ -425,329 +157,672 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-content">
-            <a href="index.html" onclick="closeMobileMenu()">Home</a>
-            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
-            <a href="image.html" onclick="closeMobileMenu()">Image</a>
-            <a href="video.html" onclick="closeMobileMenu()">Video</a>
-            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
-            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
-            <a href="game.html" onclick="closeMobileMenu()">Gaming</a>
-            <a href="music.html" onclick="closeMobileMenu()">Music</a>
-            <a href="chuhai.html" onclick="closeMobileMenu()">Global</a>
-            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
+            <a href="https://www.seodog.cn" onclick="closeMobileMenu()">首页</a>
+            <a href="chuhai.html" onclick="closeMobileMenu()">AI出海</a>
+            <a href="game.html" onclick="closeMobileMenu()">游戏</a>
+            <a href="hanghai.html" onclick="closeMobileMenu()">AI web航海</a>
+            <a href="words.html" onclick="closeMobileMenu()">AI文字</a>
+            <a href="img.html" onclick="closeMobileMenu()">AI图片</a>
+            <a href="music.html" onclick="closeMobileMenu()">AI音乐</a>
+            <a href="designer.html" onclick="closeMobileMenu()">AI设计师</a>
+            <a href="ainum.html" onclick="closeMobileMenu()">AI数字人</a>
+            <a href="sitemap.html" onclick="closeMobileMenu()">网站地图</a>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section py-16 mb-8">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Global Business Tools
-            </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
-                Expand Your Business Worldwide
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
-                Discover the best international business tools, cross-border platforms, and global expansion solutions
-            </p>
-            
-            <!-- Search Box -->
-            <div class="max-w-2xl mx-auto mb-8">
-                <input type="text" placeholder="Search global business tools..." class="search-box">
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-12 fade-in">
+                            <h2 class="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">出海精选导航</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <a href="https://www.babypodcast.pro/blog" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">狗狗全天玩耍时间</h3>
+                    <p class="text-gray-600 text-sm">babypodcast.pro</p>
+                </a>
+                <a href="http://www.furmummy.com.sg" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">毛毛妈咪</h3>
+                    <p class="text-gray-600 text-sm">新加坡最佳狗狗日托</p>
+                </a>
+                <a href="https://www.iloveimg.com/zh-cn" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">iLoveIMG</h3>
+                    <p class="text-gray-600 text-sm">在线图片处理工具</p>
+                </a>
+                <a href="https://www.ghibli-gpt.com/" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Ghibli GPT</h3>
+                    <p class="text-gray-600 text-sm">宫崎骏风格AI对话</p>
+                </a>
+                <a href="https://gamemonetize.com/" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">GameMonetize</h3>
+                    <p class="text-gray-600 text-sm">游戏变现平台</p>
+                </a>
+                <a href="https://monetag.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Monetag</h3>
+                    <p class="text-gray-600 text-sm">网站变现工具</p>
+                </a>
+                <a href="https://holopix.cn/" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">游戏美术</h3>
+                    <p class="text-gray-600 text-sm">holopix.cn</p>
+                </a>
+                <a href="https://stardewvalley.net" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Stardew Valley</h3>
+                    <p class="text-gray-600 text-sm">stardewvalley.net</p>
+                </a>
+                <a href="https://convertkit.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Convertkit</h3>
+                    <p class="text-gray-600 text-sm">convertkit.com</p>
+                </a>
+                <a href="https://builtwith.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">BuiltWith</h3>
+                    <p class="text-gray-600 text-sm">builtwith.com</p>
+                </a>
+                <a href="https://buschglobal.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Busch Global</h3>
+                    <p class="text-gray-600 text-sm">buschglobal.com</p>
+                </a>
+                <a href="https://tabs.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Tabs Chocolate</h3>
+                    <p class="text-gray-600 text-sm">tabs.co</p>
+                </a>
+                <a href="https://viralnova.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Viral Nova</h3>
+                    <p class="text-gray-600 text-sm">viralnova.com</p>
+                </a>
+                <a href="https://pof.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Plenty of Fish</h3>
+                    <p class="text-gray-600 text-sm">pof.com</p>
+                </a>
+                <a href="https://digitalinspiration.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Digital Inspiration</h3>
+                    <p class="text-gray-600 text-sm">digitalinspiration.com</p>
+                </a>
+                <a href="https://tldr.tech" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">TLDR Newsletter</h3>
+                    <p class="text-gray-600 text-sm">tldr.tech</p>
+                </a>
+                <a href="https://ugmonk.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Ugmonk</h3>
+                    <p class="text-gray-600 text-sm">ugmonk.com</p>
+                </a>
+                <a href="https://aliabdaal.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Ali Abdaal</h3>
+                    <p class="text-gray-600 text-sm">aliabdaal.com</p>
+                </a>
+                <a href="https://shop.anythingsports.org" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Anything Sports</h3>
+                    <p class="text-gray-600 text-sm">shop.anythingsports.org</p>
+                </a>
+                <a href="https://remoteok.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Remote OK</h3>
+                    <p class="text-gray-600 text-sm">remoteok.com</p>
+                </a>
+                <a href="https://thedankoe.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Dan Koe</h3>
+                    <p class="text-gray-600 text-sm">thedankoe.com</p>
+                </a>
+                <a href="https://ship30for30.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Ship 30 For 30</h3>
+                    <p class="text-gray-600 text-sm">ship30for30.com</p>
+                </a>
+                <a href="https://woodies.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Woodies</h3>
+                    <p class="text-gray-600 text-sm">woodies.com</p>
+                </a>
+                <a href="https://justinwelsh.me" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Justin Welsh</h3>
+                    <p class="text-gray-600 text-sm">justinwelsh.me</p>
+                </a>
+                <a href="https://miss-excel.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Miss Excel</h3>
+                    <p class="text-gray-600 text-sm">miss-excel.com</p>
+                </a>
+                <a href="https://languatalk.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Lingosi</h3>
+                    <p class="text-gray-600 text-sm">languatalk.com</p>
+                </a>
+                <a href="https://thomasjfrank.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Thomas Frank</h3>
+                    <p class="text-gray-600 text-sm">thomasjfrank.com</p>
+                </a>
+                <a href="https://modernproducers.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Modern Producers</h3>
+                    <p class="text-gray-600 text-sm">modernproducers.com</p>
+                </a>
+                <a href="https://tisfortame.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">T is for Tame</h3>
+                    <p class="text-gray-600 text-sm">tisfortame.com</p>
+                </a>
+                <a href="https://copywritingcourse.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Neville Medhora</h3>
+                    <p class="text-gray-600 text-sm">copywritingcourse.com</p>
+                </a>
+                <a href="https://recordingrevolution.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">The Recording Revolution LLC</h3>
+                    <p class="text-gray-600 text-sm">recordingrevolution.com</p>
+                </a>
+                <a href="https://allbe.ca" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Allbe Canada</h3>
+                    <p class="text-gray-600 text-sm">allbe.ca</p>
+                </a>
+                <a href="https://publer.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Publer</h3>
+                    <p class="text-gray-600 text-sm">publer.io</p>
+                </a>
+                <a href="https://designjoy.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Design Joy</h3>
+                    <p class="text-gray-600 text-sm">designjoy.co</p>
+                </a>
+                <a href="https://fortelabs.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Forte Labs</h3>
+                    <p class="text-gray-600 text-sm">fortelabs.com</p>
+                </a>
+                <a href="https://dango.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">High Performance Founder</h3>
+                    <p class="text-gray-600 text-sm">dango.co</p>
+                </a>
+                <a href="https://sidekiq.org" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Sidekiq</h3>
+                    <p class="text-gray-600 text-sm">sidekiq.org</p>
+                </a>
+                <a href="https://carrd.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Carrd</h3>
+                    <p class="text-gray-600 text-sm">carrd.co</p>
+                </a>
+                <a href="https://visualizevalue.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Visualise Value</h3>
+                    <p class="text-gray-600 text-sm">visualizevalue.com</p>
+                </a>
+                <a href="https://teamfflex.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">TeamFFLEX</h3>
+                    <p class="text-gray-600 text-sm">teamfflex.com</p>
+                </a>
+                <a href="https://thefivedaystartup.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">The Five Day Startup</h3>
+                    <p class="text-gray-600 text-sm">thefivedaystartup.com</p>
+                </a>
+                <a href="https://tenthousandcustomers.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">10k Customers</h3>
+                    <p class="text-gray-600 text-sm">tenthousandcustomers.com</p>
+                </a>
+                <a href="https://craigadamjoinery.co.uk" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Craig Adam</h3>
+                    <p class="text-gray-600 text-sm">craigadamjoinery.co.uk</p>
+                </a>
+                <a href="https://gocastanet.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Castanet</h3>
+                    <p class="text-gray-600 text-sm">gocastanet.com</p>
+                </a>
+                <a href="https://urbantastebud.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Urban Tastebud</h3>
+                    <p class="text-gray-600 text-sm">urbantastebud.com</p>
+                </a>
+                <a href="https://writeofpassage.school" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Write of Passage</h3>
+                    <p class="text-gray-600 text-sm">writeofpassage.school</p>
+                </a>
+                <a href="https://browserless.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Browserless</h3>
+                    <p class="text-gray-600 text-sm">browserless.io</p>
+                </a>
+                <a href="https://horkeyhandbook.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Horkey HandBook</h3>
+                    <p class="text-gray-600 text-sm">horkeyhandbook.com</p>
+                </a>
+                <a href="https://ketogirlnutritionist.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Keto Girl Nutritionist</h3>
+                    <p class="text-gray-600 text-sm">ketogirlnutritionist.com</p>
+                </a>
+                <a href="https://elimason.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Eli Mason</h3>
+                    <p class="text-gray-600 text-sm">elimason.com</p>
+                </a>
+                <a href="https://websiterentalcoaching.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Website Rental Coaching</h3>
+                    <p class="text-gray-600 text-sm">websiterentalcoaching.com</p>
+                </a>
+                <a href="https://shannonmattern.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Web Designer Academy</h3>
+                    <p class="text-gray-600 text-sm">shannonmattern.com</p>
+                </a>
+                <a href="https://getcyberleads.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">CyberLeads</h3>
+                    <p class="text-gray-600 text-sm">getcyberleads.com</p>
+                </a>
+                <a href="https://easlo.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Easlo</h3>
+                    <p class="text-gray-600 text-sm">easlo.co</p>
+                </a>
+                <a href="https://reviewsonmywebsite.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">ReviewsOnMyWebsite</h3>
+                    <p class="text-gray-600 text-sm">reviewsonmywebsite.com</p>
+                </a>
+                <a href="https://thesnoozefest.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Snooze Fest by Jayne Havens</h3>
+                    <p class="text-gray-600 text-sm">thesnoozefest.com</p>
+                </a>
+                <a href="https://zenmasterwellness.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Zenmaster Wellness</h3>
+                    <p class="text-gray-600 text-sm">zenmasterwellness.com</p>
+                </a>
+                <a href="https://increasing.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Increasing</h3>
+                    <p class="text-gray-600 text-sm">increasing.com</p>
+                </a>
+                <a href="https://patstedman.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Pat Stedman Dating and Relationship Coaching</h3>
+                    <p class="text-gray-600 text-sm">patstedman.com</p>
+                </a>
+                <a href="https://wrumersound.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">WrumerSound</h3>
+                    <p class="text-gray-600 text-sm">wrumersound.com</p>
+                </a>
+                <a href="https://mediamavenandmore.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Media Maven</h3>
+                    <p class="text-gray-600 text-sm">mediamavenandmore.com</p>
+                </a>
+                <a href="https://plugandlaw.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Plug and Law</h3>
+                    <p class="text-gray-600 text-sm">plugandlaw.com</p>
+                </a>
+                <a href="https://financialsamurai.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Financial Samurai</h3>
+                    <p class="text-gray-600 text-sm">financialsamurai.com</p>
+                </a>
+                <a href="https://naturalgirlwigs.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Natural Girl Wigs</h3>
+                    <p class="text-gray-600 text-sm">naturalgirlwigs.com</p>
+                </a>
+                <a href="https://displaypros.net" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Display Pros</h3>
+                    <p class="text-gray-600 text-sm">displaypros.net</p>
+                </a>
+                <a href="https://attributer.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Attributer</h3>
+                    <p class="text-gray-600 text-sm">attributer.io</p>
+                </a>
+                <a href="https://writingrevolt.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Writing Revolt</h3>
+                    <p class="text-gray-600 text-sm">writingrevolt.com</p>
+                </a>
+                <a href="https://abspancakes.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">ABS Protein Pancakes</h3>
+                    <p class="text-gray-600 text-sm">abspancakes.com</p>
+                </a>
+                <a href="https://oceanzenbikini.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">OceanZen</h3>
+                    <p class="text-gray-600 text-sm">oceanzenbikini.com</p>
+                </a>
+                <a href="https://brooklynbutcherblocks.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Brooklyn Butcher Blocks</h3>
+                    <p class="text-gray-600 text-sm">brooklynbutcherblocks.com</p>
+                </a>
+                <a href="https://upvoty.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Upvoty</h3>
+                    <p class="text-gray-600 text-sm">upvoty.com</p>
+                </a>
+                <a href="https://velvety.com.au" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Velvety</h3>
+                    <p class="text-gray-600 text-sm">velvety.com.au</p>
+                </a>
+                <a href="https://formulabot.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Excelformulabot</h3>
+                    <p class="text-gray-600 text-sm">formulabot.com</p>
+                </a>
+                <a href="https://visalist.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Visa List</h3>
+                    <p class="text-gray-600 text-sm">visalist.io</p>
+                </a>
+                <a href="https://cannabiscactus.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Tcc media</h3>
+                    <p class="text-gray-600 text-sm">cannabiscactus.com</p>
+                </a>
+                <a href="https://lazyjackpress.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Lazy Jack Press</h3>
+                    <p class="text-gray-600 text-sm">lazyjackpress.com</p>
+                </a>
+                <a href="https://notionway.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Notionway</h3>
+                    <p class="text-gray-600 text-sm">notionway.com</p>
+                </a>
+                <a href="https://pursuitofpassiveincome.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Pursuit of Passive Income</h3>
+                    <p class="text-gray-600 text-sm">pursuitofpassiveincome.com</p>
+                </a>
+                <a href="https://theflooringgirl.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">The Flooring Girl</h3>
+                    <p class="text-gray-600 text-sm">theflooringgirl.com</p>
+                </a>
+                <a href="https://cleaneatingkitchen.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Clean Eating Kitchen</h3>
+                    <p class="text-gray-600 text-sm">cleaneatingkitchen.com</p>
+                </a>
+                <a href="https://novowatch.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">NOVO watch</h3>
+                    <p class="text-gray-600 text-sm">novowatch.com</p>
+                </a>
+                <a href="https://blackluxecandles.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Black Luxe Candle Co.</h3>
+                    <p class="text-gray-600 text-sm">blackluxecandles.com</p>
+                </a>
+                <a href="https://myballoonworks.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">BalloonWorks</h3>
+                    <p class="text-gray-600 text-sm">myballoonworks.com</p>
+                </a>
+                <a href="https://draft.nu" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Draft</h3>
+                    <p class="text-gray-600 text-sm">draft.nu</p>
+                </a>
+                <a href="https://featherboards.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Brex International, LLC</h3>
+                    <p class="text-gray-600 text-sm">featherboards.com</p>
+                </a>
+                <a href="https://referralhero.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">ReferralHero</h3>
+                    <p class="text-gray-600 text-sm">referralhero.com</p>
+                </a>
+                <a href="https://thesimplestbizforu.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">The Simple Biz</h3>
+                    <p class="text-gray-600 text-sm">thesimplestbizforu.com</p>
+                </a>
+                <a href="https://dillydallygames.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Dilly Dally Games</h3>
+                    <p class="text-gray-600 text-sm">dillydallygames.com</p>
+                </a>
+                <a href="https://buddywdd.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Buddy Web Design & Development</h3>
+                    <p class="text-gray-600 text-sm">buddywdd.com</p>
+                </a>
+                <a href="https://instagram.com/mindset_claire" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">The Mindset Society</h3>
+                    <p class="text-gray-600 text-sm">instagram.com/mindset_claire</p>
+                </a>
+                <a href="https://tudiowombat.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Studio Wombat</h3>
+                    <p class="text-gray-600 text-sm">tudiowombat.com</p>
+                </a>
+                <a href="https://almondclear.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Almond Clear</h3>
+                    <p class="text-gray-600 text-sm">almondclear.com</p>
+                </a>
+                <a href="https://marketingexamples.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Marketing Examples</h3>
+                    <p class="text-gray-600 text-sm">marketingexamples.com</p>
+                </a>
+                <a href="https://merakidesignhouse.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Meraki Design House</h3>
+                    <p class="text-gray-600 text-sm">merakidesignhouse.com</p>
+                </a>
+                <a href="https://dropclothsamplers.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Dropcloth Samplers</h3>
+                    <p class="text-gray-600 text-sm">dropclothsamplers.com</p>
+                </a>
+                <a href="https://shopnavybleu.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">navyBLEU</h3>
+                    <p class="text-gray-600 text-sm">shopnavybleu.com</p>
+                </a>
+                <a href="https://plasfy.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Plasfy</h3>
+                    <p class="text-gray-600 text-sm">plasfy.com</p>
+                </a>
+                <a href="https://etsy.com/shop/CocoandBubbles" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Coco & Bubbles Candle Company</h3>
+                    <p class="text-gray-600 text-sm">etsy.com/shop/CocoandBubbles</p>
+                </a>
+                <a href="https://unicornplatform.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Unicorn Platform</h3>
+                    <p class="text-gray-600 text-sm">unicornplatform.com</p>
+                </a>
+                <a href="https://crowdworknews.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Crowd Work News</h3>
+                    <p class="text-gray-600 text-sm">crowdworknews.com</p>
+                </a>
+                <a href="https://senimancalligraphy.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Seniman Calligraphy</h3>
+                    <p class="text-gray-600 text-sm">senimancalligraphy.com</p>
+                </a>
+                <a href="https://vandelaydesign.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Vandelay Design</h3>
+                    <p class="text-gray-600 text-sm">vandelaydesign.com</p>
+                </a>
+                <a href="https://saucewriting.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Sauce Writing</h3>
+                    <p class="text-gray-600 text-sm">saucewriting.com</p>
+                </a>
+                <a href="https://rootd.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Rootd</h3>
+                    <p class="text-gray-600 text-sm">rootd.io</p>
+                </a>
+                <a href="https://bestowegifting.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Bestowe Gifting</h3>
+                    <p class="text-gray-600 text-sm">bestowegifting.com</p>
+                </a>
+                <a href="https://teacherjade.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Teacher Jade</h3>
+                    <p class="text-gray-600 text-sm">teacherjade.com</p>
+                </a>
+                <a href="https://bankstatementconverter.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Bankstatementconverter</h3>
+                    <p class="text-gray-600 text-sm">bankstatementconverter.com</p>
+                </a>
+                <a href="https://remotive.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Remotive</h3>
+                    <p class="text-gray-600 text-sm">remotive.com</p>
+                </a>
+                <a href="https://client-portal.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Client Portal</h3>
+                    <p class="text-gray-600 text-sm">client-portal.io</p>
+                </a>
+                <a href="https://thrivingbestsellers.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Thriving Best Sellers, LLC</h3>
+                    <p class="text-gray-600 text-sm">thrivingbestsellers.com</p>
+                </a>
+                <a href="https://optimizeyourself.me" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Optimize Yourself</h3>
+                    <p class="text-gray-600 text-sm">optimizeyourself.me</p>
+                </a>
+                <a href="https://railsdevs.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">RailsDevs</h3>
+                    <p class="text-gray-600 text-sm">railsdevs.com</p>
+                </a>
+                <a href="https://urbanplr.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">UrbanPLR</h3>
+                    <p class="text-gray-600 text-sm">urbanplr.com</p>
+                </a>
+                <a href="https://onlinecasinoguide.in" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Onlinecasinoguide</h3>
+                    <p class="text-gray-600 text-sm">onlinecasinoguide.in</p>
+                </a>
+                <a href="https://picjumbo.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">picjumbo</h3>
+                    <p class="text-gray-600 text-sm">picjumbo.com</p>
+                </a>
+                <a href="https://52frames.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">52Frames</h3>
+                    <p class="text-gray-600 text-sm">52frames.com</p>
+                </a>
+                <a href="https://getnadeef.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Nadeef Bidet</h3>
+                    <p class="text-gray-600 text-sm">getnadeef.com</p>
+                </a>
+                <a href="https://vagabondheart.co" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Vagabond Heart</h3>
+                    <p class="text-gray-600 text-sm">vagabondheart.co</p>
+                </a>
+                <a href="https://kdpwizard.app" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Merch Wizard & KDP Wizard</h3>
+                    <p class="text-gray-600 text-sm">kdpwizard.app</p>
+                </a>
+                <a href="https://presentazioneanimata.it" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Mediatopsolution OU</h3>
+                    <p class="text-gray-600 text-sm">presentazioneanimata.it</p>
+                </a>
+                <a href="https://sophiecrewphotography.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Sophie Crew Photography</h3>
+                    <p class="text-gray-600 text-sm">sophiecrewphotography.com</p>
+                </a>
+                <a href="https://hyperfluent.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Hyperfluent</h3>
+                    <p class="text-gray-600 text-sm">hyperfluent.com</p>
+                </a>
+                <a href="https://anthonykdo.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">ANTHONYKDO INC</h3>
+                    <p class="text-gray-600 text-sm">anthonykdo.com</p>
+                </a>
+                <a href="https://endorphitness.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Endorphitness</h3>
+                    <p class="text-gray-600 text-sm">endorphitness.com</p>
+                </a>
+                <a href="https://framedtweets.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Framed Tweets</h3>
+                    <p class="text-gray-600 text-sm">framedtweets.com</p>
+                </a>
+                <a href="https://stephensteers.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Steers Consulting Group</h3>
+                    <p class="text-gray-600 text-sm">stephensteers.com</p>
+                </a>
+                <a href="https://christophersilvestri.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Conversion Alchemy</h3>
+                    <p class="text-gray-600 text-sm">christophersilvestri.com</p>
+                </a>
+                <a href="https://tonsofthanks.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Tons of Thanks</h3>
+                    <p class="text-gray-600 text-sm">tonsofthanks.com</p>
+                </a>
+                <a href="https://photopea.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Photopea</h3>
+                    <p class="text-gray-600 text-sm">photopea.com</p>
+                </a>
+                <a href="https://napkinllc.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Napkin</h3>
+                    <p class="text-gray-600 text-sm">napkinllc.com</p>
+                </a>
+                <a href="https://betmoneypicks.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Moneypicks</h3>
+                    <p class="text-gray-600 text-sm">betmoneypicks.com</p>
+                </a>
+                <a href="https://radaar.io" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Radaar</h3>
+                    <p class="text-gray-600 text-sm">radaar.io</p>
+                </a>
+                <a href="https://loveandlogic.co.uk" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Love & Logic</h3>
+                    <p class="text-gray-600 text-sm">loveandlogic.co.uk</p>
+                </a>
+                <a href="https://fitnancials.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">FITnancials</h3>
+                    <p class="text-gray-600 text-sm">fitnancials.com</p>
+                </a>
+                <a href="https://moneytamer.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Money Tamer</h3>
+                    <p class="text-gray-600 text-sm">moneytamer.com</p>
+                </a>
+                <a href="https://airtrackbot.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">AirTrackBot</h3>
+                    <p class="text-gray-600 text-sm">airtrackbot.com</p>
+                </a>
+                <a href="https://y2lending.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Y2 Lending</h3>
+                    <p class="text-gray-600 text-sm">y2lending.com</p>
+                </a>
+                <a href="https://kelseyvetter.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Kelsey Vetter Co.</h3>
+                    <p class="text-gray-600 text-sm">kelseyvetter.com</p>
+                </a>
+                <a href="https://nocodemvp.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">No-Code MVP</h3>
+                    <p class="text-gray-600 text-sm">nocodemvp.com</p>
+                </a>
+                <a href="https://html-online.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">HTMLG</h3>
+                    <p class="text-gray-600 text-sm">html-online.com</p>
+                </a>
+                <a href="https://aitools.fyi" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">World of AI by aitools.fyi</h3>
+                    <p class="text-gray-600 text-sm">aitools.fyi</p>
+                </a>
+                <a href="https://luhhu.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Luhhu</h3>
+                    <p class="text-gray-600 text-sm">luhhu.com</p>
+                </a>
+                <a href="https://foodtruckempire.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Food Truck Empire</h3>
+                    <p class="text-gray-600 text-sm">foodtruckempire.com</p>
+                </a>
+                <a href="https://amandalouiseswimwear.com" target="_blank" class="site-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Amanda Louise</h3>
+                    <p class="text-gray-600 text-sm">amandalouiseswimwear.com</p>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 pb-16" role="main">
-        <article>
-            <header>
-                <h2 class="sr-only">Global Business Tools - International Business Directory</h2>
-            </header>
-            
-            <!-- E-commerce Platforms -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🛒 E-commerce Platforms
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.amazon.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Amazon</h3>
-                                    <p class="text-gray-600 text-sm">Global Marketplace</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.ebay.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">E</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">eBay</h3>
-                                    <p class="text-gray-600 text-sm">Online Auction</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.shopify.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Shopify</h3>
-                                    <p class="text-gray-600 text-sm">E-commerce Platform</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.aliexpress.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">AliExpress</h3>
-                                    <p class="text-gray-600 text-sm">Global Shopping</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.wish.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">W</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Wish</h3>
-                                    <p class="text-gray-600 text-sm">Mobile Shopping</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Payment Solutions -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        💳 Payment Solutions
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.paypal.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">P</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">PayPal</h3>
-                                    <p class="text-gray-600 text-sm">Global Payments</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://stripe.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #4F46E5);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Stripe</h3>
-                                    <p class="text-gray-600 text-sm">Payment Processing</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.square.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Square</h3>
-                                    <p class="text-gray-600 text-sm">Payment Solutions</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.adyen.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Adyen</h3>
-                                    <p class="text-gray-600 text-sm">Global Payments</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.worldpay.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">W</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Worldpay</h3>
-                                    <p class="text-gray-600 text-sm">Payment Technology</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Global Marketing -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🌍 Global Marketing
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://ads.google.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Google Ads</h3>
-                                    <p class="text-gray-600 text-sm">Global Advertising</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.facebook.com/business/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">F</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Facebook Ads</h3>
-                                    <p class="text-gray-600 text-sm">Social Advertising</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://business.linkedin.com/marketing-solutions" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">L</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">LinkedIn Ads</h3>
-                                    <p class="text-gray-600 text-sm">B2B Marketing</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://ads.twitter.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">T</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Twitter Ads</h3>
-                                    <p class="text-gray-600 text-sm">Social Marketing</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.tiktok.com/business/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">T</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">TikTok Ads</h3>
-                                    <p class="text-gray-600 text-sm">Video Marketing</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- International Services -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🌐 International Services
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://translate.google.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Google Translate</h3>
-                                    <p class="text-gray-600 text-sm">Language Translation</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.deepl.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">D</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">DeepL</h3>
-                                    <p class="text-gray-600 text-sm">AI Translation</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.fedex.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">F</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">FedEx</h3>
-                                    <p class="text-gray-600 text-sm">Global Shipping</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.ups.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">U</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">UPS</h3>
-                                    <p class="text-gray-600 text-sm">International Shipping</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.dhl.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">D</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">DHL</h3>
-                                    <p class="text-gray-600 text-sm">Global Logistics</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </article>
+        </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="glass-effect mt-16">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center">
-                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+    <footer class="glass-effect py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">AI</span>
+                </div>
+                <span class="text-xl font-semibold">AI工具导航</span>
             </div>
+            <p class="text-gray-600 mb-4">发现最好的AI工具，提升您的工作效率</p>
+            <p class="text-sm text-gray-500">© 2024 AI工具导航. 精选优质AI工具，联系我们 wx zhangyouxun2013</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
+        // 移动端菜单功能
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
 
-        mobileMenuButton.addEventListener('click', function() {
+        function toggleMobileMenu() {
             mobileMenuButton.classList.toggle('active');
             mobileNav.classList.toggle('active');
-        });
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
 
         function closeMobileMenu() {
             mobileMenuButton.classList.remove('active');
             mobileNav.classList.remove('active');
+            body.style.overflow = '';
         }
 
-        // Search functionality
-        const searchBox = document.querySelector('.search-box');
-        const toolCards = document.querySelectorAll('.tool-card');
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
-        searchBox.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
+        // 点击菜单外部关闭菜单
+        mobileNav.addEventListener('click', function(e) {
+            if (e.target === mobileNav) {
+                closeMobileMenu();
+            }
+        });
+
+        // 监听窗口大小变化，在大屏幕时关闭移动菜单
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // 触摸手势支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        mobileNav.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        mobileNav.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
             
-            toolCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // 向左滑动，关闭菜单
+                    closeMobileMenu();
                 }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+            }
+        }
     </script>
 </body>
 </html> 
