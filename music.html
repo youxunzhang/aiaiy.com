@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Platforms - Best Music Streaming & Creation Tools | AI Navigator</title>
-    <meta name="description" content="Discover the best music streaming platforms, music creation tools, and audio production software. From Spotify to GarageBand, find the perfect music solution.">
-    <meta name="keywords" content="music platforms, music streaming, music creation, audio production, Spotify, Apple Music, music tools">
-    <meta name="author" content="AI Navigator">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Music Platforms - Best Music Streaming & Creation Tools">
-    <meta property="og:description" content="Discover the best music streaming platforms and music creation tools">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ainavigator.com/music">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Music Platforms - Best Music Streaming & Creation Tools">
-    <meta name="twitter:description" content="Discover the best music streaming platforms and music creation tools">
-    <link rel="canonical" href="https://ainavigator.com/music">
+    <title>音乐家 - 探索无限音乐可能 | 音乐网站地图</title>
+    <meta name="description" content="音乐家(yinyuejia.cn)为您提供最全面的音乐网站导航。收录了QQ音乐、网易云音乐等主流平台，以及吉他谱、DJ混音、在线K歌等特色音乐网站，是您探索音乐世界的最佳起点。">
+    <meta name="keywords" content="音乐家, 音乐网站, 音乐平台, 在线听歌, 音乐导航, sitemap">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-blue: #3B82F6;
@@ -60,7 +51,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .tool-card {
+        .music-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -68,88 +59,32 @@
             border-radius: 1rem;
             position: relative;
             overflow: hidden;
-            min-height: 120px;
         }
         
-        .tool-card::before {
+        .music-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-rose), var(--primary-pink));
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
         
-        .tool-card:hover {
+        .music-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             background: rgba(255, 255, 255, 0.98);
         }
         
-        .tool-card:hover::before {
+        .music-card:hover::before {
             transform: scaleX(1);
         }
         
-        .tool-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tool-card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
-        
-        .tool-card-content {
-            flex: 1;
-        }
-        
-        .category-header {
-            background: linear-gradient(135deg, var(--primary-rose), var(--primary-pink));
-            color: white;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .category-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .category-header:hover::before {
-            left: 100%;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
         .gradient-text {
-            background: linear-gradient(135deg, var(--primary-rose), var(--primary-pink), var(--primary-purple));
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-pink));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -162,30 +97,21 @@
             50% { background-position: 100% 50%; }
         }
         
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .section-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 1.5rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 500px;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-rose);
-            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
         }
         
         .fade-in {
@@ -218,536 +144,237 @@
             }
         }
         
-        .tool-card:nth-child(1) { animation-delay: 0.1s; }
-        .tool-card:nth-child(2) { animation-delay: 0.2s; }
-        .tool-card:nth-child(3) { animation-delay: 0.3s; }
-        .tool-card:nth-child(4) { animation-delay: 0.4s; }
-        .tool-card:nth-child(5) { animation-delay: 0.5s; }
-        .tool-card:nth-child(6) { animation-delay: 0.6s; }
-        .tool-card:nth-child(7) { animation-delay: 0.7s; }
-        .tool-card:nth-child(8) { animation-delay: 0.8s; }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-button {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 10;
+        .block.bg-white {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
         }
         
-        .mobile-menu-button span {
-            width: 100%;
-            height: 3px;
-            background: #3B82F6;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-button.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .mobile-menu-button.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-menu-button.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
-        .mobile-nav {
-            position: fixed;
+        .block.bg-white::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 40;
-            transform: translateX(-100%);
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
             transition: transform 0.3s ease;
         }
         
-        .mobile-nav.active {
-            transform: translateX(0);
+        .block.bg-white:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
         }
         
-        .mobile-nav-content {
-            padding: 5rem 2rem 2rem;
-            height: 100%;
-            overflow-y: auto;
-        }
-        
-        .mobile-nav a {
-            display: block;
-            padding: 1rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #374151;
-            border-bottom: 1px solid #E5E7EB;
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-nav a:hover {
-            color: #3B82F6;
-        }
-        
-        @media (max-width: 768px) {
-            .tool-card {
-                margin-bottom: 16px;
-            }
-            
-            .hero-section {
-                padding: 2rem 1rem;
-            }
-            
-            .gradient-text {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-            
-            .section-container {
-                margin: 0 0.5rem;
-            }
-            
-            .category-header {
-                font-size: 1.5rem;
-                padding: 1rem;
-            }
-            
-            .tool-card {
-                padding: 0.75rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 1rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.8rem;
-            }
-            
-            .tool-logo {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .desktop-menu {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .gradient-text {
-                font-size: 2rem;
-            }
-            
-            .hero-section p {
-                font-size: 1rem;
-            }
-            
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .grid {
-                gap: 0.5rem;
-            }
-            
-            .tool-card {
-                padding: 0.5rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 0.9rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.75rem;
-            }
-            
-            .tool-logo {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
-            }
+        .block.bg-white:hover::before {
+            transform: scaleX(1);
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="bg-gray-50 text-gray-700">
+
     <!-- Header -->
     <header class="glass-effect sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-lg">AI</span>
-                        </div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            AI Navigator
-                        </h1>
-                    </a>
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">AI</span>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        音乐导航
+                    </h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-6 desktop-menu">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Home</a>
-                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
-                    <a href="image.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Image</a>
-                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
-                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
-                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
-                    <a href="game.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Gaming</a>
-                    <a href="music.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Music</a>
-                    <a href="chuhai.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Global</a>
-                    <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">web航海</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">图片导航</a>
+                    <a href="links.html" class="text-blue-600 hover:underline text-sm font-semibold">友情链接</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">音乐导航</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">设计师导航</a>
                 </div>
-                <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-content">
-            <a href="index.html" onclick="closeMobileMenu()">Home</a>
-            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
-            <a href="image.html" onclick="closeMobileMenu()">Image</a>
-            <a href="video.html" onclick="closeMobileMenu()">Video</a>
-            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
-            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
-            <a href="game.html" onclick="closeMobileMenu()">Gaming</a>
-            <a href="music.html" onclick="closeMobileMenu()">Music</a>
-            <a href="chuhai.html" onclick="closeMobileMenu()">Global</a>
-            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <section class="hero-section py-16 mb-8">
+    <section class="hero-section py-20 mb-16">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Music Platforms
-            </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
-                Discover the Best Music Tools
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
-                Explore the top music streaming platforms, creation tools, and audio production software
-            </p>
-            
-            <!-- Search Box -->
-            <div class="max-w-2xl mx-auto mb-8">
-                <input type="text" placeholder="Search music platforms..." class="search-box">
+            <div class="floating-animation mb-8">
+                <div class="w-24 h-24 bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                    <span class="text-white font-bold text-3xl">🎵</span>
+                </div>
             </div>
+            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                音乐家导航
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
+                全能音乐网站地图，为所有音乐爱好者精心打造
+            </p>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 pb-16" role="main">
-        <article>
-            <header>
-                <h2 class="sr-only">Music Platforms - Comprehensive Music Directory</h2>
-            </header>
+    <div class="container mx-auto px-4 pb-16">
+
+        <main>
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        主流音乐平台
+                    </h2>
+                    <nav class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-8">
+                    <a href="https://y.qq.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">QQ音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">y.qq.com</p>
+                    </a>
+                    <a href="https://music.163.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">网易云音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">music.163.com</p>
+                    </a>
+                    <a href="https://www.kugou.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">酷狗音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.kugou.com</p>
+                    </a>
+                    <a href="https://www.kuwo.cn" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">酷我音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.kuwo.cn</p>
+                    </a>
+                    <a href="https://www.migu.cn/music.html" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">咪咕音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.migu.cn</p>
+                    </a>
+                    <a href="https://music.taihe.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">千千音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">music.taihe.com</p>
+                    </a>
+                    <a href="https://music.douban.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">豆瓣音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">music.douban.com</p>
+                    </a>
+                    <a href="https://www.1ting.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">一听音乐网</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.1ting.com</p>
+                    </a>
+                    <a href="https://tingwu.aliyun.com/" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">通义听雨</h3>
+                        <p class="text-sm text-gray-500 mt-1">tingwu.aliyun.com</p>
+                    </a>
+                </nav>
+            </section>
+
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        MV与视频音乐
+                    </h2>
+                    <nav class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-8">
+                    <a href="https://music.youku.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">优酷音乐MV</h3>
+                        <p class="text-sm text-gray-500 mt-1">music.youku.com</p>
+                    </a>
+                     <a href="https://y.qq.com/portal/mv_index.html" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">QQ音乐MV</h3>
+                        <p class="text-sm text-gray-500 mt-1">y.qq.com/mv</p>
+                    </a>
+                    <a href="https://www.bilibili.com/music" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">哔哩哔哩音乐</h3>
+                        <p class="text-sm text-gray-500 mt-1">bilibili.com/music</p>
+                    </a>
+                </nav>
+            </section>
+
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        专业工具与社区
+                    </h2>
+                    <nav class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-8">
+                    <a href="https://www.ccjt.net" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">虫虫吉他</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.ccjt.net</p>
+                    </a>
+                    <a href="http://www.qupu123.com/" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">谱天下</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.qupu123.com</p>
+                    </a>
+                    <a href="https://music.china.com.cn" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">中国古曲网</h3>
+                        <p class="text-sm text-gray-500 mt-1">music.china.com.cn</p>
+                    </a>
+                    <a href="https://www.yue365.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">365音乐网</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.yue365.com</p>
+                    </a>
+                    <a href="https://mvsep.com/zh/home" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">音乐与音轨分离</h3>
+                        <p class="text-sm text-gray-500 mt-1">mvsep.com</p>
+                    </a>
+                    <a href="https://vocalremover.org/zh/cutter" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">音频剪辑</h3>
+                        <p class="text-sm text-gray-500 mt-1">vocalremover.org</p>
+                    </a>
+                    <a href="https://www.freeconvert.com/zh/mp3-to-wav" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">FreeConvert</h3>
+                        <p class="text-sm text-gray-500 mt-1">音频格式转换工具</p>
+                    </a>
+                </nav>
+            </section>
+
+            <section class="mb-16 fade-in">
+                <div class="section-container overflow-hidden">
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        网络电台与DJ
+                    </h2>
+                    <nav class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-8">
+                     <a href="http://www.hbtv.com.cn/zj/ctyygb/" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">楚天音乐广播</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.hbtv.com.cn</p>
+                    </a>
+                    <a href="https://www.vvvdj.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">清风DJ</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.vvvdj.com</p>
+                    </a>
+                    <a href="https://www.djduoduo.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">DJ嗨嗨</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.djduoduo.com</p>
+                    </a>
+                </nav>
+            </section>
             
-            <!-- Music Streaming -->
-            <section class="mb-16 fade-in">
+            <section class="fade-in">
                 <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🎵 Music Streaming
+                    <h2 class="text-2xl font-bold gradient-text p-6 mb-0">
+                        K歌娱乐社区
                     </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.spotify.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #1DB954, #1ED760);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Spotify</h3>
-                                    <p class="text-gray-600 text-sm">Music Streaming</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://music.apple.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Apple Music</h3>
-                                    <p class="text-gray-600 text-sm">Apple's Music Service</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.youtube.com/music" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #FF0000, #CC0000);">Y</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">YouTube Music</h3>
-                                    <p class="text-gray-600 text-sm">Video Music Platform</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.amazon.com/music" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Amazon Music</h3>
-                                    <p class="text-gray-600 text-sm">Amazon's Music Service</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://tidal.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">T</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Tidal</h3>
-                                    <p class="text-gray-600 text-sm">High-Fidelity Music</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                    <nav class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-8">
+                    <a href="https://kg.qq.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">全民K歌</h3>
+                        <p class="text-sm text-gray-500 mt-1">kg.qq.com</p>
+                    </a>
+                    <a href="https://www.9ku.com" target="_blank" rel="noopener noreferrer" class="block bg-white p-4 rounded-lg shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="font-semibold text-gray-900">九酷音乐网</h3>
+                        <p class="text-sm text-gray-500 mt-1">www.9ku.com</p>
+                    </a>
+                </nav>
             </section>
 
-            <!-- Music Creation -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🎼 Music Creation
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.apple.com/logic-pro/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">L</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Logic Pro</h3>
-                                    <p class="text-gray-600 text-sm">Professional DAW</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.ableton.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Ableton Live</h3>
-                                    <p class="text-gray-600 text-sm">Music Production</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.propellerheads.com/reason" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">R</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Reason</h3>
-                                    <p class="text-gray-600 text-sm">Virtual Studio</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.image-line.com/fl-studio/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">F</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">FL Studio</h3>
-                                    <p class="text-gray-600 text-sm">Digital Audio Workstation</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.audacityteam.org/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Audacity</h3>
-                                    <p class="text-gray-600 text-sm">Free Audio Editor</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+        </main>
 
-            <!-- Music Learning -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🎸 Music Learning
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.yousician.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">Y</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Yousician</h3>
-                                    <p class="text-gray-600 text-sm">Learn Instruments</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.flowkey.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">F</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Flowkey</h3>
-                                    <p class="text-gray-600 text-sm">Piano Learning</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.guitartricks.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">G</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Guitar Tricks</h3>
-                                    <p class="text-gray-600 text-sm">Guitar Lessons</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.musictheory.net/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">M</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Music Theory</h3>
-                                    <p class="text-gray-600 text-sm">Theory Lessons</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.synthesia.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Synthesia</h3>
-                                    <p class="text-gray-600 text-sm">Piano Game</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
+        <footer class="text-center mt-16 py-6 border-t border-gray-200">
+            <p class="text-gray-500">
+                &copy; 2025 yinyuejia.cn - 音乐家导航. All Rights Reserved.
+            </p>
+        </footer>
 
-            <!-- Music Tools -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🛠️ Music Tools
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.shazam.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Shazam</h3>
-                                    <p class="text-gray-600 text-sm">Music Recognition</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.last.fm/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #D51007, #B91C1C);">L</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Last.fm</h3>
-                                    <p class="text-gray-600 text-sm">Music Discovery</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.bandcamp.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #629aa9, #4A7C59);">B</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Bandcamp</h3>
-                                    <p class="text-gray-600 text-sm">Independent Music</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.soundcloud.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #FF5500, #FF7700);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">SoundCloud</h3>
-                                    <p class="text-gray-600 text-sm">Audio Platform</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.mixcloud.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">M</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Mixcloud</h3>
-                                    <p class="text-gray-600 text-sm">DJ Mixes</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </article>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="glass-effect mt-16">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center">
-                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileNav = document.getElementById('mobileNav');
-
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenuButton.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-        });
-
-        function closeMobileMenu() {
-            mobileMenuButton.classList.remove('active');
-            mobileNav.classList.remove('active');
-        }
-
-        // Search functionality
-        const searchBox = document.querySelector('.search-box');
-        const toolCards = document.querySelectorAll('.tool-card');
-
-        searchBox.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            toolCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>

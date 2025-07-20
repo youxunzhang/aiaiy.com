@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitemap - AI Navigator | Complete Site Structure</title>
-    <meta name="description" content="Complete sitemap of AI Navigator - find all AI tools, categories, and pages organized by topic and functionality.">
-    <meta name="keywords" content="sitemap, AI tools directory, site structure, navigation">
-    <meta name="author" content="AI Navigator">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Sitemap - AI Navigator">
-    <meta property="og:description" content="Complete sitemap of AI Navigator">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ainavigator.com/sitemap">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sitemap - AI Navigator">
-    <meta name="twitter:description" content="Complete sitemap of AI Navigator">
-    <link rel="canonical" href="https://ainavigator.com/sitemap">
+    <title>网站地图 - AI工具导航</title>
+    <meta name="description" content="AI工具导航网站地图 - 快速找到您需要的所有页面和工具分类">
+    <meta name="keywords" content="网站地图,AI工具导航,导航地图,工具分类">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #3B82F6;
@@ -83,43 +72,13 @@
         }
         
         .sitemap-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             background: rgba(255, 255, 255, 0.98);
         }
         
         .sitemap-card:hover::before {
             transform: scaleX(1);
-        }
-        
-        .category-header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
-            color: white;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .category-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .category-header:hover::before {
-            left: 100%;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .gradient-text {
@@ -134,6 +93,15 @@
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+        
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         .section-container {
@@ -174,47 +142,10 @@
             }
         }
         
-        .sitemap-card:nth-child(1) { animation-delay: 0.1s; }
-        .sitemap-card:nth-child(2) { animation-delay: 0.2s; }
-        .sitemap-card:nth-child(3) { animation-delay: 0.3s; }
-        .sitemap-card:nth-child(4) { animation-delay: 0.4s; }
-        .sitemap-card:nth-child(5) { animation-delay: 0.5s; }
-        .sitemap-card:nth-child(6) { animation-delay: 0.6s; }
-        .sitemap-card:nth-child(7) { animation-delay: 0.7s; }
-        .sitemap-card:nth-child(8) { animation-delay: 0.8s; }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-button {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 10;
-        }
-        
-        .mobile-menu-button span {
-            width: 100%;
-            height: 3px;
-            background: #3B82F6;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-button.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .mobile-menu-button.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-menu-button.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            border-radius: 1rem 1rem 0 0;
         }
         
         .mobile-nav {
@@ -253,81 +184,6 @@
         .mobile-nav a:hover {
             color: #3B82F6;
         }
-        
-        @media (max-width: 768px) {
-            .sitemap-card {
-                margin-bottom: 16px;
-            }
-            
-            .hero-section {
-                padding: 2rem 1rem;
-            }
-            
-            .gradient-text {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-            
-            .section-container {
-                margin: 0 0.5rem;
-            }
-            
-            .category-header {
-                font-size: 1.5rem;
-                padding: 1rem;
-            }
-            
-            .sitemap-card {
-                padding: 0.75rem;
-            }
-            
-            .sitemap-card h3 {
-                font-size: 1rem;
-            }
-            
-            .sitemap-card p {
-                font-size: 0.8rem;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .desktop-menu {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .gradient-text {
-                font-size: 2rem;
-            }
-            
-            .hero-section p {
-                font-size: 1rem;
-            }
-            
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .grid {
-                gap: 0.5rem;
-            }
-            
-            .sitemap-card {
-                padding: 0.5rem;
-            }
-            
-            .sitemap-card h3 {
-                font-size: 0.9rem;
-            }
-            
-            .sitemap-card p {
-                font-size: 0.75rem;
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -336,26 +192,32 @@
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-lg">AI</span>
-                        </div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            AI Navigator
-                        </h1>
-                    </a>
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">AI</span>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        网站地图
+                    </h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-6 desktop-menu">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Home</a>
-                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
-                    <a href="image.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Image</a>
-                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
-                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
-                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
-                    <a href="game.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Gaming</a>
-                    <a href="music.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Music</a>
-                    <a href="chuhai.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Global</a>
-                    <a href="sitemap.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Sitemap</a>
+                <div class="hidden md:flex items-center space-x-4 desktop-menu">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI web航海</a>
+                    <a href="words.html" class="text-blue-600 hover:underline text-sm font-semibold">AI文字</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">AI图片</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">AI音乐</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">AI设计师</a>
+                    <a href="ainum.html" class="text-blue-600 hover:underline text-sm font-semibold">AI数字人</a>
+                    <a href="aiprompt.html" class="text-blue-600 hover:underline text-sm font-semibold">AI提示词</a>
+                    <a href="ailearn.html" class="text-blue-600 hover:underline text-sm font-semibold">AI学习</a>
+                    <a href="aioffice.html" class="text-blue-600 hover:underline text-sm font-semibold">AI办公</a>
+                    <a href="aiagent.html" class="text-blue-600 hover:underline text-sm font-semibold">AI智能体</a>
+                    <a href="aicontent.html" class="text-blue-600 hover:underline text-sm font-semibold">AI内容</a>
+                    <a href="aitimer.html" class="text-blue-600 hover:underline text-sm font-semibold">AI计时器</a>
+                    <a href="aicommunity.html" class="text-blue-600 hover:underline text-sm font-semibold">AI社群</a>
+                    <a href="social.html" class="text-blue-600 hover:underline text-sm font-semibold">社交媒体</a>
+                    <a href="sitemap.html" class="text-blue-600 hover:underline text-sm font-semibold">网站地图</a>
                 </div>
                 <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
                     <span></span>
@@ -369,282 +231,279 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-content">
-            <a href="index.html" onclick="closeMobileMenu()">Home</a>
-            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
-            <a href="image.html" onclick="closeMobileMenu()">Image</a>
-            <a href="video.html" onclick="closeMobileMenu()">Video</a>
-            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
-            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
-            <a href="game.html" onclick="closeMobileMenu()">Gaming</a>
-            <a href="music.html" onclick="closeMobileMenu()">Music</a>
-            <a href="chuhai.html" onclick="closeMobileMenu()">Global</a>
-            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
+            <a href="https://www.seodog.cn" onclick="closeMobileMenu()">首页</a>
+            <a href="chuhai.html" onclick="closeMobileMenu()">AI出海</a>
+            <a href="game.html" onclick="closeMobileMenu()">游戏</a>
+            <a href="hanghai.html" onclick="closeMobileMenu()">AI web航海</a>
+            <a href="words.html" onclick="closeMobileMenu()">AI文字</a>
+            <a href="img.html" onclick="closeMobileMenu()">AI图片</a>
+            <a href="music.html" onclick="closeMobileMenu()">AI音乐</a>
+            <a href="designer.html" onclick="closeMobileMenu()">AI设计师</a>
+            <a href="ainum.html" onclick="closeMobileMenu()">AI数字人</a>
+            <a href="aiprompt.html" onclick="closeMobileMenu()">AI提示词</a>
+            <a href="ailearn.html" onclick="closeMobileMenu()">AI学习</a>
+            <a href="aioffice.html" onclick="closeMobileMenu()">AI办公</a>
+            <a href="aiagent.html" onclick="closeMobileMenu()">AI智能体</a>
+            <a href="aicontent.html" onclick="closeMobileMenu()">AI内容</a>
+            <a href="aitimer.html" onclick="closeMobileMenu()">AI计时器</a>
+            <a href="aicommunity.html" onclick="closeMobileMenu()">AI社群</a>
+            <a href="social.html" onclick="closeMobileMenu()">社交媒体</a>
+            <a href="sitemap.html" onclick="closeMobileMenu()">网站地图</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section py-16 mb-8">
+    <section class="hero-section py-20 mb-16">
         <div class="container mx-auto px-4 text-center">
+            <div class="floating-animation mb-8">
+                <div class="w-24 h-24 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                    <span class="text-white font-bold text-3xl">🗺️</span>
+                </div>
+            </div>
             <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Sitemap
+                网站地图
             </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
-                Complete Site Structure
-            </h2>
             <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
-                Navigate through all AI tools and categories organized by functionality
+                AI工具导航网站地图 - 快速找到您需要的所有页面和工具分类
             </p>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pb-16" role="main">
-        <article>
-            <header>
-                <h2 class="sr-only">AI Navigator Sitemap - Complete Site Structure</h2>
-            </header>
-            
-            <!-- Main Pages -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🏠 Main Pages
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-                        <a href="index.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-blue-600">Homepage</h3>
-                            <p class="text-gray-600 mb-4">Main landing page with comprehensive AI tools directory</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• Language Models (ChatGPT, Claude, Gemini)</li>
-                                <li>• Image Generation (DALL-E, Midjourney)</li>
-                                <li>• Video Creation (HeyGen, Pika Labs)</li>
-                                <li>• Writing Tools (Grammarly, Notion)</li>
-                                <li>• Coding Tools (GitHub Copilot, Cursor)</li>
-                            </ul>
-                        </a>
-                        <a href="writing.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-green-600">Writing Tools</h3>
-                            <p class="text-gray-600 mb-4">AI-powered writing assistants and content creation tools</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• Writing Assistants (Grammarly, ProWritingAid)</li>
-                                <li>• Content Creation (Jasper, Copy.ai)</li>
-                                <li>• Note-taking (Notion, Obsidian)</li>
-                                <li>• Translation (DeepL, Google Translate)</li>
-                                <li>• Research Tools (Perplexity, Consensus)</li>
-                            </ul>
-                        </a>
-                        <a href="image.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-purple-600">Image Tools</h3>
-                            <p class="text-gray-600 mb-4">AI image generation, editing, and design tools</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• AI Image Generators (DALL-E, Midjourney)</li>
-                                <li>• Photo Editing (Photoshop, Canva)</li>
-                                <li>• Background Removal (Remove.bg)</li>
-                                <li>• Stock Photos (Unsplash, Pexels)</li>
-                                <li>• Design Tools (Figma, Sketch)</li>
-                            </ul>
-                        </a>
-                        <a href="video.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-orange-600">Video Tools</h3>
-                            <p class="text-gray-600 mb-4">AI video generation, editing, and content creation</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• AI Video Generators (HeyGen, Pika Labs)</li>
-                                <li>• Video Editing (Premiere Pro, DaVinci)</li>
-                                <li>• Video Platforms (YouTube, Vimeo)</li>
-                                <li>• Video Analytics (Google Analytics)</li>
-                                <li>• Social Media (TikTok, Instagram)</li>
-                            </ul>
-                        </a>
-                        <a href="audio.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-teal-600">Audio Tools</h3>
-                            <p class="text-gray-600 mb-4">AI audio generation, music creation, and editing</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• Text-to-Speech (ElevenLabs, Murf)</li>
-                                <li>• AI Music Generation (Suno, Udio)</li>
-                                <li>• Audio Editing (Audition, Audacity)</li>
-                                <li>• Podcast Tools (Anchor, Spotify)</li>
-                                <li>• Music Production (Ableton, Cubase)</li>
-                            </ul>
-                        </a>
-                        <a href="coding.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
-                            <h3 class="font-semibold text-xl mb-3 text-gray-600">Coding Tools</h3>
-                            <p class="text-gray-600 mb-4">AI coding assistants and development environments</p>
-                            <ul class="text-sm text-gray-500 space-y-1">
-                                <li>• AI Code Assistants (GitHub Copilot, Cursor)</li>
-                                <li>• Development Environments (VS Code, JetBrains)</li>
-                                <li>• Version Control (GitHub, GitLab)</li>
-                                <li>• Cloud Platforms (AWS, Google Cloud)</li>
-                                <li>• Online IDEs (Replit, CodeSandbox)</li>
-                            </ul>
-                        </a>
-                    </div>
-                </div>
-            </section>
+    <main class="container mx-auto px-4 pb-16">
+        <!-- 主要页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    🏠 主要页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="https://www.seodog.cn" target="_blank" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">AI工具导航首页</h3>
+                    <p class="text-gray-600 text-sm">seodog.cn</p>
+                    <p class="text-gray-500 text-xs mt-2">AI工具导航主站，包含大模型、文字处理、图片处理等工具</p>
+                </a>
+                <a href="index-bilingual.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">双语首页</h3>
+                    <p class="text-gray-600 text-sm">index-bilingual.html</p>
+                    <p class="text-gray-500 text-xs mt-2">支持中英文切换的AI工具导航首页</p>
+                </a>
+                <a href="sitemap.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">网站地图</h3>
+                    <p class="text-gray-600 text-sm">sitemap.html</p>
+                    <p class="text-gray-500 text-xs mt-2">本页面 - 网站结构导航地图</p>
+                </a>
+            </div>
+        </section>
 
-            <!-- Tool Categories -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        📂 Tool Categories
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-blue-600">Language Models</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• ChatGPT (OpenAI)</li>
-                                <li>• Claude (Anthropic)</li>
-                                <li>• Gemini (Google)</li>
-                                <li>• Perplexity (Search)</li>
-                                <li>• Grok (X.AI)</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-purple-600">Image Generation</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• DALL-E 2 (OpenAI)</li>
-                                <li>• Midjourney</li>
-                                <li>• Stable Diffusion</li>
-                                <li>• Remove.bg</li>
-                                <li>• Unsplash</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-orange-600">Video Creation</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• HeyGen</li>
-                                <li>• Pika Labs</li>
-                                <li>• Runway</li>
-                                <li>• Descript</li>
-                                <li>• Synthesia</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-green-600">Writing Tools</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• Grammarly</li>
-                                <li>• Notion</li>
-                                <li>• Copy.ai</li>
-                                <li>• Jasper</li>
-                                <li>• Surge</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-gray-600">Coding Tools</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• GitHub Copilot</li>
-                                <li>• Cursor</li>
-                                <li>• Replit</li>
-                                <li>• Tabnine</li>
-                                <li>• Codeium</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-teal-600">Audio Tools</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• ElevenLabs</li>
-                                <li>• Murf</li>
-                                <li>• Suno</li>
-                                <li>• Udio</li>
-                                <li>• Audacity</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-pink-600">Development</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• VS Code</li>
-                                <li>• JetBrains</li>
-                                <li>• GitHub</li>
-                                <li>• GitLab</li>
-                                <li>• AWS</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-indigo-600">Platforms</h3>
-                            <ul class="text-sm text-gray-600 space-y-2">
-                                <li>• YouTube</li>
-                                <li>• Spotify</li>
-                                <li>• TikTok</li>
-                                <li>• Instagram</li>
-                                <li>• LinkedIn</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <!-- 专业导航页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    🧭 专业导航页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="chuhai.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">出海</h3>
+                    <p class="text-gray-600 text-sm">chuhai.html</p>
+                    <p class="text-gray-500 text-xs mt-2">出海相关网站导航，包含各种创业和商业工具</p>
+                </a>
+                <a href="game.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">游戏导航</h3>
+                    <p class="text-gray-600 text-sm">game.html</p>
+                    <p class="text-gray-500 text-xs mt-2">全球主流游戏平台和游戏资讯网站导航</p>
+                </a>
+                <a href="hanghai.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">Web航海</h3>
+                    <p class="text-gray-600 text-sm">hanghai.html</p>
+                    <p class="text-gray-500 text-xs mt-2">航海工具导航，包含市场分析、开发者工具等</p>
+                </a>
+                <a href="img.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">图片导航</h3>
+                    <p class="text-gray-600 text-sm">img.html</p>
+                    <p class="text-gray-500 text-xs mt-2">图片处理、AI绘画、素材网站导航</p>
+                </a>
+                <a href="music.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">音乐导航</h3>
+                    <p class="text-gray-600 text-sm">music.html</p>
+                    <p class="text-gray-500 text-xs mt-2">音乐平台、音频工具、K歌社区导航</p>
+                </a>
+                <a href="designer.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">设计师导航</h3>
+                    <p class="text-gray-600 text-sm">designer.html</p>
+                    <p class="text-gray-500 text-xs mt-2">设计师专用工具和资源导航</p>
+                </a>
+            </div>
+        </section>
 
-            <!-- Site Information -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        ℹ️ Site Information
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-8">
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-blue-600">About AI Navigator</h3>
-                            <p class="text-gray-600 mb-4">AI Navigator is your comprehensive directory of the best AI tools and solutions. We curate and organize cutting-edge artificial intelligence applications to help you find the perfect tools for your needs.</p>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• 500+ AI Tools Curated</li>
-                                <li>• 50+ Categories</li>
-                                <li>• Regular Updates</li>
-                                <li>• User Reviews</li>
-                                <li>• Expert Recommendations</li>
-                            </ul>
-                        </div>
-                        <div class="sitemap-card p-6 rounded-xl">
-                            <h3 class="font-semibold text-lg mb-3 text-green-600">Navigation</h3>
-                            <p class="text-gray-600 mb-4">Our site is organized by functionality to help you quickly find the AI tools you need. Each category contains carefully selected tools with detailed descriptions and direct links.</p>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• Category-based Organization</li>
-                                <li>• Search Functionality</li>
-                                <li>• Mobile Responsive</li>
-                                <li>• Fast Loading</li>
-                                <li>• SEO Optimized</li>
-                            </ul>
-                        </div>
-                    </div>
+        <!-- 其他页面 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    📄 其他页面
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <a href="links.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">友情链接</h3>
+                    <p class="text-gray-600 text-sm">links.html</p>
+                    <p class="text-gray-500 text-xs mt-2">合作伙伴和友情网站链接</p>
+                </a>
+                <a href="V1.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">V1版本</h3>
+                    <p class="text-gray-600 text-sm">V1.html</p>
+                    <p class="text-gray-500 text-xs mt-2">网站V1版本页面</p>
+                </a>
+                <a href="gametest.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">游戏测试</h3>
+                    <p class="text-gray-600 text-sm">gametest.html</p>
+                    <p class="text-gray-500 text-xs mt-2">游戏测试页面，体验最新游戏</p>
+                </a>
+                <a href="words.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">词汇查询</h3>
+                    <p class="text-gray-600 text-sm">words.html</p>
+                    <p class="text-gray-500 text-xs mt-2">Cyberpunk词汇查询与快捷工具</p>
+                </a>
+                <a href="prayer.html" class="sitemap-card p-6 rounded-xl hover:shadow-lg transition-all">
+                    <h3 class="font-semibold text-lg mb-2">祈祷之树</h3>
+                    <p class="text-gray-600 text-sm">prayer.html</p>
+                    <p class="text-gray-500 text-xs mt-2">心灵祈祷平台，感受温暖的祝福</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 网站功能说明 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    ⚙️ 网站功能说明
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🔍 搜索功能</h3>
+                    <p class="text-gray-600 text-sm">首页提供AI工具搜索功能</p>
+                    <p class="text-gray-500 text-xs mt-2">支持按工具名称和描述搜索</p>
                 </div>
-            </section>
-        </article>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">📱 响应式设计</h3>
+                    <p class="text-gray-600 text-sm">适配各种设备屏幕</p>
+                    <p class="text-gray-500 text-xs mt-2">手机、平板、电脑完美显示</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🎨 现代化UI</h3>
+                    <p class="text-gray-600 text-sm">采用苹果风格设计</p>
+                    <p class="text-gray-500 text-xs mt-2">毛玻璃效果和渐变色彩</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🚀 快速导航</h3>
+                    <p class="text-gray-600 text-sm">一键直达目标页面</p>
+                    <p class="text-gray-500 text-xs mt-2">减少用户查找时间</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">📊 分类管理</h3>
+                    <p class="text-gray-600 text-sm">按功能分类整理</p>
+                    <p class="text-gray-500 text-xs mt-2">便于用户快速定位</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">🔗 外部链接</h3>
+                    <p class="text-gray-600 text-sm">安全的外部链接跳转</p>
+                    <p class="text-gray-500 text-xs mt-2">新窗口打开，保护用户体验</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系信息 -->
+        <section class="fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header text-2xl font-bold p-6 mb-0">
+                    📞 联系信息
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">微信联系</h3>
+                    <p class="text-gray-600 text-sm">zhangyouxun2013</p>
+                    <p class="text-gray-500 text-xs mt-2">添加微信获取更多支持</p>
+                </div>
+                <div class="sitemap-card p-6 rounded-xl">
+                    <h3 class="font-semibold text-lg mb-2">网站信息</h3>
+                    <p class="text-gray-600 text-sm">© 2024 AI工具导航</p>
+                    <p class="text-gray-500 text-xs mt-2">精选优质AI工具，提升工作效率</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="glass-effect mt-16">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center">
-                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+    <footer class="glass-effect py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">AI</span>
+                </div>
+                <span class="text-xl font-semibold">网站地图</span>
             </div>
+            <p class="text-gray-600 mb-4">AI工具导航网站结构总览</p>
+            <p class="text-sm text-gray-500">© 2024 AI工具导航. 联系我们 wx zhangyouxun2013</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
+        // 移动端菜单功能
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileNav = document.getElementById('mobileNav');
+        const body = document.body;
 
-        mobileMenuButton.addEventListener('click', function() {
+        function toggleMobileMenu() {
             mobileMenuButton.classList.toggle('active');
             mobileNav.classList.toggle('active');
-        });
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
 
         function closeMobileMenu() {
             mobileMenuButton.classList.remove('active');
             mobileNav.classList.remove('active');
+            body.style.overflow = '';
         }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // 点击菜单外部关闭菜单
+        mobileNav.addEventListener('click', function(e) {
+            if (e.target === mobileNav) {
+                closeMobileMenu();
+            }
         });
+
+        // 监听窗口大小变化，在大屏幕时关闭移动菜单
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // 触摸手势支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        mobileNav.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        mobileNav.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // 向左滑动，关闭菜单
+                    closeMobileMenu();
+                }
+            }
+        }
     </script>
 </body>
 </html> 

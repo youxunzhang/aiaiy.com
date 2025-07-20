@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming Platforms - Best Game Platforms & Gaming Tools | AI Navigator</title>
-    <meta name="description" content="Discover the best gaming platforms, game stores, and gaming tools. From Steam to Epic Games, find the perfect gaming platform for your needs.">
-    <meta name="keywords" content="gaming platforms, game stores, Steam, Epic Games, PlayStation, Xbox, Nintendo, gaming tools">
-    <meta name="author" content="AI Navigator">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Gaming Platforms - Best Game Platforms & Gaming Tools">
-    <meta property="og:description" content="Discover the best gaming platforms and game stores">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ainavigator.com/gaming">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gaming Platforms - Best Game Platforms & Gaming Tools">
-    <meta name="twitter:description" content="Discover the best gaming platforms and game stores">
-    <link rel="canonical" href="https://ainavigator.com/gaming">
+    <title>全球主流游戏平台导航</title>
+    <meta name="description" content="收录全球主流游戏平台，包括Steam、Epic、PlayStation、Xbox、Nintendo等，快速访问各大游戏平台官网。">
+    <meta name="keywords" content="游戏平台,Steam,Epic,PlayStation,Xbox,Nintendo,GOG,itch.io,游戏导航">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #3B82F6;
@@ -34,6 +23,20 @@
             --primary-teal: #14B8A6;
             --primary-cyan: #06B6D4;
             --primary-sky: #0EA5E9;
+            --primary-blue-alt: #2563EB;
+            --primary-indigo-alt: #4F46E5;
+            --primary-purple-alt: #7C3AED;
+            --primary-pink-alt: #DB2777;
+            --primary-rose-alt: #E11D48;
+            --primary-orange-alt: #EA580C;
+            --primary-amber-alt: #D97706;
+            --primary-yellow-alt: #CA8A04;
+            --primary-lime-alt: #65A30D;
+            --primary-green-alt: #16A34A;
+            --primary-emerald-alt: #059669;
+            --primary-teal-alt: #0D9488;
+            --primary-cyan-alt: #0891B2;
+            --primary-sky-alt: #0284C7;
             --gray-50: #F9FAFB;
             --gray-100: #F3F4F6;
             --gray-200: #E5E7EB;
@@ -60,7 +63,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .tool-card {
+        .platform-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -71,29 +74,29 @@
             min-height: 120px;
         }
         
-        .tool-card::before {
+        .platform-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--primary-pink));
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
         
-        .tool-card:hover {
+        .platform-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
             background: rgba(255, 255, 255, 0.98);
         }
         
-        .tool-card:hover::before {
+        .platform-card:hover::before {
             transform: scaleX(1);
         }
         
-        .tool-logo {
+        .platform-logo {
             width: 32px;
             height: 32px;
             border-radius: 6px;
@@ -107,19 +110,19 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
-        .tool-card-header {
+        .platform-card-header {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 6px;
         }
         
-        .tool-card-content {
+        .platform-card-content {
             flex: 1;
         }
         
         .category-header {
-            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: white;
             font-weight: 700;
             letter-spacing: -0.025em;
@@ -142,14 +145,11 @@
             left: 100%;
         }
         
-        .hero-section {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+        .category-游戏平台 { background: linear-gradient(135deg, var(--primary-green), var(--primary-emerald)); }
+        .category-游戏资讯 { background: linear-gradient(135deg, var(--primary-orange), var(--primary-amber)); }
         
         .gradient-text {
-            background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink), var(--primary-rose));
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), var(--primary-pink));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -162,6 +162,15 @@
             50% { background-position: 100% 50%; }
         }
         
+        .floating-animation {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .section-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -170,22 +179,66 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
-        .search-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            font-size: 1.1rem;
-            width: 100%;
-            max-width: 500px;
-            transition: all 0.3s ease;
+        @media (max-width: 768px) {
+            .platform-card {
+                margin-bottom: 16px;
+            }
+            
+            .section-container {
+                margin: 0 0.5rem;
+            }
+            
+            .category-header {
+                font-size: 1.5rem;
+                padding: 1rem;
+            }
+            
+            .platform-card {
+                padding: 0.75rem;
+            }
+            
+            .platform-card h3 {
+                font-size: 1rem;
+            }
+            
+            .platform-card p {
+                font-size: 0.8rem;
+            }
+            
+            .platform-logo {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
         }
         
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .grid {
+                gap: 0.5rem;
+            }
+            
+            .platform-card {
+                padding: 0.5rem;
+            }
+            
+            .platform-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .platform-card p {
+                font-size: 0.75rem;
+            }
+            
+            .platform-logo {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
         }
         
         .fade-in {
@@ -217,173 +270,6 @@
                 transform: translateY(0); 
             }
         }
-        
-        .tool-card:nth-child(1) { animation-delay: 0.1s; }
-        .tool-card:nth-child(2) { animation-delay: 0.2s; }
-        .tool-card:nth-child(3) { animation-delay: 0.3s; }
-        .tool-card:nth-child(4) { animation-delay: 0.4s; }
-        .tool-card:nth-child(5) { animation-delay: 0.5s; }
-        .tool-card:nth-child(6) { animation-delay: 0.6s; }
-        .tool-card:nth-child(7) { animation-delay: 0.7s; }
-        .tool-card:nth-child(8) { animation-delay: 0.8s; }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-button {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 10;
-        }
-        
-        .mobile-menu-button span {
-            width: 100%;
-            height: 3px;
-            background: #3B82F6;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-button.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .mobile-menu-button.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-menu-button.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 40;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-nav.active {
-            transform: translateX(0);
-        }
-        
-        .mobile-nav-content {
-            padding: 5rem 2rem 2rem;
-            height: 100%;
-            overflow-y: auto;
-        }
-        
-        .mobile-nav a {
-            display: block;
-            padding: 1rem 0;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #374151;
-            border-bottom: 1px solid #E5E7EB;
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-nav a:hover {
-            color: #3B82F6;
-        }
-        
-        @media (max-width: 768px) {
-            .tool-card {
-                margin-bottom: 16px;
-            }
-            
-            .hero-section {
-                padding: 2rem 1rem;
-            }
-            
-            .gradient-text {
-                font-size: 2.5rem;
-                line-height: 1.2;
-            }
-            
-            .section-container {
-                margin: 0 0.5rem;
-            }
-            
-            .category-header {
-                font-size: 1.5rem;
-                padding: 1rem;
-            }
-            
-            .tool-card {
-                padding: 0.75rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 1rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.8rem;
-            }
-            
-            .tool-logo {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .desktop-menu {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .gradient-text {
-                font-size: 2rem;
-            }
-            
-            .hero-section p {
-                font-size: 1rem;
-            }
-            
-            .container {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .grid {
-                gap: 0.5rem;
-            }
-            
-            .tool-card {
-                padding: 0.5rem;
-            }
-            
-            .tool-card h3 {
-                font-size: 0.9rem;
-            }
-            
-            .tool-card p {
-                font-size: 0.75rem;
-            }
-            
-            .tool-logo {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -392,362 +278,392 @@
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
+                    <a href="https://www.seodog.cn" target="_blank" class="flex items-center space-x-3">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                             <span class="text-white font-bold text-lg">AI</span>
                         </div>
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            AI Navigator
-                        </h1>
                     </a>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        全球主流游戏平台导航
+                    </h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-6 desktop-menu">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Home</a>
-                    <a href="writing.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Writing</a>
-                    <a href="image.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Image</a>
-                    <a href="video.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Video</a>
-                    <a href="audio.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Audio</a>
-                    <a href="coding.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Coding</a>
-                    <a href="game.html" class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors">Gaming</a>
-                    <a href="music.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Music</a>
-                    <a href="chuhai.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Global</a>
-                    <a href="sitemap.html" class="text-gray-700 hover:text-blue-600 text-sm font-semibold transition-colors">Sitemap</a>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://www.seodog.cn" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
+                    <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">出海</a>
+                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">web航海</a>
+                    <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">图片导航</a>
+                    <a href="music.html" class="text-blue-600 hover:underline text-sm font-semibold">音乐导航</a>
+                    <a href="designer.html" class="text-blue-600 hover:underline text-sm font-semibold">设计师导航</a>
+                    <a href="sitemap.html" class="text-blue-600 hover:underline text-sm font-semibold">网站地图</a>
                 </div>
-                <button class="mobile-menu-button md:hidden" id="mobileMenuButton">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-content">
-            <a href="index.html" onclick="closeMobileMenu()">Home</a>
-            <a href="writing.html" onclick="closeMobileMenu()">Writing</a>
-            <a href="image.html" onclick="closeMobileMenu()">Image</a>
-            <a href="video.html" onclick="closeMobileMenu()">Video</a>
-            <a href="audio.html" onclick="closeMobileMenu()">Audio</a>
-            <a href="coding.html" onclick="closeMobileMenu()">Coding</a>
-            <a href="game.html" onclick="closeMobileMenu()">Gaming</a>
-            <a href="music.html" onclick="closeMobileMenu()">Music</a>
-            <a href="chuhai.html" onclick="closeMobileMenu()">Global</a>
-            <a href="sitemap.html" onclick="closeMobileMenu()">Sitemap</a>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
-    <section class="hero-section py-16 mb-8">
+    <section class="hero-section py-12 mb-8">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Gaming Platforms
+            <h1 class="gradient-text text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                全球主流游戏平台导航
             </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-600 mb-6 font-medium">
-                Discover the Best Gaming Platforms
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto font-light">
-                Explore the top gaming platforms, game stores, and gaming tools for the ultimate gaming experience
+            <p class="text-xl md:text-2xl text-gray-700 mb-2 max-w-3xl mx-auto font-light">
+                收录全球主流游戏平台，快速访问各大平台
             </p>
-            
-            <!-- Search Box -->
-            <div class="max-w-2xl mx-auto mb-8">
-                <input type="text" placeholder="Search gaming platforms..." class="search-box">
-            </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pb-16" role="main">
-        <article>
-            <header>
-                <h2 class="sr-only">Gaming Platforms - Comprehensive Gaming Directory</h2>
-            </header>
-            
-            <!-- PC Gaming Platforms -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🖥️ PC Gaming Platforms
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://store.steampowered.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #1B2838, #2A475E);">S</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Steam</h3>
-                                    <p class="text-gray-600 text-sm">PC Gaming Platform</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://store.epicgames.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #2A2A2A, #1A1A1A);">E</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Epic Games</h3>
-                                    <p class="text-gray-600 text-sm">Game Store</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.gog.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">G</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">GOG</h3>
-                                    <p class="text-gray-600 text-sm">DRM-Free Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://itch.io/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">I</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">itch.io</h3>
-                                    <p class="text-gray-600 text-sm">Indie Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.humblebundle.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">H</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Humble Bundle</h3>
-                                    <p class="text-gray-600 text-sm">Game Bundles</p>
-                                </div>
-                            </div>
-                        </a>
+    <main class="container mx-auto px-4 pb-16">
+        <!-- 游戏平台 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header category-游戏平台 text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                    🎮 游戏平台
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-8">
+                <a href="https://store.steampowered.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #1B2838, #2A475E);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Steam</h3>
+                            <p class="text-gray-600 text-sm">全球最大PC游戏平台</p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </a>
+                <a href="https://www.epicgames.com/store/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #2A2A2A, #404040);">E</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Epic Games Store</h3>
+                            <p class="text-gray-600 text-sm">知名PC游戏平台，定期免费游戏</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://store.playstation.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #003791, #0070CC);">P</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">PlayStation Store</h3>
+                            <p class="text-gray-600 text-sm">索尼PlayStation官方商店</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.xbox.com/zh-CN/games" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #107C10, #00A651);">X</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Xbox</h3>
+                            <p class="text-gray-600 text-sm">微软Xbox游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.nintendo.com/store/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #E60012, #FF6B6B);">N</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Nintendo eShop</h3>
+                            <p class="text-gray-600 text-sm">任天堂官方游戏商店</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.gog.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FF6B35, #F7931E);">G</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">GOG.com</h3>
+                            <p class="text-gray-600 text-sm">无DRM正版PC游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://itch.io/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FA5C5C, #FF6B6B);">I</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">itch.io</h3>
+                            <p class="text-gray-600 text-sm">独立游戏创作与分享平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.ubisoft.com/en-us/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #0070CC, #00A651);">U</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Ubisoft Store</h3>
+                            <p class="text-gray-600 text-sm">育碧官方游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.origin.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #F56C2D, #FF6B35);">O</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Origin</h3>
+                            <p class="text-gray-600 text-sm">EA旗下PC游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.battlenet.com.cn/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #00AEFF, #0070CC);">B</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Battle.net</h3>
+                            <p class="text-gray-600 text-sm">暴雪战网游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://store.rockstargames.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">R</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Rockstar Games Launcher</h3>
+                            <p class="text-gray-600 text-sm">R星官方游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.rockstargames.com/reddeadredemption2" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #8B0000, #DC143C);">荒</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">荒野大镖客2</h3>
+                            <p class="text-gray-600 text-sm">Red Dead Redemption 2</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.garena.tw/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #00A651, #00D4AA);">G</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Garena</h3>
+                            <p class="text-gray-600 text-sm">东南亚游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://supercell.com/en/games/brawlstars/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FFD700, #FFA500);">乱</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">荒野乱斗</h3>
+                            <p class="text-gray-600 text-sm">Brawl Stars</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://supercell.com/en/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #00A651, #00D4AA);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Supercell</h3>
+                            <p class="text-gray-600 text-sm">Supercell游戏公司</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.chess.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #8B4513, #D2691E);">C</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Chess.com</h3>
+                            <p class="text-gray-600 text-sm">国际象棋在线平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #6B8E23, #9ACD32);">W</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Wordle</h3>
+                            <p class="text-gray-600 text-sm">纽约时报单词游戏</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://wordly.org/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #4B0082, #8A2BE2);">W</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Wordly</h3>
+                            <p class="text-gray-600 text-sm">在线单词游戏</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <!-- Console Gaming -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🎮 Console Gaming
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://www.playstation.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #006FCD, #003791);">P</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">PlayStation</h3>
-                                    <p class="text-gray-600 text-sm">Sony Gaming</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.xbox.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #107C10, #0F4C0F);">X</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Xbox</h3>
-                                    <p class="text-gray-600 text-sm">Microsoft Gaming</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.nintendo.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #E60012, #CC0000);">N</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Nintendo</h3>
-                                    <p class="text-gray-600 text-sm">Nintendo Gaming</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.origin.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F56C2D, #E55A1B);">O</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Origin</h3>
-                                    <p class="text-gray-600 text-sm">EA Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.battle.net/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #00AEFF, #0088CC);">B</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Battle.net</h3>
-                                    <p class="text-gray-600 text-sm">Blizzard Games</p>
-                                </div>
-                            </div>
-                        </a>
+        <!-- 游戏资讯网站 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header category-游戏资讯 text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                    📰 游戏资讯网站
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-8">
+                <a href="https://www.nytimes.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">纽</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">纽约时报</h3>
+                            <p class="text-gray-600 text-sm">The New York Times</p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </a>
+                <a href="https://www.eurogamer.net/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FF6B35, #F7931E);">E</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Eurogamer</h3>
+                            <p class="text-gray-600 text-sm">欧洲游戏资讯网站</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://sea.ign.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">I</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">IGN SEA</h3>
+                            <p class="text-gray-600 text-sm">IGN东南亚版</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://brawlstars.fandom.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FFD700, #FFA500);">维</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">荒野乱斗维基</h3>
+                            <p class="text-gray-600 text-sm">Brawl Stars Wiki</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <!-- Mobile Gaming -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        📱 Mobile Gaming
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://play.google.com/store/games" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Google Play</h3>
-                                    <p class="text-gray-600 text-sm">Android Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://apps.apple.com/us/genre/ios-games/id6014" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">A</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">App Store</h3>
-                                    <p class="text-gray-600 text-sm">iOS Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.roblox.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #00A2FF, #0088CC);">R</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Roblox</h3>
-                                    <p class="text-gray-600 text-sm">User-Generated Games</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.minecraft.net/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">M</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Minecraft</h3>
-                                    <p class="text-gray-600 text-sm">Block Building Game</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.fortnite.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">F</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Fortnite</h3>
-                                    <p class="text-gray-600 text-sm">Battle Royale</p>
-                                </div>
-                            </div>
-                        </a>
+        <!-- 游戏相关链接 -->
+        <section class="mb-16 fade-in">
+            <div class="section-container overflow-hidden">
+                <h2 class="category-header category-游戏资讯 text-2xl font-bold p-6 rounded-t-2xl mb-0">
+                    🔗 游戏相关链接
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-8">
+                <a href="https://sitemap-extractor.gsctool.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Sitemap提取器</h3>
+                            <p class="text-gray-600 text-sm">提取XML Sitemap URL工具</p>
+                        </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Gaming Tools -->
-            <section class="mb-16 fade-in">
-                <div class="section-container overflow-hidden">
-                    <h2 class="category-header text-2xl font-bold p-6 rounded-t-2xl mb-0">
-                        🛠️ Gaming Tools
-                    </h2>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-8">
-                        <a href="https://discord.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #5865F2, #4752C4);">D</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Discord</h3>
-                                    <p class="text-gray-600 text-sm">Gaming Chat</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.twitch.tv/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #9146FF, #7C3AED);">T</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Twitch</h3>
-                                    <p class="text-gray-600 text-sm">Game Streaming</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.reddit.com/r/gaming/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #FF4500, #FF6B35);">R</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Reddit Gaming</h3>
-                                    <p class="text-gray-600 text-sm">Gaming Community</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.ign.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #000000, #1F2937);">I</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">IGN</h3>
-                                    <p class="text-gray-600 text-sm">Gaming News</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.metacritic.com/" target="_blank" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div class="tool-card-header">
-                                <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">M</div>
-                                <div class="tool-card-content">
-                                    <h3 class="font-semibold text-lg mb-2">Metacritic</h3>
-                                    <p class="text-gray-600 text-sm">Game Reviews</p>
-                                </div>
-                            </div>
-                        </a>
+                </a>
+                <a href="https://crazycattle3d.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #FF6B35, #F7931E);">疯</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">疯狂牛3D</h3>
+                            <p class="text-gray-600 text-sm">90多天百万流量游戏</p>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </article>
+                </a>
+                <a href="https://neal.fun/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">N</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Neal.fun</h3>
+                            <p class="text-gray-600 text-sm">游戏和其他东西</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://gamedistribution.com/games/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #10B981, #059669);">G</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">GameDistribution</h3>
+                            <p class="text-gray-600 text-sm">可引IFRAME游戏平台</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://html5games.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">H</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">HTML5Games</h3>
+                            <p class="text-gray-600 text-sm">可引IFRAME HTML5游戏</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://solitairebliss.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Solitaire Bliss</h3>
+                            <p class="text-gray-600 text-sm">月访问量470万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://solitaire.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #EC4899, #DB2777);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Solitaire.com</h3>
+                            <p class="text-gray-600 text-sm">月访问量470万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://solitr.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Solitr</h3>
+                            <p class="text-gray-600 text-sm">月访问量860万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://worldofsolitaire.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #10B981, #059669);">W</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">World of Solitaire</h3>
+                            <p class="text-gray-600 text-sm">月访问量910万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://cardgames.io/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #F97316, #EA580C);">C</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">CardGames.io</h3>
+                            <p class="text-gray-600 text-sm">月访问量2230万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://solitaired.com/" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">S</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Solitaired</h3>
+                            <p class="text-gray-600 text-sm">月访问量2390万</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://scys.com/articleDetail/xq_topic/8852424115841482" target="_blank" class="platform-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="platform-card-header">
+                        <div class="platform-logo" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">批</div>
+                        <div class="platform-card-content">
+                            <h3 class="font-semibold text-lg mb-2">批量IFRAME</h3>
+                            <p class="text-gray-600 text-sm">游戏嵌入教程</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="glass-effect mt-16">
-        <div class="container mx-auto px-4 py-8">
-            <div class="text-center">
-                <p class="text-gray-600 mb-4">© 2024 AI Navigator. All rights reserved.</p>
-                <p class="text-gray-500 text-sm">Discover the future of AI tools and solutions</p>
+    <footer class="glass-effect py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
+                    <span class="text-white font-bold text-sm">AI</span>
+                </div>
+                <span class="text-xl font-semibold">全球主流游戏平台导航</span>
             </div>
+            <p class="text-gray-600 mb-4">收录全球主流游戏平台，快速访问各大平台</p>
+            <p class="text-sm text-gray-500">© 2024 游戏导航. 联系我们 wx zhangyouxun2013</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileNav = document.getElementById('mobileNav');
-
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenuButton.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-        });
-
-        function closeMobileMenu() {
-            mobileMenuButton.classList.remove('active');
-            mobileNav.classList.remove('active');
-        }
-
-        // Search functionality
-        const searchBox = document.querySelector('.search-box');
-        const toolCards = document.querySelectorAll('.tool-card');
-
-        searchBox.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            toolCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html> 
