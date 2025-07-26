@@ -11,7 +11,7 @@ def update_all_navigation():
     home_nav = '''                <div class="hidden md:flex items-center space-x-4 desktop-menu">
                     <a href="https://www.aiaiy.com" class="text-blue-600 hover:underline text-sm font-semibold">首页</a>
                     <a href="chuhai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI出海</a>
-                    <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a>
+                    <!-- <a href="game.html" class="text-blue-600 hover:underline text-sm font-semibold">游戏</a> -->
                     <a href="hanghai.html" class="text-blue-600 hover:underline text-sm font-semibold">AI web航海</a>
                     <a href="words.html" class="text-blue-600 hover:underline text-sm font-semibold">AI文字</a>
                     <a href="img.html" class="text-blue-600 hover:underline text-sm font-semibold">AI图片</a>
@@ -37,7 +37,6 @@ def update_all_navigation():
     mobile_nav = '''                <div class="md:hidden">
                     <a href="https://www.aiaiy.com" onclick="closeMobileMenu()">首页</a>
                     <a href="chuhai.html" onclick="closeMobileMenu()">AI出海</a>
-                    <a href="game.html" onclick="closeMobileMenu()">游戏</a>
                     <a href="hanghai.html" onclick="closeMobileMenu()">AI web航海</a>
                     <a href="words.html" onclick="closeMobileMenu()">AI文字</a>
                     <a href="img.html" onclick="closeMobileMenu()">AI图片</a>

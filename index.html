@@ -237,7 +237,42 @@
             width: 100%;
         }
         
-        /* 英雄区域 */
+        /* 语言切换按钮 */
+        .language-switch {
+            background: var(--primary-gradient);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 8px 16px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .language-switch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .language-switch:hover::before {
+            left: 100%;
+        }
+        
+        .language-switch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+            border-color: var(--text-accent);
+        }
+        
+        /* 增强的酷炫效果 */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -246,12 +281,15 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(30, 30, 40, 0.9) 100%);
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
         
         .hero-title {
@@ -259,6 +297,12 @@
             font-weight: 900;
             margin-bottom: 1.5rem;
             line-height: 1.1;
+            background: linear-gradient(135deg, #00f2fe, #764ba2, #f093fb);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 3s ease infinite, floating 6s ease-in-out infinite;
         }
         
         .hero-subtitle {
@@ -266,6 +310,116 @@
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 300;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1s both;
+        }
+        
+        .hero-button {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .hero-button:hover::before {
+            left: 100%;
+        }
+        
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.4);
+        }
+        
+        .hero-button.secondary {
+            background: transparent;
+            border: 2px solid var(--text-accent);
+            color: var(--text-accent);
+        }
+        
+        .hero-button.secondary:hover {
+            background: var(--text-accent);
+            color: white;
+        }
+        
+        /* 3D卡片效果 */
+        .tool-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02) rotateX(5deg);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 242, 254, 0.3),
+                0 0 40px rgba(0, 242, 254, 0.1);
+        }
+        
+        /* 脉冲动画 */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 242, 254, 0.6);
+            }
+        }
+        
+        /* 霓虹文字效果 */
+        .neon-text {
+            text-shadow: 
+                0 0 5px var(--text-accent),
+                0 0 10px var(--text-accent),
+                0 0 15px var(--text-accent),
+                0 0 20px var(--text-accent);
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes neonPulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 5px var(--text-accent),
+                    0 0 10px var(--text-accent),
+                    0 0 15px var(--text-accent),
+                    0 0 20px var(--text-accent);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 10px var(--text-accent),
+                    0 0 20px var(--text-accent),
+                    0 0 30px var(--text-accent),
+                    0 0 40px var(--text-accent);
+            }
         }
         
         /* 工具卡片 */
@@ -473,15 +627,12 @@
                             <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
                           </svg>
                         </span>
-                        <h1 class="text-2xl font-bold gradient-text">AI Tools Navigator</h1>
                     </a>
-                    <h1 class="text-2xl font-bold gradient-text">
-                        AI Tools Navigator
-                    </h1>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link">Home</a>
-                    <a href="game.html" class="nav-link">Play Games</a>
+                    <button class="language-switch" onclick="window.location.href='play-game.html'">游戏</button>
+                    <button class="language-switch" onclick="switchLanguage('en')">English</button>
                 </div>
                 <button class="md:hidden tech-button" id="mobileMenuButton">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -503,7 +654,8 @@
                 </button>
                 <div class="mt-12 space-y-4">
                     <a href="index.html" class="block text-white text-lg font-semibold py-2">Home</a>
-                    <a href="game.html" class="block text-white text-lg font-semibold py-2">Play Games</a>
+                    <button class="block text-white text-lg font-semibold py-2 w-full text-left" onclick="window.location.href='play-game.html'">游戏</button>
+                    <button class="block text-white text-lg font-semibold py-2 w-full text-left" onclick="switchLanguage('en')">English</button>
                 </div>
             </div>
         </div>
@@ -513,34 +665,108 @@
     <!-- 已删除英雄区空div，直接进入大模型板块 -->
 
     <!-- 🤖 大模型 板块置顶 -->
-    <main class="container mx-auto px-4 py-8" style="padding-top:2rem;">
+    <main class="container mx-auto px-4 py-12" id="ai-models">
         <section class="mb-20 fade-in">
             <h2 class="category-title">🤖 AI Foundation Models</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
                     <div class="tool-logo">
-                        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g2)"/><defs><linearGradient id="g2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">D</text></svg>
+                        <!-- Deepseek: AI脑图风格 -->
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20" r="20" fill="url(#deepseek-gradient)"/>
+                          <defs>
+                            <linearGradient id="deepseek-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#667eea"/>
+                              <stop offset="1" stop-color="#00f2fe"/>
+                            </linearGradient>
+                          </defs>
+                          <path d="M28 20c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="20" r="3.5" fill="#fff" fill-opacity="0.8"/>
+                          <path d="M23 17l5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Deepseek</h3>
                     <p class="text-gray-300">Deep Learning Chat Model</p>
                 </a>
                 <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">G</div>
+                    <div class="tool-logo">
+                        <!-- Google Gemini: Google G -->
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20" r="20" fill="url(#gemini-gradient)"/>
+                          <defs>
+                            <linearGradient id="gemini-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#4285F4"/>
+                              <stop offset="1" stop-color="#34A853"/>
+                            </linearGradient>
+                          </defs>
+                          <path d="M28 20c0-4.418-3.582-8-8-8s-8 3.582-8 8 3.582 8 8 8c2.21 0 4.21-0.9 5.66-2.34" stroke="#fff" stroke-width="2"/>
+                          <path d="M20 20h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold mb-2">Google Gemini</h3>
                     <p class="text-gray-300">Latest Google AI Assistant</p>
                 </a>
                 <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">P</div>
+                    <div class="tool-logo">
+                        <!-- Perplexity: 问号星球 -->
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20" r="20" fill="url(#perplexity-gradient)"/>
+                          <defs>
+                            <linearGradient id="perplexity-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#6366F1"/>
+                              <stop offset="1" stop-color="#8B5CF6"/>
+                            </linearGradient>
+                          </defs>
+                          <ellipse cx="20" cy="28" rx="6" ry="2" fill="#fff" fill-opacity="0.3"/>
+                          <path d="M20 14a4 4 0 0 1 4 4c0 2-2 2-2 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="25" r="1" fill="#fff"/>
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold mb-2">Perplexity</h3>
                     <p class="text-gray-300">AI-powered Search Engine</p>
                 </a>
                 <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo" style="background: linear-gradient(135deg, #10B981, #059669);">G</div>
+                    <div class="tool-logo">
+                        <!-- GPT-4o: OpenAI风格旋转图标 -->
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20" r="20" fill="url(#gpt4o-gradient)"/>
+                          <defs>
+                            <linearGradient id="gpt4o-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#10B981"/>
+                              <stop offset="1" stop-color="#059669"/>
+                            </linearGradient>
+                          </defs>
+                          <g stroke="#fff" stroke-width="2" stroke-linecap="round">
+                            <path d="M20 10v6"/>
+                            <path d="M20 24v6"/>
+                            <path d="M10 20h6"/>
+                            <path d="M24 20h6"/>
+                            <path d="M14.93 14.93l4.24 4.24"/>
+                            <path d="M25.07 25.07l-4.24-4.24"/>
+                            <path d="M14.93 25.07l4.24-4.24"/>
+                            <path d="M25.07 14.93l-4.24 4.24"/>
+                          </g>
+                          <circle cx="20" cy="20" r="3.5" fill="#fff" fill-opacity="0.8"/>
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold mb-2">GPT-4o</h3>
                     <p class="text-gray-300">Multimodal AI Assistant</p>
                 </a>
                 <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo" style="background: linear-gradient(135deg, #F59E0B, #D97706);">C</div>
+                    <div class="tool-logo">
+                        <!-- Claude: 对话气泡C -->
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="20" cy="20" r="20" fill="url(#claude-gradient)"/>
+                          <defs>
+                            <linearGradient id="claude-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#F59E0B"/>
+                              <stop offset="1" stop-color="#D97706"/>
+                            </linearGradient>
+                          </defs>
+                          <path d="M28 20c0 4.418-3.582 8-8 8-1.5 0-2.9-0.4-4.1-1.1L8 32l2.1-5.9C8.8 24.9 8 22.6 8 20c0-4.418 3.582-8 8-8s8 3.582 8 8z" stroke="#fff" stroke-width="2" fill="#fff" fill-opacity="0.1"/>
+                          <path d="M24 20a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3 class="text-xl font-bold mb-2">Claude</h3>
                     <p class="text-gray-300">Anthropic AI Assistant</p>
                 </a>
@@ -550,7 +776,7 @@
         <!-- 网站服务 -->
         <section class="mb-20 fade-in">
             <h2 class="category-title">🌐 Website Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
                     <div class="tool-logo" style="background: linear-gradient(135deg, #F97316, #EA580C);">C</div>
                     <h3 class="text-xl font-bold mb-2">Cloudflare</h3>
@@ -580,7 +806,7 @@
         <!-- 新增 赚美金 板块 -->
         <section class="mb-20 fade-in">
             <h2 class="category-title">💰 Make Money Online</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
                     <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g3)"/><defs><linearGradient id="g3" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#4285F4"/><stop offset="1" stop-color="#34A853"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">A$</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Google AdSense</h3>
@@ -617,7 +843,7 @@
         <!-- 新增 社交媒体 板块 -->
         <section class="mb-20 fade-in">
             <h2 class="category-title">🌐 Social Media</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://x.com/home" target="_blank" class="tool-card modern-card">
                     <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g9)"/><defs><linearGradient id="g9" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#000"/><stop offset="1" stop-color="#222"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">X</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">X (formerly Twitter)</h3>
@@ -656,8 +882,7 @@
             </div>
             <p class="text-gray-300 mb-4 text-lg">Discover the best AI tools to boost your productivity</p>
             <nav class="footer-nav" aria-label="Site Navigation">
-                <a href="index.html">Home</a>|
-                <a href="game.html">Play Games</a>
+                <a href="index.html">Home</a>
             </nav>
             <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. Curated premium AI tools. Contact: wx: zhangyouxun2013</div>
         </div>
@@ -691,6 +916,14 @@
         closeMenu.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
         });
+
+        // 语言切换
+        function switchLanguage(lang) {
+            const currentUrl = window.location.href;
+            const baseUrl = currentUrl.split('?')[0]; // 移除URL中的查询参数
+            const newUrl = `${baseUrl}?lang=${lang}`;
+            window.location.href = newUrl;
+        }
         
         // 滚动动画
         const observerOptions = {
@@ -711,9 +944,32 @@
             el.style.setProperty('--stagger-index', index);
             observer.observe(el);
         });
-        
-        // 初始化
+
+        // 页面加载时检查URL参数并设置语言
         document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (lang === 'zh') {
+                // 切换到中文
+                document.getElementById('heroTitle').textContent = 'AI工具导航';
+                document.getElementById('heroSubtitle').textContent = '发现最佳AI工具，提升您的生产力';
+                document.querySelectorAll('.language-switch').forEach(button => {
+                    if (button.textContent === '中文') {
+                        button.style.background = 'var(--accent-gradient)';
+                        button.style.borderColor = 'var(--text-accent)';
+                    }
+                });
+            } else if (lang === 'en') {
+                // 切换到英文
+                document.getElementById('heroTitle').textContent = 'AI Tools Navigator';
+                document.getElementById('heroSubtitle').textContent = 'Discover the best AI tools to boost your productivity';
+                document.querySelectorAll('.language-switch').forEach(button => {
+                    if (button.textContent === 'English') {
+                        button.style.background = 'var(--accent-gradient)';
+                        button.style.borderColor = 'var(--text-accent)';
+                    }
+                });
+            }
             createParticles();
         });
     </script>

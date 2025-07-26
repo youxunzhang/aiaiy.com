@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小游戏乐园 - Play Game</title>
+    <meta name="description" content="精选有趣的在线小游戏，点击即可畅玩，休闲娱乐好去处！">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(135deg, #232526 0%, #414345 100%); color: #fff; font-family: 'Inter', sans-serif; }
+        .game-card { background: rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .game-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 12px 32px rgba(0,242,254,0.18); }
+        .game-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .game-desc { color: #cbd5e1; font-size: 1rem; margin-bottom: 1rem; }
+        .game-btn { background: linear-gradient(90deg, #00f2fe 0%, #764ba2 100%); color: #fff; border: none; border-radius: 8px; padding: 0.5rem 1.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .game-btn:hover { background: linear-gradient(90deg, #764ba2 0%, #00f2fe 100%); }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-8 py-4 bg-[rgba(30,30,40,0.85)] shadow-lg">
+        <a href="index.html" class="text-2xl font-bold gradient-text">AI工具导航</a>
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="language-switch">首页</a>
+        </div>
+    </nav>
+    <main class="max-w-5xl mx-auto py-12 px-4">
+        <h1 class="text-4xl font-extrabold mb-8 text-center">小游戏乐园</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="game-card">
+                <div class="game-title">俄罗斯方块</div>
+                <div class="game-desc">经典消除游戏，锻炼你的反应力和空间想象力。</div>
+                <a class="game-btn" href="https://tetris.com/play-tetris" target="_blank">开始游戏</a>
+            </div>
+            <div class="game-card">
+                <div class="game-title">2048</div>
+                <div class="game-desc">合并数字，挑战更高分数，简单又上瘾！</div>
+                <a class="game-btn" href="https://play2048.co/" target="_blank">开始游戏</a>
+            </div>
+            <div class="game-card">
+                <div class="game-title">贪吃蛇</div>
+                <div class="game-desc">控制小蛇吃食物，变得更长，别碰到自己！</div>
+                <a class="game-btn" href="https://playsnake.org/" target="_blank">开始游戏</a>
+            </div>
+            <div class="game-card">
+                <div class="game-title">扫雷</div>
+                <div class="game-desc">经典扫雷游戏，考验你的逻辑推理能力。</div>
+                <a class="game-btn" href="https://minesweeper.online/zh" target="_blank">开始游戏</a>
+            </div>
+            <div class="game-card">
+                <div class="game-title">超级玛丽</div>
+                <div class="game-desc">童年回忆，帮助马里奥闯关冒险！</div>
+                <a class="game-btn" href="https://supermario-game.com/" target="_blank">开始游戏</a>
+            </div>
+            <div class="game-card">
+                <div class="game-title">Flappy Bird</div>
+                <div class="game-desc">点击小鸟飞翔，挑战你的手速极限！</div>
+                <a class="game-btn" href="https://flappybird.io/" target="_blank">开始游戏</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html> 
