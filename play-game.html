@@ -7,25 +7,172 @@
     <meta name="description" content="精选有趣的在线小游戏，点击即可畅玩，休闲娱乐好去处！">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(135deg, #232526 0%, #414345 100%); color: #fff; font-family: 'Inter', sans-serif; }
-        .game-card { background: rgba(255,255,255,0.07); border-radius: 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.18); padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; }
-        .game-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 12px 32px rgba(0,242,254,0.18); }
-        .game-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem; }
-        .game-desc { color: #cbd5e1; font-size: 1rem; margin-bottom: 1rem; }
-        .game-btn { background: linear-gradient(90deg, #00f2fe 0%, #764ba2 100%); color: #fff; border: none; border-radius: 8px; padding: 0.5rem 1.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .game-btn:hover { background: linear-gradient(90deg, #764ba2 0%, #00f2fe 100%); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-accent: #00f2fe;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* 动态背景效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-10px, -10px) scale(1.05); }
+            50% { transform: translate(10px, -5px) scale(1.02); }
+            75% { transform: translate(-5px, 10px) scale(1.03); }
+        }
+        /* 玻璃态导航栏 */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-link, .language-switch {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            background: none;
+            border: none;
+            padding: 0 12px;
+            font-size: 1rem;
+        }
+        .nav-link:hover, .language-switch:hover {
+            color: var(--text-primary);
+        }
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 3s ease infinite;
+        }
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        /* 卡片 */
+        .game-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 20px rgba(0,242,254,0.3);
+            border-color: rgba(0,242,254,0.5);
+        }
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-accent);
+        }
+        .game-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        /* 渐变按钮 */
+        .game-btn {
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .game-btn:hover::before {
+            left: 100%;
+        }
+        .game-btn:hover {
+            background: var(--accent-gradient);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
+        /* 标题 */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @media (max-width: 768px) {
+            .main-title { font-size: 2rem; }
+            .game-card { padding: 1rem; }
+        }
     </style>
 </head>
 <body>
-    <nav class="flex items-center justify-between px-8 py-4 bg-[rgba(30,30,40,0.85)] shadow-lg">
-        <a href="index.html" class="text-2xl font-bold gradient-text">AI工具导航</a>
-        <div class="flex items-center space-x-4">
-            <a href="index.html" class="language-switch">首页</a>
-            <a href="ai-companies.html" class="language-switch">AI公司</a>
+    <nav class="navbar">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <span class="block gradient-text" style="font-size:1.5rem;font-weight:800;">AI工具导航</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="ai-companies.html" class="nav-link">AI公司</a>
+                </div>
+            </div>
         </div>
     </nav>
     <main class="max-w-5xl mx-auto py-12 px-4">
-        <h1 class="text-4xl font-extrabold mb-8 text-center">小游戏乐园</h1>
+        <h1 class="main-title">小游戏乐园</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="game-card">
                 <div class="game-title">俄罗斯方块</div>

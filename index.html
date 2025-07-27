@@ -36,17 +36,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-color: #000000;
-            --secondary-color: #1a1a1a;
-            --accent-color: #ffffff;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
             --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --text-muted: #999999;
-            --border-color: #333333;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow-light: rgba(0, 0, 0, 0.1);
-            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --text-secondary: #a0a0a0;
+            --text-accent: #00f2fe;
         }
         
         * {
@@ -57,14 +55,14 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: var(--primary-color);
+            background: var(--dark-gradient);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* 简约背景效果 */
+        /* 动态背景效果 */
         body::before {
             content: '';
             position: fixed;
@@ -73,13 +71,21 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
             z-index: -1;
         }
         
-        /* 简约粒子效果 */
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-10px, -10px) scale(1.05); }
+            50% { transform: translate(10px, -5px) scale(1.02); }
+            75% { transform: translate(-5px, 10px) scale(1.03); }
+        }
+        
+        /* 粒子效果 */
         .particles {
             position: fixed;
             top: 0;
@@ -92,16 +98,16 @@
         
         .particle {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            background: var(--text-muted);
+            width: 2px;
+            height: 2px;
+            background: var(--text-accent);
             border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-            50% { transform: translateY(-100px) rotate(180deg); opacity: 0.3; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
         }
         
         /* 玻璃态效果 */
@@ -109,16 +115,16 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px var(--shadow-dark);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
-        /* 简约卡片 */
+        /* 现代化卡片 */
         .modern-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -130,7 +136,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.5s ease;
         }
         
@@ -139,24 +145,34 @@
         }
         
         .modern-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px var(--shadow-dark);
-            border-color: var(--text-secondary);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 242, 254, 0.3);
+            border-color: rgba(0, 242, 254, 0.5);
         }
         
-        /* 简约文字 */
+        /* 渐变文字 */
         .gradient-text {
-            color: var(--accent-color);
-            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 3s ease infinite;
         }
         
-        /* 简约按钮 */
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* 科技感按钮 */
         .tech-button {
-            background: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            border-radius: 6px;
-            padding: 10px 20px;
-            color: var(--primary-color);
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -171,7 +187,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
         
@@ -181,14 +197,14 @@
         
         .tech-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px var(--shadow-dark);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* 导航栏 */
         .navbar {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -209,7 +225,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-color);
+            background: var(--accent-gradient);
             transition: width 0.3s ease;
         }
         
@@ -223,11 +239,11 @@
         
         /* 语言切换按钮 */
         .language-switch {
-            background: transparent;
-            border: 1px solid var(--text-secondary);
-            border-radius: 6px;
+            background: var(--primary-gradient);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             padding: 8px 16px;
-            color: var(--text-secondary);
+            color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -242,7 +258,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
         }
         
@@ -252,11 +268,11 @@
         
         .language-switch:hover {
             transform: translateY(-2px);
-            border-color: var(--accent-color);
-            color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+            border-color: var(--text-accent);
         }
         
-        /* 英雄区域 */
+        /* 增强的酷炫效果 */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -265,7 +281,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(30, 30, 40, 0.9) 100%);
         }
         
         .hero-content {
@@ -281,8 +297,12 @@
             font-weight: 900;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            color: var(--accent-color);
-            animation: fadeInUp 1s ease 0.3s both;
+            background: linear-gradient(135deg, #00f2fe, #764ba2, #f093fb);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 3s ease infinite, floating 6s ease-in-out infinite;
         }
         
         .hero-subtitle {
@@ -302,11 +322,11 @@
         }
         
         .hero-button {
-            background: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            border-radius: 8px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
             padding: 12px 24px;
-            color: var(--primary-color);
+            color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -323,7 +343,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
         }
         
@@ -333,28 +353,83 @@
         
         .hero-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px var(--shadow-dark);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.4);
         }
         
         .hero-button.secondary {
             background: transparent;
-            border: 1px solid var(--text-secondary);
-            color: var(--text-secondary);
+            border: 2px solid var(--text-accent);
+            color: var(--text-accent);
         }
         
         .hero-button.secondary:hover {
-            background: var(--text-secondary);
-            color: var(--primary-color);
+            background: var(--text-accent);
+            color: white;
+        }
+        
+        /* 3D卡片效果 */
+        .tool-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02) rotateX(5deg);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 242, 254, 0.3),
+                0 0 40px rgba(0, 242, 254, 0.1);
+        }
+        
+        /* 脉冲动画 */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 242, 254, 0.6);
+            }
+        }
+        
+        /* 霓虹文字效果 */
+        .neon-text {
+            text-shadow: 
+                0 0 5px var(--text-accent),
+                0 0 10px var(--text-accent),
+                0 0 15px var(--text-accent),
+                0 0 20px var(--text-accent);
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes neonPulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 5px var(--text-accent),
+                    0 0 10px var(--text-accent),
+                    0 0 15px var(--text-accent),
+                    0 0 20px var(--text-accent);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 10px var(--text-accent),
+                    0 0 20px var(--text-accent),
+                    0 0 30px var(--text-accent),
+                    0 0 40px var(--text-accent);
+            }
         }
         
         /* 工具卡片 */
         .tool-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             min-height: 140px;
@@ -366,8 +441,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: var(--accent-color);
+            height: 3px;
+            background: var(--accent-gradient);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -377,25 +452,26 @@
         }
         
         .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px var(--shadow-dark);
-            border-color: var(--text-secondary);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 242, 254, 0.3);
+            border-color: rgba(0, 242, 254, 0.5);
         }
         
         .tool-logo {
             width: 48px;
             height: 48px;
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
             font-weight: bold;
-            color: var(--primary-color);
+            color: white;
             margin-bottom: 1rem;
             position: relative;
             overflow: hidden;
-            background: var(--accent-color);
         }
         
         .tool-logo::before {
@@ -405,7 +481,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s ease;
         }
         
@@ -420,7 +496,6 @@
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
-            color: var(--accent-color);
         }
         
         .category-title::after {
@@ -429,10 +504,10 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--accent-color);
-            border-radius: 1px;
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
         
         /* 响应式设计 */
@@ -477,20 +552,20 @@
         
         /* 滚动条样式 */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         
         ::-webkit-scrollbar-track {
-            background: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.1);
         }
         
         ::-webkit-scrollbar-thumb {
-            background: var(--text-muted);
-            border-radius: 3px;
+            background: var(--accent-gradient);
+            border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
+            background: var(--primary-gradient);
         }
     </style>
     <meta name="theme-color" content="#00f2fe">
@@ -540,10 +615,16 @@
                     <a href="index.html" class="flex items-center space-x-3">
                         <span class="block">
                           <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="24" cy="24" r="22" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-                            <rect x="14" y="14" width="20" height="20" rx="6" fill="#000000" stroke="#ffffff" stroke-width="2"/>
-                            <path d="M20 30V18M28 30V18M20 24H28" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="24" cy="24" r="3.5" fill="#ffffff" fill-opacity="0.8"/>
+                            <defs>
+                              <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                              </linearGradient>
+                            </defs>
+                            <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient)" stroke="#222" stroke-width="2"/>
+                            <rect x="14" y="14" width="20" height="20" rx="6" fill="#18181b" stroke="url(#ai-logo-gradient)" stroke-width="2"/>
+                            <path d="M20 30V18M28 30V18M20 24H28" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
                           </svg>
                         </span>
                     </a>
@@ -594,10 +675,16 @@
                     <div class="tool-logo">
                         <!-- Deepseek: AI脑图风格 -->
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="20" cy="20" r="20" fill="#000000"/>
-                          <path d="M28 20c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                          <circle cx="20" cy="20" r="3.5" fill="#ffffff" fill-opacity="0.8"/>
-                          <path d="M23 17l5-5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="20" r="20" fill="url(#deepseek-gradient)"/>
+                          <defs>
+                            <linearGradient id="deepseek-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#667eea"/>
+                              <stop offset="1" stop-color="#00f2fe"/>
+                            </linearGradient>
+                          </defs>
+                          <path d="M28 20c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="20" r="3.5" fill="#fff" fill-opacity="0.8"/>
+                          <path d="M23 17l5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Deepseek</h3>
@@ -607,9 +694,15 @@
                     <div class="tool-logo">
                         <!-- Google Gemini: Google G -->
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="20" cy="20" r="20" fill="#000000"/>
-                          <path d="M28 20c0-4.418-3.582-8-8-8s-8 3.582-8 8 3.582 8 8 8c2.21 0 4.21-0.9 5.66-2.34" stroke="#ffffff" stroke-width="2"/>
-                          <path d="M20 20h8" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="20" r="20" fill="url(#gemini-gradient)"/>
+                          <defs>
+                            <linearGradient id="gemini-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#4285F4"/>
+                              <stop offset="1" stop-color="#34A853"/>
+                            </linearGradient>
+                          </defs>
+                          <path d="M28 20c0-4.418-3.582-8-8-8s-8 3.582-8 8 3.582 8 8 8c2.21 0 4.21-0.9 5.66-2.34" stroke="#fff" stroke-width="2"/>
+                          <path d="M20 20h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Google Gemini</h3>
@@ -619,10 +712,16 @@
                     <div class="tool-logo">
                         <!-- Perplexity: 问号星球 -->
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="20" cy="20" r="20" fill="#000000"/>
-                          <ellipse cx="20" cy="28" rx="6" ry="2" fill="#ffffff" fill-opacity="0.3"/>
-                          <path d="M20 14a4 4 0 0 1 4 4c0 2-2 2-2 4" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                          <circle cx="20" cy="25" r="1" fill="#ffffff"/>
+                          <circle cx="20" cy="20" r="20" fill="url(#perplexity-gradient)"/>
+                          <defs>
+                            <linearGradient id="perplexity-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#6366F1"/>
+                              <stop offset="1" stop-color="#8B5CF6"/>
+                            </linearGradient>
+                          </defs>
+                          <ellipse cx="20" cy="28" rx="6" ry="2" fill="#fff" fill-opacity="0.3"/>
+                          <path d="M20 14a4 4 0 0 1 4 4c0 2-2 2-2 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="20" cy="25" r="1" fill="#fff"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Perplexity</h3>
@@ -632,8 +731,14 @@
                     <div class="tool-logo">
                         <!-- GPT-4o: OpenAI风格旋转图标 -->
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="20" cy="20" r="20" fill="#000000"/>
-                          <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+                          <circle cx="20" cy="20" r="20" fill="url(#gpt4o-gradient)"/>
+                          <defs>
+                            <linearGradient id="gpt4o-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#10B981"/>
+                              <stop offset="1" stop-color="#059669"/>
+                            </linearGradient>
+                          </defs>
+                          <g stroke="#fff" stroke-width="2" stroke-linecap="round">
                             <path d="M20 10v6"/>
                             <path d="M20 24v6"/>
                             <path d="M10 20h6"/>
@@ -643,7 +748,7 @@
                             <path d="M14.93 25.07l4.24-4.24"/>
                             <path d="M25.07 14.93l-4.24 4.24"/>
                           </g>
-                          <circle cx="20" cy="20" r="3.5" fill="#ffffff" fill-opacity="0.8"/>
+                          <circle cx="20" cy="20" r="3.5" fill="#fff" fill-opacity="0.8"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">GPT-4o</h3>
@@ -653,9 +758,9 @@
                     <div class="tool-logo">
                         <!-- Claude: 对话气泡C -->
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="20" cy="20" r="20" fill="#000000"/>
-                          <path d="M28 20c0 4.418-3.582 8-8 8-1.5 0-2.9-0.4-4.1-1.1L8 32l2.1-5.9C8.8 24.9 8 22.6 8 20c0-4.418 3.582-8 8-8s8 3.582 8 8z" stroke="#ffffff" stroke-width="2" fill="#ffffff" fill-opacity="0.1"/>
-                          <path d="M24 20a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke="#ffffff" stroke-width="2"/>
+                          <circle cx="20" cy="20" r="20" fill="#ffffff"/>
+                          <path d="M28 20c0 4.418-3.582 8-8 8-1.5 0-2.9-0.4-4.1-1.1L8 32l2.1-5.9C8.8 24.9 8 22.6 8 20c0-4.418 3.582-8 8-8s8 3.582 8 8z" stroke="#000000" stroke-width="2" fill="#000000" fill-opacity="0.1"/>
+                          <path d="M24 20a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" stroke="#000000" stroke-width="2"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-2">Claude</h3>
@@ -699,27 +804,27 @@
             <h2 class="category-title">💰 Make Money Online</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#000000"/><text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Inter" dy=".3em">A$</text></svg></div>
+                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">A$</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Google AdSense</h3>
                     <p class="text-gray-300">Website Monetization & Ads Platform</p>
                 </a>
                 <a href="https://analytics.google.com/analytics/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#000000"/><text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Inter" dy=".3em">GA</text></svg></div>
+                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">GA</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Google Analytics</h3>
                     <p class="text-gray-300">Website Traffic Analytics</p>
                 </a>
                 <a href="https://trends.google.com/trends/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#000000"/><text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Inter" dy=".3em">T</text></svg></div>
+                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">T</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Google Trends</h3>
                     <p class="text-gray-300">Trend & Popularity Analysis</p>
                 </a>
                 <a href="https://search.google.com/search-console/about" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#000000"/><text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Inter" dy=".3em">SC</text></svg></div>
+                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">SC</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Google Search Console</h3>
                     <p class="text-gray-300">SEO & Site Management</p>
                 </a>
                 <a href="https://www.spaceship.com/zh/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#000000"/><text x="50%" y="55%" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Inter" dy=".3em">🚀</text></svg></div>
+                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">🚀</text></svg></div>
                     <h3 class="text-xl font-bold mb-2">Spaceship</h3>
                     <p class="text-gray-300">Modern Cloud Hosting & Hosting</p>
                 </a>
@@ -760,7 +865,13 @@
             <div class="flex items-center justify-center space-x-3 mb-6">
                 <span class="block">
                     <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="24" cy="24" r="22" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+                        <defs>
+                            <linearGradient id="ai-logo-gradient2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient2)" stroke="#222" stroke-width="2"/>
                     </svg>
                 </span>
                 <span class="text-2xl font-bold gradient-text">AI Tools Navigator</span>
