@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球AI科技巨头 - AI公司导航 | AI工具导航</title>
+    <meta name="description" content="全球100家AI科技巨头公司导航，包括OpenAI、Google、Microsoft、Meta、Amazon等知名AI企业，了解最新AI技术和产品">
+    <meta name="keywords" content="AI公司,AI科技巨头,OpenAI,Google AI,Microsoft AI,Meta AI,Amazon AI,人工智能公司,AI企业">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-accent: #00f2fe;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-10px, -10px) scale(1.05); }
+            50% { transform: translate(10px, -5px) scale(1.02); }
+            75% { transform: translate(-5px, 10px) scale(1.03); }
+        }
+        
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .company-card {
+            background: rgba(255,255,255,0.07);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .company-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 32px rgba(0,242,254,0.18);
+            border-color: rgba(0,242,254,0.3);
+        }
+        
+        .company-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-accent);
+        }
+        
+        .company-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .company-link {
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #333333;
+            display: inline-block;
+            border-radius: 8px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .company-link:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        .category-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem 0;
+            color: #ffffff;
+            text-align: center;
+        }
+        .search-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 1rem;
+            color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+        .search-box::placeholder {
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-8 py-4 bg-black shadow-lg glass">
+        <a href="index.html" class="text-2xl font-bold gradient-text" style="color:#fff;">AI工具导航</a>
+        <div class="flex items-center space-x-4">
+            <a href="index.html" class="hover:text-white transition-colors" style="color:#cccccc;">首页</a>
+            <a href="play-game.html" class="hover:text-white transition-colors" style="color:#cccccc;">小游戏</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-12 px-4">
+        <h1 class="text-5xl font-extrabold mb-4 text-center">全球AI科技巨头</h1>
+        <p class="text-xl text-center mb-8 text-gray-300">探索全球100家领先的AI科技公司</p>
+        
+        <input type="text" id="searchInput" class="search-box" placeholder="搜索AI公司..." onkeyup="filterCompanies()">
+        
+        <div id="companiesContainer">
+            <!-- 大模型与AI基础模型 -->
+            <h2 class="category-title">大模型与AI基础模型</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="OpenAI" data-category="大模型">
+                    <div class="company-title">OpenAI</div>
+                    <div class="company-desc">ChatGPT、GPT-4、DALL-E等AI模型的开发者</div>
+                    <a class="company-link" href="https://openai.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Anthropic" data-category="大模型">
+                    <div class="company-title">Anthropic</div>
+                    <div class="company-desc">Claude AI助手和AI安全研究</div>
+                    <a class="company-link" href="https://anthropic.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Google AI" data-category="大模型">
+                    <div class="company-title">Google AI</div>
+                    <div class="company-desc">Gemini、PaLM、LaMDA等AI模型</div>
+                    <a class="company-link" href="https://ai.google" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Microsoft AI" data-category="大模型">
+                    <div class="company-title">Microsoft AI</div>
+                    <div class="company-desc">Azure OpenAI、Copilot等AI服务</div>
+                    <a class="company-link" href="https://www.microsoft.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Meta AI" data-category="大模型">
+                    <div class="company-title">Meta AI</div>
+                    <div class="company-desc">LLaMA、Code Llama等开源模型</div>
+                    <a class="company-link" href="https://ai.meta.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Cohere" data-category="大模型">
+                    <div class="company-title">Cohere</div>
+                    <div class="company-desc">企业级大语言模型和AI平台</div>
+                    <a class="company-link" href="https://cohere.ai" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 云计算与AI平台 -->
+            <h2 class="category-title">云计算与AI平台</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Amazon AWS" data-category="云计算">
+                    <div class="company-title">Amazon AWS</div>
+                    <div class="company-desc">AWS AI服务、SageMaker、Bedrock</div>
+                    <a class="company-link" href="https://aws.amazon.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Google Cloud" data-category="云计算">
+                    <div class="company-title">Google Cloud</div>
+                    <div class="company-desc">Vertex AI、AI Platform等云AI服务</div>
+                    <a class="company-link" href="https://cloud.google.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Azure" data-category="云计算">
+                    <div class="company-title">Microsoft Azure</div>
+                    <div class="company-desc">Azure AI、Cognitive Services</div>
+                    <a class="company-link" href="https://azure.microsoft.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="IBM Watson" data-category="云计算">
+                    <div class="company-title">IBM Watson</div>
+                    <div class="company-desc">Watson AI、企业级AI解决方案</div>
+                    <a class="company-link" href="https://www.ibm.com/watson" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Oracle AI" data-category="云计算">
+                    <div class="company-title">Oracle AI</div>
+                    <div class="company-desc">Oracle Cloud AI、机器学习服务</div>
+                    <a class="company-link" href="https://www.oracle.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Alibaba Cloud" data-category="云计算">
+                    <div class="company-title">阿里云</div>
+                    <div class="company-desc">通义千问、机器学习平台PAI</div>
+                    <a class="company-link" href="https://www.aliyun.com/ai" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- AI芯片与硬件 -->
+            <h2 class="category-title">AI芯片与硬件</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="NVIDIA" data-category="芯片">
+                    <div class="company-title">NVIDIA</div>
+                    <div class="company-desc">GPU、CUDA、AI计算平台</div>
+                    <a class="company-link" href="https://www.nvidia.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Intel AI" data-category="芯片">
+                    <div class="company-title">Intel AI</div>
+                    <div class="company-desc">AI处理器、OpenVINO、AI加速</div>
+                    <a class="company-link" href="https://www.intel.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="AMD" data-category="芯片">
+                    <div class="company-title">AMD</div>
+                    <div class="company-desc">AI加速器、ROCm平台</div>
+                    <a class="company-link" href="https://www.amd.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Qualcomm" data-category="芯片">
+                    <div class="company-title">Qualcomm</div>
+                    <div class="company-desc">移动AI、骁龙AI引擎</div>
+                    <a class="company-link" href="https://www.qualcomm.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Cerebras" data-category="芯片">
+                    <div class="company-title">Cerebras</div>
+                    <div class="company-desc">AI专用芯片、CS-2系统</div>
+                    <a class="company-link" href="https://cerebras.net" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Graphcore" data-category="芯片">
+                    <div class="company-title">Graphcore</div>
+                    <div class="company-desc">IPU智能处理器、AI计算</div>
+                    <a class="company-link" href="https://www.graphcore.ai" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- AI应用与工具 -->
+            <h2 class="category-title">AI应用与工具</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Midjourney" data-category="应用">
+                    <div class="company-title">Midjourney</div>
+                    <div class="company-desc">AI图像生成、艺术创作</div>
+                    <a class="company-link" href="https://www.midjourney.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Stability AI" data-category="应用">
+                    <div class="company-title">Stability AI</div>
+                    <div class="company-desc">Stable Diffusion、AI图像生成</div>
+                    <a class="company-link" href="https://stability.ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Runway" data-category="应用">
+                    <div class="company-title">Runway</div>
+                    <div class="company-desc">AI视频生成、创意工具</div>
+                    <a class="company-link" href="https://runwayml.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Notion AI" data-category="应用">
+                    <div class="company-title">Notion AI</div>
+                    <div class="company-desc">智能笔记、AI写作助手</div>
+                    <a class="company-link" href="https://www.notion.so/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Grammarly" data-category="应用">
+                    <div class="company-title">Grammarly</div>
+                    <div class="company-desc">AI写作助手、语法检查</div>
+                    <a class="company-link" href="https://www.grammarly.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Jasper" data-category="应用">
+                    <div class="company-title">Jasper</div>
+                    <div class="company-desc">AI内容创作、营销文案</div>
+                    <a class="company-link" href="https://www.jasper.ai" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 自动驾驶与机器人 -->
+            <h2 class="category-title">自动驾驶与机器人</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Tesla" data-category="自动驾驶">
+                    <div class="company-title">Tesla</div>
+                    <div class="company-desc">自动驾驶、AI芯片、机器人</div>
+                    <a class="company-link" href="https://www.tesla.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Waymo" data-category="自动驾驶">
+                    <div class="company-title">Waymo</div>
+                    <div class="company-desc">自动驾驶技术、AI驾驶</div>
+                    <a class="company-link" href="https://waymo.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Cruise" data-category="自动驾驶">
+                    <div class="company-title">Cruise</div>
+                    <div class="company-desc">通用汽车自动驾驶子公司</div>
+                    <a class="company-link" href="https://getcruise.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Boston Dynamics" data-category="机器人">
+                    <div class="company-title">Boston Dynamics</div>
+                    <div class="company-desc">机器人技术、Atlas、Spot</div>
+                    <a class="company-link" href="https://www.bostondynamics.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Figure AI" data-category="机器人">
+                    <div class="company-title">Figure AI</div>
+                    <div class="company-desc">人形机器人、AI控制</div>
+                    <a class="company-link" href="https://figure.ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Agility Robotics" data-category="机器人">
+                    <div class="company-title">Agility Robotics</div>
+                    <div class="company-desc">双足机器人、Digit</div>
+                    <a class="company-link" href="https://agilityrobotics.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 医疗健康AI -->
+            <h2 class="category-title">医疗健康AI</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="DeepMind Health" data-category="医疗">
+                    <div class="company-title">DeepMind Health</div>
+                    <div class="company-desc">医疗AI、疾病诊断</div>
+                    <a class="company-link" href="https://deepmind.com/health" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Tempus" data-category="医疗">
+                    <div class="company-title">Tempus</div>
+                    <div class="company-desc">精准医疗、AI诊断</div>
+                    <a class="company-link" href="https://www.tempus.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Insitro" data-category="医疗">
+                    <div class="company-title">Insitro</div>
+                    <div class="company-desc">AI药物发现、机器学习</div>
+                    <a class="company-link" href="https://insitro.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Atomwise" data-category="医疗">
+                    <div class="company-title">Atomwise</div>
+                    <div class="company-desc">AI药物发现、分子设计</div>
+                    <a class="company-link" href="https://www.atomwise.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Butterfly Network" data-category="医疗">
+                    <div class="company-title">Butterfly Network</div>
+                    <div class="company-desc">AI超声设备、便携诊断</div>
+                    <a class="company-link" href="https://butterflynetwork.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Babylon Health" data-category="医疗">
+                    <div class="company-title">Babylon Health</div>
+                    <div class="company-desc">AI健康咨询、远程医疗</div>
+                    <a class="company-link" href="https://www.babylonhealth.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 金融科技AI -->
+            <h2 class="category-title">金融科技AI</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Palantir" data-category="金融">
+                    <div class="company-title">Palantir</div>
+                    <div class="company-desc">数据分析、AI平台</div>
+                    <a class="company-link" href="https://www.palantir.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Databricks" data-category="金融">
+                    <div class="company-title">Databricks</div>
+                    <div class="company-desc">数据湖、AI平台</div>
+                    <a class="company-link" href="https://databricks.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Snowflake" data-category="金融">
+                    <div class="company-title">Snowflake</div>
+                    <div class="company-desc">云数据平台、AI集成</div>
+                    <a class="company-link" href="https://www.snowflake.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Stripe" data-category="金融">
+                    <div class="company-title">Stripe</div>
+                    <div class="company-desc">支付处理、AI风控</div>
+                    <a class="company-link" href="https://stripe.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Plaid" data-category="金融">
+                    <div class="company-title">Plaid</div>
+                    <div class="company-desc">金融数据API、AI分析</div>
+                    <a class="company-link" href="https://plaid.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Affirm" data-category="金融">
+                    <div class="company-title">Affirm</div>
+                    <div class="company-desc">AI信贷评估、分期付款</div>
+                    <a class="company-link" href="https://www.affirm.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 教育科技AI -->
+            <h2 class="category-title">教育科技AI</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Duolingo" data-category="教育">
+                    <div class="company-title">Duolingo</div>
+                    <div class="company-desc">AI语言学习、个性化教育</div>
+                    <a class="company-link" href="https://www.duolingo.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Coursera" data-category="教育">
+                    <div class="company-title">Coursera</div>
+                    <div class="company-desc">在线教育、AI课程推荐</div>
+                    <a class="company-link" href="https://www.coursera.org" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Khan Academy" data-category="教育">
+                    <div class="company-title">Khan Academy</div>
+                    <div class="company-desc">个性化学习、AI辅导</div>
+                    <a class="company-link" href="https://www.khanacademy.org" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Chegg" data-category="教育">
+                    <div class="company-title">Chegg</div>
+                    <div class="company-desc">AI学习助手、作业帮助</div>
+                    <a class="company-link" href="https://www.chegg.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="BYJU'S" data-category="教育">
+                    <div class="company-title">BYJU'S</div>
+                    <div class="company-desc">印度教育科技、AI学习</div>
+                    <a class="company-link" href="https://byjus.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="VIPKid" data-category="教育">
+                    <div class="company-title">VIPKid</div>
+                    <div class="company-desc">在线英语教育、AI匹配</div>
+                    <a class="company-link" href="https://www.vipkid.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 企业服务AI -->
+            <h2 class="category-title">企业服务AI</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="Salesforce" data-category="企业">
+                    <div class="company-title">Salesforce</div>
+                    <div class="company-desc">Einstein AI、CRM智能化</div>
+                    <a class="company-link" href="https://www.salesforce.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="HubSpot" data-category="企业">
+                    <div class="company-title">HubSpot</div>
+                    <div class="company-desc">营销自动化、AI分析</div>
+                    <a class="company-link" href="https://www.hubspot.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Slack" data-category="企业">
+                    <div class="company-title">Slack</div>
+                    <div class="company-desc">团队协作、AI助手</div>
+                    <a class="company-link" href="https://slack.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Zoom" data-category="企业">
+                    <div class="company-title">Zoom</div>
+                    <div class="company-desc">视频会议、AI功能</div>
+                    <a class="company-link" href="https://zoom.us" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Asana" data-category="企业">
+                    <div class="company-title">Asana</div>
+                    <div class="company-desc">项目管理、AI工作流</div>
+                    <a class="company-link" href="https://asana.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="Monday.com" data-category="企业">
+                    <div class="company-title">Monday.com</div>
+                    <div class="company-desc">工作操作系统、AI自动化</div>
+                    <a class="company-link" href="https://monday.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+
+            <!-- 中国AI公司 -->
+            <h2 class="category-title">中国AI公司</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="company-card" data-name="百度" data-category="中国">
+                    <div class="company-title">百度</div>
+                    <div class="company-desc">文心一言、Apollo自动驾驶</div>
+                    <a class="company-link" href="https://ai.baidu.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="腾讯" data-category="中国">
+                    <div class="company-title">腾讯</div>
+                    <div class="company-desc">混元大模型、AI实验室</div>
+                    <a class="company-link" href="https://ai.tencent.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="字节跳动" data-category="中国">
+                    <div class="company-title">字节跳动</div>
+                    <div class="company-desc">豆包、火山引擎AI</div>
+                    <a class="company-link" href="https://www.volcengine.com/ai" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="商汤科技" data-category="中国">
+                    <div class="company-title">商汤科技</div>
+                    <div class="company-desc">计算机视觉、AI平台</div>
+                    <a class="company-link" href="https://www.sensetime.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="旷视科技" data-category="中国">
+                    <div class="company-title">旷视科技</div>
+                    <div class="company-desc">人脸识别、AI视觉</div>
+                    <a class="company-link" href="https://www.megvii.com" target="_blank">访问官网</a>
+                </div>
+                <div class="company-card" data-name="依图科技" data-category="中国">
+                    <div class="company-title">依图科技</div>
+                    <div class="company-desc">AI芯片、计算机视觉</div>
+                    <a class="company-link" href="https://www.yitutech.com" target="_blank">访问官网</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function filterCompanies() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const companies = document.querySelectorAll('.company-card');
+            
+            companies.forEach(company => {
+                const name = company.getAttribute('data-name').toLowerCase();
+                const category = company.getAttribute('data-category').toLowerCase();
+                
+                if (name.includes(searchTerm) || category.includes(searchTerm)) {
+                    company.style.display = 'block';
+                } else {
+                    company.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html> 
