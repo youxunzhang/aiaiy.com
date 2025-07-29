@@ -632,7 +632,12 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="ai-companies.html" class="nav-link">AI公司</a>
-                    <button class="language-switch" onclick="window.location.href='play-game.html'">游戏</button>
+                    <a href="play-game.html" class="nav-link">游戏</a>
+                    <a href="ai-hotspots.html" class="nav-link">AI热点</a>
+                    <a href="real-needs.html" class="nav-link">真需求</a>
+                    <a href="ai-ranking.html" class="nav-link">AI榜单</a>
+                    <a href="ai-overseas.html" class="nav-link">AI出海</a>
+                    <a href="ai-ads.html" class="nav-link">AI ADS</a>
                     <button class="language-switch" onclick="switchLanguage('en')">English</button>
                 </div>
                 <button class="md:hidden tech-button" id="mobileMenuButton">
@@ -656,7 +661,12 @@
                 <div class="mt-12 space-y-4">
                     <a href="index.html" class="block text-white text-lg font-semibold py-2">Home</a>
                     <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
-                    <button class="block text-white text-lg font-semibold py-2 w-full text-left" onclick="window.location.href='play-game.html'">游戏</button>
+                    <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
+                    <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
+                    <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
+                    <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
+                    <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
+                    <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
                     <button class="block text-white text-lg font-semibold py-2 w-full text-left" onclick="switchLanguage('en')">English</button>
                 </div>
             </div>
@@ -669,7 +679,49 @@
     <!-- 🤖 大模型 板块置顶 -->
     <main class="container mx-auto px-4 py-12" id="ai-models">
         <section class="mb-20 fade-in">
-            <h2 class="category-title">🤖 AI Foundation Models</h2>
+            <h2 class="category-title">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
+                    <defs>
+                        <linearGradient id="ai-foundation-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#667eea"/>
+                            <stop offset="0.5" stop-color="#764ba2"/>
+                            <stop offset="1" stop-color="#00f2fe"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- 外圈光环 -->
+                    <circle cx="24" cy="24" r="22" fill="url(#ai-foundation-gradient)" opacity="0.3" filter="url(#glow)"/>
+                    <!-- 主圆环 -->
+                    <circle cx="24" cy="24" r="20" fill="url(#ai-foundation-gradient)" stroke="#fff" stroke-width="1" opacity="0.8"/>
+                    <!-- 内部神经网络结构 -->
+                    <circle cx="24" cy="16" r="2" fill="#fff" opacity="0.9"/>
+                    <circle cx="16" cy="24" r="2" fill="#fff" opacity="0.9"/>
+                    <circle cx="32" cy="24" r="2" fill="#fff" opacity="0.9"/>
+                    <circle cx="24" cy="32" r="2" fill="#fff" opacity="0.9"/>
+                    <circle cx="18" cy="18" r="1.5" fill="#fff" opacity="0.7"/>
+                    <circle cx="30" cy="18" r="1.5" fill="#fff" opacity="0.7"/>
+                    <circle cx="18" cy="30" r="1.5" fill="#fff" opacity="0.7"/>
+                    <circle cx="30" cy="30" r="1.5" fill="#fff" opacity="0.7"/>
+                    <!-- 连接线 -->
+                    <path d="M24 16 L16 24 L24 32 L32 24 Z" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+                    <path d="M18 18 L30 18 L30 30 L18 30 Z" stroke="#fff" stroke-width="1" fill="none" opacity="0.4"/>
+                    <!-- 中心核心 -->
+                    <circle cx="24" cy="24" r="4" fill="#fff" opacity="0.8"/>
+                    <circle cx="24" cy="24" r="2" fill="url(#ai-foundation-gradient)"/>
+                    <!-- 脉冲动画点 -->
+                    <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="1" opacity="0.3">
+                        <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                AI Foundation Models
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
                     <div class="tool-logo">

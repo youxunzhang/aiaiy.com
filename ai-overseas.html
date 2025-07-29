@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI出海 - AI工具导航</title>
+    <meta name="description" content="二哥的AI出海指南，分享AI产品出海经验、策略和成功案例">
+    <meta name="keywords" content="AI出海,二哥,AI产品出海,AI国际化,AI市场拓展">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-accent: #00f2fe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 动态背景效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-10px, -10px) scale(1.05); }
+            50% { transform: translate(10px, -5px) scale(1.02); }
+            75% { transform: translate(-5px, 10px) scale(1.03); }
+        }
+        
+        /* 粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--text-accent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+        
+        /* 玻璃态效果 */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* 渐变文字 */
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 3s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* 出海卡片 */
+        .overseas-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+        
+        .overseas-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .overseas-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .overseas-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 242, 254, 0.3);
+            border-color: rgba(0, 242, 254, 0.5);
+        }
+        
+        .overseas-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .overseas-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .overseas-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .overseas-link {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .overseas-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .overseas-link:hover::before {
+            left: 100%;
+        }
+        
+        .overseas-link:hover {
+            background: var(--accent-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+        }
+        
+        /* 分类标题 */
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+        
+        /* 二哥介绍卡片 */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--text-accent);
+        }
+        
+        .profile-title {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .overseas-card {
+                padding: 1.5rem;
+                min-height: 180px;
+            }
+            
+            .overseas-title {
+                font-size: 1.5rem;
+            }
+            
+            .category-title {
+                font-size: 2rem;
+            }
+            
+            .profile-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-animation {
+            animation-delay: calc(var(--stagger-index) * 0.1s);
+        }
+        
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gradient);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-gradient);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 粒子效果 -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <span class="block">
+                          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                              </linearGradient>
+                            </defs>
+                            <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient)" stroke="#222" stroke-width="2"/>
+                            <rect x="14" y="14" width="20" height="20" rx="6" fill="#18181b" stroke="url(#ai-logo-gradient)" stroke-width="2"/>
+                            <path d="M20 30V18M28 30V18M20 24H28" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
+                          </svg>
+                        </span>
+                        <span class="text-2xl font-bold gradient-text">AI工具导航</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">首页</a>
+                    <a href="ai-companies.html" class="nav-link">AI公司</a>
+                    <a href="play-game.html" class="nav-link">游戏</a>
+                    <a href="ai-hotspots.html" class="nav-link">AI热点</a>
+                    <a href="real-needs.html" class="nav-link">真需求</a>
+                    <a href="ai-ranking.html" class="nav-link">AI榜单</a>
+                    <a href="ai-overseas.html" class="nav-link">AI出海</a>
+                    <a href="ai-ads.html" class="nav-link">AI ADS</a>
+                </div>
+                <button class="md:hidden language-switch" id="mobileMenuButton">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobileMenu">
+        <div class="absolute top-0 right-0 w-64 h-full glass">
+            <div class="p-6">
+                <button class="absolute top-4 right-4 text-white" id="closeMenu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="mt-12 space-y-4">
+                    <a href="index.html" class="block text-white text-lg font-semibold py-2">首页</a>
+                    <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
+                    <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
+                    <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
+                    <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
+                    <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
+                    <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
+                    <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12">
+        <section class="mb-20 fade-in">
+            <h1 class="category-title">🌍 AI出海指南</h1>
+            <p class="text-center text-xl text-gray-300 mb-8">二哥的AI产品出海经验分享，助力中国AI企业走向世界</p>
+            
+            <!-- 二哥介绍 -->
+            <div class="profile-card fade-in stagger-animation" style="--stagger-index: 0;">
+                <div class="profile-avatar">二哥</div>
+                <div class="profile-name">二哥</div>
+                <div class="profile-title">AI出海专家 | 产品策略顾问</div>
+                <div class="profile-desc">
+                    专注于AI产品出海策略和国际化发展，拥有丰富的海外市场拓展经验。
+                    致力于帮助中国AI企业成功进入全球市场，分享实用的出海经验和成功案例。
+                </div>
+            </div>
+            
+            <div id="overseasContainer">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 出海策略 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 1;">
+                        <div class="overseas-title">
+                            <span>🎯</span>
+                            出海策略
+                        </div>
+                        <div class="overseas-desc">
+                            分享AI产品出海的整体策略规划，包括市场选择、产品定位、竞争分析和商业模式设计。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">策略规划</span>
+                            <span class="tag">市场分析</span>
+                            <span class="tag">商业模式</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 产品本地化 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 2;">
+                        <div class="overseas-title">
+                            <span>🌐</span>
+                            产品本地化
+                        </div>
+                        <div class="overseas-desc">
+                            AI产品的本地化策略，包括语言适配、文化调整、功能优化和用户体验改进。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">本地化</span>
+                            <span class="tag">用户体验</span>
+                            <span class="tag">文化适配</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 营销推广 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 3;">
+                        <div class="overseas-title">
+                            <span>📢</span>
+                            营销推广
+                        </div>
+                        <div class="overseas-desc">
+                            海外市场的营销策略，包括品牌建设、渠道拓展、用户获取和增长黑客技巧。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">营销策略</span>
+                            <span class="tag">品牌建设</span>
+                            <span class="tag">用户增长</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 合规法律 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 4;">
+                        <div class="overseas-title">
+                            <span>⚖️</span>
+                            合规法律
+                        </div>
+                        <div class="overseas-desc">
+                            海外市场的法律合规要求，包括数据保护、隐私政策、知识产权和监管合规。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">法律合规</span>
+                            <span class="tag">数据保护</span>
+                            <span class="tag">知识产权</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 技术架构 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 5;">
+                        <div class="overseas-title">
+                            <span>🏗️</span>
+                            技术架构
+                        </div>
+                        <div class="overseas-desc">
+                            支持全球化的技术架构设计，包括多区域部署、CDN优化、数据同步和性能调优。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">技术架构</span>
+                            <span class="tag">全球部署</span>
+                            <span class="tag">性能优化</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 成功案例 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 6;">
+                        <div class="overseas-title">
+                            <span>🏆</span>
+                            成功案例
+                        </div>
+                        <div class="overseas-desc">
+                            真实的AI产品出海成功案例，分析成功因素、关键决策点和经验教训。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">成功案例</span>
+                            <span class="tag">经验分享</span>
+                            <span class="tag">最佳实践</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 团队建设 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 7;">
+                        <div class="overseas-title">
+                            <span>👥</span>
+                            团队建设
+                        </div>
+                        <div class="overseas-desc">
+                            海外团队的组织架构、人才招聘、文化建设和跨文化管理经验分享。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">团队管理</span>
+                            <span class="tag">人才招聘</span>
+                            <span class="tag">文化建设</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 融资投资 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 8;">
+                        <div class="overseas-title">
+                            <span>💰</span>
+                            融资投资
+                        </div>
+                        <div class="overseas-desc">
+                            海外融资策略、投资者关系、估值模型和国际资本市场的运作经验。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">融资策略</span>
+                            <span class="tag">投资者关系</span>
+                            <span class="tag">资本市场</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+
+                    <!-- 风险控制 -->
+                    <div class="overseas-card fade-in stagger-animation" style="--stagger-index: 9;">
+                        <div class="overseas-title">
+                            <span>🛡️</span>
+                            风险控制
+                        </div>
+                        <div class="overseas-desc">
+                            出海过程中的风险识别、评估和控制策略，包括政治风险、市场风险和运营风险。
+                        </div>
+                        <div class="overseas-tags">
+                            <span class="tag">风险管理</span>
+                            <span class="tag">风险控制</span>
+                            <span class="tag">应急预案</span>
+                        </div>
+                        <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 二哥联系方式 -->
+        <section class="mb-20 fade-in">
+            <h2 class="category-title">📞 联系二哥</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="overseas-card">
+                    <div class="overseas-title">
+                        <span>🌐</span>
+                        个人主页
+                    </div>
+                    <div class="overseas-desc">
+                        访问二哥的个人主页，了解更多AI出海相关内容和最新分享。
+                    </div>
+                    <div class="overseas-tags">
+                        <span class="tag">个人主页</span>
+                        <span class="tag">内容分享</span>
+                    </div>
+                    <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">访问主页</a>
+                </div>
+
+                <div class="overseas-card">
+                    <div class="overseas-title">
+                        <span>💼</span>
+                        咨询服务
+                    </div>
+                    <div class="overseas-desc">
+                        提供AI产品出海的咨询服务，包括策略咨询、产品优化和市场拓展指导。
+                    </div>
+                    <div class="overseas-tags">
+                        <span class="tag">咨询服务</span>
+                        <span class="tag">策略指导</span>
+                    </div>
+                    <a href="https://scys.com/personal/881885484552" target="_blank" class="overseas-link">联系咨询</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="glass py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <span class="block">
+                    <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ai-logo-gradient2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient2)" stroke="#222" stroke-width="2"/>
+                    </svg>
+                </span>
+                <span class="text-2xl font-bold gradient-text">AI Tools Navigator</span>
+            </div>
+            <p class="text-gray-300 mb-4 text-lg">助力AI产品走向世界</p>
+            <nav class="footer-nav" aria-label="Site Navigation">
+                <a href="index.html" class="text-gray-400 hover:text-white transition-colors mx-2">首页</a>
+                <a href="ai-companies.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI公司</a>
+                <a href="play-game.html" class="text-gray-400 hover:text-white transition-colors mx-2">游戏</a>
+                <a href="ai-hotspots.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI热点</a>
+                <a href="real-needs.html" class="text-gray-400 hover:text-white transition-colors mx-2">真需求</a>
+                <a href="ai-ranking.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI榜单</a>
+                <a href="ai-overseas.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI出海</a>
+            </nav>
+            <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. 二哥AI出海指南</div>
+        </div>
+    </footer>
+
+    <script>
+        // 粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+        
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach((el, index) => {
+            el.style.setProperty('--stagger-index', index);
+            observer.observe(el);
+        });
+
+        // 页面加载时创建粒子
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+    </script>
+</body>
+</html> 
