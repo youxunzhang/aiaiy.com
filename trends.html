@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI趋势分析 - AI工具导航</title>
+    <meta name="description" content="AI趋势分析，实时监控AI相关关键词搜索趋势，包括筋膜炎、邮编、区号、游戏、黄帝内经等热门搜索词">
+    <meta name="keywords" content="AI趋势,Google Trends,搜索趋势,筋膜炎,邮编,区号,游戏,黄帝内经,AI数据分析">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-accent: #00f2fe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 动态背景效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-10px, -10px) scale(1.05); }
+            50% { transform: translate(10px, -5px) scale(1.02); }
+            75% { transform: translate(-5px, 10px) scale(1.03); }
+        }
+        
+        /* 粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--text-accent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+        
+        /* 玻璃态效果 */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* 趋势卡片效果 */
+        .trend-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trend-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .trend-card:hover::before {
+            left: 100%;
+        }
+        
+        .trend-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
+            border-color: var(--text-accent);
+        }
+        
+        /* 按钮效果 */
+        .trend-button {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trend-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .trend-button:hover::before {
+            left: 100%;
+        }
+        
+        .trend-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.4);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .trend-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子效果 -->
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">AI</span>
+                        </div>
+                        <span class="text-white font-bold text-xl">AI工具导航</span>
+                    </a>
+                </div>
+                
+                <!-- 桌面端导航 -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link">首页</a>
+                        <a href="ai-companies.html" class="nav-link">AI公司</a>
+                        <a href="play-game.html" class="nav-link">游戏</a>
+                        <a href="ai-hotspots.html" class="nav-link">AI热点</a>
+                        <a href="real-needs.html" class="nav-link">真需求</a>
+                        <a href="ai-ranking.html" class="nav-link">AI榜单</a>
+                        <a href="ai-overseas.html" class="nav-link">AI出海</a>
+                        <a href="ai-ads.html" class="nav-link">AI ADS</a>
+                        <a href="trends.html" class="nav-link" style="color: var(--text-accent);">趋势</a>
+                    </div>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block text-white text-lg font-semibold py-2">首页</a>
+                <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
+                <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
+                <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
+                <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
+                <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
+                <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
+                <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
+                <a href="trends.html" class="block text-white text-lg font-semibold py-2" style="color: var(--text-accent);">趋势</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- 页面标题 -->
+        <div class="text-center mb-16 fade-in-up">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                AI趋势分析
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                实时监控AI相关关键词搜索趋势，洞察市场动态和用户需求变化
+            </p>
+        </div>
+
+        <!-- 趋势分析卡片 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <div class="trend-card fade-in-up" style="animation-delay: 0.2s;">
+                <h3 class="text-2xl font-bold mb-4 text-blue-400">Google Trends 实时数据</h3>
+                <p class="text-gray-300 mb-6">
+                    通过Google Trends分析热门关键词的搜索趋势，包括筋膜炎、邮编、区号、游戏、黄帝内经等关键词的实时搜索数据。
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <span class="text-sm text-gray-300">筋膜炎</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                        <span class="text-sm text-gray-300">邮编</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-sm text-gray-300">区号</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <span class="text-sm text-gray-300">游戏</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                        <span class="text-sm text-gray-300">黄帝内经</span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a href="https://trends.google.com/trends/explore?date=today%205-y&q=%E7%AD%8B%E8%86%9C%E7%82%8E,%E9%82%AE%E7%BC%96,%E5%8C%BA%E5%8F%B7,%E6%B8%B8%E6%88%8F,%E9%BB%84%E5%B8%9D%E5%86%85%E7%BB%8F&hl=zh-CN" 
+                       target="_blank" 
+                       class="trend-button">
+                        查看完整趋势数据
+                    </a>
+                </div>
+            </div>
+
+            <div class="trend-card fade-in-up" style="animation-delay: 0.4s;">
+                <h3 class="text-2xl font-bold mb-4 text-purple-400">趋势分析洞察</h3>
+                <div class="space-y-4">
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-green-400 mb-2">搜索热度分析</h4>
+                        <p class="text-sm text-gray-300">实时监控关键词搜索量变化，识别热门话题和用户关注点</p>
+                    </div>
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-blue-400 mb-2">地域分布</h4>
+                        <p class="text-sm text-gray-300">分析不同地区的搜索偏好，了解地域性需求差异</p>
+                    </div>
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-yellow-400 mb-2">时间趋势</h4>
+                        <p class="text-sm text-gray-300">追踪关键词搜索量的时间变化，预测未来趋势走向</p>
+                    </div>
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-pink-400 mb-2">相关查询</h4>
+                        <p class="text-sm text-gray-300">发现与主要关键词相关的搜索词，扩展分析维度</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用说明 -->
+        <div class="trend-card fade-in-up" style="animation-delay: 0.6s;">
+            <h3 class="text-2xl font-bold mb-6 text-center text-blue-400">如何使用趋势分析</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">1</span>
+                    </div>
+                    <h4 class="font-semibold mb-2">点击查看趋势</h4>
+                    <p class="text-sm text-gray-300">点击上方按钮进入Google Trends查看详细的搜索趋势数据</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">2</span>
+                    </div>
+                    <h4 class="font-semibold mb-2">分析数据</h4>
+                    <p class="text-sm text-gray-300">观察搜索量变化、地域分布、相关查询等关键指标</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">3</span>
+                    </div>
+                    <h4 class="font-semibold mb-2">应用洞察</h4>
+                    <p class="text-sm text-gray-300">根据趋势数据调整策略，把握市场机会和用户需求</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-black bg-opacity-50 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-4">AI工具导航</h3>
+                    <p class="text-gray-400 text-sm">
+                        专业的人工智能工具导航网站，收录最全面的AI工具，帮助您快速找到最适合的AI助手和工具。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">快速导航</h4>
+                    <nav class="footer-nav" aria-label="Site Navigation">
+                        <a href="index.html" class="text-gray-400 hover:text-white transition-colors mx-2">首页</a>
+                        <a href="ai-companies.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI公司</a>
+                        <a href="play-game.html" class="text-gray-400 hover:text-white transition-colors mx-2">游戏</a>
+                        <a href="ai-hotspots.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI热点</a>
+                        <a href="real-needs.html" class="text-gray-400 hover:text-white transition-colors mx-2">真需求</a>
+                        <a href="ai-ranking.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI榜单</a>
+                        <a href="ai-overseas.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI出海</a>
+                        <a href="ai-ads.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI ADS</a>
+                        <a href="trends.html" class="text-gray-400 hover:text-white transition-colors mx-2">趋势</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">AI工具分类</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-white transition-colors">AI图片处理</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI视频制作</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI文字处理</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI音乐工具</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI设计师工具</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">联系我们</h4>
+                    <p class="text-gray-400 text-sm">
+                        如果您有任何建议或合作意向，欢迎联系我们。
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 AI工具导航. 保留所有权利.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
