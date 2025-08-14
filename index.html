@@ -639,6 +639,7 @@
                     <a href="ai-overseas.html" class="nav-link">AI出海</a>
                     <a href="ai-ads.html" class="nav-link">AI ADS</a>
                     <a href="trends.html" class="nav-link">趋势</a>
+                    <a href="friendship-links.html" class="nav-link">友情链接</a>
                     <button class="language-switch" onclick="switchLanguage('en')">English</button>
                 </div>
                 <button class="md:hidden tech-button" id="mobileMenuButton">
@@ -669,6 +670,7 @@
                     <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
                     <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
                     <a href="trends.html" class="block text-white text-lg font-semibold py-2">趋势</a>
+                    <a href="friendship-links.html" class="block text-white text-lg font-semibold py-2">友情链接</a>
                     <button class="block text-white text-lg font-semibold py-2 w-full text-left" onclick="switchLanguage('en')">English</button>
                 </div>
             </div>
@@ -911,6 +913,76 @@
                 </a>
             </div>
         </section>
+
+        <!-- 🔗 友情链接展示区域 -->
+        <section class="mb-20 fade-in">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="category-title">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
+                        <defs>
+                            <linearGradient id="friendship-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#10B981"/>
+                                <stop offset="0.5" stop-color="#059669"/>
+                                <stop offset="1" stop-color="#047857"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="24" cy="24" r="22" fill="url(#friendship-gradient)" opacity="0.3"/>
+                        <circle cx="24" cy="24" r="20" fill="url(#friendship-gradient)" stroke="#fff" stroke-width="1" opacity="0.8"/>
+                        <path d="M16 20h16M16 28h16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="20" r="2" fill="#fff"/>
+                        <circle cx="12" cy="28" r="2" fill="#fff"/>
+                        <circle cx="36" cy="20" r="2" fill="#fff"/>
+                        <circle cx="36" cy="28" r="2" fill="#fff"/>
+                    </svg>
+                    友情链接
+                </h2>
+                <a href="friendship-links.html" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center space-x-2">
+                    <span>查看更多</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- 精选友情链接 -->
+                <a href="https://crossword.best" target="_blank" class="tool-card modern-card">
+                    <div class="tool-logo">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white font-bold text-lg">
+                            🎮
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Crossword</h3>
+                    <p class="text-gray-300">填字游戏</p>
+                </a>
+                <a href="https://tushuguan.online" target="_blank" class="tool-card modern-card">
+                    <div class="tool-logo">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500 to-blue-600 rounded-lg text-white font-bold text-lg">
+                            📚
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">图书馆</h3>
+                    <p class="text-gray-300">在线图书馆</p>
+                </a>
+                <a href="https://aiwebsiteprompt.online" target="_blank" class="tool-card modern-card">
+                    <div class="tool-logo">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white font-bold text-lg">
+                            🧠
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">AI提示词</h3>
+                    <p class="text-gray-300">AI网站提示词</p>
+                </a>
+                <a href="https://picturesize.online" target="_blank" class="tool-card modern-card">
+                    <div class="tool-logo">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg text-white font-bold text-lg">
+                            🛠️
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">图片尺寸</h3>
+                    <p class="text-gray-300">图片尺寸工具</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <!-- 页脚 -->
@@ -941,11 +1013,14 @@
                 <a href="ai-overseas.html">AI出海</a>
                 <a href="ai-ads.html">AI ADS</a>
                 <a href="trends.html">趋势</a>
+                <a href="friendship-links.html">友情链接</a>
             </nav>
             <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. Curated premium AI tools. Contact: wx: zhangyouxun2013</div>
         </div>
     </footer>
 
+    <!-- 引入LOGO获取脚本 -->
+    <script src="logo-fetcher.js"></script>
     <script>
         // 粒子效果
         function createParticles() {
