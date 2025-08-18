@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中午吃什么 - 营养午餐推荐</title>
+    <meta name="description" content="每日午餐推荐，包含详细的营养信息和健康建议，让您的午餐既美味又营养。">
+    <meta name="keywords" content="午餐推荐,营养搭配,健康饮食,午餐食谱,营养信息">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-green: #10B981;
+            --primary-blue: #3B82F6;
+            --primary-orange: #F97316;
+            --primary-purple: #8B5CF6;
+            --primary-pink: #EC4899;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1F2937;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .lunch-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .lunch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), var(--primary-blue), var(--primary-orange));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .lunch-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .lunch-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nutrition-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+        
+        .calories { background: linear-gradient(135deg, #FEF3C7, #F59E0B); color: #92400E; }
+        .protein { background: linear-gradient(135deg, #DBEAFE, #3B82F6); color: #1E40AF; }
+        .carbs { background: linear-gradient(135deg, #D1FAE5, #10B981); color: #065F46; }
+        .fat { background: linear-gradient(135deg, #FCE7F3, #EC4899); color: #BE185D; }
+        .fiber { background: linear-gradient(135deg, #E0E7FF, #8B5CF6); color: #5B21B6; }
+        
+        .food-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            color: #374151;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .lunch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .lunch-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-stagger {
+            animation-delay: calc(var(--stagger-index) * 0.2s);
+        }
+        
+        .reason-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .reason-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .reason-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen py-8 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- 头部导航 -->
+            <div class="flex items-center justify-between mb-8 animate-fade-in">
+                <a href="index.html" class="back-button">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    <span>返回首页</span>
+                </a>
+                <div class="text-center">
+                    <h1 class="text-5xl font-bold gradient-text mb-4">中午吃什么</h1>
+                    <p class="text-white text-xl opacity-90">营养午餐推荐，健康生活每一天</p>
+                </div>
+                <div class="w-32"></div>
+            </div>
+
+            <!-- 统计信息 -->
+            <div class="stats-card mb-12 animate-fade-in">
+                <div class="flex flex-wrap justify-center gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold gradient-text mb-2">15+</div>
+                        <div class="text-gray-600">精选午餐</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold gradient-text mb-2">500-800</div>
+                        <div class="text-gray-600">卡路里范围</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold gradient-text mb-2">均衡</div>
+                        <div class="text-gray-600">营养搭配</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 午餐推荐 -->
+            <div class="lunch-grid">
+                <!-- 健康沙拉 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 1">
+                    <div class="food-icon">🥗</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">健康蔬菜沙拉</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 320卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 15g</span>
+                            <span class="nutrition-badge carbs">碳水: 25g</span>
+                            <span class="nutrition-badge fat">脂肪: 18g</span>
+                            <span class="nutrition-badge fiber">纤维: 8g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>富含维生素和矿物质，增强免疫力</li>
+                            <li>高纤维含量，促进肠道健康</li>
+                            <li>低热量高营养，适合减重人群</li>
+                            <li>抗氧化物质丰富，延缓衰老</li>
+                            <li>清爽可口，提升下午工作效率</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>生菜、番茄、黄瓜、胡萝卜、鸡胸肉、橄榄油
+                    </div>
+                </div>
+
+                <!-- 日式便当 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 2">
+                    <div class="food-icon">🍱</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">日式营养便当</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 650卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 28g</span>
+                            <span class="nutrition-badge carbs">碳水: 85g</span>
+                            <span class="nutrition-badge fat">脂肪: 22g</span>
+                            <span class="nutrition-badge fiber">纤维: 6g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>营养搭配均衡，满足全天能量需求</li>
+                            <li>富含优质蛋白质，促进肌肉修复</li>
+                            <li>复合碳水化合物，提供持久能量</li>
+                            <li>多种蔬菜搭配，补充维生素</li>
+                            <li>传统日式烹饪，健康美味</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>糙米饭、三文鱼、西兰花、胡萝卜、味增汤
+                    </div>
+                </div>
+
+                <!-- 地中海餐 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 3">
+                    <div class="food-icon">🥘</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">地中海风味餐</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 580卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 32g</span>
+                            <span class="nutrition-badge carbs">碳水: 45g</span>
+                            <span class="nutrition-badge fat">脂肪: 28g</span>
+                            <span class="nutrition-badge fiber">纤维: 12g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>橄榄油富含健康脂肪酸，保护心血管</li>
+                            <li>海鲜提供优质蛋白质和Omega-3</li>
+                            <li>全谷物提供复合碳水化合物</li>
+                            <li>蔬菜水果丰富，抗氧化效果强</li>
+                            <li>地中海饮食模式，长寿健康</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>全麦意面、虾仁、橄榄、番茄、罗勒、橄榄油
+                    </div>
+                </div>
+
+                <!-- 中式营养餐 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 4">
+                    <div class="food-icon">🍜</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">中式营养套餐</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 720卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 35g</span>
+                            <span class="nutrition-badge carbs">碳水: 95g</span>
+                            <span class="nutrition-badge fat">脂肪: 25g</span>
+                            <span class="nutrition-badge fiber">纤维: 8g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>传统中式烹饪，符合国人饮食习惯</li>
+                            <li>荤素搭配合理，营养全面</li>
+                            <li>温热的食物，保护胃部健康</li>
+                            <li>多种调味料，促进食欲</li>
+                            <li>能量充足，适合体力劳动者</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>米饭、红烧肉、青菜、豆腐汤、小菜
+                    </div>
+                </div>
+
+                <!-- 轻食三明治 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 5">
+                    <div class="food-icon">🥪</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">轻食三明治</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 420卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 22g</span>
+                            <span class="nutrition-badge carbs">碳水: 55g</span>
+                            <span class="nutrition-badge fat">脂肪: 15g</span>
+                            <span class="nutrition-badge fiber">纤维: 7g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>制作简单快捷，适合忙碌的上班族</li>
+                            <li>全麦面包提供复合碳水化合物</li>
+                            <li>瘦肉提供优质蛋白质</li>
+                            <li>蔬菜补充维生素和纤维</li>
+                            <li>便携性强，可外带食用</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>全麦面包、鸡胸肉、生菜、番茄、低脂奶酪
+                    </div>
+                </div>
+
+                <!-- 素食营养餐 -->
+                <div class="lunch-card p-8 animate-fade-in" style="--stagger-index: 6">
+                    <div class="food-icon">🥬</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">素食营养餐</h3>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">营养信息：</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="nutrition-badge calories">热量: 480卡</span>
+                            <span class="nutrition-badge protein">蛋白质: 18g</span>
+                            <span class="nutrition-badge carbs">碳水: 75g</span>
+                            <span class="nutrition-badge fat">脂肪: 16g</span>
+                            <span class="nutrition-badge fiber">纤维: 15g</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">推荐理由：</h4>
+                        <ul class="reason-list text-gray-600">
+                            <li>植物性蛋白质，易于消化吸收</li>
+                            <li>高纤维含量，促进肠道蠕动</li>
+                            <li>富含植物营养素，抗氧化</li>
+                            <li>低饱和脂肪，保护心血管</li>
+                            <li>环保健康，减少碳足迹</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <strong>主要食材：</strong>藜麦、豆腐、菠菜、南瓜、坚果、橄榄油
+                    </div>
+                </div>
+            </div>
+
+            <!-- 健康提示 -->
+            <div class="lunch-card p-8 mt-12 text-center animate-fade-in">
+                <h2 class="text-3xl font-bold gradient-text mb-4">健康午餐小贴士</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">🍽️ 用餐时间</h3>
+                        <p class="text-gray-600">建议在12:00-13:00之间用餐，避免过晚进食影响消化</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">💧 水分补充</h3>
+                        <p class="text-gray-600">餐前30分钟喝一杯水，餐后1小时再补充水分</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">🚶 餐后活动</h3>
+                        <p class="text-gray-600">餐后适当散步15-20分钟，促进消化吸收</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部导航 -->
+            <div class="text-center mt-8">
+                <div class="flex justify-center space-x-6">
+                    <a href="index.html" class="back-button">返回首页</a>
+                    <a href="ai-capabilities.html" class="back-button">AI功能</a>
+                    <a href="friendship-links.html" class="back-button">友情链接</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+        
+        // 添加卡片点击效果
+        document.querySelectorAll('.lunch-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
