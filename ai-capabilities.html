@@ -215,6 +215,132 @@
     </style>
 </head>
 <body>
+    <!-- 导航栏 -->
+    <nav class="navbar" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #E5E7EB; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <span class="block">
+                          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                              </linearGradient>
+                            </defs>
+                            <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient)" stroke="#222" stroke-width="2"/>
+                            <rect x="14" y="14" width="20" height="20" rx="6" fill="#18181b" stroke="url(#ai-logo-gradient)" stroke-width="2"/>
+                            <path d="M20 30V18M28 30V18M20 24H28" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
+                          </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">Home</a>
+                    <a href="ai-companies.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI公司</a>
+                    <a href="play-game.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏</a>
+                    <a href="ai-hotspots.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI热点</a>
+                    <a href="real-needs.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">真需求</a>
+                    <a href="ai-ranking.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI榜单</a>
+                    <a href="ai-overseas.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI出海</a>
+                    <a href="ai-ads.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI ADS</a>
+                    <a href="trends.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">趋势</a>
+                    <a href="ai-capabilities.html" class="nav-link" style="color: #2563EB; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem; background: #F9FAFB;">AI功能</a>
+                    <a href="lunch-recommendations.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">午餐推荐</a>
+                    <a href="friendship-links.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">友情链接</a>
+                    <a href="coding.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">编程工具</a>
+                    <a href="designer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">设计师工具</a>
+                    <a href="writing.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">写作工具</a>
+                    <a href="image.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">图像处理</a>
+                    <a href="video.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">视频制作</a>
+                    <a href="audio.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">音频处理</a>
+                    <a href="music.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">音乐创作</a>
+                    <a href="social.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">社交媒体</a>
+                    <a href="seo.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">SEO工具</a>
+                    <a href="game.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏开发</a>
+                    <a href="prayer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">祈祷工具</a>
+                    <a href="words.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">词汇工具</a>
+                    <a href="xiaohongshu.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">小红书工具</a>
+                    <a href="hanghai.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">航海工具</a>
+                    <a href="chuhai.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">出海工具</a>
+                    <a href="img.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">图片工具</a>
+                    <a href="links.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">链接工具</a>
+                    <a href="ailinks.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI链接</a>
+                    <a href="aicommunity.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI社区</a>
+                    <a href="aicontent.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI内容</a>
+                    <a href="ailearn.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI学习</a>
+                    <a href="ainum.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI数字</a>
+                    <a href="aioffice.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI办公</a>
+                    <a href="aiprompt.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI提示</a>
+                    <a href="aitimer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI计时器</a>
+                    <a href="aiagent.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI代理</a>
+                    <a href="gametest.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏测试</a>
+                </div>
+                <button class="md:hidden tech-button" id="mobileMenuButton">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端菜单 -->
+    <div class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobileMenu">
+        <div class="absolute top-0 right-0 w-64 h-full glass">
+            <div class="p-6">
+                <button class="absolute top-4 right-4 text-white" id="closeMenu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="mt-12 space-y-4">
+                    <a href="index.html" class="block text-white text-lg font-semibold py-2">Home</a>
+                    <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
+                    <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
+                    <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
+                    <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
+                    <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
+                    <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
+                    <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
+                    <a href="trends.html" class="block text-white text-lg font-semibold py-2">趋势</a>
+                    <a href="ai-capabilities.html" class="block text-white text-lg font-semibold py-2" style="color: #00f2fe;">AI功能</a>
+                    <a href="lunch-recommendations.html" class="block text-white text-lg font-semibold py-2">午餐推荐</a>
+                    <a href="friendship-links.html" class="block text-white text-lg font-semibold py-2">友情链接</a>
+                    <a href="coding.html" class="block text-white text-lg font-semibold py-2">编程工具</a>
+                    <a href="designer.html" class="block text-white text-lg font-semibold py-2">设计师工具</a>
+                    <a href="writing.html" class="block text-white text-lg font-semibold py-2">写作工具</a>
+                    <a href="image.html" class="block text-white text-lg font-semibold py-2">图像处理</a>
+                    <a href="video.html" class="block text-white text-lg font-semibold py-2">视频制作</a>
+                    <a href="audio.html" class="block text-white text-lg font-semibold py-2">音频处理</a>
+                    <a href="music.html" class="block text-white text-lg font-semibold py-2">音乐创作</a>
+                    <a href="social.html" class="block text-white text-lg font-semibold py-2">社交媒体</a>
+                    <a href="seo.html" class="block text-white text-lg font-semibold py-2">SEO工具</a>
+                    <a href="game.html" class="block text-white text-lg font-semibold py-2">游戏开发</a>
+                    <a href="prayer.html" class="block text-white text-lg font-semibold py-2">祈祷工具</a>
+                    <a href="words.html" class="block text-white text-lg font-semibold py-2">词汇工具</a>
+                    <a href="xiaohongshu.html" class="block text-white text-lg font-semibold py-2">小红书工具</a>
+                    <a href="hanghai.html" class="block text-white text-lg font-semibold py-2">航海工具</a>
+                    <a href="chuhai.html" class="block text-white text-lg font-semibold py-2">出海工具</a>
+                    <a href="img.html" class="block text-white text-lg font-semibold py-2">图片工具</a>
+                    <a href="links.html" class="block text-white text-lg font-semibold py-2">链接工具</a>
+                    <a href="ailinks.html" class="block text-white text-lg font-semibold py-2">AI链接</a>
+                    <a href="aicommunity.html" class="block text-white text-lg font-semibold py-2">AI社区</a>
+                    <a href="aicontent.html" class="block text-white text-lg font-semibold py-2">AI内容</a>
+                    <a href="ailearn.html" class="block text-white text-lg font-semibold py-2">AI学习</a>
+                    <a href="ainum.html" class="block text-white text-lg font-semibold py-2">AI数字</a>
+                    <a href="aioffice.html" class="block text-white text-lg font-semibold py-2">AI办公</a>
+                    <a href="aiprompt.html" class="block text-white text-lg font-semibold py-2">AI提示</a>
+                    <a href="aitimer.html" class="block text-white text-lg font-semibold py-2">AI计时器</a>
+                    <a href="aiagent.html" class="block text-white text-lg font-semibold py-2">AI代理</a>
+                    <a href="gametest.html" class="block text-white text-lg font-semibold py-2">游戏测试</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 粒子背景 -->
     <div id="particles"></div>
     
