@@ -1,99 +1,152 @@
 /**
- * 网站LOGO获取和展示系统
- * 自动获取网站favicon和logo，并提供统一的展示接口
+ * LOGO获取和存储系统
+ * 用于获取真实LOGO并存储在本地
  */
 
 class LogoFetcher {
     constructor() {
         this.logoCache = new Map();
-        this.fallbackIcons = {
-            'default': '🤖',
-            'ai': '🧠',
-            'game': '🎮',
-            'tool': '🛠️',
-            'social': '📱',
-            'news': '📰',
-            'shopping': '🛍️',
-            'finance': '💰',
-            'health': '💪',
-            'education': '📚',
-            'entertainment': '🎬',
-            'music': '🎵',
-            'design': '🎨',
-            'travel': '✈️',
-            'food': '🍔',
-            'sport': '⚽',
-            'tech': '💻',
-            'business': '💼'
+        this.loadFromLocalStorage();
+        this.initializeLogoMappings();
+    }
+
+    /**
+     * 从本地存储加载LOGO缓存
+     */
+    loadFromLocalStorage() {
+        try {
+            const cached = localStorage.getItem('logoCache');
+            if (cached) {
+                const parsed = JSON.parse(cached);
+                this.logoCache = new Map(Object.entries(parsed));
+            }
+        } catch (error) {
+            console.warn('Failed to load logo cache from localStorage:', error);
+        }
+    }
+
+    /**
+     * 保存LOGO缓存到本地存储
+     */
+    saveToLocalStorage() {
+        try {
+            const cacheObj = Object.fromEntries(this.logoCache);
+            localStorage.setItem('logoCache', JSON.stringify(cacheObj));
+        } catch (error) {
+            console.warn('Failed to save logo cache to localStorage:', error);
+        }
+    }
+
+    /**
+     * 初始化LOGO映射
+     */
+    initializeLogoMappings() {
+        // 预定义的LOGO映射
+        this.logoMappings = {
+            // AI公司LOGO
+            'openai.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1280px-OpenAI_Logo.svg.png',
+                fallback: '🤖'
+            },
+            'anthropic.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Anthropic_logo.svg/1200px-Anthropic_logo.svg.png',
+                fallback: '🧠'
+            },
+            'google.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
+                fallback: '🔍'
+            },
+            'microsoft.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png',
+                fallback: '🪟'
+            },
+            'meta.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png',
+                fallback: '📘'
+            },
+            'amazon.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png',
+                fallback: '📦'
+            },
+            'deepseek.com': {
+                url: 'https://www.deepseek.com/favicon.ico',
+                fallback: '🔍'
+            },
+            'perplexity.ai': {
+                url: 'https://www.perplexity.ai/favicon.ico',
+                fallback: '🤔'
+            },
+            'claude.ai': {
+                url: 'https://claude.ai/favicon.ico',
+                fallback: '🧠'
+            },
+            'chatbot.app': {
+                url: 'https://chatbot.app/favicon.ico',
+                fallback: '💬'
+            },
+            'gemini.google.com': {
+                url: 'https://gemini.google.com/favicon.ico',
+                fallback: '🔍'
+            }
         };
     }
 
     /**
      * 获取网站LOGO
-     * @param {string} url - 网站URL
-     * @param {string} domain - 域名（可选）
-     * @param {string} category - 分类（用于fallback图标）
-     * @returns {Promise<string>} - 返回LOGO的HTML字符串
+     * @param {string} domain - 域名
+     * @param {string} url - 完整URL
+     * @returns {Promise<string>} LOGO HTML
      */
-    async getLogo(url, domain = null, category = 'default') {
-        if (!url) return this.getFallbackIcon(category);
-
+    async getLogo(domain, url = '') {
         // 检查缓存
-        const cacheKey = url.toLowerCase();
-        if (this.logoCache.has(cacheKey)) {
-            return this.logoCache.get(cacheKey);
+        if (this.logoCache.has(domain)) {
+            return this.createLogoHtml(this.logoCache.get(domain), domain);
         }
 
-        try {
-            // 提取域名
-            const urlDomain = domain || this.extractDomain(url);
-            
-            // 尝试获取favicon
-            const faviconUrl = await this.getFaviconUrl(url, urlDomain);
-            
-            if (faviconUrl) {
-                const logoHtml = this.createLogoHtml(faviconUrl, urlDomain);
-                this.logoCache.set(cacheKey, logoHtml);
-                return logoHtml;
+        // 检查预定义映射
+        if (this.logoMappings[domain]) {
+            const logoData = this.logoMappings[domain];
+            try {
+                const logoUrl = await this.fetchLogo(logoData.url, domain);
+                this.logoCache.set(domain, logoUrl);
+                this.saveToLocalStorage();
+                return this.createLogoHtml(logoUrl, domain);
+            } catch (error) {
+                console.warn(`Failed to fetch logo for ${domain}:`, error);
+                return this.createLogoHtml(logoData.fallback, domain);
             }
-        } catch (error) {
-            console.warn(`Failed to fetch logo for ${url}:`, error);
         }
 
-        // 使用fallback图标
-        const fallbackHtml = this.getFallbackIcon(category, urlDomain);
-        this.logoCache.set(cacheKey, fallbackHtml);
-        return fallbackHtml;
-    }
-
-    /**
-     * 提取域名
-     * @param {string} url 
-     * @returns {string}
-     */
-    extractDomain(url) {
+        // 尝试从网站获取favicon
         try {
-            const urlObj = new URL(url.startsWith('http') ? url : `https://${url}`);
-            return urlObj.hostname.replace('www.', '');
-        } catch {
-            return url.replace(/^https?:\/\//, '').replace('www.', '').split('/')[0];
+            const faviconUrl = await this.getFaviconUrl(domain, url);
+            const logoUrl = await this.fetchLogo(faviconUrl, domain);
+            this.logoCache.set(domain, logoUrl);
+            this.saveToLocalStorage();
+            return this.createLogoHtml(logoUrl, domain);
+        } catch (error) {
+            console.warn(`Failed to get favicon for ${domain}:`, error);
+            const fallback = this.getFallbackIcon(domain);
+            this.logoCache.set(domain, fallback);
+            this.saveToLocalStorage();
+            return this.createLogoHtml(fallback, domain);
         }
     }
 
     /**
      * 获取favicon URL
-     * @param {string} url 
-     * @param {string} domain 
-     * @returns {Promise<string|null>}
+     * @param {string} domain - 域名
+     * @param {string} url - 完整URL
+     * @returns {Promise<string>} favicon URL
      */
-    async getFaviconUrl(url, domain) {
+    async getFaviconUrl(domain, url = '') {
+        const baseUrl = url || `https://${domain}`;
         const faviconUrls = [
+            `${baseUrl}/favicon.ico`,
+            `${baseUrl}/favicon.png`,
+            `${baseUrl}/apple-touch-icon.png`,
             `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
-            `https://favicon.ico/${domain}`,
-            `https://${domain}/favicon.ico`,
-            `https://${domain}/apple-touch-icon.png`,
-            `https://${domain}/logo.png`,
-            `https://${domain}/logo.svg`
+            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=64`
         ];
 
         for (const faviconUrl of faviconUrls) {
@@ -110,186 +163,207 @@ class LogoFetcher {
             }
         }
 
-        return null;
+        throw new Error('No favicon found');
+    }
+
+    /**
+     * 获取LOGO图片
+     * @param {string} url - LOGO URL
+     * @param {string} domain - 域名
+     * @returns {Promise<string>} base64编码的图片
+     */
+    async fetchLogo(url, domain) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const blob = await response.blob();
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch logo: ${error.message}`);
+        }
     }
 
     /**
      * 创建LOGO HTML
-     * @param {string} logoUrl 
-     * @param {string} domain 
-     * @returns {string}
+     * @param {string} logoData - LOGO数据（base64或emoji）
+     * @param {string} domain - 域名
+     * @returns {string} LOGO HTML
      */
-    createLogoHtml(logoUrl, domain) {
-        return `
-            <div class="tool-logo" title="${domain}">
-                <img src="${logoUrl}" 
-                     alt="${domain} logo" 
-                     class="w-full h-full object-contain rounded-lg"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                     loading="lazy">
-                <div class="fallback-icon" style="display: none;">
-                    ${this.getFallbackIcon('default', domain)}
+    createLogoHtml(logoData, domain) {
+        if (logoData.startsWith('data:image')) {
+            // 图片LOGO
+            return `
+                <div class="logo-container w-12 h-12 rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <img src="${logoData}" alt="${domain} logo" class="w-full h-full object-contain" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="fallback-logo w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg" style="display: none;">
+                        ${this.getFallbackIcon(domain)}
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        } else {
+            // Emoji fallback
+            return `
+                <div class="logo-container w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    ${logoData}
+                </div>
+            `;
+        }
     }
 
     /**
      * 获取fallback图标
-     * @param {string} category 
-     * @param {string} domain 
-     * @returns {string}
+     * @param {string} domain - 域名
+     * @returns {string} emoji图标
      */
-    getFallbackIcon(category, domain = '') {
-        const icon = this.fallbackIcons[category] || this.fallbackIcons['default'];
-        const initials = this.getInitials(domain);
-        
-        return `
-            <div class="tool-logo fallback-logo" title="${domain}">
-                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white font-bold text-lg">
-                    ${initials || icon}
-                </div>
-            </div>
-        `;
-    }
+    getFallbackIcon(domain) {
+        const fallbackIcons = {
+            'openai': '🤖',
+            'anthropic': '🧠',
+            'google': '🔍',
+            'microsoft': '🪟',
+            'meta': '📘',
+            'amazon': '📦',
+            'deepseek': '🔍',
+            'perplexity': '🤔',
+            'claude': '🧠',
+            'chatbot': '💬',
+            'gemini': '🔍'
+        };
 
-    /**
-     * 获取域名首字母
-     * @param {string} domain 
-     * @returns {string}
-     */
-    getInitials(domain) {
-        if (!domain) return '';
-        const parts = domain.split('.');
-        if (parts.length >= 2) {
-            return parts[0].substring(0, 2).toUpperCase();
+        for (const [key, icon] of Object.entries(fallbackIcons)) {
+            if (domain.includes(key)) {
+                return icon;
+            }
         }
-        return domain.substring(0, 2).toUpperCase();
+
+        return '🌐';
     }
 
     /**
-     * 批量更新页面中的LOGO
+     * 为页面元素添加LOGO
      * @param {string} selector - 选择器
-     * @param {Array} links - 链接数组
+     * @param {Array} items - 项目数组
      */
-    async updatePageLogos(selector, links) {
+    async addLogosToElements(selector, items) {
         const containers = document.querySelectorAll(selector);
         
-        for (let i = 0; i < containers.length && i < links.length; i++) {
+        for (let i = 0; i < containers.length && i < items.length; i++) {
             const container = containers[i];
-            const link = links[i];
+            const item = items[i];
             
-            // 查找或创建logo容器
-            let logoContainer = container.querySelector('.tool-logo');
-            if (!logoContainer) {
-                logoContainer = document.createElement('div');
-                logoContainer.className = 'tool-logo';
-                container.insertBefore(logoContainer, container.firstChild);
+            try {
+                const logoHtml = await this.getLogo(item.domain, item.url);
+                
+                // 查找或创建LOGO容器
+                let logoContainer = container.querySelector('.logo-container');
+                if (!logoContainer) {
+                    logoContainer = document.createElement('div');
+                    logoContainer.className = 'logo-container';
+                    container.insertBefore(logoContainer, container.firstChild);
+                }
+                
+                logoContainer.innerHTML = logoHtml;
+            } catch (error) {
+                console.warn(`Failed to add logo for ${item.domain}:`, error);
             }
-            
-            // 获取并设置logo
-            const logoHtml = await this.getLogo(link.url, link.domain, link.category);
-            logoContainer.innerHTML = logoHtml;
         }
     }
 
     /**
-     * 为友情链接页面创建LOGO展示
-     * @param {Array} links - 链接数组
+     * 批量获取LOGO
+     * @param {Array} items - 项目数组
      */
-    async createFriendshipLinksLogos(links) {
-        const container = document.querySelector('.link-grid');
-        if (!container) return;
-
-        for (const link of links) {
-            const logoHtml = await this.getLogo(link.url, link.domain, link.category);
-            
-            // 查找对应的链接元素并更新
-            const linkElement = container.querySelector(`a[href="${link.url}"]`);
-            if (linkElement) {
-                let logoContainer = linkElement.querySelector('.link-logo');
-                if (!logoContainer) {
-                    logoContainer = document.createElement('div');
-                    logoContainer.className = 'link-logo w-8 h-8 mr-3 flex-shrink-0';
-                    linkElement.insertBefore(logoContainer, linkElement.firstChild);
-                }
-                logoContainer.innerHTML = logoHtml;
+    async batchFetchLogos(items) {
+        const promises = items.map(async (item) => {
+            try {
+                await this.getLogo(item.domain, item.url);
+            } catch (error) {
+                console.warn(`Failed to fetch logo for ${item.domain}:`, error);
             }
-        }
+        });
+
+        await Promise.allSettled(promises);
+        console.log('Logo fetching completed');
+    }
+
+    /**
+     * 清除LOGO缓存
+     */
+    clearCache() {
+        this.logoCache.clear();
+        localStorage.removeItem('logoCache');
+        console.log('Logo cache cleared');
+    }
+
+    /**
+     * 导出LOGO缓存
+     */
+    exportCache() {
+        const cacheObj = Object.fromEntries(this.logoCache);
+        const dataStr = JSON.stringify(cacheObj, null, 2);
+        const dataBlob = new Blob([dataStr], { type: 'application/json' });
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = 'logo-cache.json';
+        link.click();
     }
 }
 
 // 创建全局实例
 window.logoFetcher = new LogoFetcher();
 
-// 预定义的链接数据
-window.siteLinks = {
-    // 友情链接数据
-    friendshipLinks: [
-        { url: 'https://crossword.best', domain: 'crossword.best', category: 'game' },
-        { url: 'https://fruitconnect.online', domain: 'fruitconnect.online', category: 'game' },
-        { url: 'https://xingxingren.online', domain: 'xingxingren.online', category: 'social' },
-        { url: 'https://tushuguan.online', domain: 'tushuguan.online', category: 'education' },
-        { url: 'https://citylibrary.online', domain: 'citylibrary.online', category: 'education' },
-        { url: 'https://aiwebsiteprompt.online', domain: 'aiwebsiteprompt.online', category: 'ai' },
-        { url: 'https://zhuangzi.blog', domain: 'zhuangzi.blog', category: 'education' },
-        { url: 'https://dreamlist.live', domain: 'dreamlist.live', category: 'tool' },
-        { url: 'https://zengguofan.online', domain: 'zengguofan.online', category: 'education' },
-        { url: 'https://watchbrands.watch', domain: 'watchbrands.watch', category: 'shopping' },
-        { url: 'https://rollingsuitcase.online', domain: 'rollingsuitcase.online', category: 'shopping' },
-        { url: 'https://airconditioner.blog', domain: 'airconditioner.blog', category: 'tool' },
-        { url: 'https://magiccube.online', domain: 'magiccube.online', category: 'game' },
-        { url: 'https://tvrepair.cc', domain: 'tvrepair.cc', category: 'tool' },
-        { url: 'https://baduanjin.online', domain: 'baduanjin.online', category: 'health' },
-        { url: 'https://picturesize.online', domain: 'picturesize.online', category: 'tool' },
-        { url: 'https://yinhangka.online', domain: 'yinhangka.online', category: 'finance' },
-        { url: 'https://postcode.blog', domain: 'postcode.blog', category: 'tool' },
-        { url: 'https://zhiyu.blog', domain: 'zhiyu.blog', category: 'education' },
-        { url: 'https://taoteching.online', domain: 'taoteching.online', category: 'education' },
-        { url: 'https://zhanzhuang.online', domain: 'zhanzhuang.online', category: 'health' },
-        { url: 'https://youxistudio.online', domain: 'youxistudio.online', category: 'entertainment' },
-        { url: 'https://roujiamodaizi.online', domain: 'roujiamodaizi.online', category: 'food' },
-        { url: 'https://shijian1.online', domain: 'shijian1.online', category: 'tool' },
-        { url: 'https://webintimer.online', domain: 'webintimer.online', category: 'tool' },
-        { url: 'https://suitcaseservice.online', domain: 'suitcaseservice.online', category: 'tool' },
-        { url: 'https://veimg.online', domain: 'veimg.online', category: 'tool' }
+// 预定义的项目数据
+window.logoItems = {
+    // AI公司数据
+    aiCompanies: [
+        { domain: 'openai.com', url: 'https://openai.com', title: 'OpenAI' },
+        { domain: 'anthropic.com', url: 'https://anthropic.com', title: 'Anthropic' },
+        { domain: 'google.com', url: 'https://google.com', title: 'Google' },
+        { domain: 'microsoft.com', url: 'https://microsoft.com', title: 'Microsoft' },
+        { domain: 'meta.com', url: 'https://meta.com', title: 'Meta' },
+        { domain: 'amazon.com', url: 'https://amazon.com', title: 'Amazon' },
+        { domain: 'deepseek.com', url: 'https://deepseek.com', title: 'DeepSeek' },
+        { domain: 'perplexity.ai', url: 'https://perplexity.ai', title: 'Perplexity AI' },
+        { domain: 'claude.ai', url: 'https://claude.ai', title: 'Claude AI' },
+        { domain: 'chatbot.app', url: 'https://chatbot.app', title: 'ChatBot' },
+        { domain: 'gemini.google.com', url: 'https://gemini.google.com', title: 'Google Gemini' }
     ],
 
-    // AI工具链接数据
+    // AI工具数据
     aiTools: [
-        { url: 'https://chat.deepseek.com/', domain: 'deepseek.com', category: 'ai' },
-        { url: 'https://gemini.google.com/app', domain: 'google.com', category: 'ai' },
-        { url: 'https://www.perplexity.ai/', domain: 'perplexity.ai', category: 'ai' },
-        { url: 'https://chat.chatbot.app/', domain: 'chatbot.app', category: 'ai' },
-        { url: 'https://claude.ai/', domain: 'claude.ai', category: 'ai' },
-        { url: 'https://chat.openai.com/', domain: 'openai.com', category: 'ai' }
-    ],
-
-    // 首页友情链接数据
-    homeFriendshipLinks: [
-        { url: 'https://crossword.best', domain: 'crossword.best', category: 'game' },
-        { url: 'https://tushuguan.online', domain: 'tushuguan.online', category: 'education' },
-        { url: 'https://aiwebsiteprompt.online', domain: 'aiwebsiteprompt.online', category: 'ai' },
-        { url: 'https://picturesize.online', domain: 'picturesize.online', category: 'tool' }
+        { domain: 'deepseek.com', url: 'https://chat.deepseek.com/', title: 'DeepSeek Chat' },
+        { domain: 'google.com', url: 'https://gemini.google.com/app', title: 'Google Gemini' },
+        { domain: 'perplexity.ai', url: 'https://www.perplexity.ai/', title: 'Perplexity AI' },
+        { domain: 'chatbot.app', url: 'https://chat.chatbot.app/', title: 'ChatBot' },
+        { domain: 'claude.ai', url: 'https://claude.ai/', title: 'Claude AI' },
+        { domain: 'openai.com', url: 'https://chat.openai.com/', title: 'ChatGPT' }
     ]
 };
 
 // 页面加载完成后初始化LOGO
-document.addEventListener('DOMContentLoaded', function() {
-    // 为友情链接页面添加LOGO
-    if (window.location.pathname.includes('friendship-links.html')) {
-        window.logoFetcher.createFriendshipLinksLogos(window.siteLinks.friendshipLinks);
+document.addEventListener('DOMContentLoaded', async function() {
+    // 为AI公司页面添加LOGO
+    if (window.location.pathname.includes('ai-companies.html')) {
+        await window.logoFetcher.addLogosToElements('.company-card', window.logoItems.aiCompanies);
     }
     
     // 为首页AI工具添加LOGO
     if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
-        window.logoFetcher.updatePageLogos('.tool-card', window.siteLinks.aiTools);
-        
-        // 为首页友情链接添加LOGO
-        setTimeout(() => {
-            window.logoFetcher.updatePageLogos('.tool-card', window.siteLinks.homeFriendshipLinks);
-        }, 1000);
+        await window.logoFetcher.addLogosToElements('.tool-card', window.logoItems.aiTools);
     }
+
+    // 批量获取LOGO（可选）
+    // await window.logoFetcher.batchFetchLogos([...window.logoItems.aiCompanies, ...window.logoItems.aiTools]);
 });
 
 // 导出供其他脚本使用

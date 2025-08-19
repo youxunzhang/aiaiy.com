@@ -55,12 +55,38 @@
             padding: 1.5rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #E5E7EB;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
         }
         
         .company-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             border-color: #D1D5DB;
+        }
+        
+        .company-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .company-card:hover .company-logo-bg {
+            opacity: 0.15;
+        }
+        
+        .company-content {
+            position: relative;
+            z-index: 2;
         }
         
         .company-title {
@@ -116,22 +142,9 @@
     </style>
 </head>
 <body>
-    <nav class="flex items-center justify-between px-8 py-4 bg-black shadow-lg glass">
-        <a href="index.html" class="text-2xl font-bold gradient-text" style="color:#fff;">AI工具导航</a>
-        <div class="flex items-center space-x-4">
-                            <a href="index.html" class="hover:text-white transition-colors" style="color:#cccccc;">首页</a>
-                <a href="ai-companies.html" class="hover:text-white transition-colors" style="color:#cccccc;">AI公司</a>
-                <a href="play-game.html" class="hover:text-white transition-colors" style="color:#cccccc;">游戏</a>
-                <a href="ai-hotspots.html" class="hover:text-white transition-colors" style="color:#cccccc;">AI热点</a>
-                <a href="real-needs.html" class="hover:text-white transition-colors" style="color:#cccccc;">真需求</a>
-                <a href="ai-ranking.html" class="hover:text-white transition-colors" style="color:#cccccc;">AI榜单</a>
-                <a href="ai-overseas.html" class="hover:text-white transition-colors" style="color:#cccccc;">AI出海</a>
-                <a href="ai-ads.html" class="hover:text-white transition-colors" style="color:#cccccc;">AI ADS</a>
-                <a href="trends.html" class="hover:text-white transition-colors" style="color:#cccccc;">趋势</a>
-        </div>
-    </nav>
-
-    <main class="max-w-7xl mx-auto py-12 px-4">
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <div class="max-w-7xl mx-auto py-12 px-4">
         <h1 class="text-5xl font-extrabold mb-4 text-center">全球AI科技巨头</h1>
         <p class="text-xl text-center mb-8 text-gray-300">探索全球100家领先的AI科技公司</p>
         
@@ -141,25 +154,37 @@
             <!-- 大模型与AI基础模型 -->
             <h2 class="category-title">大模型与AI基础模型</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="company-card" data-name="OpenAI" data-category="大模型">
-                    <div class="company-title">OpenAI</div>
-                    <div class="company-desc">ChatGPT、GPT-4、DALL-E等AI模型的开发者</div>
-                    <a class="company-link" href="https://openai.com" target="_blank">访问官网</a>
+                <div class="company-card" data-name="OpenAI" data-category="大模型" data-domain="openai.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">OpenAI</div>
+                        <div class="company-desc">ChatGPT、GPT-4、DALL-E等AI模型的开发者</div>
+                        <a class="company-link" href="https://openai.com" target="_blank">访问官网</a>
+                    </div>
                 </div>
-                <div class="company-card" data-name="Anthropic" data-category="大模型">
-                    <div class="company-title">Anthropic</div>
-                    <div class="company-desc">Claude AI助手和AI安全研究</div>
-                    <a class="company-link" href="https://anthropic.com" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Anthropic" data-category="大模型" data-domain="anthropic.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Anthropic</div>
+                        <div class="company-desc">Claude AI助手和AI安全研究</div>
+                        <a class="company-link" href="https://anthropic.com" target="_blank">访问官网</a>
+                    </div>
                 </div>
-                <div class="company-card" data-name="Google AI" data-category="大模型">
-                    <div class="company-title">Google AI</div>
-                    <div class="company-desc">Gemini、PaLM、LaMDA等AI模型</div>
-                    <a class="company-link" href="https://ai.google" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Google AI" data-category="大模型" data-domain="ai.google">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Google AI</div>
+                        <div class="company-desc">Gemini、PaLM、LaMDA等AI模型</div>
+                        <a class="company-link" href="https://ai.google" target="_blank">访问官网</a>
+                    </div>
                 </div>
-                <div class="company-card" data-name="Microsoft AI" data-category="大模型">
-                    <div class="company-title">Microsoft AI</div>
-                    <div class="company-desc">Azure OpenAI、Copilot等AI服务</div>
-                    <a class="company-link" href="https://www.microsoft.com/ai" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Microsoft AI" data-category="大模型" data-domain="microsoft.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Microsoft AI</div>
+                        <div class="company-desc">Azure OpenAI、Copilot等AI服务</div>
+                        <a class="company-link" href="https://www.microsoft.com/ai" target="_blank">访问官网</a>
+                    </div>
                 </div>
                 <div class="company-card" data-name="Meta AI" data-category="大模型">
                     <div class="company-title">Meta AI</div>
@@ -490,6 +515,11 @@
         </div>
     </main>
 
+    <!-- 引入统一导航栏和LOGO系统 -->
+    <script src="navigation.js"></script>
+    <script src="logo-fetcher.js"></script>
+    <script src="static-icons.js"></script>
+    <script src="ai-companies-logos.js"></script>
     <script>
         function filterCompanies() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
