@@ -72,16 +72,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-size: cover;
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.1;
-            transition: opacity 0.3s ease;
+            opacity: 0.08;
+            transition: all 0.3s ease;
             z-index: 1;
+            filter: grayscale(100%) brightness(1.2);
         }
         
         .company-card:hover .company-logo-bg {
-            opacity: 0.15;
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
         }
         
         .company-content {
@@ -139,6 +142,18 @@
         .search-box::placeholder {
             color: #9CA3AF;
         }
+        
+        /* LOGO加载动画 */
+        .company-logo-bg.loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body>
@@ -186,30 +201,42 @@
                         <a class="company-link" href="https://www.microsoft.com/ai" target="_blank">访问官网</a>
                     </div>
                 </div>
-                <div class="company-card" data-name="Meta AI" data-category="大模型">
-                    <div class="company-title">Meta AI</div>
-                    <div class="company-desc">LLaMA、Code Llama等开源模型</div>
-                    <a class="company-link" href="https://ai.meta.com" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Meta AI" data-category="大模型" data-domain="ai.meta.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Meta AI</div>
+                        <div class="company-desc">LLaMA、Code Llama等开源模型</div>
+                        <a class="company-link" href="https://ai.meta.com" target="_blank">访问官网</a>
+                    </div>
                 </div>
-                <div class="company-card" data-name="Cohere" data-category="大模型">
-                    <div class="company-title">Cohere</div>
-                    <div class="company-desc">企业级大语言模型和AI平台</div>
-                    <a class="company-link" href="https://cohere.ai" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Cohere" data-category="大模型" data-domain="cohere.ai">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Cohere</div>
+                        <div class="company-desc">企业级大语言模型和AI平台</div>
+                        <a class="company-link" href="https://cohere.ai" target="_blank">访问官网</a>
+                    </div>
                 </div>
             </div>
 
             <!-- 云计算与AI平台 -->
             <h2 class="category-title">云计算与AI平台</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="company-card" data-name="Amazon AWS" data-category="云计算">
-                    <div class="company-title">Amazon AWS</div>
-                    <div class="company-desc">AWS AI服务、SageMaker、Bedrock</div>
-                    <a class="company-link" href="https://aws.amazon.com/ai" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Amazon AWS" data-category="云计算" data-domain="aws.amazon.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Amazon AWS</div>
+                        <div class="company-desc">AWS AI服务、SageMaker、Bedrock</div>
+                        <a class="company-link" href="https://aws.amazon.com/ai" target="_blank">访问官网</a>
+                    </div>
                 </div>
-                <div class="company-card" data-name="Google Cloud" data-category="云计算">
-                    <div class="company-title">Google Cloud</div>
-                    <div class="company-desc">Vertex AI、AI Platform等云AI服务</div>
-                    <a class="company-link" href="https://cloud.google.com/ai" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Google Cloud" data-category="云计算" data-domain="cloud.google.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Google Cloud</div>
+                        <div class="company-desc">Vertex AI、AI Platform等云AI服务</div>
+                        <a class="company-link" href="https://cloud.google.com/ai" target="_blank">访问官网</a>
+                    </div>
                 </div>
                 <div class="company-card" data-name="Azure" data-category="云计算">
                     <div class="company-title">Microsoft Azure</div>
@@ -236,10 +263,13 @@
             <!-- AI芯片与硬件 -->
             <h2 class="category-title">AI芯片与硬件</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="company-card" data-name="NVIDIA" data-category="芯片">
-                    <div class="company-title">NVIDIA</div>
-                    <div class="company-desc">GPU、CUDA、AI计算平台</div>
-                    <a class="company-link" href="https://www.nvidia.com/ai" target="_blank">访问官网</a>
+                <div class="company-card" data-name="NVIDIA" data-category="芯片" data-domain="nvidia.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">NVIDIA</div>
+                        <div class="company-desc">GPU、CUDA、AI计算平台</div>
+                        <a class="company-link" href="https://www.nvidia.com/ai" target="_blank">访问官网</a>
+                    </div>
                 </div>
                 <div class="company-card" data-name="Intel AI" data-category="芯片">
                     <div class="company-title">Intel AI</div>
@@ -271,10 +301,13 @@
             <!-- AI应用与工具 -->
             <h2 class="category-title">AI应用与工具</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="company-card" data-name="Midjourney" data-category="应用">
-                    <div class="company-title">Midjourney</div>
-                    <div class="company-desc">AI图像生成、艺术创作</div>
-                    <a class="company-link" href="https://www.midjourney.com" target="_blank">访问官网</a>
+                <div class="company-card" data-name="Midjourney" data-category="应用" data-domain="midjourney.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">Midjourney</div>
+                        <div class="company-desc">AI图像生成、艺术创作</div>
+                        <a class="company-link" href="https://www.midjourney.com" target="_blank">访问官网</a>
+                    </div>
                 </div>
                 <div class="company-card" data-name="Stability AI" data-category="应用">
                     <div class="company-title">Stability AI</div>
@@ -481,10 +514,13 @@
             <!-- 中国AI公司 -->
             <h2 class="category-title">中国AI公司</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="company-card" data-name="百度" data-category="中国">
-                    <div class="company-title">百度</div>
-                    <div class="company-desc">文心一言、Apollo自动驾驶</div>
-                    <a class="company-link" href="https://ai.baidu.com" target="_blank">访问官网</a>
+                <div class="company-card" data-name="百度" data-category="中国" data-domain="ai.baidu.com">
+                    <div class="company-logo-bg"></div>
+                    <div class="company-content">
+                        <div class="company-title">百度</div>
+                        <div class="company-desc">文心一言、Apollo自动驾驶</div>
+                        <a class="company-link" href="https://ai.baidu.com" target="_blank">访问官网</a>
+                    </div>
                 </div>
                 <div class="company-card" data-name="腾讯" data-category="中国">
                     <div class="company-title">腾讯</div>

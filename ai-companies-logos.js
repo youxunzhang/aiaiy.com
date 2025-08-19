@@ -462,22 +462,32 @@ class AICompaniesLogoManager {
             const domain = card.getAttribute('data-domain');
             if (!domain) continue;
 
+            const logoBg = card.querySelector('.company-logo-bg');
+            if (!logoBg) continue;
+
+            // 添加加载状态
+            logoBg.classList.add('loading');
+
             try {
                 const logo = await this.getCompanyLogo(domain);
-                const logoBg = card.querySelector('.company-logo-bg');
                 
-                if (logoBg) {
-                    if (logo.startsWith('data:image')) {
-                        // 图片LOGO
-                        logoBg.style.backgroundImage = `url(${logo})`;
-                    } else {
-                        // Emoji fallback - 创建渐变背景
-                        logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
-                        logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
-                    }
+                // 移除加载状态
+                logoBg.classList.remove('loading');
+                
+                if (logo.startsWith('data:image')) {
+                    // 图片LOGO
+                    logoBg.style.backgroundImage = `url(${logo})`;
+                } else {
+                    // Emoji fallback - 创建渐变背景
+                    logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
+                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
                 }
             } catch (error) {
                 console.warn(`Failed to add logo for ${domain}:`, error);
+                // 移除加载状态，显示fallback
+                logoBg.classList.remove('loading');
+                logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
+                logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">🌐</div>`;
             }
         }
     }

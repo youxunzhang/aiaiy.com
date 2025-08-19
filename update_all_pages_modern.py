@@ -10,10 +10,10 @@ from pathlib import Path
 
 def update_page_with_unified_navigation(file_path):
     """更新单个页面，添加统一的导航栏"""
-    
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
+
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
     # 检查是否已经包含统一导航栏
     if 'navigation.js' in content:
         print(f"跳过 {file_path} - 已包含统一导航栏")
@@ -129,11 +129,11 @@ def update_company_cards_with_logos(file_path):
     content = re.sub(company_title_pattern, add_logo_container, content)
     
     # 保存更新后的内容
-    with open(file_path, 'w', encoding='utf-8') as f:
+        with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
-    
+        
     print(f"已为 {file_path} 添加LOGO容器")
-    return True
+        return True
 
 def main():
     """主函数"""
