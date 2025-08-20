@@ -41,6 +41,7 @@
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -76,67 +77,160 @@
             -moz-osx-font-smoothing: grayscale;
         }
         
-        /* 左侧菜单栏 */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            width: 280px;
+        /* 顶部横向导航栏 */
+        .top-navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-right: 1px solid #E5E7EB;
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .sidebar.collapsed {
-            transform: translateX(-100%);
+        .nav-link-horizontal {
+            color: #6B7280;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
         }
 
-        .sidebar-toggle {
-            position: fixed;
-            left: 20px;
-            top: 20px;
-            z-index: 1001;
-            background: #2563EB;
+        .nav-link-horizontal:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .nav-link-horizontal.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
             border: none;
-            border-radius: 8px;
-            padding: 8px;
-            color: white;
             cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #6B7280;
+            font-weight: 500;
             transition: all 0.2s ease;
         }
 
-        .sidebar-toggle:hover {
-            background: #1d4ed8;
-            transform: scale(1.05);
+        .dropdown-toggle:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 0.5rem;
+        }
+
+        .dropdown-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-item:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 0.5rem 0;
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #F9FAFB;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link.active {
+            background: #EFF6FF;
+            color: #2563EB;
         }
 
         .main-content {
-            margin-left: 280px;
-            transition: margin-left 0.3s ease;
-        }
-
-        .main-content.expanded {
             margin-left: 0;
+            transition: margin-left 0.3s ease;
         }
 
         /* 移动端响应式 */
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
             .main-content {
-                margin-left: 0;
                 padding: 1rem;
-            }
-            
-            .sidebar-toggle {
-                display: block;
             }
             
             .page-introduction {
@@ -164,56 +258,10 @@
                 gap: 0.5rem;
             }
         }
+        
 
-        @media (min-width: 769px) {
-            .sidebar-toggle {
-                display: none;
-            }
-            
-            .main-content {
-                margin-left: 280px;
-            }
-        }
         
-        .nav-link {
-            color: #6B7280;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            margin: 0.25rem 1rem;
-            display: block;
-        }
-        
-        .nav-link:hover {
-            color: #2563EB;
-            background: #F9FAFB;
-            transform: translateX(5px);
-        }
 
-        .nav-link.active {
-            color: #2563EB;
-            background: #EFF6FF;
-            border-left: 3px solid #2563EB;
-        }
-        
-        /* Simple language switch */
-        .language-switch {
-            background: #2563EB;
-            border: none;
-            border-radius: 0.375rem;
-            padding: 0.5rem 1rem;
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            transition: background-color 0.2s ease;
-        }
-        
-        .language-switch:hover {
-            background: var(--primary-hover);
-        }
         
         /* Clean hero section */
         .hero-section {
@@ -285,41 +333,58 @@
             color: var(--primary-color);
         }
         
-        /* Clean tool cards */
+        /* 现代化工具卡片 */
         .tool-card {
-            background: var(--background-color);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
             padding: 1.5rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            min-height: 140px;
-            box-shadow: var(--shadow-sm);
+            min-height: 120px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
         .tool-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(102, 126, 234, 0.3);
         }
         
-        .tool-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 1rem;
-            background: var(--primary-color);
+        .tool-card:hover::before {
+            transform: scaleX(1);
         }
         
-        .fallback-logo {
-            background: var(--secondary-color) !important;
+
+        
+        /* 工具卡片文字样式优化 */
+        .tool-card h3 {
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
+        
+        .tool-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+
         
         /* Clean category titles */
         .category-title {
@@ -573,88 +638,114 @@
     <!-- 粒子效果 -->
     <div class="particles" id="particles"></div>
     
-    <!-- 侧边栏切换按钮 -->
-    <button class="sidebar-toggle" id="sidebarToggle">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-    </button>
+    <!-- 顶部横向导航栏 -->
+    <header class="top-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo区域 -->
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <span class="block">
+                          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                              <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f2fe"/>
+                                <stop offset="1" stop-color="#764ba2"/>
+                              </linearGradient>
+                            </defs>
+                            <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient)" stroke="#222" stroke-width="2"/>
+                            <rect x="14" y="14" width="20" height="20" rx="6" fill="#18181b" stroke="url(#ai-logo-gradient)" stroke-width="2"/>
+                            <path d="M20 30V18M28 30V18M20 24H28" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
+                          </svg>
+                        </span>
+                        <span class="text-xl font-bold text-gray-900">AIAIY</span>
+                    </a>
+                </div>
 
-    <!-- 左侧菜单栏 -->
-    <aside class="sidebar" id="sidebar">
-        <div class="p-6">
-            <!-- Logo区域 -->
-            <div class="flex items-center space-x-3 mb-8">
-                <a href="index.html" class="flex items-center space-x-3">
-                    <span class="block">
-                      <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                          <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00f2fe"/>
-                            <stop offset="1" stop-color="#764ba2"/>
-                          </linearGradient>
-                        </defs>
-                        <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient)" stroke="#222" stroke-width="2"/>
-                        <rect x="14" y="14" width="20" height="20" rx="6" fill="#18181b" stroke="url(#ai-logo-gradient)" stroke-width="2"/>
-                        <path d="M20 30V18M28 30V18M20 24H28" stroke="#00f2fe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
-                      </svg>
-                    </span>
-                    <span class="text-xl font-bold text-gray-900">AIAIY</span>
-                </a>
+                <!-- 桌面导航菜单 -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="nav-link-horizontal active">🏠 首页</a>
+                    <a href="ai-companies.html" class="nav-link-horizontal">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="nav-link-horizontal">📊 AI榜单</a>
+                    <a href="trends.html" class="nav-link-horizontal">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="nav-link-horizontal">⚡ AI功能</a>
+                    
+                    <!-- 工具下拉菜单 -->
+                    <div class="relative dropdown">
+                        <button class="nav-link-horizontal dropdown-toggle">🛠️ 工具</button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">常用工具</div>
+                                <a href="coding.html" class="dropdown-item">💻 编程工具</a>
+                                <a href="designer.html" class="dropdown-item">🎨 设计师工具</a>
+                                <a href="writing.html" class="dropdown-item">✍️ 写作工具</a>
+                                <a href="image.html" class="dropdown-item">🖼️ 图像处理</a>
+                                <a href="video.html" class="dropdown-item">🎬 视频制作</a>
+                                <a href="audio.html" class="dropdown-item">🎵 音频处理</a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">AI工具</div>
+                                <a href="ailinks.html" class="dropdown-item">🤖 AI链接</a>
+                                <a href="aicommunity.html" class="dropdown-item">👥 AI社区</a>
+                                <a href="aicontent.html" class="dropdown-item">📄 AI内容</a>
+                                <a href="ailearn.html" class="dropdown-item">📚 AI学习</a>
+                                <a href="ainum.html" class="dropdown-item">🔢 AI数字</a>
+                                <a href="aioffice.html" class="dropdown-item">💼 AI办公</a>
+                                <a href="aiprompt.html" class="dropdown-item">💡 AI提示</a>
+                                <a href="aitimer.html" class="dropdown-item">⏰ AI计时器</a>
+                                <a href="aiagent.html" class="dropdown-item">🤖 AI代理</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- 移动端菜单按钮 -->
+                <button class="mobile-menu-toggle lg:hidden" id="mobileMenuToggle">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- 导航菜单 -->
-            <nav class="space-y-2">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">主要页面</div>
-                <a href="index.html" class="nav-link active">🏠 Home</a>
-                <a href="ai-companies.html" class="nav-link">🏢 AI公司</a>
-                <a href="play-game.html" class="nav-link">🎮 游戏</a>
-                <a href="ai-hotspots.html" class="nav-link">🔥 AI热点</a>
-                <a href="real-needs.html" class="nav-link">🎯 真需求</a>
-                <a href="ai-ranking.html" class="nav-link">📊 AI榜单</a>
-                <a href="ai-overseas.html" class="nav-link">🌍 AI出海</a>
-                <a href="ai-ads.html" class="nav-link">📢 AI ADS</a>
-                <a href="trends.html" class="nav-link">📈 趋势</a>
-                <a href="ai-capabilities.html" class="nav-link">⚡ AI功能</a>
-                <a href="lunch-recommendations.html" class="nav-link">🍽️ 午餐推荐</a>
-                
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4 mt-8">工具页面</div>
-                <a href="coding.html" class="nav-link">💻 编程工具</a>
-                <a href="designer.html" class="nav-link">🎨 设计师工具</a>
-                <a href="writing.html" class="nav-link">✍️ 写作工具</a>
-                <a href="image.html" class="nav-link">🖼️ 图像处理</a>
-                <a href="video.html" class="nav-link">🎬 视频制作</a>
-                <a href="audio.html" class="nav-link">🎵 音频处理</a>
-                <a href="music.html" class="nav-link">🎼 音乐创作</a>
-                <a href="social.html" class="nav-link">📱 社交媒体</a>
-                <a href="seo.html" class="nav-link">🔍 SEO工具</a>
-                <a href="game.html" class="nav-link">🎮 游戏开发</a>
-                <a href="prayer.html" class="nav-link">🙏 祈祷工具</a>
-                <a href="words.html" class="nav-link">📝 词汇工具</a>
-                <a href="xiaohongshu.html" class="nav-link">📖 小红书工具</a>
-                <a href="hanghai.html" class="nav-link">🚢 航海工具</a>
-                <a href="chuhai.html" class="nav-link">🌊 出海工具</a>
-                <a href="img.html" class="nav-link">🖼️ 图片工具</a>
-                <a href="links.html" class="nav-link">🔗 链接工具</a>
-                <a href="ailinks.html" class="nav-link">🤖 AI链接</a>
-                <a href="aicommunity.html" class="nav-link">👥 AI社区</a>
-                <a href="aicontent.html" class="nav-link">📄 AI内容</a>
-                <a href="ailearn.html" class="nav-link">📚 AI学习</a>
-                <a href="ainum.html" class="nav-link">🔢 AI数字</a>
-                <a href="aioffice.html" class="nav-link">💼 AI办公</a>
-                <a href="aiprompt.html" class="nav-link">💡 AI提示</a>
-                <a href="aitimer.html" class="nav-link">⏰ AI计时器</a>
-                <a href="aiagent.html" class="nav-link">🤖 AI代理</a>
-                <a href="gametest.html" class="nav-link">🎯 游戏测试</a>
-            </nav>
-
-            <!-- 语言切换 -->
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                <button class="language-switch w-full" onclick="switchLanguage('en')">English</button>
+            <!-- 移动端导航菜单 -->
+            <div class="mobile-menu lg:hidden hidden" id="mobileMenu">
+                <div class="py-4 space-y-2">
+                    <a href="index.html" class="mobile-nav-link active">🏠 首页</a>
+                    <a href="ai-companies.html" class="mobile-nav-link">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="mobile-nav-link">📊 AI榜单</a>
+                    <a href="trends.html" class="mobile-nav-link">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="mobile-nav-link">⚡ AI功能</a>
+                    
+                    <!-- 工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">常用工具</div>
+                        <a href="coding.html" class="mobile-nav-link">💻 编程工具</a>
+                        <a href="designer.html" class="mobile-nav-link">🎨 设计师工具</a>
+                        <a href="writing.html" class="mobile-nav-link">✍️ 写作工具</a>
+                        <a href="image.html" class="mobile-nav-link">🖼️ 图像处理</a>
+                        <a href="video.html" class="mobile-nav-link">🎬 视频制作</a>
+                        <a href="audio.html" class="mobile-nav-link">🎵 音频处理</a>
+                    </div>
+                    
+                    <!-- AI工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">AI工具</div>
+                        <a href="ailinks.html" class="mobile-nav-link">🤖 AI链接</a>
+                        <a href="aicommunity.html" class="mobile-nav-link">👥 AI社区</a>
+                        <a href="aicontent.html" class="mobile-nav-link">📄 AI内容</a>
+                        <a href="ailearn.html" class="mobile-nav-link">📚 AI学习</a>
+                        <a href="ainum.html" class="mobile-nav-link">🔢 AI数字</a>
+                        <a href="aioffice.html" class="mobile-nav-link">💼 AI办公</a>
+                        <a href="aiprompt.html" class="mobile-nav-link">💡 AI提示</a>
+                        <a href="aitimer.html" class="mobile-nav-link">⏰ AI计时器</a>
+                        <a href="aiagent.html" class="mobile-nav-link">🤖 AI代理</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </aside>
+    </header>
 
 
 
@@ -682,358 +773,198 @@
         <!-- 🤖 大模型 板块置顶 -->
         <div class="max-w-7xl mx-auto px-4 py-12" id="ai-models">
         <section class="mb-20 fade-in">
-            <h2 class="category-title">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
-                    <defs>
-                        <linearGradient id="ai-foundation-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#667eea"/>
-                            <stop offset="0.5" stop-color="#764ba2"/>
-                            <stop offset="1" stop-color="#00f2fe"/>
-                        </linearGradient>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                            <feMerge> 
-                                <feMergeNode in="coloredBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    <!-- 外圈光环 -->
-                    <circle cx="24" cy="24" r="22" fill="url(#ai-foundation-gradient)" opacity="0.3" filter="url(#glow)"/>
-                    <!-- 主圆环 -->
-                    <circle cx="24" cy="24" r="20" fill="url(#ai-foundation-gradient)" stroke="#fff" stroke-width="1" opacity="0.8"/>
-                    <!-- 内部神经网络结构 -->
-                    <circle cx="24" cy="16" r="2" fill="#fff" opacity="0.9"/>
-                    <circle cx="16" cy="24" r="2" fill="#fff" opacity="0.9"/>
-                    <circle cx="32" cy="24" r="2" fill="#fff" opacity="0.9"/>
-                    <circle cx="24" cy="32" r="2" fill="#fff" opacity="0.9"/>
-                    <circle cx="18" cy="18" r="1.5" fill="#fff" opacity="0.7"/>
-                    <circle cx="30" cy="18" r="1.5" fill="#fff" opacity="0.7"/>
-                    <circle cx="18" cy="30" r="1.5" fill="#fff" opacity="0.7"/>
-                    <circle cx="30" cy="30" r="1.5" fill="#fff" opacity="0.7"/>
-                    <!-- 连接线 -->
-                    <path d="M24 16 L16 24 L24 32 L32 24 Z" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
-                    <path d="M18 18 L30 18 L30 30 L18 30 Z" stroke="#fff" stroke-width="1" fill="none" opacity="0.4"/>
-                    <!-- 中心核心 -->
-                    <circle cx="24" cy="24" r="4" fill="#fff" opacity="0.8"/>
-                    <circle cx="24" cy="24" r="2" fill="url(#ai-foundation-gradient)"/>
-                    <!-- 脉冲动画点 -->
-                    <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="1" opacity="0.3">
-                        <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
-                        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                </svg>
-                AI Foundation Models
-            </h2>
+            <h2 class="category-title">AI Foundation Models</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card" data-domain="chat.deepseek.com">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            DS
-                        </div>
+                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                        <p class="text-gray-600">Deep Learning Chat Model</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Deepseek</h3>
-                    <p class="text-gray-300">Deep Learning Chat Model</p>
                 </a>
-                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card" data-domain="gemini.google.com">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            G
-                        </div>
+                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                        <p class="text-gray-600">Latest Google AI Assistant</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Google Gemini</h3>
-                    <p class="text-gray-300">Latest Google AI Assistant</p>
                 </a>
-                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card" data-domain="www.perplexity.ai">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            P
-                        </div>
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                        <p class="text-gray-600">AI-powered Search Engine</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Perplexity</h3>
-                    <p class="text-gray-300">AI-powered Search Engine</p>
                 </a>
-                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card" data-domain="chat.chatbot.app">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            CB
-                        </div>
+                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
+                        <p class="text-gray-600">AI Chat Assistant</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">ChatBot</h3>
-                    <p class="text-gray-300">AI Chat Assistant</p>
                 </a>
-                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card" data-domain="claude.ai">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            C
-                        </div>
+                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                        <p class="text-gray-600">Anthropic AI Assistant</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Claude</h3>
-                    <p class="text-gray-300">Anthropic AI Assistant</p>
                 </a>
             </div>
         </section>
 
         <!-- 网站服务 -->
         <section class="mb-20 fade-in">
-            <h2 class="category-title">🌐 Website Services</h2>
+            <h2 class="category-title">Website Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            CF
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Cloudflare</h3>
+                        <p class="text-gray-600">Website Acceleration & Security</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Cloudflare</h3>
-                    <p class="text-gray-300">Website Acceleration & Security</p>
                 </a>
                 
                 <a href="https://vercel.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-black to-gray-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            V
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Vercel</h3>
+                        <p class="text-gray-600">Frontend Deployment Platform</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Vercel</h3>
-                    <p class="text-gray-300">Frontend Deployment Platform</p>
                 </a>
                 
                 <a href="https://www.domain.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            D
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Domain.com</h3>
+                        <p class="text-gray-600">Domain Registration Service</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Domain.com</h3>
-                    <p class="text-gray-300">Domain Registration Service</p>
                 </a>
                 
                 <a href="https://github.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            GH
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">GitHub</h3>
+                        <p class="text-gray-600">World's Largest Open Source Collaboration Platform</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">GitHub</h3>
-                    <p class="text-gray-300">World's Largest Open Source Collaboration Platform</p>
                 </a>
             </div>
         </section>
 
         <!-- 新增 赚美金 板块 -->
         <section class="mb-20 fade-in">
-            <h2 class="category-title">💰 Make Money Online</h2>
+            <h2 class="category-title">Make Money Online</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            AD
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google AdSense</h3>
+                        <p class="text-gray-600">Website Monetization & Ads Platform</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Google AdSense</h3>
-                    <p class="text-gray-300">Website Monetization & Ads Platform</p>
                 </a>
                 <a href="https://analytics.google.com/analytics/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            GA
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Analytics</h3>
+                        <p class="text-gray-600">Website Traffic Analytics</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Google Analytics</h3>
-                    <p class="text-gray-300">Website Traffic Analytics</p>
                 </a>
                 <a href="https://trends.google.com/trends/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                            GT
-                        </div>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Trends</h3>
+                        <p class="text-gray-600">Trend & Popularity Analysis</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Google Trends</h3>
-                    <p class="text-gray-300">Trend & Popularity Analysis</p>
                 </a>
                 <a href="https://search.google.com/search-console/about" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">SC</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Google Search Console</h3>
-                    <p class="text-gray-300">SEO & Site Management</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Search Console</h3>
+                        <p class="text-gray-600">SEO & Site Management</p>
+                    </div>
                 </a>
                 <a href="https://www.spaceship.com/zh/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#ffffff"/><text x="50%" y="55%" text-anchor="middle" fill="#000000" font-size="16" font-family="Inter" dy=".3em">🚀</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Spaceship</h3>
-                    <p class="text-gray-300">Modern Cloud Hosting & Hosting</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Spaceship</h3>
+                        <p class="text-gray-600">Modern Cloud Hosting & Hosting</p>
+                    </div>
                 </a>
                 <a href="https://www.similarweb.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g8)"/><defs><linearGradient id="g8" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#8B5CF6"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">SW</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">SimilarWeb</h3>
-                    <p class="text-gray-300">Website Traffic & Competitor Analysis</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">SimilarWeb</h3>
+                        <p class="text-gray-600">Website Traffic & Competitor Analysis</p>
+                    </div>
                 </a>
             </div>
         </section>
 
         <!-- 新增 社交媒体 板块 -->
         <section class="mb-20 fade-in">
-            <h2 class="category-title">🌐 Social Media</h2>
+            <h2 class="category-title">Social Media</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <a href="https://x.com/home" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g9)"/><defs><linearGradient id="g9" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#000"/><stop offset="1" stop-color="#222"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">X</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">X (formerly Twitter)</h3>
-                    <p class="text-gray-300">Global Social Platform</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">X (formerly Twitter)</h3>
+                        <p class="text-gray-600">Global Social Platform</p>
+                    </div>
                 </a>
                 <a href="https://www.instagram.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g10)"/><defs><linearGradient id="g10" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#F58529"/><stop offset="1" stop-color="#DD2A7B"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">IG</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Instagram</h3>
-                    <p class="text-gray-300">Photo & Short Video Social</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Instagram</h3>
+                        <p class="text-gray-600">Photo & Short Video Social</p>
+                    </div>
                 </a>
                 <a href="https://www.facebook.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="url(#g11)"/><defs><linearGradient id="g11" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#1877F3"/><stop offset="1" stop-color="#42A5F5"/></linearGradient></defs><text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="16" font-family="Inter" dy=".3em">f</text></svg></div>
-                    <h3 class="text-xl font-bold mb-2">Facebook</h3>
-                    <p class="text-gray-300">World's Largest Social Network</p>
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Facebook</h3>
+                        <p class="text-gray-600">World's Largest Social Network</p>
+                    </div>
                 </a>
             </div>
         </section>
 
-        <!-- 💰 广告联盟展示区域 -->
+        <!-- 广告联盟 -->
         <section class="mb-20 fade-in">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="category-title">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
-                        <defs>
-                            <linearGradient id="ad-network-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#F59E0B"/>
-                                <stop offset="0.5" stop-color="#D97706"/>
-                                <stop offset="1" stop-color="#B45309"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="24" cy="24" r="22" fill="url(#ad-network-gradient)" opacity="0.3"/>
-                        <circle cx="24" cy="24" r="20" fill="url(#ad-network-gradient)" stroke="#fff" stroke-width="1" opacity="0.8"/>
-                        <path d="M12 16h24M12 24h24M12 32h24" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="8" cy="16" r="2" fill="#fff"/>
-                        <circle cx="8" cy="24" r="2" fill="#fff"/>
-                        <circle cx="8" cy="32" r="2" fill="#fff"/>
-                        <circle cx="40" cy="16" r="2" fill="#fff"/>
-                        <circle cx="40" cy="24" r="2" fill="#fff"/>
-                        <circle cx="40" cy="32" r="2" fill="#fff"/>
-                    </svg>
-                    广告联盟
-                </h2>
-                <span class="text-blue-400 text-sm">专业广告变现平台</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 class="category-title">广告联盟</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Monetag -->
                 <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700 rounded-lg text-white font-bold text-lg">
-                            💰
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Monetag</h3>
+                        <p class="text-gray-600">AI驱动的广告变现平台</p>
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">高CPM</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">全球覆盖</span>
                         </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Monetag</h3>
-                    <p class="text-gray-300">AI驱动的广告变现平台</p>
-                    <div class="mt-2 flex items-center space-x-2">
-                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">高CPM</span>
-                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">全球覆盖</span>
                     </div>
                 </a>
                 
                 <!-- PropellerAds -->
                 <a href="https://propellerads.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 rounded-lg text-white font-bold text-lg">
-                            🚀
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">PropellerAds</h3>
+                        <p class="text-gray-600">高性能广告网络平台</p>
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">快速支付</span>
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">多种格式</span>
                         </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">PropellerAds</h3>
-                    <p class="text-gray-300">高性能广告网络平台</p>
-                    <div class="mt-2 flex items-center space-x-2">
-                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">快速支付</span>
-                        <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">多种格式</span>
                     </div>
                 </a>
                 
                 <!-- Media.net -->
                 <a href="https://www.media.net/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white font-bold text-lg">
-                            📊
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Media.net</h3>
+                        <p class="text-gray-600">雅虎必应广告联盟</p>
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">优质广告</span>
+                            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded-full">智能优化</span>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Media.net</h3>
-                    <p class="text-gray-300">雅虎必应广告联盟</p>
-                    <div class="mt-2 flex items-center space-x-2">
-                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">优质广告</span>
-                        <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded-full">智能优化</span>
+                </a>
+                
+                <!-- Adsterra -->
+                <a href="https://adsterra.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Adsterra</h3>
+                        <p class="text-gray-600">全球广告网络平台</p>
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">全球覆盖</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">高收益</span>
+                        </div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- 🔗 友情链接展示区域 -->
-        <section class="mb-20 fade-in">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="category-title">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
-                        <defs>
-                            <linearGradient id="friendship-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#10B981"/>
-                                <stop offset="0.5" stop-color="#059669"/>
-                                <stop offset="1" stop-color="#047857"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="24" cy="24" r="22" fill="url(#friendship-gradient)" opacity="0.3"/>
-                        <circle cx="24" cy="24" r="20" fill="url(#friendship-gradient)" stroke="#fff" stroke-width="1" opacity="0.8"/>
-                        <path d="M16 20h16M16 28h16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="12" cy="20" r="2" fill="#fff"/>
-                        <circle cx="12" cy="28" r="2" fill="#fff"/>
-                        <circle cx="36" cy="20" r="2" fill="#fff"/>
-                        <circle cx="36" cy="28" r="2" fill="#fff"/>
-                    </svg>
-                    友情链接
-                </h2>
-                <a href="friendship-links.html" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center space-x-2">
-                    <span>查看更多</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- 精选友情链接 -->
-                <a href="https://crossword.best" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg text-white font-bold text-lg">
-                            🎮
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Crossword</h3>
-                    <p class="text-gray-300">填字游戏</p>
-                </a>
-                <a href="https://tushuguan.online" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500 to-blue-600 rounded-lg text-white font-bold text-lg">
-                            📚
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">图书馆</h3>
-                    <p class="text-gray-300">在线图书馆</p>
-                </a>
-                <a href="https://aiwebsiteprompt.online" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white font-bold text-lg">
-                            🧠
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">AI提示词</h3>
-                    <p class="text-gray-300">AI网站提示词</p>
-                </a>
-                <a href="https://picturesize.online" target="_blank" class="tool-card modern-card">
-                    <div class="tool-logo">
-                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-yellow-500 to-orange-600 rounded-lg text-white font-bold text-lg">
-                            🛠️
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">图片尺寸</h3>
-                    <p class="text-gray-300">图片尺寸工具</p>
-                </a>
-            </div>
-        </section>
+
         </div>
     </main>
 
@@ -1047,22 +978,18 @@
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <div class="text-3xl mb-4">🔍</div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-3">工具多样化</h3>
                         <p class="text-gray-700 leading-relaxed">涵盖文本生成、图像处理、视频制作、数据分析等多种类型，满足不同用户的需求。</p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <div class="text-3xl mb-4">📊</div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-3">免费试用</h3>
                         <p class="text-gray-700 leading-relaxed">大部分工具提供免费试用功能，方便用户体验，节省成本。</p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <div class="text-3xl mb-4">💡</div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-3">分类导航</h3>
                         <p class="text-gray-700 leading-relaxed">按照功能类别清晰分类，用户可以快速找到所需的AI工具。</p>
                     </div>
                     <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <div class="text-3xl mb-4">🚀</div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-3">持续更新</h3>
                         <p class="text-gray-700 leading-relaxed">定期更新新工具，保持平台的新鲜和实用。</p>
                     </div>
@@ -1072,15 +999,9 @@
                     <p class="text-lg text-gray-700 font-medium mb-6">AI工具导航为用户提供便捷高效的AI工具发现和使用体验。</p>
                     <div class="flex justify-center space-x-4">
                         <a href="ai-capabilities.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
                             了解更多
                         </a>
                         <a href="ai-ranking.html" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200 shadow-md hover:shadow-lg">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
                             AI工具排行
                         </a>
                     </div>
@@ -1093,17 +1014,6 @@
         <footer class="glass py-8 mt-12">
             <div class="container mx-auto px-4 text-center">
                 <div class="flex items-center justify-center space-x-3 mb-6">
-                    <span class="block">
-                        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="ai-logo-gradient2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#00f2fe"/>
-                                    <stop offset="1" stop-color="#764ba2"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="24" cy="24" r="22" fill="url(#ai-logo-gradient2)" stroke="#222" stroke-width="2"/>
-                        </svg>
-                    </span>
                     <span class="text-2xl font-bold gradient-text">AI Tools Navigator</span>
                 </div>
                 <p class="text-gray-300 mb-4 text-lg">Discover the best AI tools to boost your productivity</p>
@@ -1125,36 +1035,33 @@
         </footer>
     </main>
 
-    <!-- 引入统一导航栏和LOGO系统 -->
-    <script src="navigation.js"></script>
-    <script src="logo-fetcher.js"></script>
-    <script src="static-icons.js"></script>
+
+    <!-- 引入首页LOGO管理系统 -->
+    <script src="homepage-logos.js"></script>
+    
     <script>
-        // 侧边栏控制
+        // 移动端菜单控制
         document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.getElementById('sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const mainContent = document.querySelector('.main-content');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            // 侧边栏切换功能
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('expanded');
-            });
-            
-            // 点击侧边栏外部关闭侧边栏（移动端）
-            document.addEventListener('click', function(event) {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
-                        sidebar.classList.add('collapsed');
-                        mainContent.classList.add('expanded');
+            // 移动端菜单切换功能
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // 点击菜单外部关闭菜单
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
                     }
-                }
-            });
+                });
+            }
             
             // 设置当前页面的活动状态
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinks = document.querySelectorAll('.nav-link-horizontal, .mobile-nav-link');
             navLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
                     link.classList.add('active');
@@ -1236,7 +1143,5 @@
         });
     </script>
     
-    <!-- 引入首页AI Foundation Models LOGO系统 -->
-    <script src="homepage-logos.js"></script>
 </body>
 </html>

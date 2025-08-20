@@ -457,6 +457,49 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* AI Foundation Models板块也显示LOGO背景 */
+#ai-models .tool-card {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* LOGO背景样式 */
+.tool-logo-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    transition: all 0.3s ease;
+    z-index: 1;
+    filter: grayscale(100%) brightness(1.2);
+}
+
+.tool-card:hover .tool-logo-bg {
+    opacity: 0.12;
+    filter: grayscale(80%) brightness(1.1);
+    transform: scale(1.05);
+}
+
+/* 卡片内容样式 */
+.tool-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 原有的tool-logo样式保留但不使用 */
+.tool-logo {
+    display: none;
 }
 
 .tool-card::before {

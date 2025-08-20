@@ -1,93 +1,138 @@
+/**
+ * 首页LOGO管理系统
+ * 为首页的链接板块获取和显示品牌LOGO
+ */
+
 class HomepageLogoManager {
     constructor() {
-        this.logoCache = this.loadFromLocalStorage();
-        this.foundationModelsMappings = {
-            'chat.deepseek.com': {
-                url: 'https://chat.deepseek.com/favicon.ico',
-                fallback: '🤖',
-                name: 'Deepseek'
-            },
-            'gemini.google.com': {
-                url: 'https://gemini.google.com/favicon.ico',
-                fallback: '🔍',
-                name: 'Google Gemini'
-            },
-            'www.perplexity.ai': {
-                url: 'https://www.perplexity.ai/favicon.ico',
-                fallback: '🧠',
-                name: 'Perplexity'
-            },
-            'chat.chatbot.app': {
-                url: 'https://chat.chatbot.app/favicon.ico',
-                fallback: '💬',
-                name: 'ChatBot'
-            },
-            'claude.ai': {
-                url: 'https://claude.ai/favicon.ico',
-                fallback: '🤖',
-                name: 'Claude'
-            }
-        };
+        this.logoCache = {};
+        this.loadFromLocalStorage();
+        this.initializeLogoMappings();
     }
 
+    /**
+     * 从本地存储加载LOGO缓存
+     */
     loadFromLocalStorage() {
         try {
             const cached = localStorage.getItem('homepageLogoCache');
-            return cached ? JSON.parse(cached) : {};
+            if (cached) {
+                this.logoCache = JSON.parse(cached);
+            }
         } catch (error) {
-            console.warn('Failed to load logo cache from localStorage:', error);
-            return {};
+            console.warn('Failed to load homepage logo cache from localStorage:', error);
         }
     }
 
+    /**
+     * 保存LOGO缓存到本地存储
+     */
     saveToLocalStorage() {
         try {
             localStorage.setItem('homepageLogoCache', JSON.stringify(this.logoCache));
         } catch (error) {
-            console.warn('Failed to save logo cache to localStorage:', error);
+            console.warn('Failed to save homepage logo cache to localStorage:', error);
         }
     }
 
-    async getLogo(domain) {
+    /**
+     * 初始化LOGO映射
+     */
+    initializeLogoMappings() {
+        // 预定义的高质量LOGO映射
+        this.logoMappings = {
+            // AI Foundation Models
+            'deepseek.com': 'https://chat.deepseek.com/favicon.ico',
+            'google.com': 'https://www.google.com/favicon.ico',
+            'perplexity.ai': 'https://www.perplexity.ai/favicon.ico',
+            'chatbot.app': 'https://chat.chatbot.app/favicon.ico',
+            'claude.ai': 'https://claude.ai/favicon.ico',
+            
+            // Website Services
+            'cloudflare.com': 'https://www.cloudflare.com/favicon.ico',
+            'vercel.com': 'https://vercel.com/favicon.ico',
+            'domain.com': 'https://www.domain.com/favicon.ico',
+            'github.com': 'https://github.com/favicon.ico',
+            
+            // Make Money Online
+            'adsense.google.com': 'https://adsense.google.com/favicon.ico',
+            'analytics.google.com': 'https://analytics.google.com/favicon.ico',
+            'trends.google.com': 'https://trends.google.com/favicon.ico',
+            'search.google.com': 'https://search.google.com/favicon.ico',
+            'spaceship.com': 'https://www.spaceship.com/favicon.ico',
+            'similarweb.com': 'https://www.similarweb.com/favicon.ico',
+            
+            // Social Media
+            'x.com': 'https://x.com/favicon.ico',
+            'instagram.com': 'https://www.instagram.com/favicon.ico',
+            'facebook.com': 'https://www.facebook.com/favicon.ico',
+            
+            // 广告联盟
+            'monetag.com': 'https://monetag.com/favicon.ico',
+            'propellerads.com': 'https://propellerads.com/favicon.ico',
+            'media.net': 'https://www.media.net/favicon.ico',
+            'adsterra.com': 'https://adsterra.com/favicon.ico',
+            
+
+        };
+    }
+
+    /**
+     * 获取域名
+     */
+    getDomain(url) {
+        try {
+            const urlObj = new URL(url);
+            return urlObj.hostname.replace('www.', '');
+        } catch (error) {
+            return url.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0];
+        }
+    }
+
+    /**
+     * 获取LOGO URL
+     */
+    async getLogoUrl(domain) {
         // 检查缓存
         if (this.logoCache[domain]) {
             return this.logoCache[domain];
         }
 
-        const mapping = this.foundationModelsMappings[domain];
-        if (!mapping) {
-            return { type: 'fallback', content: '🔗' };
+        // 检查预定义映射
+        if (this.logoMappings[domain]) {
+            const logoUrl = this.logoMappings[domain];
+            this.logoCache[domain] = logoUrl;
+            this.saveToLocalStorage();
+            return logoUrl;
         }
 
+        // 尝试获取favicon
+        const faviconUrl = `https://${domain}/favicon.ico`;
         try {
-            // 尝试获取favicon
-            const logoData = await this.fetchLogo(mapping.url, domain);
-            if (logoData) {
-                this.logoCache[domain] = logoData;
+            const response = await fetch(faviconUrl, { method: 'HEAD' });
+            if (response.ok) {
+                this.logoCache[domain] = faviconUrl;
                 this.saveToLocalStorage();
-                return logoData;
+                return faviconUrl;
             }
         } catch (error) {
-            console.warn(`Failed to fetch logo for ${domain}:`, error);
+            console.warn(`Failed to fetch favicon for ${domain}:`, error);
         }
 
-        // 返回fallback
-        const fallback = { type: 'fallback', content: mapping.fallback };
-        this.logoCache[domain] = fallback;
-        this.saveToLocalStorage();
-        return fallback;
+        return null;
     }
 
-    async fetchLogo(url, domain) {
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'image/*'
-                }
-            });
+    /**
+     * 获取LOGO数据
+     */
+    async getLogo(domain) {
+        const logoUrl = await this.getLogoUrl(domain);
+        if (!logoUrl) {
+            return null;
+        }
 
+        try {
+            const response = await fetch(logoUrl);
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}`);
             }
@@ -95,123 +140,142 @@ class HomepageLogoManager {
             const blob = await response.blob();
             const reader = new FileReader();
             
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 reader.onload = () => {
                     resolve({
-                        type: 'image',
-                        content: reader.result,
+                        dataUrl: reader.result,
                         domain: domain
                     });
                 };
-                reader.onerror = reject;
                 reader.readAsDataURL(blob);
             });
         } catch (error) {
-            console.warn(`Failed to fetch logo from ${url}:`, error);
+            console.warn(`Failed to fetch logo for ${domain}:`, error);
             return null;
         }
     }
 
-    createLogoHtml(logoData, domain) {
-        const mapping = this.foundationModelsMappings[domain];
-        const name = mapping ? mapping.name : domain;
-
-        if (logoData.type === 'image') {
-            return `
-                <div class="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden bg-white shadow-sm">
-                    <img src="${logoData.content}" alt="${name} logo" 
-                         class="w-8 h-8 object-contain" 
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded flex items-center justify-center text-white font-bold text-sm" style="display: none;">
-                        ${name.substring(0, 2).toUpperCase()}
-                    </div>
-                </div>
-            `;
-        } else {
-            return `
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                    ${logoData.content}
-                </div>
-            `;
+    /**
+     * 创建LOGO背景HTML
+     */
+    createLogoBackgroundHtml(logoData, domain) {
+        if (!logoData) {
+            return '';
         }
+
+        return `
+            <div class="tool-logo-bg" title="${domain}" style="background-image: url('${logoData.dataUrl}');"></div>
+        `;
     }
 
-    async updateFoundationModelsLogos() {
-        const foundationModelsSection = document.querySelector('a[href*="deepseek.com"], a[href*="gemini.google.com"], a[href*="perplexity.ai"], a[href*="chatbot.app"], a[href*="claude.ai"]');
+    /**
+     * 获取备用图标
+     */
+    getFallbackIcon(domain) {
+        const fallbackIcons = {
+            'deepseek.com': '🔍',
+            'google.com': '🔍',
+            'perplexity.ai': '🤔',
+            'chatbot.app': '💬',
+            'claude.ai': '🧠',
+            'cloudflare.com': '☁️',
+            'vercel.com': '▲',
+            'domain.com': '🌐',
+            'github.com': '📦',
+            'adsense.google.com': '💰',
+            'analytics.google.com': '📊',
+            'trends.google.com': '📈',
+            'search.google.com': '🔍',
+            'spaceship.com': '🚀',
+            'similarweb.com': '📊',
+            'x.com': '𝕏',
+            'instagram.com': '📷',
+            'facebook.com': '📘',
+            'monetag.com': '💎',
+            'propellerads.com': '⚡',
+            'media.net': '📰',
+            'adsterra.com': '🌍',
+
+        };
+
+        return fallbackIcons[domain] || '🌐';
+    }
+
+    /**
+     * 更新单个链接的LOGO背景
+     */
+    async updateLinkLogoBackground(linkElement) {
+        const href = linkElement.getAttribute('href');
+        if (!href) return;
+
+        const domain = this.getDomain(href);
+        const logoData = await this.getLogo(domain);
         
-        if (!foundationModelsSection) {
-            console.log('Foundation Models section not found');
-            return;
+        // 查找或创建LOGO背景容器
+        let logoBgContainer = linkElement.querySelector('.tool-logo-bg');
+        if (!logoBgContainer) {
+            logoBgContainer = document.createElement('div');
+            logoBgContainer.className = 'tool-logo-bg';
+            linkElement.insertBefore(logoBgContainer, linkElement.firstChild);
         }
 
-        // 找到AI Foundation Models板块的所有链接
-        const links = document.querySelectorAll('a[href*="deepseek.com"], a[href*="gemini.google.com"], a[href*="perplexity.ai"], a[href*="chatbot.app"], a[href*="claude.ai"]');
+        // 查找或创建内容容器
+        let contentContainer = linkElement.querySelector('.tool-content');
+        if (!contentContainer) {
+            contentContainer = document.createElement('div');
+            contentContainer.className = 'tool-content';
+            
+            // 将原有的内容移动到content容器中
+            const originalContent = Array.from(linkElement.children).filter(child => 
+                !child.classList.contains('tool-logo-bg')
+            );
+            originalContent.forEach(child => contentContainer.appendChild(child));
+            linkElement.appendChild(contentContainer);
+        }
+
+        logoBgContainer.innerHTML = this.createLogoBackgroundHtml(logoData, domain);
+    }
+
+    /**
+     * 更新所有链接的LOGO背景
+     */
+    async updateAllLogoBackgrounds() {
+        const links = document.querySelectorAll('.tool-card');
         
         for (const link of links) {
-            const href = link.getAttribute('href');
-            const domain = this.extractDomain(href);
-            
-            if (domain && this.foundationModelsMappings[domain]) {
-                const logoData = await this.getLogo(domain);
-                const logoHtml = this.createLogoHtml(logoData, domain);
-                
-                const logoContainer = link.querySelector('.tool-logo');
-                if (logoContainer) {
-                    logoContainer.innerHTML = logoHtml;
-                }
-            }
+            await this.updateLinkLogoBackground(link);
+            // 添加小延迟避免请求过于频繁
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
     }
 
-    extractDomain(url) {
-        try {
-            const urlObj = new URL(url);
-            return urlObj.hostname;
-        } catch (error) {
-            console.warn('Invalid URL:', url);
-            return null;
-        }
-    }
-
-    async batchFetchAllLogos() {
-        console.log('开始批量获取AI Foundation Models的LOGO...');
-        
-        const promises = Object.keys(this.foundationModelsMappings).map(async (domain) => {
-            try {
-                const logoData = await this.getLogo(domain);
-                console.log(`✅ ${domain}: ${logoData.type === 'image' ? '图片' : 'fallback'}`);
-                return { domain, logoData };
-            } catch (error) {
-                console.error(`❌ ${domain}: 获取失败`, error);
-                return { domain, logoData: null };
-            }
-        });
-
-        await Promise.all(promises);
-        console.log('AI Foundation Models LOGO获取完成');
-    }
-
+    /**
+     * 清除缓存
+     */
     clearCache() {
         this.logoCache = {};
         localStorage.removeItem('homepageLogoCache');
-        console.log('首页LOGO缓存已清除');
+        console.log('Homepage logo cache cleared');
     }
 
+    /**
+     * 导出缓存
+     */
     exportCache() {
-        console.log('当前LOGO缓存:', this.logoCache);
-        return this.logoCache;
+        return JSON.stringify(this.logoCache, null, 2);
     }
 }
 
-// 初始化并运行
-document.addEventListener('DOMContentLoaded', async () => {
-    const homepageLogoManager = new HomepageLogoManager();
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    const logoManager = new HomepageLogoManager();
+    logoManager.updateAllLogoBackgrounds();
     
-    // 更新AI Foundation Models板块的LOGO
-    await homepageLogoManager.updateFoundationModelsLogos();
-    
-    // 可选：批量预获取所有LOGO
-    // await homepageLogoManager.batchFetchAllLogos();
-    
-    console.log('首页AI Foundation Models LOGO系统已初始化');
+    // 将实例挂载到全局，方便调试
+    window.homepageLogoManager = logoManager;
 });
+
+// 导出供其他脚本使用
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = HomepageLogoManager;
+}
