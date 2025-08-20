@@ -132,16 +132,33 @@
             
             .main-content {
                 margin-left: 0;
+                padding: 1rem;
             }
             
             .sidebar-toggle {
                 display: block;
+            }
+            
+            .page-introduction {
+                padding: 2rem 1rem;
+            }
+            
+            .page-introduction h2 {
+                font-size: 2rem;
+            }
+            
+            .page-introduction p {
+                font-size: 1rem;
             }
         }
 
         @media (min-width: 769px) {
             .sidebar-toggle {
                 display: none;
+            }
+            
+            .main-content {
+                margin-left: 280px;
             }
         }
         
@@ -630,6 +647,25 @@
 
     <!-- 主要内容区域 -->
     <main class="main-content">
+        <!-- 页面标题区域 -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 mb-8">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold mb-4">AI工具导航</h1>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">发现最佳AI工具，提升您的生产力</p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        🚀 最新AI工具
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        💡 智能推荐
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        🔍 精准搜索
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 🤖 大模型 板块置顶 -->
         <div class="max-w-7xl mx-auto px-4 py-12" id="ai-models">
         <section class="mb-20 fade-in">
