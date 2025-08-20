@@ -631,7 +631,7 @@
     <!-- 主要内容区域 -->
     <main class="main-content">
         <!-- 🤖 大模型 板块置顶 -->
-        <div class="container mx-auto px-4 py-12" id="ai-models">
+        <div class="max-w-7xl mx-auto px-4 py-12" id="ai-models">
         <section class="mb-20 fade-in">
             <h2 class="category-title">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 12px;">
@@ -677,7 +677,7 @@
                 AI Foundation Models
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
+                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card" data-domain="chat.deepseek.com">
                     <div class="tool-logo">
                         <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                             DS
@@ -686,7 +686,7 @@
                     <h3 class="text-xl font-bold mb-2">Deepseek</h3>
                     <p class="text-gray-300">Deep Learning Chat Model</p>
                 </a>
-                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
+                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card" data-domain="gemini.google.com">
                     <div class="tool-logo">
                         <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-green-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                             G
@@ -695,7 +695,7 @@
                     <h3 class="text-xl font-bold mb-2">Google Gemini</h3>
                     <p class="text-gray-300">Latest Google AI Assistant</p>
                 </a>
-                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card" data-domain="www.perplexity.ai">
                     <div class="tool-logo">
                         <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                             P
@@ -704,7 +704,7 @@
                     <h3 class="text-xl font-bold mb-2">Perplexity</h3>
                     <p class="text-gray-300">AI-powered Search Engine</p>
                 </a>
-                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
+                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card" data-domain="chat.chatbot.app">
                     <div class="tool-logo">
                         <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                             CB
@@ -713,7 +713,7 @@
                     <h3 class="text-xl font-bold mb-2">ChatBot</h3>
                     <p class="text-gray-300">AI Chat Assistant</p>
                 </a>
-                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
+                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card" data-domain="claude.ai">
                     <div class="tool-logo">
                         <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                             C
@@ -990,38 +990,48 @@
 
         <!-- 页面介绍开始 -->
         <section class="page-introduction bg-gradient-to-br from-blue-50 to-indigo-100 py-16 mt-16">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">欢迎来到AIAIY.COM：AI工具导航平台</h2>
                     <p class="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">AI工具导航是一个聚合平台，提供各种优质的AI工具和服务。它通常包含以下功能：</p>
                 </div>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                         <div class="text-3xl mb-4">🔍</div>
-                        <p class="text-gray-700 leading-relaxed">工具多样化：涵盖文本生成、图像处理、视频制作、数据分析等多种类型，满足不同用户的需求。</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">工具多样化</h3>
+                        <p class="text-gray-700 leading-relaxed">涵盖文本生成、图像处理、视频制作、数据分析等多种类型，满足不同用户的需求。</p>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                         <div class="text-3xl mb-4">📊</div>
-                        <p class="text-gray-700 leading-relaxed">免费试用：大部分工具提供免费试用功能，方便用户体验，节省成本。</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">免费试用</h3>
+                        <p class="text-gray-700 leading-relaxed">大部分工具提供免费试用功能，方便用户体验，节省成本。</p>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                         <div class="text-3xl mb-4">💡</div>
-                        <p class="text-gray-700 leading-relaxed">分类导航：按照功能类别清晰分类，用户可以快速找到所需的AI工具。</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">分类导航</h3>
+                        <p class="text-gray-700 leading-relaxed">按照功能类别清晰分类，用户可以快速找到所需的AI工具。</p>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                         <div class="text-3xl mb-4">🚀</div>
-                        <p class="text-gray-700 leading-relaxed">持续更新：定期更新新工具，保持平台的新鲜和实用。</p>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">持续更新</h3>
+                        <p class="text-gray-700 leading-relaxed">定期更新新工具，保持平台的新鲜和实用。</p>
                     </div>
                 </div>
                 
                 <div class="text-center">
                     <p class="text-lg text-gray-700 font-medium mb-6">AI工具导航为用户提供便捷高效的AI工具发现和使用体验。</p>
                     <div class="flex justify-center space-x-4">
-                        <a href="ai-capabilities.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                        <a href="ai-capabilities.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                             了解更多
                         </a>
-                        <a href="ai-ranking.html" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200">
+                        <a href="ai-ranking.html" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200 shadow-md hover:shadow-lg">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
                             AI工具排行
                         </a>
                     </div>
@@ -1066,7 +1076,9 @@
         </footer>
     </main>
 
-    <!-- 引入静态图标管理脚本 -->
+    <!-- 引入统一导航栏和LOGO系统 -->
+    <script src="navigation.js"></script>
+    <script src="logo-fetcher.js"></script>
     <script src="static-icons.js"></script>
     <script>
         // 侧边栏控制
@@ -1174,5 +1186,8 @@
             createParticles();
         });
     </script>
+    
+    <!-- 引入首页AI Foundation Models LOGO系统 -->
+    <script src="homepage-logos.js"></script>
 </body>
 </html>
