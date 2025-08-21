@@ -167,6 +167,12 @@ body {
     overflow: hidden;
 }
 
+/* 链接卡片样式 */
+.link-card {
+    position: relative;
+    overflow: hidden;
+}
+
 .link-item::before {
     content: '';
     position: absolute;
@@ -470,7 +476,7 @@ body {
 }
 
 /* LOGO背景样式 */
-.tool-logo-bg {
+.tool-logo-bg, .link-logo-bg, .company-logo-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -485,7 +491,9 @@ body {
     filter: grayscale(100%) brightness(1.2);
 }
 
-.tool-card:hover .tool-logo-bg {
+.tool-card:hover .tool-logo-bg,
+.link-card:hover .link-logo-bg,
+.company-card:hover .company-logo-bg {
     opacity: 0.12;
     filter: grayscale(80%) brightness(1.1);
     transform: scale(1.05);
