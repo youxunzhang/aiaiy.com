@@ -294,8 +294,16 @@ class HomepageLogoManager {
         const toolCards = document.querySelectorAll('.tool-card');
         
         for (const card of toolCards) {
-            const link = card.querySelector('a') || card;
-            const href = link.getAttribute('href');
+            // 处理两种情况：1) card本身就是链接 2) card包含链接
+            let link, href;
+            if (card.tagName === 'A') {
+                link = card;
+                href = card.getAttribute('href');
+            } else {
+                link = card.querySelector('a');
+                href = link ? link.getAttribute('href') : null;
+            }
+            
             if (!href) continue;
 
             try {
@@ -318,6 +326,8 @@ class HomepageLogoManager {
                     logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
                     logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
                 }
+                
+                console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
             } catch (error) {
                 console.warn(`Failed to add logo for ${href}:`, error);
             }

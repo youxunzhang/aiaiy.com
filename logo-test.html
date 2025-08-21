@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGO功能测试页面</title>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: #f8fafc;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin-bottom: 3rem;
+        }
+        .test-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔍 LOGO功能测试页面</h1>
+        <p>这个页面用于测试首页LOGO功能是否正常工作</p>
+        
+        <div class="test-section">
+            <h2 class="test-title">AI Foundation Models 测试</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                        <p class="text-gray-600">Deep Learning Chat Model</p>
+                    </div>
+                </a>
+                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                        <p class="text-gray-600">Latest Google AI Assistant</p>
+                    </div>
+                </a>
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                        <p class="text-gray-600">AI-powered Search Engine</p>
+                    </div>
+                </a>
+                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                        <p class="text-gray-600">Anthropic AI Assistant</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">网站服务 测试</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Cloudflare</h3>
+                        <p class="text-gray-600">Website Acceleration & Security</p>
+                    </div>
+                </a>
+                <a href="https://vercel.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Vercel</h3>
+                        <p class="text-gray-600">Frontend Deployment Platform</p>
+                    </div>
+                </a>
+                <a href="https://github.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">GitHub</h3>
+                        <p class="text-gray-600">Open Source Collaboration Platform</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2 class="test-title">测试控制台</h2>
+            <div style="background: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 8px; font-family: monospace;">
+                <p>打开浏览器控制台 (F12) 查看测试结果</p>
+                <p>或者点击下面的按钮手动触发测试：</p>
+                <button onclick="window.testLogoFunctionality.runAllTests()" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin: 0.5rem 0;">
+                    运行所有测试
+                </button>
+                <button onclick="window.homepageLogoManager.addLogosToHomepageCards()" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin: 0.5rem 0.5rem;">
+                    手动添加LOGO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入LOGO管理器脚本 -->
+    <script src="homepage-logo-manager.js"></script>
+    <script src="test-logo-functionality.js"></script>
+    
+    <script>
+        // 页面加载完成后自动运行测试
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 LOGO测试页面已加载');
+            console.log('📋 请查看控制台输出以验证LOGO功能');
+            
+            // 延迟运行测试，确保所有脚本都已加载
+            setTimeout(() => {
+                window.testLogoFunctionality.runAllTests();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
