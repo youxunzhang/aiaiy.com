@@ -45,19 +45,35 @@ class HomepageLogoManager {
         this.homepageMappings = {
             // AI大模型
             'chat.deepseek.com': {
-                url: 'https://www.deepseek.com/favicon.ico',
+                url: 'https://chat.deepseek.com/favicon.ico',
+                fallback: '🔍'
+            },
+            'deepseek.com': {
+                url: 'https://chat.deepseek.com/favicon.ico',
                 fallback: '🔍'
             },
             'gemini.google.com': {
-                url: 'https://gemini.google.com/favicon.ico',
+                url: 'https://www.google.com/favicon.ico',
+                fallback: '🔍'
+            },
+            'google.com': {
+                url: 'https://www.google.com/favicon.ico',
                 fallback: '🔍'
             },
             'perplexity.ai': {
                 url: 'https://www.perplexity.ai/favicon.ico',
                 fallback: '🤔'
             },
+            'www.perplexity.ai': {
+                url: 'https://www.perplexity.ai/favicon.ico',
+                fallback: '🤔'
+            },
             'chat.chatbot.app': {
-                url: 'https://chatbot.app/favicon.ico',
+                url: 'https://chat.chatbot.app/favicon.ico',
+                fallback: '💬'
+            },
+            'chatbot.app': {
+                url: 'https://chat.chatbot.app/favicon.ico',
                 fallback: '💬'
             },
             'claude.ai': {

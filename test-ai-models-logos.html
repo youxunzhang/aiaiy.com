@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Foundation Models LOGO 测试</title>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .test-title {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .status {
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">AI Foundation Models LOGO 功能测试</h1>
+        
+        <div class="status info">
+            <strong>测试说明：</strong> 此页面用于验证AI Foundation Models板块的LOGO功能是否正常工作。
+        </div>
+
+        <div class="status success">
+            <strong>✅ 预期结果：</strong> 每个卡片都应该显示对应网站的LOGO背景。
+        </div>
+
+        <!-- AI Foundation Models 测试板块 -->
+        <section class="mb-20 fade-in">
+            <h2 class="category-title">AI Foundation Models</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                        <p class="text-gray-600">Deep Learning Chat Model</p>
+                    </div>
+                </a>
+                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                        <p class="text-gray-600">Latest Google AI Assistant</p>
+                    </div>
+                </a>
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                        <p class="text-gray-600">AI-powered Search Engine</p>
+                    </div>
+                </a>
+                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
+                        <p class="text-gray-600">AI Chat Assistant</p>
+                    </div>
+                </a>
+                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                        <p class="text-gray-600">Anthropic AI Assistant</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="status info">
+            <strong>测试步骤：</strong>
+            <ol>
+                <li>页面加载后，检查每个卡片是否显示LOGO背景</li>
+                <li>鼠标悬停在卡片上，LOGO背景应该变得更明显</li>
+                <li>检查浏览器控制台是否有LOGO加载成功的消息</li>
+            </ol>
+        </div>
+
+        <div id="test-results"></div>
+    </div>
+
+    <script src="homepage-logo-manager.js"></script>
+    <script src="verify-ai-models-logos.js"></script>
+    <script>
+        // 测试脚本
+        document.addEventListener('DOMContentLoaded', async function() {
+            const resultsDiv = document.getElementById('test-results');
+            
+            // 等待LOGO加载和验证
+            setTimeout(async () => {
+                // 使用验证器进行详细验证
+                const results = await window.aiModelsLogoVerifier.verifyAIModelsLogos();
+                
+                const successRate = (results.success / results.total * 100).toFixed(1);
+                const statusClass = successRate >= 80 ? 'success' : 'error';
+                
+                let detailsHtml = '';
+                results.details.forEach((detail, index) => {
+                    const status = detail.status === 'success' ? '✅' : '❌';
+                    detailsHtml += `
+                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: ${detail.status === 'success' ? '#d1fae5' : '#fee2e2'}; border-radius: 5px;">
+                            <strong>${status} ${detail.name}</strong><br>
+                            <small>${detail.message}</small>
+                        </div>
+                    `;
+                });
+                
+                resultsDiv.innerHTML = `
+                    <div class="status ${statusClass}">
+                        <strong>测试结果：</strong> ${results.success}/${results.total} 个卡片成功加载LOGO (${successRate}%)
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <strong>详细结果：</strong>
+                        ${detailsHtml}
+                    </div>
+                `;
+                
+                console.log(`🎉 AI Foundation Models LOGO测试完成：${results.success}/${results.total} 成功`);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

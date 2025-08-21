@@ -43,10 +43,20 @@ class HomepageLogoManager {
         this.logoMappings = {
             // AI Foundation Models
             'deepseek.com': 'https://chat.deepseek.com/favicon.ico',
+            'chat.deepseek.com': 'https://chat.deepseek.com/favicon.ico',
             'google.com': 'https://www.google.com/favicon.ico',
+            'gemini.google.com': 'https://www.google.com/favicon.ico',
             'perplexity.ai': 'https://www.perplexity.ai/favicon.ico',
+            'www.perplexity.ai': 'https://www.perplexity.ai/favicon.ico',
             'chatbot.app': 'https://chat.chatbot.app/favicon.ico',
+            'chat.chatbot.app': 'https://chat.chatbot.app/favicon.ico',
             'claude.ai': 'https://claude.ai/favicon.ico',
+            // 备用高质量LOGO
+            'deepseek': 'https://chat.deepseek.com/favicon.ico',
+            'gemini': 'https://www.google.com/favicon.ico',
+            'perplexity': 'https://www.perplexity.ai/favicon.ico',
+            'chatbot': 'https://chat.chatbot.app/favicon.ico',
+            'claude': 'https://claude.ai/favicon.ico',
             
             // Website Services
             'cloudflare.com': 'https://www.cloudflare.com/favicon.ico',

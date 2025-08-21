@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGO功能调试</title>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .debug-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .debug-title {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .debug-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+        }
+        .debug-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        .debug-button:hover {
+            background: #2563eb;
+        }
+        .log-output {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .status-success { background: #10b981; }
+        .status-error { background: #ef4444; }
+        .status-warning { background: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1 class="debug-title">LOGO功能调试工具</h1>
+        
+        <div class="debug-section">
+            <h3>🔧 调试控制</h3>
+            <button class="debug-button" onclick="testLogoManager()">测试LOGO管理器</button>
+            <button class="debug-button" onclick="clearCache()">清除缓存</button>
+            <button class="debug-button" onclick="reloadLogos()">重新加载LOGO</button>
+            <button class="debug-button" onclick="checkCards()">检查卡片</button>
+            <button class="debug-button" onclick="testFetch()">测试网络请求</button>
+        </div>
+
+        <div class="debug-section">
+            <h3>📊 状态信息</h3>
+            <div id="status-info">
+                <p><span class="status-indicator status-warning"></span>等待测试...</p>
+            </div>
+        </div>
+
+        <div class="debug-section">
+            <h3>📝 日志输出</h3>
+            <div id="log-output" class="log-output"></div>
+        </div>
+
+        <!-- AI Foundation Models 测试板块 -->
+        <div class="debug-section">
+            <h3>🤖 AI Foundation Models 测试</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                        <p class="text-gray-600">Deep Learning Chat Model</p>
+                    </div>
+                </a>
+                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                        <p class="text-gray-600">Latest Google AI Assistant</p>
+                    </div>
+                </a>
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                        <p class="text-gray-600">AI-powered Search Engine</p>
+                    </div>
+                </a>
+                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
+                        <p class="text-gray-600">AI Chat Assistant</p>
+                    </div>
+                </a>
+                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
+                    <div class="tool-content">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                        <p class="text-gray-600">Anthropic AI Assistant</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="homepage-logo-manager.js"></script>
+    <script>
+        // 调试工具
+        class LogoDebugger {
+            constructor() {
+                this.logOutput = document.getElementById('log-output');
+                this.statusInfo = document.getElementById('status-info');
+            }
+
+            log(message, type = 'info') {
+                const timestamp = new Date().toLocaleTimeString();
+                const logEntry = document.createElement('div');
+                logEntry.innerHTML = `[${timestamp}] ${message}`;
+                logEntry.style.color = type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#f9fafb';
+                this.logOutput.appendChild(logEntry);
+                this.logOutput.scrollTop = this.logOutput.scrollHeight;
+                console.log(message);
+            }
+
+            updateStatus(message, type = 'warning') {
+                this.statusInfo.innerHTML = `<p><span class="status-indicator status-${type}"></span>${message}</p>`;
+            }
+
+            async testLogoManager() {
+                this.log('🔍 开始测试LOGO管理器...');
+                
+                if (!window.homepageLogoManager) {
+                    this.log('❌ 未找到homepageLogoManager', 'error');
+                    this.updateStatus('LOGO管理器未加载', 'error');
+                    return;
+                }
+
+                this.log('✅ 找到homepageLogoManager');
+                this.updateStatus('LOGO管理器已加载', 'success');
+
+                // 测试映射配置
+                const mappings = window.homepageLogoManager.homepageMappings;
+                this.log(`📋 找到 ${Object.keys(mappings).length} 个LOGO映射`);
+
+                // 测试AI模型映射
+                const aiModels = ['chat.deepseek.com', 'gemini.google.com', 'perplexity.ai', 'chat.chatbot.app', 'claude.ai'];
+                for (const domain of aiModels) {
+                    if (mappings[domain]) {
+                        this.log(`✅ ${domain} 映射存在: ${mappings[domain].url}`);
+                    } else {
+                        this.log(`❌ ${domain} 映射缺失`, 'error');
+                    }
+                }
+            }
+
+            async clearCache() {
+                this.log('🗑️ 清除LOGO缓存...');
+                if (window.homepageLogoManager) {
+                    window.homepageLogoManager.clearCache();
+                    this.log('✅ 缓存已清除');
+                    this.updateStatus('缓存已清除', 'success');
+                } else {
+                    this.log('❌ 未找到LOGO管理器', 'error');
+                }
+            }
+
+            async reloadLogos() {
+                this.log('🔄 重新加载LOGO...');
+                if (window.homepageLogoManager) {
+                    try {
+                        await window.homepageLogoManager.addLogosToHomepageCards();
+                        this.log('✅ LOGO重新加载完成');
+                        this.updateStatus('LOGO重新加载完成', 'success');
+                    } catch (error) {
+                        this.log(`❌ LOGO重新加载失败: ${error.message}`, 'error');
+                        this.updateStatus('LOGO重新加载失败', 'error');
+                    }
+                } else {
+                    this.log('❌ 未找到LOGO管理器', 'error');
+                }
+            }
+
+            checkCards() {
+                this.log('🔍 检查页面卡片...');
+                const toolCards = document.querySelectorAll('.tool-card');
+                this.log(`📋 找到 ${toolCards.length} 个工具卡片`);
+
+                toolCards.forEach((card, index) => {
+                    const logoBg = card.querySelector('.tool-logo-bg');
+                    const link = card.querySelector('a') || card;
+                    const href = link.getAttribute('href');
+                    
+                    if (logoBg) {
+                        this.log(`✅ 卡片 ${index + 1}: LOGO背景存在`);
+                    } else {
+                        this.log(`❌ 卡片 ${index + 1}: LOGO背景缺失`, 'error');
+                    }
+                    
+                    if (href) {
+                        this.log(`🔗 卡片 ${index + 1}: ${href}`);
+                    }
+                });
+            }
+
+            async testFetch() {
+                this.log('🌐 测试网络请求...');
+                const testUrls = [
+                    'https://chat.deepseek.com/favicon.ico',
+                    'https://www.google.com/favicon.ico',
+                    'https://www.perplexity.ai/favicon.ico'
+                ];
+
+                for (const url of testUrls) {
+                    try {
+                        const response = await fetch(url, { method: 'HEAD' });
+                        if (response.ok) {
+                            this.log(`✅ ${url} 可访问`);
+                        } else {
+                            this.log(`❌ ${url} 返回 ${response.status}`, 'error');
+                        }
+                    } catch (error) {
+                        this.log(`❌ ${url} 请求失败: ${error.message}`, 'error');
+                    }
+                }
+            }
+        }
+
+        // 创建调试器实例
+        const debugger = new LogoDebugger();
+
+        // 全局函数供按钮调用
+        function testLogoManager() {
+            debugger.testLogoManager();
+        }
+
+        function clearCache() {
+            debugger.clearCache();
+        }
+
+        function reloadLogos() {
+            debugger.reloadLogos();
+        }
+
+        function checkCards() {
+            debugger.checkCards();
+        }
+
+        function testFetch() {
+            debugger.testFetch();
+        }
+
+        // 页面加载完成后自动测试
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                debugger.testLogoManager();
+                debugger.checkCards();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
