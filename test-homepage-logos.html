@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页LOGO测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tool-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            z-index: 1;
+            transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(1.2);
+        }
+        
+        .tool-card:hover .tool-logo-bg {
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        
+        .tool-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>首页LOGO测试页面</h1>
+    
+    <div class="test-section">
+        <h2>控制面板</h2>
+        <button onclick="testAllCards()">测试所有卡片</button>
+        <button onclick="clearCache()">清除缓存</button>
+        <button onclick="reloadLogos()">重新加载LOGO</button>
+        <button onclick="showCacheInfo()">显示缓存信息</button>
+        <div class="status loading" id="status">准备就绪</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>AI大模型测试</h2>
+        <div class="grid">
+            <a href="https://chat.deepseek.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Deepseek</h3>
+                    <p>Deep Learning Chat Model</p>
+                </div>
+            </a>
+            <a href="https://gemini.google.com/app" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Google Gemini</h3>
+                    <p>Latest Google AI Assistant</p>
+                </div>
+            </a>
+            <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Perplexity</h3>
+                    <p>AI-powered Search Engine</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>网站服务测试</h2>
+        <div class="grid">
+            <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Cloudflare</h3>
+                    <p>Website Acceleration & Security</p>
+                </div>
+            </a>
+            <a href="https://vercel.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Vercel</h3>
+                    <p>Frontend Deployment Platform</p>
+                </div>
+            </a>
+            <a href="https://github.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>GitHub</h3>
+                    <p>Open Source Collaboration Platform</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>社交媒体测试</h2>
+        <div class="grid">
+            <a href="https://x.com/home" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>X (Twitter)</h3>
+                    <p>Global Social Platform</p>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Instagram</h3>
+                    <p>Photo & Short Video Social</p>
+                </div>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Facebook</h3>
+                    <p>World's Largest Social Network</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="log" id="log">
+        日志输出区域...
+    </div>
+
+    <script src="homepage-logo-optimizer.js"></script>
+    <script>
+        function log(message) {
+            const logElement = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(message);
+        }
+
+        function updateStatus(status, message) {
+            const statusElement = document.getElementById('status');
+            statusElement.className = `status ${status}`;
+            statusElement.textContent = message;
+        }
+
+        async function testAllCards() {
+            log('开始测试所有卡片...');
+            updateStatus('loading', '测试中...');
+            
+            try {
+                await window.homepageLogoOptimizer.addLogosToAllCards();
+                updateStatus('success', '测试完成');
+                log('✓ 所有卡片LOGO测试完成');
+            } catch (error) {
+                updateStatus('error', '测试失败');
+                log(`✗ 测试失败: ${error.message}`);
+            }
+        }
+
+        function clearCache() {
+            window.homepageLogoOptimizer.clearCache();
+            updateStatus('success', '缓存已清除');
+            log('✓ 缓存已清除');
+        }
+
+        async function reloadLogos() {
+            log('重新加载所有LOGO...');
+            updateStatus('loading', '重新加载中...');
+            
+            try {
+                await window.homepageLogoOptimizer.reloadAllLogos();
+                updateStatus('success', '重新加载完成');
+                log('✓ 所有LOGO重新加载完成');
+            } catch (error) {
+                updateStatus('error', '重新加载失败');
+                log(`✗ 重新加载失败: ${error.message}`);
+            }
+        }
+
+        function showCacheInfo() {
+            const info = window.homepageLogoOptimizer.exportCacheInfo();
+            log(`缓存信息: ${info.totalCached} 个域名, ${info.processedCards} 个卡片`);
+            log(`缓存的域名: ${info.cachedDomains.join(', ')}`);
+            updateStatus('success', `缓存信息: ${info.totalCached} 个域名`);
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            log('页面加载完成，LOGO优化器已初始化');
+            updateStatus('loading', '准备就绪，点击按钮开始测试');
+        });
+    </script>
+</body>
+</html>
