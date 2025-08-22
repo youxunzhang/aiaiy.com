@@ -82,8 +82,6 @@ class HomepageLogoManager {
             'propellerads.com': 'https://propellerads.com/favicon.ico',
             'media.net': 'https://www.media.net/favicon.ico',
             'adsterra.com': 'https://adsterra.com/favicon.ico',
-            
-
         };
     }
 
@@ -100,7 +98,7 @@ class HomepageLogoManager {
     }
 
     /**
-     * 获取LOGO URL
+     * 获取LOGO URL - 使用favicon-fetcher
      */
     async getLogoUrl(domain) {
         // 检查缓存
@@ -116,17 +114,14 @@ class HomepageLogoManager {
             return logoUrl;
         }
 
-        // 尝试获取favicon
-        const faviconUrl = `https://${domain}/favicon.ico`;
-        try {
-            const response = await fetch(faviconUrl, { method: 'HEAD' });
-            if (response.ok) {
+        // 使用favicon-fetcher获取favicon
+        if (window.faviconFetcher) {
+            const faviconUrl = await window.faviconFetcher.getFaviconUrl(domain);
+            if (faviconUrl) {
                 this.logoCache[domain] = faviconUrl;
                 this.saveToLocalStorage();
                 return faviconUrl;
             }
-        } catch (error) {
-            console.warn(`Failed to fetch favicon for ${domain}:`, error);
         }
 
         return null;
@@ -182,6 +177,10 @@ class HomepageLogoManager {
      * 获取备用图标
      */
     getFallbackIcon(domain) {
+        if (window.faviconFetcher) {
+            return window.faviconFetcher.getFallbackIcon(domain);
+        }
+
         const fallbackIcons = {
             'deepseek.com': '🔍',
             'google.com': '🔍',
@@ -205,7 +204,6 @@ class HomepageLogoManager {
             'propellerads.com': '⚡',
             'media.net': '📰',
             'adsterra.com': '🌍',
-
         };
 
         return fallbackIcons[domain] || '🌐';
@@ -243,7 +241,23 @@ class HomepageLogoManager {
             linkElement.appendChild(contentContainer);
         }
 
-        logoBgContainer.innerHTML = this.createLogoBackgroundHtml(logoData, domain);
+        if (logoData) {
+            logoBgContainer.innerHTML = this.createLogoBackgroundHtml(logoData, domain);
+        } else {
+            // 如果没有获取到LOGO，使用fallback图标
+            const fallbackIcon = this.getFallbackIcon(domain);
+            logoBgContainer.innerHTML = `
+                <div class="tool-logo-bg fallback" title="${domain}" style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 2rem;
+                    color: white;
+                    opacity: 0.1;
+                ">${fallbackIcon}</div>
+            `;
+        }
     }
 
     /**
@@ -274,12 +288,44 @@ class HomepageLogoManager {
     exportCache() {
         return JSON.stringify(this.logoCache, null, 2);
     }
+
+    /**
+     * 批量预加载LOGO
+     */
+    async preloadLogos() {
+        const links = document.querySelectorAll('.tool-card');
+        const domains = new Set();
+        
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href) {
+                domains.add(this.getDomain(href));
+            }
+        });
+
+        console.log(`Preloading logos for ${domains.size} domains...`);
+        
+        for (const domain of domains) {
+            try {
+                await this.getLogo(domain);
+                await new Promise(resolve => setTimeout(resolve, 50));
+            } catch (error) {
+                console.warn(`Failed to preload logo for ${domain}:`, error);
+            }
+        }
+        
+        console.log('Logo preloading completed');
+    }
 }
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
     const logoManager = new HomepageLogoManager();
-    logoManager.updateAllLogoBackgrounds();
+    
+    // 先预加载LOGO，然后更新背景
+    logoManager.preloadLogos().then(() => {
+        logoManager.updateAllLogoBackgrounds();
+    });
     
     // 将实例挂载到全局，方便调试
     window.homepageLogoManager = logoManager;

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单LOGO测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            margin: 20px 0;
+        }
+        
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>简单LOGO测试</h1>
+    
+    <div>
+        <button onclick="testGoogle()">测试Google</button>
+        <button onclick="testGitHub()">测试GitHub</button>
+        <button onclick="testAll()">测试所有</button>
+        <button onclick="clearLog()">清除日志</button>
+    </div>
+    
+    <div class="test-card" id="testCard">
+        <div class="card-content">
+            <h3>测试卡片</h3>
+            <p>这里将显示LOGO背景</p>
+            <div class="status loading" id="status">等待测试...</div>
+        </div>
+    </div>
+    
+    <div class="log" id="log">
+        日志输出区域...
+    </div>
+
+    <script>
+        function log(message) {
+            const logElement = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(message);
+        }
+
+        function updateStatus(status, message) {
+            const statusElement = document.getElementById('status');
+            statusElement.className = `status ${status}`;
+            statusElement.textContent = message;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '日志已清除...';
+        }
+
+        async function testSingleDomain(domain, name) {
+            log(`开始测试: ${name} (${domain})`);
+            updateStatus('loading', `测试中: ${name}`);
+            
+            try {
+                // 方法1: 直接使用Google favicon服务
+                const googleUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                log(`尝试Google favicon: ${googleUrl}`);
+                
+                const response = await fetch(googleUrl);
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const reader = new FileReader();
+                    
+                    reader.onload = () => {
+                        const dataUrl = reader.result;
+                        log(`✓ 成功获取${name}的favicon`);
+                        
+                        // 应用到测试卡片
+                        const testCard = document.getElementById('testCard');
+                        let logoBg = testCard.querySelector('.tool-logo-bg');
+                        
+                        if (!logoBg) {
+                            logoBg = document.createElement('div');
+                            logoBg.className = 'tool-logo-bg';
+                            testCard.insertBefore(logoBg, testCard.firstChild);
+                        }
+                        
+                        logoBg.style.backgroundImage = `url('${dataUrl}')`;
+                        updateStatus('success', `${name} LOGO获取成功`);
+                        log(`✓ ${name} LOGO已应用到卡片`);
+                    };
+                    
+                    reader.readAsDataURL(blob);
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+            } catch (error) {
+                log(`✗ 获取${name} favicon失败: ${error.message}`);
+                updateStatus('error', `${name} 获取失败`);
+                
+                // 显示fallback图标
+                const testCard = document.getElementById('testCard');
+                let logoBg = testCard.querySelector('.tool-logo-bg');
+                
+                if (!logoBg) {
+                    logoBg = document.createElement('div');
+                    logoBg.className = 'tool-logo-bg';
+                    testCard.insertBefore(logoBg, testCard.firstChild);
+                }
+                
+                logoBg.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                logoBg.style.display = 'flex';
+                logoBg.style.alignItems = 'center';
+                logoBg.style.justifyContent = 'center';
+                logoBg.style.fontSize = '2rem';
+                logoBg.style.color = 'white';
+                logoBg.textContent = '🌐';
+            }
+        }
+
+        function testGoogle() {
+            testSingleDomain('google.com', 'Google');
+        }
+
+        function testGitHub() {
+            testSingleDomain('github.com', 'GitHub');
+        }
+
+        async function testAll() {
+            const domains = [
+                { domain: 'google.com', name: 'Google' },
+                { domain: 'github.com', name: 'GitHub' },
+                { domain: 'deepseek.com', name: 'DeepSeek' },
+                { domain: 'perplexity.ai', name: 'Perplexity' }
+            ];
+            
+            for (const item of domains) {
+                await testSingleDomain(item.domain, item.name);
+                await new Promise(resolve => setTimeout(resolve, 1000)); // 等待1秒
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            log('页面加载完成，可以开始测试');
+            updateStatus('loading', '准备就绪，点击按钮开始测试');
+        });
+    </script>
+</body>
+</html>
