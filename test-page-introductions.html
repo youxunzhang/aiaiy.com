@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面介绍功能测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tool-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            z-index: 1;
+            transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(1.2);
+        }
+        
+        .tool-card:hover .tool-logo-bg {
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        
+        .tool-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>页面介绍功能测试</h1>
+    
+    <div class="test-section">
+        <h2>测试说明</h2>
+        <p>这个页面用于测试页面介绍和FAQ功能。页面加载后会自动在底部添加介绍内容。</p>
+        <button onclick="testIntroduction()">测试介绍功能</button>
+        <button onclick="showPageInfo()">显示页面信息</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>示例工具卡片</h2>
+        <div class="grid">
+            <a href="https://chat.openai.com/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>ChatGPT</h3>
+                    <p>OpenAI开发的大型语言模型，支持自然语言对话。</p>
+                </div>
+            </a>
+            <a href="https://claude.ai/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Claude</h3>
+                    <p>Anthropic开发的AI助手，擅长写作和分析。</p>
+                </div>
+            </a>
+            <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
+                <div class="tool-content">
+                    <h3>Perplexity</h3>
+                    <p>AI驱动的搜索引擎，提供实时信息搜索。</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="page-introductions.js"></script>
+    <script>
+        function testIntroduction() {
+            console.log('测试页面介绍功能...');
+            if (window.pageIntroductions) {
+                console.log('✓ 页面介绍组件已加载');
+                const currentPage = window.pageIntroductions.getCurrentPageName();
+                console.log('当前页面:', currentPage);
+                const intro = window.pageIntroductions.getIntroduction(currentPage);
+                console.log('页面介绍:', intro);
+            } else {
+                console.log('✗ 页面介绍组件未加载');
+            }
+        }
+        
+        function showPageInfo() {
+            if (window.pageIntroductions) {
+                const currentPage = window.pageIntroductions.getCurrentPageName();
+                const intro = window.pageIntroductions.getIntroduction(currentPage);
+                alert(`页面: ${currentPage}\n标题: ${intro.title}\n描述: ${intro.description}`);
+            } else {
+                alert('页面介绍组件未加载');
+            }
+        }
+        
+        // 页面加载完成后显示信息
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，页面介绍组件已初始化');
+            setTimeout(() => {
+                console.log('页面介绍内容应该已经添加到页面底部');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
