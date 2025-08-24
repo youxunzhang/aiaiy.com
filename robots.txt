@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# 禁止访问测试文件
+Disallow: /test-*.html
+Disallow: /debug-*.html
+Disallow: /simple-*.html
+Disallow: /favicon-*.html
+Disallow: /logo-*.html
+
+# 禁止访问Python脚本文件
+Disallow: /*.py
+
+# 禁止访问Markdown文件
+Disallow: /*.md
+
+# 禁止访问文本文件
+Disallow: /*.txt
+
+# Sitemap
+Sitemap: https://www.aiaiy.com/sitemap.xml
