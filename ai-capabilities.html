@@ -1,207 +1,280 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1D659NH7P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1D659NH7P');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI能为我们做什么 - AI工具导航</title>
     <meta name="description" content="探索AI的无限可能，了解人工智能如何改变我们的生活和工作方式。">
     <meta name="keywords" content="AI功能,人工智能,AI应用,智能工具,AI能力">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         :root {
-            --primary-blue: #2563EB;
-            --primary-indigo: #4F46E5;
-            --primary-purple: #7C3AED;
-            --primary-pink: #EC4899;
-            --primary-rose: #F43F5E;
-            --primary-orange: #F97316;
-            --primary-amber: #F59E0B;
-            --primary-yellow: #EAB308;
-            --primary-lime: #84CC16;
-            --primary-green: #22C55E;
-            --primary-emerald: #10B981;
-            --primary-teal: #14B8A6;
-            --primary-cyan: #06B6D4;
-            --primary-sky: #0EA5E9;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --accent-color: #0ea5e9;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #1F2937;
+            background: #FAFAFA;
+            color: #111827;
             line-height: 1.6;
-            min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        .floating-card {
+        /* 顶部横向导航栏 */
+        .top-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link-horizontal {
+            color: #6B7280;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .nav-link-horizontal:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .nav-link-horizontal.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #6B7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 0.5rem;
+        }
+
+        .dropdown-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-item:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 0.5rem 0;
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #F9FAFB;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link.active {
+            background: #EFF6FF;
+            color: #2563EB;
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* 现代化工具卡片 */
+        .tool-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: float 6s ease-in-out infinite;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            min-height: 120px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             overflow: hidden;
         }
         
-        .floating-card::before {
+        .tool-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
-        .floating-card:hover::before {
-            left: 100%;
+        .tool-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(102, 126, 234, 0.3);
         }
         
-        .floating-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* 工具卡片文字样式优化 */
+        .tool-card h3 {
+            color: #1f2937;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
         
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+        .tool-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
         }
-        
-        .floating-card:nth-child(1) { animation-delay: 0s; }
-        .floating-card:nth-child(2) { animation-delay: 1s; }
-        .floating-card:nth-child(3) { animation-delay: 2s; }
-        .floating-card:nth-child(4) { animation-delay: 3s; }
-        .floating-card:nth-child(5) { animation-delay: 4s; }
-        .floating-card:nth-child(6) { animation-delay: 5s; }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease-in-out infinite;
-        }
-        
-        @keyframes gradient-shift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-        
-        .ai-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: particle-float 8s linear infinite;
-        }
-        
-        @keyframes particle-float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .back-button {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.3s ease;
-            color: #374151;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .back-button:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateX(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .stats-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
+
+        /* Clean category titles */
+        .category-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
             text-align: center;
-            animation: float 4s ease-in-out infinite;
+            color: var(--text-primary);
         }
         
-        .capability-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .category-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        @media (max-width: 768px) {
-            .capability-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes fadeIn {
+        /* Simple animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -209,20 +282,205 @@
             }
         }
         
-        .animate-stagger {
-            animation-delay: calc(var(--stagger-index) * 0.2s);
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Clean footer */
+        .footer {
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            padding: 0.25rem 0;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .page-introduction {
+                padding: 2rem 1rem;
+            }
+            
+            .page-introduction h2 {
+                font-size: 2rem;
+            }
+            
+            .page-introduction p {
+                font-size: 1rem;
+            }
+            
+            .bg-gradient-to-r h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bg-gradient-to-r p {
+                font-size: 1.1rem;
+            }
+            
+            .bg-gradient-to-r .flex {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        /* Clean section styling */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section:nth-child(even) {
+            background: var(--surface-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Clean grid layout */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        @media (max-width: 1024px) {
+            .grid-cols-4 { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 640px) {
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(1, 1fr); }
+        }
+        
+        /* Clean link styling */
+        .tool-card a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .tool-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        .tool-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Clean mobile menu */
+        .mobile-menu {
+            background: var(--background-color);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .mobile-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s ease;
+        }
+        
+        .mobile-menu a:hover {
+            background: var(--surface-color);
+        }
+        
+        /* Clean SVG icons */
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+        
+        /* Clean button styles */
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--surface-color);
         }
     </style>
 </head>
+
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #E5E7EB; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+    <!-- 顶部横向导航栏 -->
+    <header class="top-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo区域 -->
+                <div class="flex items-center space-x-3">
                     <a href="index.html" class="flex items-center space-x-3">
                         <span class="block">
-                          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                               <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
                                 <stop stop-color="#00f2fe"/>
@@ -235,363 +493,338 @@
                             <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
                           </svg>
                         </span>
+                        <span class="text-xl font-bold text-gray-900">AIAIY</span>
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">Home</a>
-                    <a href="ai-companies.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI公司</a>
-                    <a href="play-game.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏</a>
-                    <a href="ai-hotspots.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI热点</a>
-                    <a href="real-needs.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">真需求</a>
-                    <a href="ai-ranking.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI榜单</a>
-                    <a href="ai-overseas.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI出海</a>
-                    <a href="ai-ads.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI ADS</a>
-                    <a href="trends.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">趋势</a>
-                    <a href="ai-capabilities.html" class="nav-link" style="color: #2563EB; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem; background: #F9FAFB;">AI功能</a>
-                    <a href="lunch-recommendations.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">午餐推荐</a>
-                    <a href="coding.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">编程工具</a>
-                    <a href="designer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">设计师工具</a>
-                    <a href="writing.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">写作工具</a>
-                    <a href="image.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">图像处理</a>
-                    <a href="video.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">视频制作</a>
-                    <a href="audio.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">音频处理</a>
-                    <a href="music.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">音乐创作</a>
-                    <a href="social.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">社交媒体</a>
-                    <a href="seo.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">SEO工具</a>
-                    <a href="game.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏开发</a>
-                    <a href="prayer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">祈祷工具</a>
-                    <a href="words.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">词汇工具</a>
-                    <a href="xiaohongshu.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">小红书工具</a>
-                    <a href="hanghai.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">航海工具</a>
-                    <a href="chuhai.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">出海工具</a>
-                    <a href="img.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">图片工具</a>
-                    <a href="links.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">链接工具</a>
-                    <a href="ailinks.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI链接</a>
-                    <a href="aicommunity.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI社区</a>
-                    <a href="aicontent.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI内容</a>
-                    <a href="ailearn.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI学习</a>
-                    <a href="ainum.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI数字</a>
-                    <a href="aioffice.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI办公</a>
-                    <a href="aiprompt.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI提示</a>
-                    <a href="aitimer.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI计时器</a>
-                    <a href="aiagent.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">AI代理</a>
-                    <a href="gametest.html" class="nav-link" style="color: #6B7280; text-decoration: none; font-weight: 500; transition: all 0.2s ease; padding: 0.5rem 1rem; border-radius: 0.375rem;">游戏测试</a>
-                </div>
-                <button class="md:hidden tech-button" id="mobileMenuButton">
+
+                <!-- 桌面导航菜单 -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="nav-link-horizontal">🏠 首页</a>
+                    <a href="ai-companies.html" class="nav-link-horizontal">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="nav-link-horizontal">📊 AI榜单</a>
+                    <a href="trends.html" class="nav-link-horizontal">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="nav-link-horizontal active">⚡ AI功能</a>
+                    
+                    <!-- 工具下拉菜单 -->
+                    <div class="relative dropdown">
+                        <button class="nav-link-horizontal dropdown-toggle">🛠️ 工具</button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">常用工具</div>
+                                <a href="coding.html" class="dropdown-item">💻 编程工具</a>
+                                <a href="designer.html" class="dropdown-item">🎨 设计师工具</a>
+                                <a href="writing.html" class="dropdown-item">✍️ 写作工具</a>
+                                <a href="image.html" class="dropdown-item">🖼️ 图像处理</a>
+                                <a href="video.html" class="dropdown-item">🎬 视频制作</a>
+                                <a href="audio.html" class="dropdown-item">🎵 音频处理</a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">AI工具</div>
+                                <a href="ailinks.html" class="dropdown-item">🤖 AI链接</a>
+                                <a href="aicommunity.html" class="dropdown-item">👥 AI社区</a>
+                                <a href="aicontent.html" class="dropdown-item">📄 AI内容</a>
+                                <a href="ailearn.html" class="dropdown-item">📚 AI学习</a>
+                                <a href="ainum.html" class="dropdown-item">🔢 AI数字</a>
+                                <a href="aioffice.html" class="dropdown-item">💼 AI办公</a>
+                                <a href="aiprompt.html" class="dropdown-item">💡 AI提示</a>
+                                <a href="aitimer.html" class="dropdown-item">⏰ AI计时器</a>
+                                <a href="aiagent.html" class="dropdown-item">🤖 AI代理</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- 移动端菜单按钮 -->
+                <button class="mobile-menu-toggle lg:hidden" id="mobileMenuToggle">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
-        </div>
-    </nav>
 
-    <!-- 移动端菜单 -->
-    <div class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobileMenu">
-        <div class="absolute top-0 right-0 w-64 h-full glass">
-            <div class="p-6">
-                <button class="absolute top-4 right-4 text-white" id="closeMenu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                <div class="mt-12 space-y-4">
-                    <a href="index.html" class="block text-white text-lg font-semibold py-2">Home</a>
-                    <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
-                    <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
-                    <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
-                    <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
-                    <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
-                    <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
-                    <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
-                    <a href="trends.html" class="block text-white text-lg font-semibold py-2">趋势</a>
-                    <a href="ai-capabilities.html" class="block text-white text-lg font-semibold py-2" style="color: #00f2fe;">AI功能</a>
-                    <a href="lunch-recommendations.html" class="block text-white text-lg font-semibold py-2">午餐推荐</a>
-                    <a href="coding.html" class="block text-white text-lg font-semibold py-2">编程工具</a>
-                    <a href="designer.html" class="block text-white text-lg font-semibold py-2">设计师工具</a>
-                    <a href="writing.html" class="block text-white text-lg font-semibold py-2">写作工具</a>
-                    <a href="image.html" class="block text-white text-lg font-semibold py-2">图像处理</a>
-                    <a href="video.html" class="block text-white text-lg font-semibold py-2">视频制作</a>
-                    <a href="audio.html" class="block text-white text-lg font-semibold py-2">音频处理</a>
-                    <a href="music.html" class="block text-white text-lg font-semibold py-2">音乐创作</a>
-                    <a href="social.html" class="block text-white text-lg font-semibold py-2">社交媒体</a>
-                    <a href="seo.html" class="block text-white text-lg font-semibold py-2">SEO工具</a>
-                    <a href="game.html" class="block text-white text-lg font-semibold py-2">游戏开发</a>
-                    <a href="prayer.html" class="block text-white text-lg font-semibold py-2">祈祷工具</a>
-                    <a href="words.html" class="block text-white text-lg font-semibold py-2">词汇工具</a>
-                    <a href="xiaohongshu.html" class="block text-white text-lg font-semibold py-2">小红书工具</a>
-                    <a href="hanghai.html" class="block text-white text-lg font-semibold py-2">航海工具</a>
-                    <a href="chuhai.html" class="block text-white text-lg font-semibold py-2">出海工具</a>
-                    <a href="img.html" class="block text-white text-lg font-semibold py-2">图片工具</a>
-                    <a href="links.html" class="block text-white text-lg font-semibold py-2">链接工具</a>
-                    <a href="ailinks.html" class="block text-white text-lg font-semibold py-2">AI链接</a>
-                    <a href="aicommunity.html" class="block text-white text-lg font-semibold py-2">AI社区</a>
-                    <a href="aicontent.html" class="block text-white text-lg font-semibold py-2">AI内容</a>
-                    <a href="ailearn.html" class="block text-white text-lg font-semibold py-2">AI学习</a>
-                    <a href="ainum.html" class="block text-white text-lg font-semibold py-2">AI数字</a>
-                    <a href="aioffice.html" class="block text-white text-lg font-semibold py-2">AI办公</a>
-                    <a href="aiprompt.html" class="block text-white text-lg font-semibold py-2">AI提示</a>
-                    <a href="aitimer.html" class="block text-white text-lg font-semibold py-2">AI计时器</a>
-                    <a href="aiagent.html" class="block text-white text-lg font-semibold py-2">AI代理</a>
-                    <a href="gametest.html" class="block text-white text-lg font-semibold py-2">游戏测试</a>
+            <!-- 移动端导航菜单 -->
+            <div class="mobile-menu lg:hidden hidden" id="mobileMenu">
+                <div class="py-4 space-y-2">
+                    <a href="index.html" class="mobile-nav-link">🏠 首页</a>
+                    <a href="ai-companies.html" class="mobile-nav-link">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="mobile-nav-link">📊 AI榜单</a>
+                    <a href="trends.html" class="mobile-nav-link">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="mobile-nav-link active">⚡ AI功能</a>
+                    
+                    <!-- 工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">常用工具</div>
+                        <a href="coding.html" class="mobile-nav-link">💻 编程工具</a>
+                        <a href="designer.html" class="mobile-nav-link">🎨 设计师工具</a>
+                        <a href="writing.html" class="mobile-nav-link">✍️ 写作工具</a>
+                        <a href="image.html" class="mobile-nav-link">🖼️ 图像处理</a>
+                        <a href="video.html" class="mobile-nav-link">🎬 视频制作</a>
+                        <a href="audio.html" class="mobile-nav-link">🎵 音频处理</a>
+                    </div>
+                    
+                    <!-- AI工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">AI工具</div>
+                        <a href="ailinks.html" class="mobile-nav-link">🤖 AI链接</a>
+                        <a href="aicommunity.html" class="mobile-nav-link">👥 AI社区</a>
+                        <a href="aicontent.html" class="mobile-nav-link">📄 AI内容</a>
+                        <a href="ailearn.html" class="mobile-nav-link">📚 AI学习</a>
+                        <a href="ainum.html" class="mobile-nav-link">🔢 AI数字</a>
+                        <a href="aioffice.html" class="mobile-nav-link">💼 AI办公</a>
+                        <a href="aiprompt.html" class="mobile-nav-link">💡 AI提示</a>
+                        <a href="aitimer.html" class="mobile-nav-link">⏰ AI计时器</a>
+                        <a href="aiagent.html" class="mobile-nav-link">🤖 AI代理</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- 粒子背景 -->
-    <div id="particles"></div>
-    
-    <div class="min-h-screen py-8 px-4 relative">
-        <div class="max-w-7xl mx-auto">
-            <!-- 头部导航 -->
-            <div class="flex items-center justify-between mb-8 animate-fade-in">
-                <a href="index.html" class="back-button">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                    <span>返回首页</span>
-                </a>
-                <div class="text-center">
-                    <h1 class="text-5xl font-bold gradient-text mb-4">AI能为我们做什么</h1>
-                    <p class="text-white text-xl opacity-90">探索人工智能的无限可能</p>
-                </div>
-                <div class="w-32"></div>
-            </div>
-
-            <!-- 统计信息 -->
-            <div class="stats-card mb-12 animate-fade-in">
-                <div class="flex flex-wrap justify-center gap-8 text-center">
-                    <div>
-                        <div class="text-4xl font-bold gradient-text mb-2">100+</div>
-                        <div class="text-gray-600">AI应用场景</div>
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 页面标题区域 -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 mb-8">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold mb-4">AI能为我们做什么</h1>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">探索AI的无限可能，了解人工智能如何改变我们的生活和工作方式</p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        🤖 智能助手
                     </div>
-                    <div>
-                        <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
-                        <div class="text-gray-600">全天候服务</div>
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        🎨 创意设计
                     </div>
-                    <div>
-                        <div class="text-4xl font-bold gradient-text mb-2">∞</div>
-                        <div class="text-gray-600">无限可能</div>
+                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                        📊 数据分析
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- AI能力展示 -->
-            <div class="capability-grid">
-                <!-- 创意设计 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 1">
-                    <div class="ai-icon">🎨</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">创意设计</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 自动生成Logo和品牌设计</li>
-                        <li>• 智能排版和布局优化</li>
-                        <li>• 色彩搭配和风格推荐</li>
-                        <li>• 3D建模和动画制作</li>
-                        <li>• 插画和图标设计</li>
-                    </ul>
-                </div>
-
-                <!-- 内容创作 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 2">
-                    <div class="ai-icon">✍️</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">内容创作</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 文章写作和编辑优化</li>
-                        <li>• 营销文案和广告创意</li>
-                        <li>• 剧本创作和故事生成</li>
-                        <li>• 多语言翻译和本地化</li>
-                        <li>• 内容摘要和关键点提取</li>
-                    </ul>
-                </div>
-
-                <!-- 代码开发 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 3">
-                    <div class="ai-icon">💻</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">代码开发</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 代码生成和自动补全</li>
-                        <li>• Bug检测和修复建议</li>
-                        <li>• 代码重构和优化</li>
-                        <li>• API设计和文档生成</li>
-                        <li>• 测试用例自动生成</li>
-                    </ul>
-                </div>
-
-                <!-- 数据分析 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 4">
-                    <div class="ai-icon">📊</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">数据分析</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 数据清洗和预处理</li>
-                        <li>• 趋势预测和模式识别</li>
-                        <li>• 可视化图表自动生成</li>
-                        <li>• 异常检测和风险评估</li>
-                        <li>• 商业智能报告生成</li>
-                    </ul>
-                </div>
-
-                <!-- 客户服务 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 5">
-                    <div class="ai-icon">🤖</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">客户服务</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 智能客服机器人</li>
-                        <li>• 24/7在线咨询支持</li>
-                        <li>• 多语言客户沟通</li>
-                        <li>• 情感分析和满意度评估</li>
-                        <li>• 个性化推荐服务</li>
-                    </ul>
-                </div>
-
-                <!-- 医疗健康 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 6">
-                    <div class="ai-icon">🏥</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">医疗健康</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 医学影像诊断辅助</li>
-                        <li>• 药物研发和分子设计</li>
-                        <li>• 健康监测和预警系统</li>
-                        <li>• 个性化治疗方案</li>
-                        <li>• 医疗记录智能管理</li>
-                    </ul>
-                </div>
-
-                <!-- 教育培训 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 7">
-                    <div class="ai-icon">🎓</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">教育培训</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 个性化学习路径规划</li>
-                        <li>• 智能题库和练习生成</li>
-                        <li>• 学习进度跟踪分析</li>
-                        <li>• 虚拟教师和辅导助手</li>
-                        <li>• 知识图谱构建</li>
-                    </ul>
-                </div>
-
-                <!-- 金融科技 -->
-                <div class="floating-card p-8 animate-fade-in" style="--stagger-index: 8">
-                    <div class="ai-icon">💰</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">金融科技</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li>• 风险评估和信用评分</li>
-                        <li>• 投资组合优化建议</li>
-                        <li>• 欺诈检测和预防</li>
-                        <li>• 智能投顾和理财规划</li>
-                        <li>• 市场趋势预测分析</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 页面介绍开始 -->
-            <section class="page-introduction bg-gradient-to-br from-blue-50 to-indigo-100 py-16 mt-16">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-gray-900 mb-6">AI能为我们做什么：智能技术应用指南</h2>
-                        <p class="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">人工智能技术正在改变我们的工作和生活方式，以下是AI在各个领域的应用：</p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="text-3xl mb-4">🔍</div>
-                            <p class="text-gray-700 leading-relaxed">内容创作：自动生成文章、设计图像、制作视频，提升创作效率。</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="text-3xl mb-4">📊</div>
-                            <p class="text-gray-700 leading-relaxed">数据分析：智能分析海量数据，提供洞察和预测，辅助决策。</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="text-3xl mb-4">💡</div>
-                            <p class="text-gray-700 leading-relaxed">客户服务：24/7智能客服，快速响应用户需求，提升服务质量。</p>
-                        </div>
-                        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <div class="text-3xl mb-4">🚀</div>
-                            <p class="text-gray-700 leading-relaxed">教育培训：个性化学习路径，智能题库生成，提升学习效果。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <p class="text-lg text-gray-700 font-medium mb-6">AI技术为各行各业带来革命性变化，让我们一起探索AI的无限可能。</p>
-                        <div class="flex justify-center space-x-4">
-                            <a href="index.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                                返回首页
-                            </a>
-                            <a href="ai-ranking.html" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                                AI工具排行
-                            </a>
-                        </div>
-                    </div>
+        <!-- AI功能展示区域 -->
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <!-- 文本生成与处理 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">文本生成与处理</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://chat.openai.com/" target="_blank" class="tool-card">
+                        <h3>ChatGPT</h3>
+                        <p class="tool-description">智能对话助手，帮助写作、编程、分析等</p>
+                    </a>
+                    <a href="https://claude.ai/" target="_blank" class="tool-card">
+                        <h3>Claude</h3>
+                        <p class="tool-description">Anthropic开发的AI助手，擅长分析和写作</p>
+                    </a>
+                    <a href="https://gemini.google.com/" target="_blank" class="tool-card">
+                        <h3>Google Gemini</h3>
+                        <p class="tool-description">Google最新AI模型，多模态理解能力强</p>
+                    </a>
+                    <a href="https://www.notion.so/" target="_blank" class="tool-card">
+                        <h3>Notion AI</h3>
+                        <p class="tool-description">智能笔记和文档创作助手</p>
+                    </a>
                 </div>
             </section>
-            <!-- 页面介绍结束 -->
 
-            <!-- 底部信息 -->
-            <div class="floating-card p-8 mt-12 text-center animate-fade-in">
-                <h2 class="text-3xl font-bold gradient-text mb-4">AI的未来无限可能</h2>
-                <p class="text-gray-600 mb-6 text-lg">人工智能正在改变我们的世界，让我们一起探索AI的无限潜力</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="index.html" class="back-button">返回首页</a>
-                    <a href="ai-tools.html" class="back-button">AI工具导航</a>
+            <!-- 图像生成与编辑 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">图像生成与编辑</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://www.midjourney.com/" target="_blank" class="tool-card">
+                        <h3>Midjourney</h3>
+                        <p class="tool-description">高质量AI艺术图像生成</p>
+                    </a>
+                    <a href="https://stability.ai/" target="_blank" class="tool-card">
+                        <h3>Stable Diffusion</h3>
+                        <p class="tool-description">开源AI图像生成模型</p>
+                    </a>
+                    <a href="https://www.adobe.com/sensei/" target="_blank" class="tool-card">
+                        <h3>Adobe Sensei</h3>
+                        <p class="tool-description">Adobe AI技术，智能图像编辑</p>
+                    </a>
+                    <a href="https://www.canva.com/" target="_blank" class="tool-card">
+                        <h3>Canva AI</h3>
+                        <p class="tool-description">AI驱动的设计工具</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 视频制作 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">视频制作</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://runwayml.com/" target="_blank" class="tool-card">
+                        <h3>Runway</h3>
+                        <p class="tool-description">AI视频生成和编辑平台</p>
+                    </a>
+                    <a href="https://www.descript.com/" target="_blank" class="tool-card">
+                        <h3>Descript</h3>
+                        <p class="tool-description">AI视频编辑和音频处理</p>
+                    </a>
+                    <a href="https://www.synthesia.io/" target="_blank" class="tool-card">
+                        <h3>Synthesia</h3>
+                        <p class="tool-description">AI虚拟人物视频生成</p>
+                    </a>
+                    <a href="https://www.pictory.ai/" target="_blank" class="tool-card">
+                        <h3>Pictory</h3>
+                        <p class="tool-description">自动视频制作和编辑</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 编程开发 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">编程开发</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://github.com/features/copilot" target="_blank" class="tool-card">
+                        <h3>GitHub Copilot</h3>
+                        <p class="tool-description">AI编程助手，代码自动补全</p>
+                    </a>
+                    <a href="https://www.cursor.sh/" target="_blank" class="tool-card">
+                        <h3>Cursor</h3>
+                        <p class="tool-description">AI驱动的代码编辑器</p>
+                    </a>
+                    <a href="https://replit.com/" target="_blank" class="tool-card">
+                        <h3>Replit</h3>
+                        <p class="tool-description">在线编程平台，AI辅助开发</p>
+                    </a>
+                    <a href="https://www.tabnine.com/" target="_blank" class="tool-card">
+                        <h3>Tabnine</h3>
+                        <p class="tool-description">AI代码补全工具</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 数据分析 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">数据分析</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://www.tableau.com/" target="_blank" class="tool-card">
+                        <h3>Tableau</h3>
+                        <p class="tool-description">数据可视化和分析平台</p>
+                    </a>
+                    <a href="https://powerbi.microsoft.com/" target="_blank" class="tool-card">
+                        <h3>Power BI</h3>
+                        <p class="tool-description">微软商业智能平台</p>
+                    </a>
+                    <a href="https://www.alteryx.com/" target="_blank" class="tool-card">
+                        <h3>Alteryx</h3>
+                        <p class="tool-description">数据科学和机器学习平台</p>
+                    </a>
+                    <a href="https://www.databricks.com/" target="_blank" class="tool-card">
+                        <h3>Databricks</h3>
+                        <p class="tool-description">统一数据分析平台</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 音频处理 -->
+            <section class="mb-20 fade-in">
+                <h2 class="category-title">音频处理</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://www.descript.com/" target="_blank" class="tool-card">
+                        <h3>Descript</h3>
+                        <p class="tool-description">AI音频编辑和转录</p>
+                    </a>
+                    <a href="https://www.synthesia.io/" target="_blank" class="tool-card">
+                        <h3>Synthesia</h3>
+                        <p class="tool-description">AI语音合成</p>
+                    </a>
+                    <a href="https://www.mubert.com/" target="_blank" class="tool-card">
+                        <h3>Mubert</h3>
+                        <p class="tool-description">AI音乐生成</p>
+                    </a>
+                    <a href="https://www.soundraw.io/" target="_blank" class="tool-card">
+                        <h3>Soundraw</h3>
+                        <p class="tool-description">AI背景音乐生成</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="footer-section">
+                    <h3>AI工具导航</h3>
+                    <p class="text-sm text-gray-600 mb-4">发现最佳AI工具，提升您的生产力</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <a href="index.html">首页</a>
+                    <a href="ai-companies.html">AI公司</a>
+                    <a href="ai-ranking.html">AI榜单</a>
+                    <a href="trends.html">趋势分析</a>
+                </div>
+                <div class="footer-section">
+                    <h3>工具分类</h3>
+                    <a href="coding.html">编程工具</a>
+                    <a href="designer.html">设计师工具</a>
+                    <a href="writing.html">写作工具</a>
+                    <a href="image.html">图像处理</a>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p class="text-sm text-gray-600">微信: zhangyouxun2013</p>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI工具导航. 精选优质AI工具.</p>
+            </div>
         </div>
-    </div>
-
-    <!-- 引入静态图标管理脚本 -->
+    </footer>
 
     <script>
-        // 创建粒子效果
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        // 移动端菜单控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                particlesContainer.appendChild(particle);
+            // 移动端菜单切换功能
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // 点击菜单外部关闭菜单
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
             }
-        }
-        
-        // 页面加载完成后创建粒子
-        window.addEventListener('load', function() {
-            createParticles();
             
-            // 添加页面加载动画
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 1s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-        
-        // 添加鼠标移动效果
-        document.addEventListener('mousemove', function(e) {
-            const cards = document.querySelectorAll('.floating-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            // 设置当前页面的活动状态
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link-horizontal, .mobile-nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
             });
         });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        // 鼠标离开时重置效果
-        document.addEventListener('mouseleave', function() {
-            const cards = document.querySelectorAll('.floating-card');
-            cards.forEach(card => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach((el, index) => {
+            el.style.setProperty('--stagger-index', index);
+            observer.observe(el);
         });
     </script>
 </body>
