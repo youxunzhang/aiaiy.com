@@ -23,46 +23,7 @@
     <script src="auto-logo-loader.js"></script>
     <script src="universal-logo-manager.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-accent: #00f2fe;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: #FAFAFA;
-            color: #111827;
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-
-        
-        .glass {
-            background: #FFFFFF;
-            border: 1px solid #E5E7EB;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .glass:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border-color: #D1D5DB;
-        }
-        
+        /* 页面特定样式 */
         .company-card {
             background: #FFFFFF;
             border-radius: 12px;
@@ -131,11 +92,13 @@
             text-decoration: none;
             transition: all 0.2s ease;
         }
+        
         .company-link:hover {
             background: #1D4ED8;
             color: #ffffff;
             transform: translateY(-1px);
         }
+        
         .category-title {
             font-size: 2rem;
             font-weight: bold;
@@ -143,6 +106,7 @@
             color: #111827;
             text-align: center;
         }
+        
         .search-box {
             background: #FFFFFF;
             border: 1px solid #E5E7EB;
@@ -154,6 +118,7 @@
             margin: 0 auto 2rem auto;
             display: block;
         }
+        
         .search-box::placeholder {
             color: #9CA3AF;
         }
