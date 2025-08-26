@@ -23,6 +23,197 @@
     <script src="auto-logo-loader.js"></script>
     <script src="universal-logo-manager.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --accent-color: #0ea5e9;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #FAFAFA;
+            color: #111827;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* 顶部横向导航栏 */
+        .top-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link-horizontal {
+            color: #6B7280;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .nav-link-horizontal:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .nav-link-horizontal.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #6B7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 0.5rem;
+        }
+
+        .dropdown-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-item:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 0.5rem 0;
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #F9FAFB;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link.active {
+            background: #EFF6FF;
+            color: #2563EB;
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+        }
+
         /* 页面特定样式 */
         .company-card {
             background: #FFFFFF;
@@ -134,10 +325,85 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+
+        /* 粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #00f2fe, #764ba2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* 页脚样式 */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #00f2fe, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: #9CA3AF;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #2563EB;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
     </style>
 </head>
 
 <body>
+    <!-- 粒子效果 -->
+    <div class="particles" id="particles"></div>
+    
     <!-- 顶部横向导航栏 -->
     <header class="top-navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -658,6 +924,30 @@
         </div>
     </main>
 
+        <!-- 页脚 -->
+        <footer class="glass py-8 mt-12">
+            <div class="container mx-auto px-4 text-center">
+                <div class="flex items-center justify-center space-x-3 mb-6">
+                    <span class="text-2xl font-bold gradient-text">AI Tools Navigator</span>
+                </div>
+                <p class="text-gray-300 mb-4 text-lg">Discover the best AI tools to boost your productivity</p>
+                <nav class="footer-nav" aria-label="Site Navigation">
+                    <a href="index.html">Home</a>
+                    <a href="ai-companies.html">AI公司</a>
+                    <a href="play-game.html">游戏</a>
+                    <a href="ai-hotspots.html">AI热点</a>
+                    <a href="real-needs.html">真需求</a>
+                    <a href="ai-ranking.html">AI榜单</a>
+                    <a href="ai-overseas.html">AI出海</a>
+                    <a href="ai-ads.html">AI ADS</a>
+                    <a href="trends.html">趋势</a>
+                    <a href="lunch-recommendations.html">午餐推荐</a>
+                    <a href="friendship-links.html">友情链接</a>
+                </nav>
+                <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. Curated premium AI tools. Contact: wx: zhangyouxun2013</div>
+            </div>
+        </footer>
+
     <!-- 引入统一导航栏和LOGO系统 -->
     <script src="navigation.js"></script>
     <script src="logo-fetcher.js"></script>
@@ -693,6 +983,21 @@
             });
         });
 
+        // 粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
         function filterCompanies() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const companies = document.querySelectorAll('.company-card');
@@ -708,6 +1013,11 @@
                 }
             });
         }
+
+        // 页面加载时初始化粒子效果
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
     </script>
 </body>
 </html> 
