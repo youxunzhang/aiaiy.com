@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-统一所有页面的导航栏脚本
-将所有页面的导航栏更新为首页的统一样式
+统一所有页面导航栏脚本
+将所有页面的导航栏更新为首页的导航栏结构
 """
 
 import os
 import re
 from pathlib import Path
 
-# 首页的导航栏HTML结构
-UNIFIED_NAVIGATION = '''    <!-- 顶部横向导航栏 -->
+# 首页导航栏HTML结构
+HOME_NAVIGATION_HTML = '''    <!-- 顶部横向导航栏 -->
     <header class="top-navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
@@ -119,9 +119,166 @@ UNIFIED_NAVIGATION = '''    <!-- 顶部横向导航栏 -->
         </div>
     </header>'''
 
-# 移动端菜单JavaScript
-MOBILE_MENU_SCRIPT = '''    <script>
-        // 移动端菜单控制
+# 首页导航栏CSS样式
+HOME_NAVIGATION_CSS = '''        /* 顶部横向导航栏 */
+        .top-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #E5E7EB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link-horizontal {
+            color: #6B7280;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .nav-link-horizontal:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .nav-link-horizontal.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #6B7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-section {
+            padding: 0.5rem;
+        }
+
+        .dropdown-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-item:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 0.5rem 0;
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #F9FAFB;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link.active {
+            background: #EFF6FF;
+            color: #2563EB;
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+        }'''
+
+# 首页JavaScript功能
+HOME_NAVIGATION_JS = '''        // 移动端菜单控制
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -148,12 +305,11 @@ MOBILE_MENU_SCRIPT = '''    <script>
                     link.classList.add('active');
                 }
             });
-        });
-    </script>'''
+        });'''
 
-def get_page_name(filename):
-    """根据文件名确定页面名称"""
-    name_mapping = {
+def get_page_name_from_filename(filename):
+    """根据文件名获取页面名称"""
+    page_mapping = {
         'index.html': '首页',
         'ai-companies.html': 'AI公司',
         'ai-ranking.html': 'AI榜单',
@@ -173,98 +329,128 @@ def get_page_name(filename):
         'aioffice.html': 'AI办公',
         'aiprompt.html': 'AI提示',
         'aitimer.html': 'AI计时器',
-        'aiagent.html': 'AI代理'
+        'aiagent.html': 'AI代理',
+        'ai-ads.html': 'AI ADS',
+        'ai-overseas.html': 'AI出海',
+        'ai-hotspots.html': 'AI热点',
+        'real-needs.html': '真需求',
+        'play-game.html': '游戏',
+        'lunch-recommendations.html': '午餐推荐',
+        'friendship-links.html': '友情链接'
     }
-    return name_mapping.get(filename, '其他')
+    return page_mapping.get(filename, filename.replace('.html', ''))
 
-def update_navigation_for_page(content, filename):
-    """为特定页面更新导航栏"""
-    page_name = get_page_name(filename)
-    
-    # 根据页面名称设置active状态
-    active_nav = UNIFIED_NAVIGATION
-    if page_name == '首页':
-        active_nav = active_nav.replace('href="index.html" class="nav-link-horizontal">🏠 首页', 'href="index.html" class="nav-link-horizontal active">🏠 首页')
-        active_nav = active_nav.replace('href="index.html" class="mobile-nav-link">🏠 首页', 'href="index.html" class="mobile-nav-link active">🏠 首页')
-    elif page_name == 'AI公司':
-        active_nav = active_nav.replace('href="ai-companies.html" class="nav-link-horizontal">🏢 AI公司', 'href="ai-companies.html" class="nav-link-horizontal active">🏢 AI公司')
-        active_nav = active_nav.replace('href="ai-companies.html" class="mobile-nav-link">🏢 AI公司', 'href="ai-companies.html" class="mobile-nav-link active">🏢 AI公司')
-    elif page_name == 'AI榜单':
-        active_nav = active_nav.replace('href="ai-ranking.html" class="nav-link-horizontal">📊 AI榜单', 'href="ai-ranking.html" class="nav-link-horizontal active">📊 AI榜单')
-        active_nav = active_nav.replace('href="ai-ranking.html" class="mobile-nav-link">📊 AI榜单', 'href="ai-ranking.html" class="mobile-nav-link active">📊 AI榜单')
-    elif page_name == '趋势':
-        active_nav = active_nav.replace('href="trends.html" class="nav-link-horizontal">📈 趋势', 'href="trends.html" class="nav-link-horizontal active">📈 趋势')
-        active_nav = active_nav.replace('href="trends.html" class="mobile-nav-link">📈 趋势', 'href="trends.html" class="mobile-nav-link active">📈 趋势')
-    elif page_name == 'AI功能':
-        active_nav = active_nav.replace('href="ai-capabilities.html" class="nav-link-horizontal">⚡ AI功能', 'href="ai-capabilities.html" class="nav-link-horizontal active">⚡ AI功能')
-        active_nav = active_nav.replace('href="ai-capabilities.html" class="mobile-nav-link">⚡ AI功能', 'href="ai-capabilities.html" class="mobile-nav-link active">⚡ AI功能')
-    
-    # 移除旧的导航栏
-    # 移除各种可能的旧导航栏模式
-    patterns_to_remove = [
-        r'<!-- 顶部横向导航栏 -->.*?</header>',
-        r'<header class="top-navbar">.*?</header>',
-        r'<nav class="navbar.*?</nav>',
-        r'<nav class=".*?navbar.*?</nav>',
-        r'<!-- 导航栏 -->.*?</nav>',
-        r'<div class="navbar.*?</div>',
-        r'<div class="nav.*?</div>'
-    ]
-    
-    for pattern in patterns_to_remove:
-        content = re.sub(pattern, '', content, flags=re.DOTALL)
-    
-    # 在<body>标签后插入新的导航栏
-    body_pattern = r'(<body[^>]*>)'
-    if re.search(body_pattern, content):
-        content = re.sub(body_pattern, r'\1\n' + active_nav, content, count=1)
-    
-    # 添加移动端菜单JavaScript
-    # 检查是否已经有移动端菜单脚本
-    if 'mobileMenuToggle' not in content:
-        # 在</body>前添加脚本
-        content = re.sub(r'(</body>)', MOBILE_MENU_SCRIPT + '\n\\1', content)
-    
-    return content
-
-def process_html_file(filepath):
-    """处理单个HTML文件"""
+def update_navigation_for_page(filepath, page_name):
+    """更新单个页面的导航栏"""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # 检查是否已经包含modern-styles.css
-        if 'modern-styles.css' not in content:
-            # 在head中添加modern-styles.css
-            head_pattern = r'(</head>)'
-            modern_styles_link = '    <link rel="stylesheet" href="modern-styles.css">\n'
-            content = re.sub(head_pattern, modern_styles_link + r'\1', content)
+        original_content = content
         
-        # 更新导航栏
-        updated_content = update_navigation_for_page(content, filepath.name)
+        # 1. 移除旧的导航栏HTML
+        # 移除各种可能的导航栏模式
+        patterns_to_remove = [
+            r'<!-- 顶部横向导航栏 -->.*?</header>',
+            r'<header class="top-navbar">.*?</header>',
+            r'<nav class=".*?">.*?</nav>',
+            r'<!-- 导航栏 -->.*?</header>',
+            r'<header.*?class=".*?navbar.*?">.*?</header>'
+        ]
         
-        # 写回文件
-        with open(filepath, 'w', encoding='utf-8') as f:
-            f.write(updated_content)
+        for pattern in patterns_to_remove:
+            content = re.sub(pattern, '', content, flags=re.DOTALL)
         
-        print(f"✅ 已更新: {filepath.name}")
-        return True
+        # 2. 在<body>标签后插入新的导航栏
+        body_pattern = r'(<body[^>]*>)'
+        if re.search(body_pattern, content):
+            # 添加粒子效果容器（如果不存在）
+            if 'particles' not in content:
+                content = re.sub(body_pattern, r'\1\n    <!-- 粒子效果 -->\n    <div class="particles" id="particles"></div>', content)
+            
+            # 插入导航栏
+            content = re.sub(body_pattern, r'\1\n    <!-- 粒子效果 -->\n    <div class="particles" id="particles"></div>\n' + HOME_NAVIGATION_HTML, content)
         
+        # 3. 更新导航栏中的活动状态
+        if page_name != '首页':
+            # 将对应页面的链接设置为active
+            content = content.replace(f'href="{filepath.name}" class="nav-link-horizontal">', f'href="{filepath.name}" class="nav-link-horizontal active">')
+            content = content.replace(f'href="{filepath.name}" class="mobile-nav-link">', f'href="{filepath.name}" class="mobile-nav-link active">')
+        else:
+            # 首页设置为active
+            content = content.replace('href="index.html" class="nav-link-horizontal">', 'href="index.html" class="nav-link-horizontal active">')
+            content = content.replace('href="index.html" class="mobile-nav-link">', 'href="index.html" class="mobile-nav-link active">')
+        
+        # 4. 更新CSS样式
+        # 移除旧的导航栏样式
+        css_patterns_to_remove = [
+            r'/\* 顶部横向导航栏 \*/.*?@media \(max-width: 768px\) \{.*?\}',
+            r'\.top-navbar.*?@media \(max-width: 768px\) \{.*?\}',
+            r'\.nav-link-horizontal.*?\.mobile-nav-link\.active.*?\}',
+        ]
+        
+        for pattern in css_patterns_to_remove:
+            content = re.sub(pattern, '', content, flags=re.DOTALL)
+        
+        # 在</style>标签前插入新的CSS
+        if '</style>' in content:
+            content = content.replace('</style>', HOME_NAVIGATION_CSS + '\n    </style>')
+        
+        # 5. 更新JavaScript
+        # 移除旧的导航栏JavaScript
+        js_patterns_to_remove = [
+            r'// 移动端菜单控制.*?document\.addEventListener\('DOMContentLoaded'.*?\}\);',
+            r'// 设置当前页面的活动状态.*?navLinks\.forEach.*?\}\);',
+        ]
+        
+        for pattern in js_patterns_to_remove:
+            content = re.sub(pattern, '', content, flags=re.DOTALL)
+        
+        # 在</script>标签前插入新的JavaScript
+        if '</script>' in content:
+            content = content.replace('</script>', HOME_NAVIGATION_JS + '\n    </script>')
+        
+        # 6. 移除对navigation.js的引用（如果存在）
+        content = re.sub(r'<script src="navigation\.js"></script>', '', content)
+        
+        # 7. 确保有必要的CSS变量
+        if ':root' not in content:
+            css_variables = '''        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --accent-color: #0ea5e9;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }'''
+            if '<style>' in content:
+                content = content.replace('<style>', '<style>\n' + css_variables)
+        
+        # 检查是否有变化
+        if content != original_content:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            return True
+        else:
+            return False
+            
     except Exception as e:
-        print(f"❌ 处理 {filepath.name} 时出错: {e}")
+        print(f"更新 {filepath} 时出错: {e}")
         return False
 
 def main():
     """主函数"""
-    print("🚀 开始统一所有页面的导航栏...")
-    
-    # 获取当前目录
-    current_dir = Path('.')
-    
-    # 要处理的HTML文件列表
+    # 需要更新的HTML文件列表
     html_files = [
         'ai-companies.html',
-        'ai-ranking.html', 
+        'ai-ranking.html',
         'trends.html',
         'ai-capabilities.html',
         'coding.html',
@@ -282,44 +468,41 @@ def main():
         'aiprompt.html',
         'aitimer.html',
         'aiagent.html',
-        'ai-tools-landing.html',
-        'lunch-recommendations.html',
-        'real-needs.html',
-        'ai-hotspots.html',
-        'ai-overseas.html',
         'ai-ads.html',
-        'prayer.html',
-        'seo.html',
-        'sitemap.html',
-        'social.html',
-        'chuhai.html',
-        'hanghai.html',
-        'xiaohongshu.html',
-        'words.html',
-        'music.html',
-        'img.html',
-        'links.html',
+        'ai-overseas.html',
+        'ai-hotspots.html',
+        'real-needs.html',
         'play-game.html',
-        'gametest.html',
-        'game.html'
+        'lunch-recommendations.html',
+        'friendship-links.html'
     ]
     
-    success_count = 0
-    total_count = len(html_files)
+    updated_count = 0
+    total_count = 0
+    
+    print("开始统一所有页面的导航栏...")
+    print("=" * 50)
     
     for filename in html_files:
-        filepath = current_dir / filename
+        filepath = Path(filename)
         if filepath.exists():
-            if process_html_file(filepath):
-                success_count += 1
+            total_count += 1
+            page_name = get_page_name_from_filename(filename)
+            print(f"正在更新: {filename} ({page_name})")
+            
+            if update_navigation_for_page(filepath, page_name):
+                print(f"✅ 成功更新: {filename}")
+                updated_count += 1
+            else:
+                print(f"⚠️  无需更新: {filename}")
         else:
-            print(f"⚠️  文件不存在: {filename}")
+            print(f"❌ 文件不存在: {filename}")
     
-    print(f"\n📊 处理完成!")
-    print(f"✅ 成功更新: {success_count}/{total_count} 个文件")
-    
-    if success_count < total_count:
-        print(f"⚠️  有 {total_count - success_count} 个文件未处理")
+    print("=" * 50)
+    print(f"更新完成！")
+    print(f"总计文件: {total_count}")
+    print(f"成功更新: {updated_count}")
+    print(f"无需更新: {total_count - updated_count}")
 
 if __name__ == "__main__":
     main()

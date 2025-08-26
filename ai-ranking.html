@@ -78,41 +78,161 @@
             border-color: #D1D5DB;
         }
         
-        /* 导航栏 */
-        .navbar {
+        /* 顶部横向导航栏 */
+        .top-navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #E5E7EB;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .nav-link {
-            color: var(--text-secondary);
+
+        .nav-link-horizontal {
+            color: #6B7280;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: inline-block;
+        }
+
+        .nav-link-horizontal:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .nav-link-horizontal.active {
+            color: #2563EB;
+            background: #EFF6FF;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        /* 下拉菜单样式 */
+        .dropdown {
             position: relative;
         }
-        
-        .nav-link::after {
-            content: '';
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #6B7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: #2563EB;
+            background: #F9FAFB;
+        }
+
+        .dropdown-menu {
             position: absolute;
-            bottom: -5px;
+            top: 100%;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            transition: width 0.3s ease;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
         }
-        
-        .nav-link:hover {
-            color: var(--text-primary);
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-        
-        .nav-link:hover::after {
-            width: 100%;
+
+        .dropdown-section {
+            padding: 0.5rem;
+        }
+
+        .dropdown-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            margin: 0.125rem 0;
+        }
+
+        .dropdown-item:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #E5E7EB;
+            margin: 0.5rem 0;
+        }
+
+        /* 移动端菜单 */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #6B7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #F9FAFB;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: #F3F4F6;
+            color: #2563EB;
+        }
+
+        .mobile-nav-link.active {
+            background: #EFF6FF;
+            color: #2563EB;
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
         }
         
         /* 渐变文字 */
@@ -372,14 +492,15 @@
     <!-- 粒子效果 -->
     <div class="particles" id="particles"></div>
     
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+    <!-- 顶部横向导航栏 -->
+    <header class="top-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo区域 -->
+                <div class="flex items-center space-x-3">
                     <a href="index.html" class="flex items-center space-x-3">
                         <span class="block">
-                          <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                               <linearGradient id="ai-logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
                                 <stop stop-color="#00f2fe"/>
@@ -392,55 +513,93 @@
                             <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
                           </svg>
                         </span>
-                        <span class="text-2xl font-bold gradient-text">AI工具导航</span>
+                        <span class="text-xl font-bold text-gray-900">AIAIY</span>
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                                            <a href="index.html" class="nav-link">首页</a>
-                        <a href="ai-companies.html" class="nav-link">AI公司</a>
-                        <a href="play-game.html" class="nav-link">游戏</a>
-                        <a href="ai-hotspots.html" class="nav-link">AI热点</a>
-                        <a href="real-needs.html" class="nav-link">真需求</a>
-                        <a href="ai-ranking.html" class="nav-link">AI榜单</a>
-                        <a href="ai-overseas.html" class="nav-link">AI出海</a>
-                        <a href="ai-ads.html" class="nav-link">AI ADS</a>
-                        <a href="trends.html" class="nav-link">趋势</a>
-                    <a href="ai-capabilities.html" class="nav-link">AI功能</a>
-                    <a href="lunch-recommendations.html" class="nav-link">午餐推荐</a>
-                </div>
-                <button class="md:hidden language-switch" id="mobileMenuButton">
+
+                <!-- 桌面导航菜单 -->
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="index.html" class="nav-link-horizontal">🏠 首页</a>
+                    <a href="ai-companies.html" class="nav-link-horizontal">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="nav-link-horizontal active">📊 AI榜单</a>
+                    <a href="trends.html" class="nav-link-horizontal">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="nav-link-horizontal">⚡ AI功能</a>
+                    
+                    <!-- 工具下拉菜单 -->
+                    <div class="relative dropdown">
+                        <button class="nav-link-horizontal dropdown-toggle">🛠️ 工具</button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">常用工具</div>
+                                <a href="coding.html" class="dropdown-item">💻 编程工具</a>
+                                <a href="designer.html" class="dropdown-item">🎨 设计师工具</a>
+                                <a href="writing.html" class="dropdown-item">✍️ 写作工具</a>
+                                <a href="image.html" class="dropdown-item">🖼️ 图像处理</a>
+                                <a href="video.html" class="dropdown-item">🎬 视频制作</a>
+                                <a href="audio.html" class="dropdown-item">🎵 音频处理</a>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section">
+                                <div class="dropdown-section-title">AI工具</div>
+                                <a href="ailinks.html" class="dropdown-item">🤖 AI链接</a>
+                                <a href="aicommunity.html" class="dropdown-item">👥 AI社区</a>
+                                <a href="aicontent.html" class="dropdown-item">📄 AI内容</a>
+                                <a href="ailearn.html" class="dropdown-item">📚 AI学习</a>
+                                <a href="ainum.html" class="dropdown-item">🔢 AI数字</a>
+                                <a href="aioffice.html" class="dropdown-item">💼 AI办公</a>
+                                <a href="aiprompt.html" class="dropdown-item">💡 AI提示</a>
+                                <a href="aitimer.html" class="dropdown-item">⏰ AI计时器</a>
+                                <a href="aiagent.html" class="dropdown-item">🤖 AI代理</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- 移动端菜单按钮 -->
+                <button class="mobile-menu-toggle lg:hidden" id="mobileMenuToggle">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
-        </div>
-    </nav>
 
-    <!-- 移动端菜单 -->
-    <div class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobileMenu">
-        <div class="absolute top-0 right-0 w-64 h-full glass">
-            <div class="p-6">
-                <button class="absolute top-4 right-4 text-white" id="closeMenu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                <div class="mt-12 space-y-4">
-                    <a href="index.html" class="block text-white text-lg font-semibold py-2">首页</a>
-                    <a href="ai-companies.html" class="block text-white text-lg font-semibold py-2">AI公司</a>
-                    <a href="play-game.html" class="block text-white text-lg font-semibold py-2">游戏</a>
-                    <a href="ai-hotspots.html" class="block text-white text-lg font-semibold py-2">AI热点</a>
-                    <a href="real-needs.html" class="block text-white text-lg font-semibold py-2">真需求</a>
-                    <a href="ai-ranking.html" class="block text-white text-lg font-semibold py-2">AI榜单</a>
-                    <a href="ai-overseas.html" class="block text-white text-lg font-semibold py-2">AI出海</a>
-                    <a href="ai-ads.html" class="block text-white text-lg font-semibold py-2">AI ADS</a>
-                    <a href="trends.html" class="block text-white text-lg font-semibold py-2">趋势</a>
-                    <a href="lunch-recommendations.html" class="block text-white text-lg font-semibold py-2">午餐推荐</a>
+            <!-- 移动端导航菜单 -->
+            <div class="mobile-menu lg:hidden hidden" id="mobileMenu">
+                <div class="py-4 space-y-2">
+                    <a href="index.html" class="mobile-nav-link">🏠 首页</a>
+                    <a href="ai-companies.html" class="mobile-nav-link">🏢 AI公司</a>
+                    <a href="ai-ranking.html" class="mobile-nav-link active">📊 AI榜单</a>
+                    <a href="trends.html" class="mobile-nav-link">📈 趋势</a>
+                    <a href="ai-capabilities.html" class="mobile-nav-link">⚡ AI功能</a>
+                    
+                    <!-- 工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">常用工具</div>
+                        <a href="coding.html" class="mobile-nav-link">💻 编程工具</a>
+                        <a href="designer.html" class="mobile-nav-link">🎨 设计师工具</a>
+                        <a href="writing.html" class="mobile-nav-link">✍️ 写作工具</a>
+                        <a href="image.html" class="mobile-nav-link">🖼️ 图像处理</a>
+                        <a href="video.html" class="mobile-nav-link">🎬 视频制作</a>
+                        <a href="audio.html" class="mobile-nav-link">🎵 音频处理</a>
+                    </div>
+                    
+                    <!-- AI工具分组 -->
+                    <div class="pt-2 border-t border-gray-200 mt-2">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">AI工具</div>
+                        <a href="ailinks.html" class="mobile-nav-link">🤖 AI链接</a>
+                        <a href="aicommunity.html" class="mobile-nav-link">👥 AI社区</a>
+                        <a href="aicontent.html" class="mobile-nav-link">📄 AI内容</a>
+                        <a href="ailearn.html" class="mobile-nav-link">📚 AI学习</a>
+                        <a href="ainum.html" class="mobile-nav-link">🔢 AI数字</a>
+                        <a href="aioffice.html" class="mobile-nav-link">💼 AI办公</a>
+                        <a href="aiprompt.html" class="mobile-nav-link">💡 AI提示</a>
+                        <a href="aitimer.html" class="mobile-nav-link">⏰ AI计时器</a>
+                        <a href="aiagent.html" class="mobile-nav-link">🤖 AI代理</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
     <!-- 主要内容 -->
     <main class="container mx-auto px-4 py-12">
@@ -785,6 +944,35 @@
     </footer>
 
     <script>
+        // 移动端菜单控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            // 移动端菜单切换功能
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // 点击菜单外部关闭菜单
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // 设置当前页面的活动状态
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link-horizontal, .mobile-nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
         // 粒子效果
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
