@@ -1,13 +1,14 @@
 /**
- * 首页LOGO管理器
- * 为首页所有链接板块添加对应的LOGO图片
+ * 首页LOGO背景管理器
+ * 为首页添加目标品牌的LOGO作为背景
  */
 
 class HomepageLogoManager {
     constructor() {
         this.logoCache = new Map();
         this.loadFromLocalStorage();
-        this.initializeHomepageMappings();
+        this.initializeBrandMappings();
+        this.init();
     }
 
     /**
@@ -38,385 +39,512 @@ class HomepageLogoManager {
     }
 
     /**
-     * 初始化首页LOGO映射
+     * 初始化品牌LOGO映射
      */
-    initializeHomepageMappings() {
-        // 预定义的首页LOGO映射
-        this.homepageMappings = {
-            // AI大模型
-            'chat.deepseek.com': {
-                url: 'https://chat.deepseek.com/favicon.ico',
-                fallback: '🔍'
+    initializeBrandMappings() {
+        // 预定义的品牌LOGO映射
+        this.brandMappings = {
+            // AI大模型公司
+            'openai.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1280px-OpenAI_Logo.svg.png',
+                fallback: '🤖',
+                name: 'OpenAI'
             },
-            'deepseek.com': {
-                url: 'https://chat.deepseek.com/favicon.ico',
-                fallback: '🔍'
+            'anthropic.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Anthropic_logo.svg/1200px-Anthropic_logo.svg.png',
+                fallback: '🧠',
+                name: 'Anthropic'
             },
-            'gemini.google.com': {
-                url: 'https://www.google.com/favicon.ico',
-                fallback: '🔍'
+            'ai.google': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
+                fallback: '🔍',
+                name: 'Google AI'
             },
-            'google.com': {
-                url: 'https://www.google.com/favicon.ico',
-                fallback: '🔍'
+            'microsoft.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/1200px-Microsoft_logo.svg.png',
+                fallback: '🪟',
+                name: 'Microsoft'
             },
-            'perplexity.ai': {
-                url: 'https://www.perplexity.ai/favicon.ico',
-                fallback: '🤔'
+            'ai.meta.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/1200px-Meta_Platforms_Inc._logo.svg.png',
+                fallback: '📘',
+                name: 'Meta AI'
             },
-            'www.perplexity.ai': {
-                url: 'https://www.perplexity.ai/favicon.ico',
-                fallback: '🤔'
-            },
-            'chat.chatbot.app': {
-                url: 'https://chat.chatbot.app/favicon.ico',
-                fallback: '💬'
-            },
-            'chatbot.app': {
-                url: 'https://chat.chatbot.app/favicon.ico',
-                fallback: '💬'
-            },
-            'claude.ai': {
-                url: 'https://claude.ai/favicon.ico',
-                fallback: '🧠'
+            'amazon.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1200px-Amazon_logo.svg.png',
+                fallback: '📦',
+                name: 'Amazon'
             },
 
-            // 网站服务
-            'cloudflare.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cloudflare_Logo.svg/1200px-Cloudflare_Logo.svg.png',
-                fallback: '☁️'
-            },
-            'vercel.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/1200px-Vercel_logo_black.svg.png',
-                fallback: '⚡'
-            },
-            'domain.com': {
-                url: 'https://www.domain.com/favicon.ico',
-                fallback: '🌐'
-            },
+            // 编程工具
             'github.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png',
-                fallback: '🐙'
+                url: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                fallback: '🐙',
+                name: 'GitHub'
+            },
+            'gitlab.com': {
+                url: 'https://about.gitlab.com/images/press/logo/svg/gitlab-icon-rgb.svg',
+                fallback: '🦊',
+                name: 'GitLab'
+            },
+            'stackoverflow.com': {
+                url: 'https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png',
+                fallback: '💻',
+                name: 'Stack Overflow'
+            },
+            'visualstudio.com': {
+                url: 'https://visualstudio.microsoft.com/wp-content/uploads/2019/06/BrandVisualStudioWin2019-3.svg',
+                fallback: '🔧',
+                name: 'Visual Studio'
             },
 
-            // 赚美金工具
-            'adsense.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '💰'
+            // 设计师工具
+            'figma.com': {
+                url: 'https://cdn.sanity.io/images/599r6htc/localized/46a76c802176eb17b04e12108de7e7e0f3736dc6-1024x1024.png',
+                fallback: '🎨',
+                name: 'Figma'
             },
-            'analytics.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '📊'
+            'adobe.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Adobe_Systems_logo_and_wordmark.svg/1200px-Adobe_Systems_logo_and_wordmark.svg.png',
+                fallback: '🎭',
+                name: 'Adobe'
             },
-            'trends.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '📈'
+            'sketch.com': {
+                url: 'https://www.sketch.com/images/press/sketch-press-kit.zip',
+                fallback: '✏️',
+                name: 'Sketch'
             },
-            'search.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '🔍'
-            },
-            'spaceship.com': {
-                url: 'https://www.spaceship.com/favicon.ico',
-                fallback: '🚀'
-            },
-            'similarweb.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/SimilarWeb_logo.svg/1200px-SimilarWeb_logo.svg.png',
-                fallback: '📊'
+            'invisionapp.com': {
+                url: 'https://www.invisionapp.com/static/img/invision-logo.svg',
+                fallback: '👁️',
+                name: 'InVision'
             },
 
-            // 社交媒体
-            'x.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/X_logo_2023_%28white%29.png/1200px-X_logo_2023_%28white%29.png',
-                fallback: '🐦'
+            // 写作工具
+            'notion.so': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Notion_app_logo.png/1200px-Notion_app_logo.png',
+                fallback: '📝',
+                name: 'Notion'
             },
-            'instagram.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png',
-                fallback: '📷'
+            'medium.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Medium_logo_Monogram.svg/1200px-Medium_logo_Monogram.svg.png',
+                fallback: '📰',
+                name: 'Medium'
             },
-            'facebook.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Facebook_logo.svg/1200px-Facebook_logo.svg.png',
-                fallback: '📘'
+            'grammarly.com': {
+                url: 'https://static.grammarly.com/assets/files/cb6ce17d281d15f2c81905b5e3c650e8/ukraine-grammarly-logo.svg',
+                fallback: '✍️',
+                name: 'Grammarly'
+            },
+            'evernote.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Evernote_Logo.svg/1200px-Evernote_Logo.svg.png',
+                fallback: '🐘',
+                name: 'Evernote'
             },
 
-            // 广告平台
-            'monetag.com': {
-                url: 'https://monetag.com/favicon.ico',
-                fallback: '💰'
+            // 图像处理
+            'canva.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Canva_icon_2021.svg/1200px-Canva_icon_2021.svg.png',
+                fallback: '🎨',
+                name: 'Canva'
             },
-            'propellerads.com': {
-                url: 'https://propellerads.com/favicon.ico',
-                fallback: '📢'
+            'pinterest.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Pinterest-logo.png/1200px-Pinterest-logo.png',
+                fallback: '📌',
+                name: 'Pinterest'
             },
-            'media.net': {
-                url: 'https://www.media.net/favicon.ico',
-                fallback: '📺'
+            'unsplash.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Logo_of_Unsplash.svg/1200px-Logo_of_Unsplash.svg.png',
+                fallback: '📸',
+                name: 'Unsplash'
             },
-            'adsterra.com': {
-                url: 'https://adsterra.com/favicon.ico',
-                fallback: '📈'
+
+            // 视频制作
+            'youtube.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_logo_%282017%29.svg/1200px-YouTube_logo_%282017%29.svg.png',
+                fallback: '📺',
+                name: 'YouTube'
+            },
+            'vimeo.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_icon.svg/1200px-Vimeo_icon.svg.png',
+                fallback: '🎬',
+                name: 'Vimeo'
+            },
+            'davinciresolve.com': {
+                url: 'https://www.blackmagicdesign.com/images/products/davinciresolve/logo.png',
+                fallback: '🎬',
+                name: 'DaVinci Resolve'
+            },
+
+            // 音频处理
+            'spotify.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1200px-Spotify_icon.svg.png',
+                fallback: '🎵',
+                name: 'Spotify'
+            },
+            'apple.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png',
+                fallback: '🍎',
+                name: 'Apple'
+            },
+            'audacityteam.org': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Audacity_Logo.svg/1200px-Audacity_Logo.svg.png',
+                fallback: '🎤',
+                name: 'Audacity'
+            },
+
+            // AI社区与学习
+            'huggingface.co': {
+                url: 'https://huggingface.co/front/assets/huggingface_logo.svg',
+                fallback: '🤗',
+                name: 'Hugging Face'
+            },
+            'discord.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Discord_logo.svg/1200px-Discord_logo.svg.png',
+                fallback: '💬',
+                name: 'Discord'
+            },
+            'coursera.org': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png',
+                fallback: '🎓',
+                name: 'Coursera'
+            },
+            'kaggle.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Kaggle_logo.svg/1200px-Kaggle_logo.svg.png',
+                fallback: '📊',
+                name: 'Kaggle'
             }
         };
     }
 
     /**
-     * 获取网站LOGO
-     * @param {string} domain - 域名
-     * @param {string} url - 完整URL
-     * @returns {Promise<string>} LOGO数据
+     * 初始化
      */
-    async getLogo(domain, url = '') {
-        // 检查缓存
-        if (this.logoCache.has(domain)) {
-            return this.logoCache.get(domain);
-        }
-
-        // 检查预定义映射
-        if (this.homepageMappings[domain]) {
-            const logoData = this.homepageMappings[domain];
-            try {
-                const logoUrl = await this.fetchLogo(logoData.url, domain);
-                this.logoCache.set(domain, logoUrl);
-                this.saveToLocalStorage();
-                return logoUrl;
-            } catch (error) {
-                console.warn(`Failed to fetch logo for ${domain}:`, error);
-                const fallback = logoData.fallback;
-                this.logoCache.set(domain, fallback);
-                this.saveToLocalStorage();
-                return fallback;
-            }
-        }
-
-        // 尝试从网站获取favicon
-        try {
-            const faviconUrl = await this.getFaviconUrl(domain, url);
-            const logoUrl = await this.fetchLogo(faviconUrl, domain);
-            this.logoCache.set(domain, logoUrl);
-            this.saveToLocalStorage();
-            return logoUrl;
-        } catch (error) {
-            console.warn(`Failed to get favicon for ${domain}:`, error);
-            const fallback = this.getFallbackIcon(domain);
-            this.logoCache.set(domain, fallback);
-            this.saveToLocalStorage();
-            return fallback;
+    init() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.setup());
+        } else {
+            this.setup();
         }
     }
 
     /**
-     * 获取favicon URL
-     * @param {string} domain - 域名
-     * @param {string} url - 完整URL
-     * @returns {Promise<string>} favicon URL
+     * 设置首页LOGO背景
      */
-    async getFaviconUrl(domain, url = '') {
-        const baseUrl = url || `https://${domain}`;
-        const faviconUrls = [
-            `${baseUrl}/favicon.ico`,
-            `${baseUrl}/favicon.png`,
-            `${baseUrl}/apple-touch-icon.png`,
-            `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
-            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=64`
+    setup() {
+        this.createBackgroundContainer();
+        this.addBrandLogosToBackground();
+    }
+
+    /**
+     * 创建背景容器
+     */
+    createBackgroundContainer() {
+        // 检查是否已存在背景容器
+        if (document.getElementById('homepage-brand-background')) {
+            return;
+        }
+
+        const backgroundContainer = document.createElement('div');
+        backgroundContainer.id = 'homepage-brand-background';
+        backgroundContainer.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.08;
+        `;
+        
+        document.body.appendChild(backgroundContainer);
+    }
+
+    /**
+     * 添加品牌LOGO到背景
+     */
+    addBrandLogosToBackground() {
+        const backgroundContainer = document.getElementById('homepage-brand-background');
+        if (!backgroundContainer) return;
+
+        // 选择要显示的品牌（首页显示主要AI品牌）
+        const mainBrands = [
+            'openai.com',
+            'anthropic.com',
+            'ai.google',
+            'microsoft.com',
+            'ai.meta.com',
+            'amazon.com'
         ];
 
-        for (const faviconUrl of faviconUrls) {
+        // 创建品牌LOGO网格
+        const brandGrid = document.createElement('div');
+        brandGrid.className = 'homepage-brand-grid';
+        brandGrid.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 60px;
+            align-items: center;
+            justify-items: center;
+        `;
+
+        // 为每个品牌创建LOGO
+        mainBrands.forEach((brandDomain, index) => {
+            this.createBrandLogoElement(brandGrid, brandDomain, index);
+        });
+
+        backgroundContainer.appendChild(brandGrid);
+    }
+
+    /**
+     * 创建品牌LOGO元素
+     */
+    async createBrandLogoElement(container, brandDomain, index) {
+        const logoContainer = document.createElement('div');
+        logoContainer.className = 'homepage-brand-logo';
+        logoContainer.style.cssText = `
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: homepageBrandLogoAppear 0.8s ease-out ${index * 0.3}s forwards;
+            transition: all 0.3s ease;
+        `;
+
+        try {
+            const brandInfo = this.brandMappings[brandDomain];
+            if (!brandInfo) {
+                this.setDefaultLogo(logoContainer, brandDomain);
+                return;
+            }
+
+            // 检查缓存
+            if (this.logoCache.has(brandDomain)) {
+                this.setBrandLogo(logoContainer, this.logoCache.get(brandDomain), brandInfo);
+            } else {
+                // 获取品牌LOGO
+                const logoUrl = await this.fetchBrandLogo(brandDomain, brandInfo);
+                
+                // 缓存结果
+                this.logoCache.set(brandDomain, logoUrl);
+                this.saveToLocalStorage();
+                
+                // 设置品牌LOGO
+                this.setBrandLogo(logoContainer, logoUrl, brandInfo);
+            }
+        } catch (error) {
+            console.warn(`Failed to fetch logo for ${brandDomain}:`, error);
+            this.setDefaultLogo(logoContainer, brandDomain);
+        }
+
+        container.appendChild(logoContainer);
+    }
+
+    /**
+     * 获取品牌LOGO
+     */
+    async fetchBrandLogo(domain, brandInfo) {
+        // 优先使用预定义的URL
+        if (brandInfo.url) {
             try {
-                const response = await fetch(faviconUrl, { 
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                if (response.ok || response.status === 0) {
-                    return faviconUrl;
+                const exists = await this.checkImageExists(brandInfo.url);
+                if (exists) {
+                    return brandInfo.url;
+                }
+            } catch (error) {
+                console.warn(`Failed to load predefined logo for ${domain}:`, error);
+            }
+        }
+
+        // 尝试从网站获取LOGO
+        const logoUrls = this.generateLogoUrls(domain);
+        
+        for (const url of logoUrls) {
+            try {
+                const exists = await this.checkImageExists(url);
+                if (exists) {
+                    return url;
                 }
             } catch (error) {
                 continue;
             }
         }
-
-        throw new Error('No favicon found');
+        
+        return null;
     }
 
     /**
-     * 获取LOGO图片
-     * @param {string} url - LOGO URL
-     * @param {string} domain - 域名
-     * @returns {Promise<string>} base64编码的图片
+     * 生成LOGO URL列表
      */
-    async fetchLogo(url, domain) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+    generateLogoUrls(domain) {
+        const baseUrl = `https://${domain}`;
+        return [
+            // 高分辨率LOGO路径
+            `${baseUrl}/logo.png`,
+            `${baseUrl}/logo.jpg`,
+            `${baseUrl}/logo.svg`,
+            `${baseUrl}/logo@2x.png`,
+            `${baseUrl}/logo@3x.png`,
             
-            const blob = await response.blob();
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(blob);
+            // 标准LOGO路径
+            `${baseUrl}/assets/logo.png`,
+            `${baseUrl}/assets/logo.svg`,
+            `${baseUrl}/images/logo.png`,
+            `${baseUrl}/images/logo.svg`,
+            `${baseUrl}/static/logo.png`,
+            `${baseUrl}/static/logo.svg`,
+            
+            // 品牌LOGO路径
+            `${baseUrl}/brand/logo.png`,
+            `${baseUrl}/brand/logo.svg`,
+            `${baseUrl}/branding/logo.png`,
+            `${baseUrl}/branding/logo.svg`,
+            
+            // 标准favicon路径
+            `${baseUrl}/favicon.ico`,
+            `${baseUrl}/favicon.png`,
+            `${baseUrl}/favicon.jpg`,
+            
+            // Apple touch icon
+            `${baseUrl}/apple-touch-icon.png`,
+            `${baseUrl}/apple-touch-icon-precomposed.png`,
+            
+            // 第三方服务
+            `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${domain}&size=64`
+        ];
+    }
+
+    /**
+     * 检查图片是否存在
+     */
+    async checkImageExists(url) {
+        try {
+            const response = await fetch(url, { 
+                method: 'HEAD',
+                mode: 'no-cors'
             });
+            return response.ok || response.status === 0;
         } catch (error) {
-            throw new Error(`Failed to fetch logo: ${error.message}`);
+            return false;
         }
     }
 
     /**
-     * 获取fallback图标
-     * @param {string} domain - 域名
-     * @returns {string} emoji图标
+     * 设置品牌LOGO
      */
-    getFallbackIcon(domain) {
-        const fallbackIcons = {
-            'deepseek': '🔍',
-            'google': '🔍',
-            'perplexity': '🤔',
-            'chatbot': '💬',
-            'claude': '🧠',
-            'cloudflare': '☁️',
-            'vercel': '⚡',
-            'domain': '🌐',
-            'github': '🐙',
-            'adsense': '💰',
-            'analytics': '📊',
-            'trends': '📈',
-            'search': '🔍',
-            'spaceship': '🚀',
-            'similarweb': '📊',
-            'instagram': '📷',
-            'facebook': '📘',
-            'twitter': '🐦',
-            'x.com': '🐦',
-            'monetag': '💰',
-            'propeller': '📢',
-            'media': '📺',
-            'adsterra': '📈'
-        };
-
-        for (const [key, icon] of Object.entries(fallbackIcons)) {
-            if (domain.includes(key)) {
-                return icon;
-            }
-        }
-
-        return '🌐';
-    }
-
-    /**
-     * 为首页工具卡片添加LOGO背景
-     */
-    async addLogosToHomepageCards() {
-        const toolCards = document.querySelectorAll('.tool-card');
-        
-        for (const card of toolCards) {
-            // 处理两种情况：1) card本身就是链接 2) card包含链接
-            let link, href;
-            if (card.tagName === 'A') {
-                link = card;
-                href = card.getAttribute('href');
-            } else {
-                link = card.querySelector('a');
-                href = link ? link.getAttribute('href') : null;
-            }
+    setBrandLogo(container, logoUrl, brandInfo) {
+        if (logoUrl) {
+            // 创建品牌LOGO图片
+            const logoImg = document.createElement('div');
+            logoImg.style.cssText = `
+                width: 100%;
+                height: 100%;
+                background-image: url('${logoUrl}');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                filter: blur(0.5px);
+                transition: all 0.3s ease;
+            `;
             
-            if (!href) continue;
-
-            try {
-                const domain = this.extractDomain(href);
-                const logo = await this.getLogo(domain, href);
-                
-                // 创建或获取LOGO背景元素
-                let logoBg = card.querySelector('.tool-logo-bg');
-                if (!logoBg) {
-                    logoBg = document.createElement('div');
-                    logoBg.className = 'tool-logo-bg';
-                    card.insertBefore(logoBg, card.firstChild);
-                }
-                
-                if (logo.startsWith('data:image')) {
-                    // 图片LOGO
-                    logoBg.style.backgroundImage = `url(${logo})`;
-                } else {
-                    // Emoji fallback - 创建渐变背景
-                    logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
-                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
-                }
-                
-                console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
-            } catch (error) {
-                console.warn(`Failed to add logo for ${href}:`, error);
-            }
+            container.appendChild(logoImg);
+        } else {
+            this.setDefaultLogo(container, brandInfo.name || 'Brand');
         }
     }
 
     /**
-     * 提取域名
-     * @param {string} url - URL
-     * @returns {string} 域名
+     * 设置默认LOGO
      */
-    extractDomain(url) {
-        try {
-            const urlObj = new URL(url);
-            return urlObj.hostname;
-        } catch (error) {
-            // 如果不是完整URL，尝试直接使用
-            return url.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-        }
-    }
-
-    /**
-     * 批量获取所有首页LOGO
-     */
-    async batchFetchAllLogos() {
-        const toolCards = document.querySelectorAll('.tool-card');
-        const domains = new Set();
+    setDefaultLogo(container, brandName) {
+        const defaultLogo = document.createElement('div');
+        defaultLogo.style.cssText = `
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+        `;
+        defaultLogo.textContent = brandName.charAt(0).toUpperCase();
         
-        toolCards.forEach(card => {
-            const link = card.querySelector('a') || card;
-            const href = link.getAttribute('href');
-            if (href) {
-                domains.add(this.extractDomain(href));
-            }
-        });
-
-        const promises = Array.from(domains).map(async (domain) => {
-            try {
-                await this.getLogo(domain);
-            } catch (error) {
-                console.warn(`Failed to fetch logo for ${domain}:`, error);
-            }
-        });
-
-        await Promise.allSettled(promises);
-        console.log('Homepage logo fetching completed');
-    }
-
-    /**
-     * 清除LOGO缓存
-     */
-    clearCache() {
-        this.logoCache.clear();
-        localStorage.removeItem('homepageLogoCache');
-        console.log('Homepage logo cache cleared');
+        container.appendChild(defaultLogo);
     }
 }
 
-// 创建全局实例
+// 添加CSS样式
+const style = document.createElement('style');
+style.textContent = `
+    #homepage-brand-background {
+        animation: fadeIn 1s ease-in-out;
+    }
+    
+    .homepage-brand-logo {
+        transition: all 0.3s ease;
+    }
+    
+    .homepage-brand-logo:hover {
+        transform: scale(1.1) !important;
+        opacity: 0.15 !important;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 0.08; }
+    }
+    
+    @keyframes homepageBrandLogoAppear {
+        to {
+            opacity: 0.1;
+            transform: scale(1);
+        }
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .homepage-brand-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+            gap: 20px !important;
+            padding: 30px !important;
+        }
+        
+        .homepage-brand-logo {
+            width: 100px !important;
+            height: 100px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .homepage-brand-grid {
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+            gap: 15px !important;
+            padding: 20px !important;
+        }
+        
+        .homepage-brand-logo {
+            width: 70px !important;
+            height: 70px !important;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// 初始化
 window.homepageLogoManager = new HomepageLogoManager();
-
-// 页面加载完成后初始化LOGO
-document.addEventListener('DOMContentLoaded', async function() {
-    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
-        // 为首页所有工具卡片添加LOGO背景
-        await window.homepageLogoManager.addLogosToHomepageCards();
-        
-        // 可选：批量获取所有LOGO
-        // await window.homepageLogoManager.batchFetchAllLogos();
-    }
-});
-
-// 导出供其他脚本使用
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = HomepageLogoManager;
-}

@@ -3,161 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>首页LOGO测试页面</title>
+    <title>首页工具卡片LOGO功能测试</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="modern-styles.css">
     <style>
+        /* 工具卡片样式 */
         .tool-card {
-            position: relative;
             background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
             padding: 1.5rem;
-            margin: 1rem;
-            transition: all 0.3s ease;
-            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
             min-height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        
+        /* 工具卡片LOGO背景 */
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            transition: all 0.3s ease;
+            z-index: 1;
+            filter: grayscale(100%) brightness(1.2);
+        }
+        
+        .tool-card:hover .tool-logo-bg {
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        
+        .tool-content {
+            position: relative;
+            z-index: 2;
         }
         
         .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(102, 126, 234, 0.3);
         }
         
-        .tool-card h3 {
+        .category-title {
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1e293b;
-        }
-        
-        .tool-card p {
-            color: #64748b;
-            font-size: 0.875rem;
-        }
-        
-        .test-controls {
-            background: #f8fafc;
-            padding: 1rem;
-            margin: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .test-controls button {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            margin: 0.25rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .test-controls button:hover {
-            background: #1d4ed8;
-        }
-        
-        .status-info {
-            background: #f0f9ff;
-            padding: 1rem;
-            margin: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #0ea5e9;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1f2937;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 min-h-screen">
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-8">首页LOGO优化器测试</h1>
+        <h1 class="text-3xl font-bold text-center mb-8">首页工具卡片LOGO功能测试</h1>
         
-        <div class="test-controls">
-            <h3 class="font-semibold mb-2">测试控制</h3>
-            <button onclick="testAddLogos()">添加LOGO</button>
-            <button onclick="testClearCache()">清除缓存</button>
-            <button onclick="testReloadLogos()">重新加载LOGO</button>
-            <button onclick="testExportCache()">导出缓存信息</button>
-        </div>
-        
-        <div class="status-info">
-            <h3 class="font-semibold mb-2">状态信息</h3>
-            <div id="statusDisplay">等待操作...</div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- 测试工具卡片 -->
-            <a href="https://chat.openai.com/" target="_blank" class="tool-card">
-                <h3>ChatGPT</h3>
-                <p>OpenAI的对话式AI助手</p>
-            </a>
+        <div class="max-w-4xl mx-auto">
+            <p class="text-center mb-8 text-gray-600">
+                <strong>测试说明：</strong> 此页面用于验证首页工具卡片的LOGO背景功能是否正常工作。
+            </p>
             
-            <a href="https://gemini.google.com/app" target="_blank" class="tool-card">
-                <h3>Google Gemini</h3>
-                <p>Google的AI对话助手</p>
-            </a>
+            <!-- AI Foundation Models 测试板块 -->
+            <section class="mb-12">
+                <h2 class="category-title">AI Foundation Models</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    <a href="https://chat.deepseek.com/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                            <p class="text-gray-600">Deep Learning Chat Model</p>
+                        </div>
+                    </a>
+                    <a href="https://gemini.google.com/app" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                            <p class="text-gray-600">Latest Google AI Assistant</p>
+                        </div>
+                    </a>
+                    <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                            <p class="text-gray-600">AI-powered Search Engine</p>
+                        </div>
+                    </a>
+                    <a href="https://chat.chatbot.app/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
+                            <p class="text-gray-600">AI Chat Assistant</p>
+                        </div>
+                    </a>
+                    <a href="https://claude.ai/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                            <p class="text-gray-600">Anthropic AI Assistant</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
             
-            <a href="https://claude.ai/" target="_blank" class="tool-card">
-                <h3>Claude</h3>
-                <p>Anthropic的AI助手</p>
-            </a>
+            <!-- 网站服务测试板块 -->
+            <section class="mb-12">
+                <h2 class="category-title">Website Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Cloudflare</h3>
+                            <p class="text-gray-600">Website Acceleration & Security</p>
+                        </div>
+                    </a>
+                    <a href="https://vercel.com/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Vercel</h3>
+                            <p class="text-gray-600">Frontend Deployment Platform</p>
+                        </div>
+                    </a>
+                    <a href="https://www.domain.com/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Domain.com</h3>
+                            <p class="text-gray-600">Domain Registration Service</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">GitHub</h3>
+                            <p class="text-gray-600">World's Largest Open Source Platform</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
             
-            <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
-                <h3>Perplexity</h3>
-                <p>AI驱动的搜索引擎</p>
-            </a>
-            
-            <a href="https://github.com/" target="_blank" class="tool-card">
-                <h3>GitHub</h3>
-                <p>代码托管平台</p>
-            </a>
-            
-            <a href="https://vercel.com/" target="_blank" class="tool-card">
-                <h3>Vercel</h3>
-                <p>前端部署平台</p>
-            </a>
+            <!-- 测试结果 -->
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-lg font-semibold mb-4">测试结果</h3>
+                <div id="testResults" class="space-y-2">
+                    <p>正在测试LOGO功能...</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- 引入首页LOGO优化器 -->
-    <script src="homepage-logo-optimizer.js"></script>
-    
+    <!-- 引入测试脚本 -->
+    <script src="homepage-tool-logos.js"></script>
     <script>
-        function testAddLogos() {
-            document.getElementById('statusDisplay').innerHTML = '正在添加LOGO...';
-            window.homepageLogoOptimizer.addLogosToAllCards().then(() => {
-                document.getElementById('statusDisplay').innerHTML = 'LOGO添加完成！';
-            });
-        }
-        
-        function testClearCache() {
-            window.homepageLogoOptimizer.clearCache();
-            document.getElementById('statusDisplay').innerHTML = '缓存已清除';
-        }
-        
-        function testReloadLogos() {
-            document.getElementById('statusDisplay').innerHTML = '正在重新加载LOGO...';
-            window.homepageLogoOptimizer.reloadAllLogos().then(() => {
-                document.getElementById('statusDisplay').innerHTML = 'LOGO重新加载完成！';
-            });
-        }
-        
-        function testExportCache() {
-            const cacheInfo = window.homepageLogoOptimizer.exportCacheInfo();
-            document.getElementById('statusDisplay').innerHTML = `
-                <strong>缓存信息:</strong><br>
-                缓存域名数量: ${cacheInfo.totalCached}<br>
-                已处理卡片数量: ${cacheInfo.processedCards}<br>
-                缓存域名: ${cacheInfo.cachedDomains.join(', ')}
-            `;
-        }
-        
-        // 页面加载完成后自动测试
+        // 测试LOGO功能
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                testAddLogos();
+                const testResults = document.getElementById('testResults');
+                const toolCards = document.querySelectorAll('.tool-card');
+                let successCount = 0;
+                let totalCount = toolCards.length;
+                
+                toolCards.forEach(card => {
+                    const logoBg = card.querySelector('.tool-logo-bg');
+                    if (logoBg) {
+                        successCount++;
+                        const domain = card.href ? new URL(card.href).hostname : 'unknown';
+                        testResults.innerHTML += `<p class="text-green-600">✅ ${domain} - LOGO加载成功</p>`;
+                    } else {
+                        const domain = card.href ? new URL(card.href).hostname : 'unknown';
+                        testResults.innerHTML += `<p class="text-red-600">❌ ${domain} - LOGO加载失败</p>`;
+                    }
+                });
+                
+                testResults.innerHTML += `<p class="font-semibold mt-4">总结: ${successCount}/${totalCount} 个LOGO加载成功</p>`;
+                
+                if (successCount === totalCount) {
+                    testResults.innerHTML += `<p class="text-green-600 font-bold">🎉 所有LOGO功能正常工作！</p>`;
+                } else {
+                    testResults.innerHTML += `<p class="text-yellow-600 font-bold">⚠️ 部分LOGO需要检查</p>`;
+                }
             }, 2000);
         });
     </script>

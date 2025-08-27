@@ -357,6 +357,33 @@
             overflow: hidden;
         }
         
+        /* 工具卡片LOGO背景 */
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            transition: all 0.3s ease;
+            z-index: 1;
+            filter: grayscale(100%) brightness(1.2);
+        }
+        
+        .tool-card:hover .tool-logo-bg {
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        
+        .tool-content {
+            position: relative;
+            z-index: 2;
+        }
+        
         .tool-card::before {
             content: '';
             position: absolute;
@@ -1161,6 +1188,21 @@
     
     <!-- 引入页面介绍组件 -->
     <script src="page-introductions.js"></script>
+    
+    <!-- 引入简化Favicon获取器 -->
+    <script src="simple-favicon-loader.js"></script>
+    
+    <!-- 引入品牌LOGO背景展示器 -->
+    <script src="brand-logo-background.js"></script>
+    
+    <!-- 引入首页LOGO管理器 -->
+    <script src="homepage-logo-manager.js"></script>
+    
+    <!-- 引入首页品牌LOGO背景 -->
+    <script src="homepage-brand-logos.js"></script>
+    
+    <!-- 引入首页工具卡片LOGO管理器 -->
+    <script src="homepage-tool-logos.js"></script>
     
 </body>
 </html>
