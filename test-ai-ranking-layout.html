@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Ranking 布局测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FAFAFA;
+            color: #111827;
+        }
+        
+        .test-container {
+            max-width: 5xl;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .test-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 4xl;
+            margin: 0 auto;
+        }
+        
+        .test-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            max-width: 24rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .test-btn {
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="text-3xl font-bold text-center mb-8">AI Ranking 布局测试</h1>
+        
+        <div class="test-card">
+            <h2 class="text-xl font-semibold mb-4">容器宽度测试</h2>
+            <p>当前容器使用 <code>max-w-5xl</code>，比之前的 <code>max-w-7xl</code> 更窄，内容更居中。</p>
+            <p class="text-sm text-gray-600 mt-2">容器最大宽度: 1024px (5xl) vs 1280px (7xl)</p>
+        </div>
+        
+        <div class="test-buttons">
+            <button class="test-btn">全部</button>
+            <button class="test-btn">聊天对话</button>
+            <button class="test-btn">创意工具</button>
+            <button class="test-btn">生产力</button>
+            <button class="test-btn">商业应用</button>
+        </div>
+        
+        <div class="test-grid">
+            <div class="test-card">
+                <h3 class="font-semibold mb-2">测试卡片 1</h3>
+                <p class="text-gray-600">这是数据来源部分的网格布局测试，使用 <code>max-w-4xl</code> 进一步居中。</p>
+            </div>
+            <div class="test-card">
+                <h3 class="font-semibold mb-2">测试卡片 2</h3>
+                <p class="text-gray-600">在中等屏幕上显示为单列，在大屏幕上显示为双列。</p>
+            </div>
+        </div>
+        
+        <div class="test-card mt-8">
+            <h2 class="text-xl font-semibold mb-4">布局改进总结</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li>主容器从 <code>max-w-7xl</code> 改为 <code>max-w-5xl</code></li>
+                <li>导航栏容器同步调整为 <code>max-w-5xl</code></li>
+                <li>页脚容器同步调整为 <code>max-w-5xl</code></li>
+                <li>数据来源网格使用 <code>max-w-4xl</code> 进一步居中</li>
+                <li>筛选按钮使用 <code>max-width: 24rem</code> 居中显示</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
