@@ -4,157 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Foundation Models LOGO 测试</title>
-    <link rel="stylesheet" href="modern-styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 2rem;
+        /* 工具卡片样式 */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            min-height: 120px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
         }
-        .test-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        
+        /* 工具卡片LOGO背景 */
+        .tool-logo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08;
+            transition: all 0.3s ease;
+            z-index: 1;
+            filter: grayscale(100%) brightness(1.2);
         }
-        .test-title {
+        
+        .tool-card:hover .tool-logo-bg {
+            opacity: 0.12;
+            filter: grayscale(80%) brightness(1.1);
+            transform: scale(1.05);
+        }
+        
+        .tool-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+        
+        .category-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
             text-align: center;
             color: #1f2937;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            font-weight: 700;
         }
-        .test-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .status {
+        
+        .test-status {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
             padding: 1rem;
-            border-radius: 10px;
             margin: 1rem 0;
-            font-weight: 600;
         }
-        .status.success {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1px solid #10b981;
+        
+        .test-status.success {
+            background: #f0fdf4;
+            border-color: #22c55e;
         }
-        .status.error {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #ef4444;
-        }
-        .status.info {
-            background: #dbeafe;
-            color: #1e40af;
-            border: 1px solid #3b82f6;
+        
+        .test-status.error {
+            background: #fef2f2;
+            border-color: #ef4444;
         }
     </style>
 </head>
-<body>
-    <div class="test-container">
-        <h1 class="test-title">AI Foundation Models LOGO 功能测试</h1>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">AI Foundation Models LOGO 功能测试</h1>
         
-        <div class="status info">
-            <strong>测试说明：</strong> 此页面用于验证AI Foundation Models板块的LOGO功能是否正常工作。
-        </div>
-
-        <div class="status success">
-            <strong>✅ 预期结果：</strong> 每个卡片都应该显示对应网站的LOGO背景。
-        </div>
-
-        <!-- AI Foundation Models 测试板块 -->
-        <section class="mb-20 fade-in">
-            <h2 class="category-title">AI Foundation Models</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
-                        <p class="text-gray-600">Deep Learning Chat Model</p>
-                    </div>
-                </a>
-                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
-                        <p class="text-gray-600">Latest Google AI Assistant</p>
-                    </div>
-                </a>
-                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
-                        <p class="text-gray-600">AI-powered Search Engine</p>
-                    </div>
-                </a>
-                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
-                        <p class="text-gray-600">AI Chat Assistant</p>
-                    </div>
-                </a>
-                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
-                        <p class="text-gray-600">Anthropic AI Assistant</p>
-                    </div>
-                </a>
+        <div class="max-w-6xl mx-auto">
+            <div class="test-status" id="testStatus">
+                <h3 class="font-semibold mb-2">测试状态</h3>
+                <p>正在初始化LOGO功能...</p>
             </div>
-        </section>
-
-        <div class="status info">
-            <strong>测试步骤：</strong>
-            <ol>
-                <li>页面加载后，检查每个卡片是否显示LOGO背景</li>
-                <li>鼠标悬停在卡片上，LOGO背景应该变得更明显</li>
-                <li>检查浏览器控制台是否有LOGO加载成功的消息</li>
-            </ol>
+            
+            <!-- AI Foundation Models 测试板块 -->
+            <section class="mb-12">
+                <h2 class="category-title">AI Foundation Models</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                    <a href="https://chat.deepseek.com/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
+                            <p class="text-gray-600">Deep Learning Chat Model</p>
+                        </div>
+                    </a>
+                    <a href="https://gemini.google.com/app" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
+                            <p class="text-gray-600">Latest Google AI Assistant</p>
+                        </div>
+                    </a>
+                    <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
+                            <p class="text-gray-600">AI-powered Search Engine</p>
+                        </div>
+                    </a>
+                    <a href="https://chat.chatbot.app/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
+                            <p class="text-gray-600">AI Chat Assistant</p>
+                        </div>
+                    </a>
+                    <a href="https://claude.ai/" target="_blank" class="tool-card">
+                        <div class="tool-content">
+                            <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
+                            <p class="text-gray-600">Anthropic AI Assistant</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- 详细测试结果 -->
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-lg font-semibold mb-4">详细测试结果</h3>
+                <div id="detailedResults" class="space-y-2">
+                    <p>正在检测每个卡片的LOGO状态...</p>
+                </div>
+            </div>
         </div>
-
-        <div id="test-results"></div>
     </div>
 
-    <script src="homepage-logo-manager.js"></script>
-    <script src="verify-ai-models-logos.js"></script>
+    <!-- 引入LOGO管理器 -->
+    <script src="homepage-tool-logos.js"></script>
     <script>
-        // 测试脚本
-        document.addEventListener('DOMContentLoaded', async function() {
-            const resultsDiv = document.getElementById('test-results');
+        // 测试LOGO功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const testStatus = document.getElementById('testStatus');
+            const detailedResults = document.getElementById('detailedResults');
             
-            // 等待LOGO加载和验证
-            setTimeout(async () => {
-                // 使用验证器进行详细验证
-                const results = await window.aiModelsLogoVerifier.verifyAIModelsLogos();
+            // 更新测试状态
+            function updateStatus(message, type = 'info') {
+                testStatus.className = `test-status ${type}`;
+                testStatus.querySelector('p').textContent = message;
+            }
+            
+            // 等待LOGO加载完成
+            setTimeout(() => {
+                updateStatus('正在验证LOGO功能...', 'info');
                 
-                const successRate = (results.success / results.total * 100).toFixed(1);
-                const statusClass = successRate >= 80 ? 'success' : 'error';
+                const toolCards = document.querySelectorAll('.tool-card');
+                let successCount = 0;
+                let totalCount = toolCards.length;
+                let results = [];
                 
-                let detailsHtml = '';
-                results.details.forEach((detail, index) => {
-                    const status = detail.status === 'success' ? '✅' : '❌';
-                    detailsHtml += `
-                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: ${detail.status === 'success' ? '#d1fae5' : '#fee2e2'}; border-radius: 5px;">
-                            <strong>${status} ${detail.name}</strong><br>
-                            <small>${detail.message}</small>
-                        </div>
+                toolCards.forEach((card, index) => {
+                    const logoBg = card.querySelector('.tool-logo-bg');
+                    const domain = card.href ? new URL(card.href).hostname : 'unknown';
+                    
+                    if (logoBg) {
+                        successCount++;
+                        results.push({
+                            domain: domain,
+                            status: 'success',
+                            message: 'LOGO背景已添加'
+                        });
+                    } else {
+                        results.push({
+                            domain: domain,
+                            status: 'error',
+                            message: 'LOGO背景未找到'
+                        });
+                    }
+                });
+                
+                // 显示详细结果
+                detailedResults.innerHTML = '';
+                results.forEach(result => {
+                    const statusIcon = result.status === 'success' ? '✅' : '❌';
+                    const statusColor = result.status === 'success' ? 'text-green-600' : 'text-red-600';
+                    detailedResults.innerHTML += `
+                        <p class="${statusColor}">
+                            ${statusIcon} ${result.domain} - ${result.message}
+                        </p>
                     `;
                 });
                 
-                resultsDiv.innerHTML = `
-                    <div class="status ${statusClass}">
-                        <strong>测试结果：</strong> ${results.success}/${results.total} 个卡片成功加载LOGO (${successRate}%)
-                    </div>
-                    <div style="margin-top: 1rem;">
-                        <strong>详细结果：</strong>
-                        ${detailsHtml}
+                // 显示总结
+                detailedResults.innerHTML += `
+                    <div class="mt-4 p-3 bg-gray-100 rounded">
+                        <p class="font-semibold">总结: ${successCount}/${totalCount} 个LOGO加载成功</p>
+                        <p class="text-sm text-gray-600">成功率: ${Math.round((successCount/totalCount)*100)}%</p>
                     </div>
                 `;
                 
-                console.log(`🎉 AI Foundation Models LOGO测试完成：${results.success}/${results.total} 成功`);
-            }, 3000);
+                // 更新最终状态
+                if (successCount === totalCount) {
+                    updateStatus('🎉 所有AI Foundation Models的LOGO功能正常工作！', 'success');
+                } else if (successCount > 0) {
+                    updateStatus(`⚠️ 部分LOGO加载成功 (${successCount}/${totalCount})`, 'error');
+                } else {
+                    updateStatus('❌ LOGO功能未正常工作', 'error');
+                }
+                
+                // 调试信息
+                console.log('AI Foundation Models LOGO测试结果:', {
+                    total: totalCount,
+                    success: successCount,
+                    results: results
+                });
+                
+            }, 3000); // 等待3秒让LOGO加载完成
         });
     </script>
 </body>

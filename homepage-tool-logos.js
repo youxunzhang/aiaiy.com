@@ -208,7 +208,8 @@ class HomepageToolLogoManager {
      * 为首页工具卡片添加LOGO背景
      */
     async addLogosToToolCards() {
-        const toolCards = document.querySelectorAll('.tool-card');
+        // 查找所有工具卡片，包括带有modern-card类的
+        const toolCards = document.querySelectorAll('.tool-card, .modern-card');
         
         for (const card of toolCards) {
             // 处理两种情况：1) card本身就是链接 2) card包含链接
@@ -465,3 +466,4 @@ document.addEventListener('DOMContentLoaded', async function() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = HomepageToolLogoManager;
 }
+
