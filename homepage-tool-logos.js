@@ -43,146 +43,80 @@ class HomepageToolLogoManager {
      */
     initializeToolMappings() {
         // 预定义的工具LOGO映射
+        const createLogoConfig = (url, fallback, name) => ({
+            url,
+            fallback,
+            name,
+            direct: true // 直接使用远程LOGO，避免跨域fetch导致的加载失败
+        });
+
+        const googleLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/512px-Google_2015_logo.svg.png';
+        const cloudflareLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cloudflare_Logo.svg/512px-Cloudflare_Logo.svg.png';
+        const vercelLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/512px-Vercel_logo_black.svg.png';
+        const githubLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/512px-Octicons-mark-github.svg.png';
+        const similarwebLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/SimilarWeb_logo.svg/512px-SimilarWeb_logo.svg.png';
+        const xLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/X_logo_2023_%28white%29.png/512px-X_logo_2023_%28white%29.png';
+        const instagramLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/512px-Instagram_logo_2016.svg.png';
+        const facebookLogoUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Facebook_logo.svg/512px-Facebook_logo.svg.png';
+        const deepseekLogoUrl = 'https://chat.deepseek.com/favicon.ico';
+        const chatgptLogoUrl = 'https://chatgpt.com/favicon.ico';
+        const perplexityLogoUrl = 'https://www.perplexity.ai/favicon.ico';
+        const chatbotLogoUrl = 'https://chat.chatbot.app/favicon.ico';
+        const claudeLogoUrl = 'https://claude.ai/favicon.ico';
+        const domainLogoUrl = 'https://www.domain.com/favicon.ico';
+        const queryDomainsLogoUrl = 'https://query.domains/favicon.ico';
+        const spaceshipLogoUrl = 'https://www.spaceship.com/favicon.ico';
+        const monetagLogoUrl = 'https://monetag.com/favicon.ico';
+        const propellerLogoUrl = 'https://propellerads.com/favicon.ico';
+        const mediaNetLogoUrl = 'https://www.media.net/favicon.ico';
+        const adsterraLogoUrl = 'https://adsterra.com/favicon.ico';
+
         this.toolMappings = {
             // AI Foundation Models
-            'chat.deepseek.com': {
-                url: 'https://chat.deepseek.com/favicon.ico',
-                fallback: '🔍',
-                name: 'Deepseek'
-            },
-            'deepseek.com': {
-                url: 'https://chat.deepseek.com/favicon.ico',
-                fallback: '🔍',
-                name: 'Deepseek'
-            },
-            'gemini.google.com': {
-                url: 'https://www.google.com/favicon.ico',
-                fallback: '🔍',
-                name: 'Google Gemini'
-            },
-            'google.com': {
-                url: 'https://www.google.com/favicon.ico',
-                fallback: '🔍',
-                name: 'Google'
-            },
-            'www.perplexity.ai': {
-                url: 'https://www.perplexity.ai/favicon.ico',
-                fallback: '🤔',
-                name: 'Perplexity'
-            },
-            'perplexity.ai': {
-                url: 'https://www.perplexity.ai/favicon.ico',
-                fallback: '🤔',
-                name: 'Perplexity'
-            },
-            'chat.chatbot.app': {
-                url: 'https://chat.chatbot.app/favicon.ico',
-                fallback: '💬',
-                name: 'ChatBot'
-            },
-            'chatbot.app': {
-                url: 'https://chat.chatbot.app/favicon.ico',
-                fallback: '💬',
-                name: 'ChatBot'
-            },
-            'claude.ai': {
-                url: 'https://claude.ai/favicon.ico',
-                fallback: '🧠',
-                name: 'Claude'
-            },
+            'chat.deepseek.com': createLogoConfig(deepseekLogoUrl, '🔍', 'Deepseek'),
+            'deepseek.com': createLogoConfig(deepseekLogoUrl, '🔍', 'Deepseek'),
+            'chatgpt.com': createLogoConfig(chatgptLogoUrl, '🤖', 'ChatGPT'),
+            'www.chatgpt.com': createLogoConfig(chatgptLogoUrl, '🤖', 'ChatGPT'),
+            'gemini.google.com': createLogoConfig(googleLogoUrl, '🔍', 'Google Gemini'),
+            'google.com': createLogoConfig(googleLogoUrl, '🔍', 'Google'),
+            'www.perplexity.ai': createLogoConfig(perplexityLogoUrl, '🤔', 'Perplexity'),
+            'perplexity.ai': createLogoConfig(perplexityLogoUrl, '🤔', 'Perplexity'),
+            'chat.chatbot.app': createLogoConfig(chatbotLogoUrl, '💬', 'ChatBot'),
+            'chatbot.app': createLogoConfig(chatbotLogoUrl, '💬', 'ChatBot'),
+            'claude.ai': createLogoConfig(claudeLogoUrl, '🧠', 'Claude'),
 
             // 网站服务
-            'cloudflare.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Cloudflare_Logo.svg/1200px-Cloudflare_Logo.svg.png',
-                fallback: '☁️',
-                name: 'Cloudflare'
-            },
-            'vercel.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/1200px-Vercel_logo_black.svg.png',
-                fallback: '⚡',
-                name: 'Vercel'
-            },
-            'domain.com': {
-                url: 'https://www.domain.com/favicon.ico',
-                fallback: '🌐',
-                name: 'Domain.com'
-            },
-            'github.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png',
-                fallback: '🐙',
-                name: 'GitHub'
-            },
+            'cloudflare.com': createLogoConfig(cloudflareLogoUrl, '☁️', 'Cloudflare'),
+            'www.cloudflare.com': createLogoConfig(cloudflareLogoUrl, '☁️', 'Cloudflare'),
+            'vercel.com': createLogoConfig(vercelLogoUrl, '⚡', 'Vercel'),
+            'domain.com': createLogoConfig(domainLogoUrl, '🌐', 'Domain.com'),
+            'www.domain.com': createLogoConfig(domainLogoUrl, '🌐', 'Domain.com'),
+            'github.com': createLogoConfig(githubLogoUrl, '🐙', 'GitHub'),
+            'query.domains': createLogoConfig(queryDomainsLogoUrl, '🧭', 'Query.Domains'),
 
             // 赚美金工具
-            'adsense.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '💰',
-                name: 'Google AdSense'
-            },
-            'analytics.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '📊',
-                name: 'Google Analytics'
-            },
-            'trends.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '📈',
-                name: 'Google Trends'
-            },
-            'search.google.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png',
-                fallback: '🔍',
-                name: 'Google Search Console'
-            },
-            'spaceship.com': {
-                url: 'https://www.spaceship.com/favicon.ico',
-                fallback: '🚀',
-                name: 'Spaceship'
-            },
-            'similarweb.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/SimilarWeb_logo.svg/1200px-SimilarWeb_logo.svg.png',
-                fallback: '📊',
-                name: 'SimilarWeb'
-            },
+            'adsense.google.com': createLogoConfig(googleLogoUrl, '💰', 'Google AdSense'),
+            'analytics.google.com': createLogoConfig(googleLogoUrl, '📊', 'Google Analytics'),
+            'trends.google.com': createLogoConfig(googleLogoUrl, '📈', 'Google Trends'),
+            'search.google.com': createLogoConfig(googleLogoUrl, '🔍', 'Google Search Console'),
+            'spaceship.com': createLogoConfig(spaceshipLogoUrl, '🚀', 'Spaceship'),
+            'www.spaceship.com': createLogoConfig(spaceshipLogoUrl, '🚀', 'Spaceship'),
+            'similarweb.com': createLogoConfig(similarwebLogoUrl, '📊', 'SimilarWeb'),
+            'www.similarweb.com': createLogoConfig(similarwebLogoUrl, '📊', 'SimilarWeb'),
 
             // 社交媒体
-            'x.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/X_logo_2023_%28white%29.png/1200px-X_logo_2023_%28white%29.png',
-                fallback: '🐦',
-                name: 'X (Twitter)'
-            },
-            'instagram.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png',
-                fallback: '📷',
-                name: 'Instagram'
-            },
-            'facebook.com': {
-                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Facebook_logo.svg/1200px-Facebook_logo.svg.png',
-                fallback: '📘',
-                name: 'Facebook'
-            },
+            'x.com': createLogoConfig(xLogoUrl, '🐦', 'X (Twitter)'),
+            'instagram.com': createLogoConfig(instagramLogoUrl, '📷', 'Instagram'),
+            'www.instagram.com': createLogoConfig(instagramLogoUrl, '📷', 'Instagram'),
+            'facebook.com': createLogoConfig(facebookLogoUrl, '📘', 'Facebook'),
+            'www.facebook.com': createLogoConfig(facebookLogoUrl, '📘', 'Facebook'),
 
             // 广告平台
-            'monetag.com': {
-                url: 'https://monetag.com/favicon.ico',
-                fallback: '💰',
-                name: 'Monetag'
-            },
-            'propellerads.com': {
-                url: 'https://propellerads.com/favicon.ico',
-                fallback: '📢',
-                name: 'PropellerAds'
-            },
-            'media.net': {
-                url: 'https://www.media.net/favicon.ico',
-                fallback: '📺',
-                name: 'Media.net'
-            },
-            'adsterra.com': {
-                url: 'https://adsterra.com/favicon.ico',
-                fallback: '📈',
-                name: 'Adsterra'
-            }
+            'monetag.com': createLogoConfig(monetagLogoUrl, '💰', 'Monetag'),
+            'propellerads.com': createLogoConfig(propellerLogoUrl, '📢', 'PropellerAds'),
+            'media.net': createLogoConfig(mediaNetLogoUrl, '📺', 'Media.net'),
+            'www.media.net': createLogoConfig(mediaNetLogoUrl, '📺', 'Media.net'),
+            'adsterra.com': createLogoConfig(adsterraLogoUrl, '📈', 'Adsterra')
         };
     }
 
@@ -236,11 +170,14 @@ class HomepageToolLogoManager {
                     card.insertBefore(logoBg, card.firstChild);
                 }
                 
-                if (logo.startsWith('data:image')) {
+                if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
                     // 图片LOGO
                     logoBg.style.backgroundImage = `url(${logo})`;
-                } else {
+                    logoBg.style.background = 'none';
+                    logoBg.innerHTML = '';
+                } else if (logo) {
                     // Emoji fallback - 创建渐变背景
+                    logoBg.style.backgroundImage = 'none';
                     logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
                     logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
                 }
@@ -267,14 +204,21 @@ class HomepageToolLogoManager {
         // 检查预定义映射
         if (this.toolMappings[domain]) {
             const logoData = this.toolMappings[domain];
+            const { url, fallback, direct } = logoData;
+
+            if (direct) {
+                this.logoCache.set(domain, url);
+                this.saveToLocalStorage();
+                return url;
+            }
+
             try {
-                const logoUrl = await this.fetchLogo(logoData.url, domain);
+                const logoUrl = await this.fetchLogo(url, domain);
                 this.logoCache.set(domain, logoUrl);
                 this.saveToLocalStorage();
                 return logoUrl;
             } catch (error) {
                 console.warn(`Failed to fetch logo for ${domain}:`, error);
-                const fallback = logoData.fallback;
                 this.logoCache.set(domain, fallback);
                 this.saveToLocalStorage();
                 return fallback;
@@ -366,10 +310,12 @@ class HomepageToolLogoManager {
             'google': '🔍',
             'perplexity': '🤔',
             'chatbot': '💬',
+            'chatgpt': '🤖',
             'claude': '🧠',
             'cloudflare': '☁️',
             'vercel': '⚡',
             'domain': '🌐',
+            'query': '🧭',
             'github': '🐙',
             'adsense': '💰',
             'analytics': '📊',
