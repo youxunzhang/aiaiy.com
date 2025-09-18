@@ -614,255 +614,15 @@
             
             <!-- 筛选按钮 -->
             <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterByCategory('all')">全部</button>
-                <button class="filter-btn" onclick="filterByCategory('chat')">聊天对话</button>
-                <button class="filter-btn" onclick="filterByCategory('creative')">创意工具</button>
-                <button class="filter-btn" onclick="filterByCategory('productivity')">生产力</button>
-                <button class="filter-btn" onclick="filterByCategory('business')">商业应用</button>
+                <button class="filter-btn active" onclick="filterByCategory(event, 'all')">全部</button>
+                <button class="filter-btn" onclick="filterByCategory(event, 'chat')">聊天对话</button>
+                <button class="filter-btn" onclick="filterByCategory(event, 'creative')">创意工具</button>
+                <button class="filter-btn" onclick="filterByCategory(event, 'productivity')">生产力</button>
+                <button class="filter-btn" onclick="filterByCategory(event, 'business')">商业应用</button>
             </div>
             
             <div id="rankingContainer">
-                <div class="grid grid-cols-1 gap-6">
-                    <!-- 第1名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="chat" style="--stagger-index: 0;">
-                        <div class="rank-badge rank-1">1</div>
-                        <div class="tool-info">
-                            <div class="tool-name">ChatGPT</div>
-                            <div class="tool-desc">免费使用的AI对话系统，用于对话、洞察和任务自动化</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>chatgpt.com</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>54亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://chatgpt.com?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第2名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="chat" style="--stagger-index: 1;">
-                        <div class="rank-badge rank-2">2</div>
-                        <div class="tool-info">
-                            <div class="tool-name">OpenAI</div>
-                            <div class="tool-desc">AI研究和部署公司，专注于构建安全有益的AGI</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>openai.com</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>6.47亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://openai.com?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第3名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="creative" style="--stagger-index: 2;">
-                        <div class="rank-badge rank-3">3</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Adobe</div>
-                            <div class="tool-desc">提供创意、营销和文档管理解决方案</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>adobe.com</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>3.08亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>PayPal</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://adobe.com?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第4名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="business" style="--stagger-index: 3;">
-                        <div class="rank-badge rank-other">4</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Salesforce Platform</div>
-                            <div class="tool-desc">数据、AI、CRM、开发和安全的统一平台</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>force.com</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>1.37亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>多种支付</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://force.com?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第5名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="productivity" style="--stagger-index: 4;">
-                        <div class="rank-badge rank-other">5</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Notion</div>
-                            <div class="tool-desc">一体化工作空间，用于笔记、文档、项目和AI驱动的生产力</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>notion.so</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>1.56亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe/Paddle</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://www.notion.so?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第6名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="chat" style="--stagger-index: 5;">
-                        <div class="rank-badge rank-other">6</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Perplexity AI</div>
-                            <div class="tool-desc">使用大语言模型的AI搜索引擎，用于信息发现和问题回答</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>perplexity.ai</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>1.30亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe/Paddle</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://www.perplexity.ai?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第7名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="chat" style="--stagger-index: 6;">
-                        <div class="rank-badge rank-other">7</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Claude</div>
-                            <div class="tool-desc">Anthropic的AI助手，通过自然语言帮助完成任务</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>claude.ai</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>1.13亿月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://claude.ai?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第8名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="creative" style="--stagger-index: 7;">
-                        <div class="rank-badge rank-other">8</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Remove.bg</div>
-                            <div class="tool-desc">AI驱动的背景去除工具，5秒内处理图像</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>remove.bg</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>6500万月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Paddle</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://www.remove.bg?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第9名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="chat" style="--stagger-index: 8;">
-                        <div class="rank-badge rank-other">9</div>
-                        <div class="tool-info">
-                            <div class="tool-name">SPICYCHAT.AI</div>
-                            <div class="tool-desc">AI角色聊天平台，允许用户聊天和创建机器人</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>spicychat.ai</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>4720万月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>Stripe</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://spicychat.ai?ref=n2mwzdu" target="_blank" class="visit-btn">访问</a>
-                    </div>
-
-                    <!-- 第10名 -->
-                    <div class="ranking-card fade-in stagger-animation" data-category="creative" style="--stagger-index: 9;">
-                        <div class="rank-badge rank-other">10</div>
-                        <div class="tool-info">
-                            <div class="tool-name">Shutterstock</div>
-                            <div class="tool-desc">提供免版税库存图像、视频和音乐，配备AI驱动的创意工具</div>
-                            <div class="tool-stats">
-                                <div class="stat-item">
-                                    <span>🌐</span>
-                                    <span>shutterstock.com</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>👥</span>
-                                    <span>5940万月访问</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span>💳</span>
-                                    <span>PayPal</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="https://shutterstock.com?utm_source=toolify" target="_blank" class="visit-btn">访问</a>
-                    </div>
-                </div>
+                <div id="rankingList" class="grid grid-cols-1 gap-6"></div>
             </div>
         </section>
 
@@ -949,6 +709,1044 @@
     </footer>
 
     <script>
+        const rankingData = [
+            {
+                "rank": 1,
+                "name": "ChatGPT",
+                "description": "免费使用的AI对话系统，用于对话、洞察和任务自动化",
+                "website": "chatgpt.com",
+                "visits": "54亿月访问",
+                "payment": "Stripe",
+                "link": "https://chatgpt.com?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 2,
+                "name": "OpenAI",
+                "description": "AI研究和部署公司，专注于构建安全有益的AGI",
+                "website": "openai.com",
+                "visits": "6.47亿月访问",
+                "payment": "Stripe",
+                "link": "https://openai.com?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 3,
+                "name": "Adobe",
+                "description": "提供创意、营销和文档管理解决方案",
+                "website": "adobe.com",
+                "visits": "3.08亿月访问",
+                "payment": "PayPal",
+                "link": "https://adobe.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 4,
+                "name": "Salesforce Platform",
+                "description": "数据、AI、CRM、开发和安全的统一平台",
+                "website": "force.com",
+                "visits": "1.37亿月访问",
+                "payment": "多种支付",
+                "link": "https://force.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 5,
+                "name": "Notion",
+                "description": "一体化工作空间，用于笔记、文档、项目和AI驱动的生产力",
+                "website": "notion.so",
+                "visits": "1.56亿月访问",
+                "payment": "Stripe/Paddle",
+                "link": "https://www.notion.so?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 6,
+                "name": "Perplexity AI",
+                "description": "使用大语言模型的AI搜索引擎，用于信息发现和问题回答",
+                "website": "perplexity.ai",
+                "visits": "1.30亿月访问",
+                "payment": "Stripe",
+                "link": "https://perplexity.ai?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 7,
+                "name": "Microsoft Copilot",
+                "description": "微软推出的AI副手，集成于Office和Edge中提升效率",
+                "website": "copilot.microsoft.com",
+                "visits": "8.40亿月访问",
+                "payment": "Microsoft",
+                "link": "https://copilot.microsoft.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 8,
+                "name": "Midjourney",
+                "description": "通过文本提示生成高质量艺术图像的AI平台",
+                "website": "midjourney.com",
+                "visits": "1.86亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.midjourney.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 9,
+                "name": "Canva",
+                "description": "提供AI设计助手的在线设计平台，支持图形和视频创作",
+                "website": "canva.com",
+                "visits": "2.79亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.canva.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 10,
+                "name": "Shutterstock",
+                "description": "提供免版税库存图像、视频和音乐，配备AI驱动的创意工具",
+                "website": "shutterstock.com",
+                "visits": "5940万月访问",
+                "payment": "PayPal",
+                "link": "https://shutterstock.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 11,
+                "name": "Google DeepMind",
+                "description": "谷歌旗下的AI研究实验室，专注前沿智能技术",
+                "website": "deepmind.google",
+                "visits": "4750万月访问",
+                "payment": "Google",
+                "link": "https://deepmind.google?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 12,
+                "name": "Anthropic",
+                "description": "构建负责任的大模型和Claude系列AI助手",
+                "website": "anthropic.com",
+                "visits": "4100万月访问",
+                "payment": "Stripe",
+                "link": "https://www.anthropic.com?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 13,
+                "name": "Stability AI",
+                "description": "开源图像生成模型Stable Diffusion的开发团队",
+                "website": "stability.ai",
+                "visits": "3800万月访问",
+                "payment": "Stripe",
+                "link": "https://stability.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 14,
+                "name": "Jasper",
+                "description": "面向营销团队的AI文案和内容创作平台",
+                "website": "jasper.ai",
+                "visits": "3200万月访问",
+                "payment": "Stripe",
+                "link": "https://www.jasper.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 15,
+                "name": "Descript",
+                "description": "集成AI转录、剪辑和配音的音视频编辑工具",
+                "website": "descript.com",
+                "visits": "3000万月访问",
+                "payment": "Stripe",
+                "link": "https://www.descript.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 16,
+                "name": "Runway",
+                "description": "提供AI视频生成、抠像和特效制作的创意平台",
+                "website": "runwayml.com",
+                "visits": "2800万月访问",
+                "payment": "Stripe",
+                "link": "https://runwayml.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 17,
+                "name": "Figma",
+                "description": "协作式界面设计平台，集成AI协助原型和设计系统",
+                "website": "figma.com",
+                "visits": "2.10亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.figma.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 18,
+                "name": "Grammarly",
+                "description": "AI驱动的语法和写作助手，提供即时校对和建议",
+                "website": "grammarly.com",
+                "visits": "1.45亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.grammarly.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 19,
+                "name": "GitHub Copilot",
+                "description": "基于OpenAI模型的编程AI助手，加速代码编写",
+                "website": "github.com",
+                "visits": "1.20亿月访问",
+                "payment": "GitHub",
+                "link": "https://github.com/features/copilot?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 20,
+                "name": "Hugging Face",
+                "description": "开源模型与数据社区，提供Transformers与推理服务",
+                "website": "huggingface.co",
+                "visits": "6500万月访问",
+                "payment": "Stripe",
+                "link": "https://huggingface.co?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 21,
+                "name": "Databricks",
+                "description": "统一数据湖仓平台，帮助企业训练和部署AI模型",
+                "website": "databricks.com",
+                "visits": "5900万月访问",
+                "payment": "多种支付",
+                "link": "https://www.databricks.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 22,
+                "name": "Snowflake",
+                "description": "云原生数据仓库，提供AI和机器学习数据基础设施",
+                "website": "snowflake.com",
+                "visits": "6200万月访问",
+                "payment": "多种支付",
+                "link": "https://www.snowflake.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 23,
+                "name": "DataRobot",
+                "description": "自动化机器学习平台，支持企业级AI生命周期管理",
+                "website": "datarobot.com",
+                "visits": "2700万月访问",
+                "payment": "Stripe",
+                "link": "https://www.datarobot.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 24,
+                "name": "UiPath",
+                "description": "领先的机器人流程自动化平台，融合AI识别和处理",
+                "website": "uipath.com",
+                "visits": "7300万月访问",
+                "payment": "多种支付",
+                "link": "https://www.uipath.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 25,
+                "name": "Automation Anywhere",
+                "description": "企业级自动化平台，提供AI驱动的数字劳动力",
+                "website": "automationanywhere.com",
+                "visits": "4200万月访问",
+                "payment": "Stripe",
+                "link": "https://www.automationanywhere.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 26,
+                "name": "ServiceNow",
+                "description": "数字化工作流程平台，集成Now Assist等AI服务",
+                "website": "servicenow.com",
+                "visits": "8500万月访问",
+                "payment": "多种支付",
+                "link": "https://www.servicenow.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 27,
+                "name": "IBM Watson",
+                "description": "IBM的AI平台，提供自然语言、自动化和分析能力",
+                "website": "ibm.com",
+                "visits": "6800万月访问",
+                "payment": "多种支付",
+                "link": "https://www.ibm.com/watson?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 28,
+                "name": "Oracle AI",
+                "description": "Oracle云平台中的AI服务，支持企业智能应用",
+                "website": "oracle.com",
+                "visits": "7900万月访问",
+                "payment": "多种支付",
+                "link": "https://www.oracle.com/artificial-intelligence/?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 29,
+                "name": "SAP AI",
+                "description": "SAP业务系统中的AI功能，帮助企业智能决策",
+                "website": "sap.com",
+                "visits": "7600万月访问",
+                "payment": "多种支付",
+                "link": "https://www.sap.com/products/artificial-intelligence.html?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 30,
+                "name": "Salesforce Einstein",
+                "description": "Salesforce平台的智能分析与预测AI组件",
+                "website": "salesforce.com",
+                "visits": "6400万月访问",
+                "payment": "多种支付",
+                "link": "https://www.salesforce.com/products/einstein/overview/?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 31,
+                "name": "Cohere",
+                "description": "为企业提供多语言大模型和检索增强生成服务",
+                "website": "cohere.com",
+                "visits": "3600万月访问",
+                "payment": "Stripe",
+                "link": "https://cohere.com?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 32,
+                "name": "Character.AI",
+                "description": "创建和体验虚拟角色对话的生成式AI平台",
+                "website": "character.ai",
+                "visits": "2.20亿月访问",
+                "payment": "Stripe",
+                "link": "https://beta.character.ai?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 33,
+                "name": "You.com",
+                "description": "提供可定制助手和搜索体验的AI引擎",
+                "website": "you.com",
+                "visits": "5100万月访问",
+                "payment": "Stripe",
+                "link": "https://you.com?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 34,
+                "name": "Replit",
+                "description": "云端开发环境，集成Ghostwriter等AI编程助手",
+                "website": "replit.com",
+                "visits": "9000万月访问",
+                "payment": "Stripe",
+                "link": "https://replit.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 35,
+                "name": "Hex",
+                "description": "数据分析协作平台，提供AI SQL和仪表盘生成功能",
+                "website": "hex.tech",
+                "visits": "1400万月访问",
+                "payment": "Stripe",
+                "link": "https://hex.tech?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 36,
+                "name": "Scale AI",
+                "description": "提供高质量数据标注和AI评估的基础设施平台",
+                "website": "scale.com",
+                "visits": "3300万月访问",
+                "payment": "多种支付",
+                "link": "https://scale.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 37,
+                "name": "Weights & Biases",
+                "description": "机器学习实验跟踪与可视化平台，支持团队协作",
+                "website": "wandb.ai",
+                "visits": "2500万月访问",
+                "payment": "Stripe",
+                "link": "https://wandb.ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 38,
+                "name": "Pinecone",
+                "description": "用于语义检索与推荐系统的向量数据库服务",
+                "website": "pinecone.io",
+                "visits": "1900万月访问",
+                "payment": "Stripe",
+                "link": "https://www.pinecone.io?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 39,
+                "name": "LangChain",
+                "description": "构建AI应用的开源框架，支持检索、代理和链式调用",
+                "website": "langchain.com",
+                "visits": "2700万月访问",
+                "payment": "Stripe",
+                "link": "https://www.langchain.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 40,
+                "name": "Mistral AI",
+                "description": "欧洲领先的大模型提供商，专注高效开放模型",
+                "website": "mistral.ai",
+                "visits": "4500万月访问",
+                "payment": "Stripe",
+                "link": "https://mistral.ai?utm_source=toolify",
+                "category": "chat"
+            },
+            {
+                "rank": 41,
+                "name": "ElevenLabs",
+                "description": "AI语音克隆与配音平台，支持多语言语音生成",
+                "website": "elevenlabs.io",
+                "visits": "3200万月访问",
+                "payment": "Stripe",
+                "link": "https://elevenlabs.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 42,
+                "name": "Synthesia",
+                "description": "利用AI虚拟人快速生成多语言视频内容的平台",
+                "website": "synthesia.io",
+                "visits": "4100万月访问",
+                "payment": "Stripe",
+                "link": "https://www.synthesia.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 43,
+                "name": "Soundraw",
+                "description": "自动生成免版税音乐的AI作曲工具",
+                "website": "soundraw.io",
+                "visits": "1700万月访问",
+                "payment": "Stripe",
+                "link": "https://soundraw.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 44,
+                "name": "AIVA",
+                "description": "为影视、游戏和广告创作音乐的AI作曲家",
+                "website": "aiva.ai",
+                "visits": "1200万月访问",
+                "payment": "Stripe",
+                "link": "https://www.aiva.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 45,
+                "name": "Lobe",
+                "description": "微软推出的可视化机器学习模型训练工具",
+                "website": "lobe.ai",
+                "visits": "1500万月访问",
+                "payment": "Microsoft",
+                "link": "https://lobe.ai?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 46,
+                "name": "C3 AI",
+                "description": "企业AI应用平台，覆盖预测维护和供应链优化",
+                "website": "c3.ai",
+                "visits": "5200万月访问",
+                "payment": "多种支付",
+                "link": "https://c3.ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 47,
+                "name": "Palantir",
+                "description": "面向政府与企业的数据整合与AI分析平台",
+                "website": "palantir.com",
+                "visits": "9100万月访问",
+                "payment": "多种支付",
+                "link": "https://www.palantir.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 48,
+                "name": "Clarifai",
+                "description": "视觉识别和多模态AI平台，提供API与模型托管",
+                "website": "clarifai.com",
+                "visits": "2100万月访问",
+                "payment": "Stripe",
+                "link": "https://www.clarifai.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 49,
+                "name": "SenseTime",
+                "description": "中国领先的人工智能公司，覆盖视觉、自动驾驶等领域",
+                "website": "sensetime.com",
+                "visits": "1.10亿月访问",
+                "payment": "多种支付",
+                "link": "https://www.sensetime.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 50,
+                "name": "Megvii",
+                "description": "旷视科技提供视觉算法和城市物联网AI解决方案",
+                "website": "megvii.com",
+                "visits": "9800万月访问",
+                "payment": "多种支付",
+                "link": "https://www.megvii.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 51,
+                "name": "iFlytek",
+                "description": "科大讯飞语音识别与智慧教育AI服务商",
+                "website": "iflytek.com",
+                "visits": "1.50亿月访问",
+                "payment": "多种支付",
+                "link": "https://www.iflytek.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 52,
+                "name": "Yitu Technology",
+                "description": "依图科技专注计算机视觉与医疗AI解决方案",
+                "website": "yitutech.com",
+                "visits": "7300万月访问",
+                "payment": "多种支付",
+                "link": "https://www.yitutech.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 53,
+                "name": "DeepL",
+                "description": "高质量的AI翻译服务，支持多语言文档翻译",
+                "website": "deepl.com",
+                "visits": "1.25亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.deepl.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 54,
+                "name": "QuillBot",
+                "description": "智能改写与语法检查工具，帮助提升英文写作",
+                "website": "quillbot.com",
+                "visits": "8900万月访问",
+                "payment": "Stripe",
+                "link": "https://quillbot.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 55,
+                "name": "Copy.ai",
+                "description": "面向营销的AI文案生成平台，支持广告、社交和邮件",
+                "website": "copy.ai",
+                "visits": "6500万月访问",
+                "payment": "Stripe",
+                "link": "https://www.copy.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 56,
+                "name": "Writesonic",
+                "description": "覆盖博客、广告和聊天机器人的AI内容创作平台",
+                "website": "writesonic.com",
+                "visits": "5800万月访问",
+                "payment": "Stripe",
+                "link": "https://writesonic.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 57,
+                "name": "Rytr",
+                "description": "轻量级AI写作助手，适合快速生成短内容",
+                "website": "rytr.me",
+                "visits": "3600万月访问",
+                "payment": "Stripe",
+                "link": "https://rytr.me?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 58,
+                "name": "Anyword",
+                "description": "营销优化AI平台，提供转化率预测与文案生成",
+                "website": "anyword.com",
+                "visits": "2900万月访问",
+                "payment": "Stripe",
+                "link": "https://anyword.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 59,
+                "name": "Wordtune",
+                "description": "AI改写和总结工具，帮助生成清晰自然的英文表达",
+                "website": "wordtune.com",
+                "visits": "4700万月访问",
+                "payment": "Stripe",
+                "link": "https://www.wordtune.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 60,
+                "name": "HyperWrite",
+                "description": "个人AI写作助手，提供文案建议与自动撰写",
+                "website": "hyperwriteai.com",
+                "visits": "2200万月访问",
+                "payment": "Stripe",
+                "link": "https://hyperwriteai.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 61,
+                "name": "Sudowrite",
+                "description": "专为小说作者打造的AI灵感与续写工具",
+                "website": "sudowrite.com",
+                "visits": "1800万月访问",
+                "payment": "Stripe",
+                "link": "https://www.sudowrite.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 62,
+                "name": "NovelAI",
+                "description": "提供故事生成和动漫图像创作的AI服务",
+                "website": "novelai.net",
+                "visits": "2600万月访问",
+                "payment": "Stripe",
+                "link": "https://novelai.net?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 63,
+                "name": "Rephrase.ai",
+                "description": "利用AI数字人批量制作个性化营销视频",
+                "website": "rephrase.ai",
+                "visits": "1500万月访问",
+                "payment": "Stripe",
+                "link": "https://www.rephrase.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 64,
+                "name": "Synthesys",
+                "description": "提供AI主播与语音合成的企业级视频生成平台",
+                "website": "synthesys.io",
+                "visits": "1300万月访问",
+                "payment": "Stripe",
+                "link": "https://synthesys.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 65,
+                "name": "Pictory",
+                "description": "自动将长视频和文章转换为短视频内容",
+                "website": "pictory.ai",
+                "visits": "2400万月访问",
+                "payment": "Stripe",
+                "link": "https://pictory.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 66,
+                "name": "Lumen5",
+                "description": "AI驱动的视频制作平台，快速生成社交媒体内容",
+                "website": "lumen5.com",
+                "visits": "3400万月访问",
+                "payment": "Stripe",
+                "link": "https://lumen5.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 67,
+                "name": "InVideo",
+                "description": "提供模板和AI文案生成的在线视频编辑平台",
+                "website": "invideo.io",
+                "visits": "5200万月访问",
+                "payment": "Stripe",
+                "link": "https://invideo.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 68,
+                "name": "VEED.IO",
+                "description": "简单易用的视频编辑平台，支持字幕与音频AI工具",
+                "website": "veed.io",
+                "visits": "7800万月访问",
+                "payment": "Stripe",
+                "link": "https://www.veed.io?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 69,
+                "name": "Kapwing",
+                "description": "在线多媒体创作工具，提供AI剪辑和文案功能",
+                "website": "kapwing.com",
+                "visits": "6900万月访问",
+                "payment": "Stripe",
+                "link": "https://www.kapwing.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 70,
+                "name": "Clipchamp",
+                "description": "微软旗下的在线视频编辑器，集成AI模板和自动字幕",
+                "website": "clipchamp.com",
+                "visits": "4800万月访问",
+                "payment": "Microsoft",
+                "link": "https://clipchamp.com?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 71,
+                "name": "Murf AI",
+                "description": "AI语音合成平台，提供自然发音的配音服务",
+                "website": "murf.ai",
+                "visits": "2700万月访问",
+                "payment": "Stripe",
+                "link": "https://murf.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 72,
+                "name": "Resemble AI",
+                "description": "提供语音克隆、情感控制和实时语音转换功能",
+                "website": "resemble.ai",
+                "visits": "1600万月访问",
+                "payment": "Stripe",
+                "link": "https://www.resemble.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 73,
+                "name": "Play.ht",
+                "description": "文字转语音平台，支持多语言高保真语音生成",
+                "website": "play.ht",
+                "visits": "2300万月访问",
+                "payment": "Stripe",
+                "link": "https://play.ht?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 74,
+                "name": "Cleanvoice AI",
+                "description": "自动清理播客和录音噪音、口头禅的AI工具",
+                "website": "cleanvoice.ai",
+                "visits": "900万月访问",
+                "payment": "Stripe",
+                "link": "https://cleanvoice.ai?utm_source=toolify",
+                "category": "creative"
+            },
+            {
+                "rank": 75,
+                "name": "Krisp AI",
+                "description": "实时语音降噪和会议转录助手，提高远程协作体验",
+                "website": "krisp.ai",
+                "visits": "3500万月访问",
+                "payment": "Stripe",
+                "link": "https://krisp.ai?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 76,
+                "name": "Otter.ai",
+                "description": "会议记录和转录平台，自动生成摘要与行动项",
+                "website": "otter.ai",
+                "visits": "7400万月访问",
+                "payment": "Stripe",
+                "link": "https://otter.ai?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 77,
+                "name": "Fireflies.ai",
+                "description": "AI会议助手，支持录音、转写和知识库搜索",
+                "website": "fireflies.ai",
+                "visits": "4200万月访问",
+                "payment": "Stripe",
+                "link": "https://fireflies.ai?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 78,
+                "name": "Gong",
+                "description": "销售智能平台，分析对话并提供AI洞察",
+                "website": "gong.io",
+                "visits": "5000万月访问",
+                "payment": "多种支付",
+                "link": "https://www.gong.io?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 79,
+                "name": "Chorus.ai",
+                "description": "销售通话分析工具，捕捉并整理客户反馈",
+                "website": "chorus.ai",
+                "visits": "2100万月访问",
+                "payment": "Stripe",
+                "link": "https://www.chorus.ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 80,
+                "name": "Drift",
+                "description": "对话式营销平台，利用AI聊天提升潜在客户转化",
+                "website": "drift.com",
+                "visits": "4600万月访问",
+                "payment": "Stripe",
+                "link": "https://www.drift.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 81,
+                "name": "Intercom",
+                "description": "客户沟通平台，结合Fin等AI客服助理",
+                "website": "intercom.com",
+                "visits": "1.05亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.intercom.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 82,
+                "name": "Zendesk AI",
+                "description": "Zendesk的智能客服解决方案，自动分类和回复工单",
+                "website": "zendesk.com",
+                "visits": "1.12亿月访问",
+                "payment": "多种支付",
+                "link": "https://www.zendesk.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 83,
+                "name": "Freshworks Neo",
+                "description": "Freshworks平台的AI引擎，驱动客服和销售自动化",
+                "website": "freshworks.com",
+                "visits": "6700万月访问",
+                "payment": "多种支付",
+                "link": "https://www.freshworks.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 84,
+                "name": "HubSpot AI",
+                "description": "HubSpot CRM中的AI内容、预测与报告工具",
+                "website": "hubspot.com",
+                "visits": "1.48亿月访问",
+                "payment": "多种支付",
+                "link": "https://www.hubspot.com/products/ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 85,
+                "name": "Mailchimp AI",
+                "description": "提供智能受众洞察和内容优化的邮件营销平台",
+                "website": "mailchimp.com",
+                "visits": "1.34亿月访问",
+                "payment": "多种支付",
+                "link": "https://mailchimp.com/features/ai-tools/?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 86,
+                "name": "ActiveCampaign",
+                "description": "自动化营销与销售平台，内置预测发送等AI能力",
+                "website": "activecampaign.com",
+                "visits": "6200万月访问",
+                "payment": "多种支付",
+                "link": "https://www.activecampaign.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 87,
+                "name": "Klaviyo",
+                "description": "面向电商的AI营销自动化与个性化推荐平台",
+                "website": "klaviyo.com",
+                "visits": "5400万月访问",
+                "payment": "Stripe",
+                "link": "https://www.klaviyo.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 88,
+                "name": "Sprinklr AI",
+                "description": "统一的客户体验平台，提供AI洞察和社媒监测",
+                "website": "sprinklr.com",
+                "visits": "3800万月访问",
+                "payment": "多种支付",
+                "link": "https://www.sprinklr.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 89,
+                "name": "Sprout Social AI",
+                "description": "社交媒体管理平台，提供AI内容建议和分析",
+                "website": "sproutsocial.com",
+                "visits": "3600万月访问",
+                "payment": "多种支付",
+                "link": "https://sproutsocial.com?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 90,
+                "name": "Hootsuite Owly AI",
+                "description": "Hootsuite的AI助手，提升社交运营效率",
+                "website": "hootsuite.com",
+                "visits": "4200万月访问",
+                "payment": "多种支付",
+                "link": "https://www.hootsuite.com/platform/owlywriter-ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 91,
+                "name": "Buffer AI",
+                "description": "Buffer推出的AI灵感工具，帮助制定社交媒体内容",
+                "website": "buffer.com",
+                "visits": "3100万月访问",
+                "payment": "Stripe",
+                "link": "https://buffer.com/ai?utm_source=toolify",
+                "category": "business"
+            },
+            {
+                "rank": 92,
+                "name": "Glean",
+                "description": "企业知识搜索引擎，使用AI理解上下文并推荐信息",
+                "website": "glean.com",
+                "visits": "2800万月访问",
+                "payment": "Stripe",
+                "link": "https://www.glean.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 93,
+                "name": "Tome",
+                "description": "AI驱动的演示文稿平台，几分钟生成互动幻灯片",
+                "website": "tome.app",
+                "visits": "2600万月访问",
+                "payment": "Stripe",
+                "link": "https://tome.app?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 94,
+                "name": "Beautiful.ai",
+                "description": "自动布局演示文稿的AI设计工具",
+                "website": "beautiful.ai",
+                "visits": "2700万月访问",
+                "payment": "Stripe",
+                "link": "https://www.beautiful.ai?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 95,
+                "name": "Pitch",
+                "description": "协作式演示平台，提供AI写作和设计辅助",
+                "website": "pitch.com",
+                "visits": "2400万月访问",
+                "payment": "Stripe",
+                "link": "https://pitch.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 96,
+                "name": "Gamma",
+                "description": "通过提示生成视觉化页面和演示的AI工具",
+                "website": "gamma.app",
+                "visits": "2100万月访问",
+                "payment": "Stripe",
+                "link": "https://gamma.app?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 97,
+                "name": "Slidebean",
+                "description": "初创公司演示文稿平台，提供AI模板与财务建模",
+                "website": "slidebean.com",
+                "visits": "1900万月访问",
+                "payment": "Stripe",
+                "link": "https://slidebean.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 98,
+                "name": "Visme",
+                "description": "可视化设计平台，提供AI配色和信息图模板",
+                "website": "visme.co",
+                "visits": "4500万月访问",
+                "payment": "Stripe",
+                "link": "https://www.visme.co?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 99,
+                "name": "ClickUp",
+                "description": "一体化项目管理平台，内置AI文档和任务助手",
+                "website": "clickup.com",
+                "visits": "1.10亿月访问",
+                "payment": "Stripe",
+                "link": "https://clickup.com?utm_source=toolify",
+                "category": "productivity"
+            },
+            {
+                "rank": 100,
+                "name": "Airtable",
+                "description": "灵活的低代码平台，提供AI分类和自动化能力",
+                "website": "airtable.com",
+                "visits": "1.25亿月访问",
+                "payment": "Stripe",
+                "link": "https://www.airtable.com?utm_source=toolify",
+                "category": "productivity"
+            }
+        ];
+
+        function renderRankingCards() {
+            const rankingList = document.getElementById('rankingList');
+            if (!rankingList) return;
+            const fragments = rankingData.map((item, index) => {
+                const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'rank-other';
+                return `
+                    <div class="ranking-card fade-in stagger-animation" data-category="${item.category}" style="--stagger-index: ${index};">
+                        <div class="rank-badge ${rankClass}">${item.rank}</div>
+                        <div class="tool-info">
+                            <div class="tool-name">${item.name}</div>
+                            <div class="tool-desc">${item.description}</div>
+                            <div class="tool-stats">
+                                <div class="stat-item">
+                                    <span>🌐</span>
+                                    <span>${item.website}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>👥</span>
+                                    <span>${item.visits}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>💳</span>
+                                    <span>${item.payment}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="${item.link}" target="_blank" class="visit-btn">访问</a>
+                    </div>
+                `;
+            }).join('');
+            rankingList.innerHTML = fragments;
+        }
+
+        renderRankingCards();
+
         // 移动端菜单控制
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -1007,14 +1805,16 @@
         });
         
         // 分类筛选功能
-        function filterByCategory(category) {
+        function filterByCategory(event, category) {
             const cards = document.querySelectorAll('.ranking-card');
             const buttons = document.querySelectorAll('.filter-btn');
-            
+
             // 更新按钮状态
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+
             // 筛选卡片
             cards.forEach(card => {
                 if (category === 'all' || card.dataset.category === category) {
