@@ -1188,16 +1188,6 @@
             }
         }
         
-
-
-        // 语言切换
-        function switchLanguage(lang) {
-            const currentUrl = window.location.href;
-            const baseUrl = currentUrl.split('?')[0]; // 移除URL中的查询参数
-            const newUrl = `${baseUrl}?lang=${lang}`;
-            window.location.href = newUrl;
-        }
-        
         // 滚动动画
         const observerOptions = {
             threshold: 0.1,
@@ -1218,31 +1208,7 @@
             observer.observe(el);
         });
 
-        // 页面加载时检查URL参数并设置语言
         document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            if (lang === 'zh') {
-                // 切换到中文
-                document.getElementById('heroTitle').textContent = 'AI工具导航';
-                document.getElementById('heroSubtitle').textContent = '发现最佳AI工具，提升您的生产力';
-                document.querySelectorAll('.language-switch').forEach(button => {
-                    if (button.textContent === '中文') {
-                        button.style.background = 'var(--accent-color)';
-                        button.style.borderColor = 'var(--text-primary)';
-                    }
-                });
-            } else if (lang === 'en') {
-                // 切换到英文
-                document.getElementById('heroTitle').textContent = 'AI Tools Navigator';
-                document.getElementById('heroSubtitle').textContent = 'Discover the best AI tools to boost your productivity';
-                document.querySelectorAll('.language-switch').forEach(button => {
-                    if (button.textContent === 'English') {
-                        button.style.background = 'var(--accent-color)';
-                        button.style.borderColor = 'var(--text-primary)';
-                    }
-                });
-            }
             createParticles();
         });
     </script>
@@ -1271,5 +1237,6 @@
     <!-- 引入首页LOGO功能验证器 -->
     <script src="verify-homepage-logos.js"></script>
     
+    <script src="language-switcher.js"></script>
 </body>
 </html>

@@ -176,8 +176,9 @@ class NavigationManager {
                 </nav>
 
                 <!-- 语言切换 -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <button class="language-switch w-full" onclick="switchLanguage('en')">English</button>
+                <div class="mt-8 pt-6 border-t border-gray-200 space-y-2">
+                    <button class="language-switch w-full" data-lang="zh-CN">中文</button>
+                    <button class="language-switch w-full" data-lang="en">English</button>
                 </div>
             </div>
         `;
@@ -308,18 +309,24 @@ class NavigationManager {
             }
 
             .language-switch {
-                background: #2563EB;
+                background: rgba(37, 99, 235, 0.08);
                 border: none;
-                border-radius: 0.375rem;
+                border-radius: 0.5rem;
                 padding: 0.5rem 1rem;
-                color: white;
+                color: #2563EB;
                 font-weight: 500;
                 cursor: pointer;
                 transition: all 0.2s ease;
             }
 
             .language-switch:hover {
-                background: #1d4ed8;
+                background: rgba(37, 99, 235, 0.15);
+                color: #1d4ed8;
+            }
+
+            .language-switch.language-active {
+                background: #2563EB;
+                color: #ffffff;
             }
 
             /* 移动端响应式 */
