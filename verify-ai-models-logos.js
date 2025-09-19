@@ -22,6 +22,11 @@ class AIModelsLogoVerifier {
                 expectedDomain: 'www.perplexity.ai'
             },
             {
+                name: 'Grok',
+                url: 'https://grok.com/',
+                expectedDomain: 'grok.com'
+            },
+            {
                 name: 'ChatBot',
                 url: 'https://chat.chatbot.app/',
                 expectedDomain: 'chat.chatbot.app'
