@@ -51,12 +51,15 @@ class HomepageLogoManager {
             'chatbot.app': 'https://chat.chatbot.app/favicon.ico',
             'chat.chatbot.app': 'https://chat.chatbot.app/favicon.ico',
             'claude.ai': 'https://claude.ai/favicon.ico',
+            'grok.com': 'https://grok.com/favicon.ico',
+            'www.grok.com': 'https://grok.com/favicon.ico',
             // 备用高质量LOGO
             'deepseek': 'https://chat.deepseek.com/favicon.ico',
             'gemini': 'https://www.google.com/favicon.ico',
             'perplexity': 'https://www.perplexity.ai/favicon.ico',
             'chatbot': 'https://chat.chatbot.app/favicon.ico',
             'claude': 'https://claude.ai/favicon.ico',
+            'grok': 'https://grok.com/favicon.ico',
             
             // Website Services
             'cloudflare.com': 'https://www.cloudflare.com/favicon.ico',
@@ -187,6 +190,7 @@ class HomepageLogoManager {
             'perplexity.ai': '🤔',
             'chatbot.app': '💬',
             'claude.ai': '🧠',
+            'grok.com': '🤖',
             'cloudflare.com': '☁️',
             'vercel.com': '▲',
             'domain.com': '🌐',

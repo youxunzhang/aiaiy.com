@@ -63,6 +63,7 @@ class HomepageToolLogoManager {
         const perplexityLogoUrl = 'https://www.perplexity.ai/favicon.ico';
         const chatbotLogoUrl = 'https://chat.chatbot.app/favicon.ico';
         const claudeLogoUrl = 'https://claude.ai/favicon.ico';
+        const grokLogoUrl = 'https://grok.com/favicon.ico';
         const domainLogoUrl = 'https://www.domain.com/favicon.ico';
         const queryDomainsLogoUrl = 'https://query.domains/favicon.ico';
         const spaceshipLogoUrl = 'https://www.spaceship.com/favicon.ico';
@@ -84,6 +85,8 @@ class HomepageToolLogoManager {
             'chat.chatbot.app': createLogoConfig(chatbotLogoUrl, '💬', 'ChatBot'),
             'chatbot.app': createLogoConfig(chatbotLogoUrl, '💬', 'ChatBot'),
             'claude.ai': createLogoConfig(claudeLogoUrl, '🧠', 'Claude'),
+            'grok.com': createLogoConfig(grokLogoUrl, '🤖', 'Grok'),
+            'www.grok.com': createLogoConfig(grokLogoUrl, '🤖', 'Grok'),
 
             // 网站服务
             'cloudflare.com': createLogoConfig(cloudflareLogoUrl, '☁️', 'Cloudflare'),
@@ -312,6 +315,7 @@ class HomepageToolLogoManager {
             'chatbot': '💬',
             'chatgpt': '🤖',
             'claude': '🧠',
+            'grok': '🤖',
             'cloudflare': '☁️',
             'vercel': '⚡',
             'domain': '🌐',

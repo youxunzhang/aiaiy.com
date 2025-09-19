@@ -112,6 +112,7 @@ class HomepageLogoOptimizer {
             'perplexity.ai': '🤔',
             'chatbot.app': '💬',
             'claude.ai': '🧠',
+            'grok.com': '🤖',
             'cloudflare.com': '☁️',
             'vercel.com': '▲',
             'domain.com': '🌐',
