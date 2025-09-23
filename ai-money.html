@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Money Makers | Monetize with Curated AI Resources</title>
+    <meta name="description" content="Discover curated AI monetization playbooks, launch tools, creative assets, and communities to help you build and grow profitable AI projects.">
+    <meta name="keywords" content="AI money, AI monetization, AI business, AI tools, launch tools, AI growth, AI startups">
+    <link rel="canonical" href="https://www.aiaiy.com/ai-money.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-gradient: radial-gradient(circle at top left, rgba(37, 99, 235, 0.25), transparent 45%),
+                             radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.18), transparent 40%),
+                             linear-gradient(160deg, #050712 0%, #0a1024 45%, #111936 100%);
+            --surface-glass: rgba(15, 23, 42, 0.6);
+            --surface-strong: rgba(15, 23, 42, 0.85);
+            --border-glow: rgba(96, 165, 250, 0.35);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5f5;
+            --accent: #60a5fa;
+            --accent-soft: rgba(96, 165, 250, 0.12);
+            --accent-strong: #38bdf8;
+            --success: #34d399;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.65;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.1), transparent 55%),
+                        radial-gradient(circle at 50% 30%, rgba(244, 114, 182, 0.08), transparent 50%);
+            opacity: 0.85;
+            z-index: -2;
+        }
+
+        .glow-orb {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.22) 0%, transparent 65%);
+            filter: blur(0px);
+            z-index: -1;
+            animation: float 16s ease-in-out infinite;
+        }
+
+        .glow-orb:nth-of-type(1) { top: -80px; right: 10%; animation-delay: 0s; }
+        .glow-orb:nth-of-type(2) { bottom: -120px; left: -80px; animation-delay: 4s; width: 380px; height: 380px; }
+        .glow-orb:nth-of-type(3) { top: 40%; left: 65%; animation-delay: 8s; width: 260px; height: 260px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+            50% { transform: translateY(-18px) scale(1.05); opacity: 0.95; }
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 11, 22, 0.78);
+            backdrop-filter: blur(22px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand span {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: #ffffff;
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+        }
+
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding: 2.75rem;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.45), rgba(37, 99, 235, 0.25));
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(148, 163, 184, 0.18), transparent 55%),
+                        radial-gradient(circle at 80% 35%, rgba(226, 232, 240, 0.12), transparent 55%);
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(96, 165, 250, 0.12);
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.12;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+        }
+
+        .cta-group {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.4rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta.primary {
+            background: linear-gradient(120deg, var(--accent) 0%, var(--accent-strong) 100%);
+            color: #0b1220;
+            box-shadow: 0 15px 35px rgba(96, 165, 250, 0.45);
+        }
+
+        .cta.secondary {
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--text-secondary);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.2rem 1.35rem;
+            border-radius: 18px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(226, 232, 240, 0.14);
+            backdrop-filter: blur(18px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .stat-card span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(148, 163, 184, 0.85);
+            margin-bottom: 0.55rem;
+        }
+
+        .stat-card strong {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .section {
+            margin-top: 4rem;
+        }
+
+        .section-header {
+            margin-bottom: 2.25rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(96, 165, 250, 0.08);
+            border: 1px solid rgba(96, 165, 250, 0.28);
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            margin-bottom: 0.9rem;
+        }
+
+        .section p {
+            max-width: 720px;
+            color: var(--text-secondary);
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .tool-card {
+            position: relative;
+            padding: 1.75rem;
+            border-radius: 22px;
+            background: var(--surface-glass);
+            border: 1px solid rgba(226, 232, 240, 0.12);
+            box-shadow: 0 18px 38px rgba(15, 23, 42, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            inset: -40% 60% 60% -40%;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.45);
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.25);
+        }
+
+        .tool-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .badge {
+            align-self: flex-start;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(148, 163, 184, 0.15);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: rgba(226, 232, 240, 0.85);
+        }
+
+        .tool-card h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+        }
+
+        .card-links {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            background: rgba(96, 165, 250, 0.14);
+            border: 1px solid rgba(96, 165, 250, 0.32);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-link:hover {
+            background: rgba(96, 165, 250, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .card-link.secondary {
+            background: rgba(148, 163, 184, 0.14);
+            border-color: rgba(148, 163, 184, 0.28);
+        }
+
+        .multi-links {
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: rgba(226, 232, 240, 0.75);
+            border-left: 2px solid rgba(96, 165, 250, 0.4);
+            padding-left: 0.75rem;
+        }
+
+        .cta-panel {
+            margin-top: 4.5rem;
+            padding: 2.5rem;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(37, 99, 235, 0.2));
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            text-align: center;
+            box-shadow: 0 25px 55px rgba(15, 23, 42, 0.45);
+        }
+
+        .cta-panel h3 {
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-panel p {
+            max-width: 640px;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: rgba(148, 163, 184, 0.75);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-container { padding: 1.5rem 1.25rem 4rem; }
+            .hero { padding: 2rem; }
+            .cta-group { flex-direction: column; align-items: flex-start; }
+            .tool-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 1.6rem; }
+            .cta { width: 100%; text-align: center; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a class="brand" href="index.html">
+                <svg width="34" height="34" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#38bdf8"/>
+                            <stop offset="1" stop-color="#6366f1"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="24" cy="24" r="22" fill="url(#logo-gradient)" stroke="#020617" stroke-width="2"/>
+                    <rect x="14" y="14" width="20" height="20" rx="6" fill="#020617" stroke="url(#logo-gradient)" stroke-width="2"/>
+                    <path d="M20 30V18M28 30V18M20 24H28" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="24" cy="24" r="3.2" fill="#38bdf8" fill-opacity="0.8"/>
+                </svg>
+                <span>AIAIY • AI Money Makers</span>
+            </a>
+            <nav class="nav-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="ai-tools-landing.html">AI Tools</a>
+                <a class="nav-link" href="ai-ads.html">AI Ads</a>
+                <a class="nav-link" href="ai-ranking.html">AI Rankings</a>
+                <a class="nav-link active" href="ai-money.html" aria-current="page">AI Money</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">Profit-ready AI playbooks</span>
+                <h1>AI Money Makers</h1>
+                <p>Launch faster, validate smarter, and diversify revenue with a hand-picked library of AI-first products, communities, and creative utilities. Each resource below unlocks a different way to monetize your skills, audiences, or code.</p>
+                <div class="cta-group">
+                    <a class="cta primary" href="#launch" rel="noopener">🚀 Explore launch kits</a>
+                    <a class="cta secondary" href="#blueprints" rel="noopener">📓 View monetization blueprints</a>
+                </div>
+            </div>
+            <div class="hero-stats" aria-label="Highlights">
+                <div class="stat-card">
+                    <span>Revenue Pathways</span>
+                    <strong>40+</strong>
+                    <p class="note">Tactical destinations covering product launches, branding, automation, and communities.</p>
+                </div>
+                <div class="stat-card">
+                    <span>Global Ready</span>
+                    <strong>Multi-lingual</strong>
+                    <p class="note">Mix of English and Chinese resources to help you monetize across borders.</p>
+                </div>
+                <div class="stat-card">
+                    <span>Creative Edge</span>
+                    <strong>Design &amp; Media</strong>
+                    <p class="note">Sharpen your brand with pro-grade visual, audio, and document tooling.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="launch">
+            <div class="section-header">
+                <div class="section-tag">Launch &amp; Scale</div>
+                <h2>Launch &amp; Scale Revenue Streams</h2>
+                <p>Ship faster, validate pricing, and find your first customers with these growth-focused tools and case studies.</p>
+            </div>
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Launchpad</span>
+                        <h3>FillHQ</h3>
+                        <p>Build marketing experiments, lead capture systems, and conversion funnels without friction.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.fillhq.com/" target="_blank" rel="noopener noreferrer">Visit FillHQ ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Subscription Ops</span>
+                        <h3>500MRR Dashboard</h3>
+                        <p>Track recurring revenue goals and stay accountable with community-driven maker metrics.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.500mrr.com/Year-2024" target="_blank" rel="noopener noreferrer">Join the dashboard ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">No-Code Stack</span>
+                        <h3>Tabs</h3>
+                        <p>Launch niche services and landing pages with a polished template ecosystem built for conversions.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://tabs.co/" target="_blank" rel="noopener noreferrer">Build with Tabs ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Deploy</span>
+                        <h3>Vercel</h3>
+                        <p>Ship blazing-fast AI apps and experiments globally with zero-config hosting and analytics.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://vercel.com/" target="_blank" rel="noopener noreferrer">Deploy on Vercel ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Go Global</span>
+                        <h3>FengXiangChuhai</h3>
+                        <p>Study cross-border marketing playbooks and find inspiration for taking your AI product worldwide.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://fengxiangchuhai.com/" target="_blank" rel="noopener noreferrer">Explore strategies ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Outbound</span>
+                        <h3>Call Diesel Dudes</h3>
+                        <p>Learn from a high-performing service business and borrow outreach frameworks that convert.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://calldieseldudes.com/" target="_blank" rel="noopener noreferrer">Review their playbook ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Campaign Ideas</span>
+                        <h3>QMSJMFB Growth Lab</h3>
+                        <p>Browse curated marketing assets, swipe files, and revenue experiments from the QMSJMFB collective.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.qmsjmfb.com/" target="_blank" rel="noopener noreferrer">Enter QMSJMFB ↗</a>
+                        <a class="card-link secondary" href="https://www.qmsjmfb.com" target="_blank" rel="noopener noreferrer">Alternate mirror ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="intelligence">
+            <div class="section-header">
+                <div class="section-tag">Market Intelligence</div>
+                <h2>Research Hot Niches &amp; Discover AI Demand</h2>
+                <p>Stay ahead of the curve with directories, scrapers, and communities that surface trending AI products and prompt marketplaces.</p>
+            </div>
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Directory</span>
+                        <h3>GPTsHunter</h3>
+                        <p>Spot fast-growing GPTs, marketplaces, and partner programs ripe for monetization.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.gptshunter.com/?utm_source=query.domains" target="_blank" rel="noopener noreferrer">Track GPT launches ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Prompt Hub</span>
+                        <h3>AI Short</h3>
+                        <p>Curate short-form AI prompts and monetizable automation workflows in one place.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.aishort.top/" target="_blank" rel="noopener noreferrer">Browse AI Short ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Prompt Market</span>
+                        <h3>iMiPrompt</h3>
+                        <p>Source premium prompts, collaborate with creators, and launch your own knowledge micro-store.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.imiprompt.com/" target="_blank" rel="noopener noreferrer">Open iMiPrompt ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Trend Radar</span>
+                        <h3>There's An AI For That</h3>
+                        <p>Search thousands of AI products across verticals and capture ideas before they explode.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">Scan the radar ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Newsroom</span>
+                        <h3>AIHub.cn</h3>
+                        <p>Follow mainland China AI breakthroughs, funding rounds, and product launches.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://aihub.cn/" target="_blank" rel="noopener noreferrer">Read AIHub ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Competitive Intel</span>
+                        <h3>AhrefsTop Trending</h3>
+                        <p>Monitor breakout domains and reverse-engineer content that is attracting profitable traffic.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://ahrefstop.com/websites#trending" target="_blank" rel="noopener noreferrer">View trending sites ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Visual Swipe File</span>
+                        <h3>HuntScreens</h3>
+                        <p>Gather inspiration from curated landing page screenshots and replicate winning layouts.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://huntscreens.com/" target="_blank" rel="noopener noreferrer">Open HuntScreens ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Deal Flow</span>
+                        <h3>TOL.vip</h3>
+                        <p>Discover under-the-radar AI tools and investors keeping tabs on the next breakout startups.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.tol.vip/" target="_blank" rel="noopener noreferrer">Tap into TOL.vip ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Brand Research</span>
+                        <h3>CosmeticCheck Brands</h3>
+                        <p>Study brand registries and compliance signals before launching beauty-focused AI products.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.cosmeticcheck.app/zh-hans/brands" target="_blank" rel="noopener noreferrer">Audit the database ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="creation">
+            <div class="section-header">
+                <div class="section-tag">Create &amp; Automate</div>
+                <h2>Craft Monetizable Assets</h2>
+                <p>Upgrade your product visuals, video ads, documents, and copy with these creative accelerators.</p>
+            </div>
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Branding</span>
+                        <h3>EmojiSpark</h3>
+                        <p>Generate expressive emoji packs that elevate your marketing decks and community chats.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://emojispark.com" target="_blank" rel="noopener noreferrer">Launch EmojiSpark ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Identity</span>
+                        <h3>Favicon.im</h3>
+                        <p>Create crisp favicons that reinforce your brand across browsers and search results.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://favicon.im/zh/?utm_source=query.domains" target="_blank" rel="noopener noreferrer">Design a favicon ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Photography</span>
+                        <h3>BusinessPhotos.ai</h3>
+                        <p>Generate studio-grade images that make your SaaS, ecommerce, or Airbnb listing stand out.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://businessphotos.ai/" target="_blank" rel="noopener noreferrer">Create assets ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Video</span>
+                        <h3>Clideo Video Editor</h3>
+                        <p>Edit promos and short-form ads directly in your browser with collaborative workflows.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://clideo.com/zh/video-editor" target="_blank" rel="noopener noreferrer">Edit with Clideo ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Video Automation</span>
+                        <h3>Clipfly</h3>
+                        <p>Automate AI-powered video creation and pricing experiments for marketing campaigns.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.clipfly.ai/pricing" target="_blank" rel="noopener noreferrer">Review Clipfly plans ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Retouch</span>
+                        <h3>Cleanup.pictures</h3>
+                        <p>Remove unwanted objects from photos instantly and upgrade listing imagery.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://cleanup.pictures/" target="_blank" rel="noopener noreferrer">Clean up photos ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Watermarks</span>
+                        <h3>WatermarkImage</h3>
+                        <p>Protect digital assets with branded watermarks before sharing with clients or partners.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://watermarkimage.com/zh" target="_blank" rel="noopener noreferrer">Add a watermark ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Compression</span>
+                        <h3>CompressImage</h3>
+                        <p>Optimize asset sizes for landing pages without sacrificing visual quality.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://compressimage.com/zh" target="_blank" rel="noopener noreferrer">Compress images ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Resizing</span>
+                        <h3>BulkResizePhotos</h3>
+                        <p>Batch resize visuals for ads, marketplaces, and influencer kits in seconds.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://bulkresizephotos.com/zh" target="_blank" rel="noopener noreferrer">Resize photos ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Copy Polish</span>
+                        <h3>ChangeCaseTo</h3>
+                        <p>Standardize case formatting for product names, newsletters, and design systems.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://changecaseto.com/zh" target="_blank" rel="noopener noreferrer">Transform text ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Content Analytics</span>
+                        <h3>WordCounts</h3>
+                        <p>Analyze text length for SEO, landing page messaging, and conversion audits.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://wordcounts.com/zh" target="_blank" rel="noopener noreferrer">Check word counts ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Documents</span>
+                        <h3>iLovePDF</h3>
+                        <p>Convert, merge, and protect PDFs for proposals, pricing sheets, and product guides.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.ilovepdf.com/" target="_blank" rel="noopener noreferrer">Automate PDFs ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Sound Design</span>
+                        <h3>LightNote</h3>
+                        <p>Learn music theory and craft soundscapes for games, apps, and immersive experiences.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.lightnote.co/" target="_blank" rel="noopener noreferrer">Compose with LightNote ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="blueprints">
+            <div class="section-header">
+                <div class="section-tag">Blueprints &amp; Communities</div>
+                <h2>Monetization Blueprints &amp; Community Inspiration</h2>
+                <p>Absorb lessons from thriving fandoms, immersive games, and maker notes to unlock fresh revenue angles.</p>
+            </div>
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Playbook</span>
+                        <h3>Monetization Notebook</h3>
+                        <p>Dive into a Feishu-hosted strategy document packed with actionable revenue experiments (Chinese language).</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://zhizhe888.feishu.cn/docx/Z40jdqs7woO8sxxDtgFcG6sDnVb" target="_blank" rel="noopener noreferrer">Open the notebook ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top multi-links">
+                        <span class="badge">Fandom Economy</span>
+                        <h3>Take Care of Shadowmilk</h3>
+                        <p>Study the viral Shadowmilk universe and experiment with multi-domain storytelling funnels.</p>
+                        <div class="card-links">
+                            <a class="card-link" href="https://takecareofshadowmilk.net/" target="_blank" rel="noopener noreferrer">Shadowmilk .net ↗</a>
+                            <a class="card-link" href="https://takecareofshadowmilk.com/" target="_blank" rel="noopener noreferrer">Shadowmilk .com ↗</a>
+                            <a class="card-link" href="https://takecareofshadowmilk.io/#google_vignette" target="_blank" rel="noopener noreferrer">Shadowmilk .io ↗</a>
+                            <a class="card-link" href="https://takecareofshadowmilk.org/scratch/" target="_blank" rel="noopener noreferrer">Shadowmilk .org ↗</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Game Launch</span>
+                        <h3>Hollow Knight: Silksong</h3>
+                        <p>Analyze a mega-hyped indie sequel and design audience waitlists that monetize anticipation.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.hollowknightsilksong.im/" target="_blank" rel="noopener noreferrer">Visit the hub ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Community IP</span>
+                        <h3>Stardew Valley</h3>
+                        <p>See how a solo creator built a global franchise and borrow ideas for long-tail monetization.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.stardewvalley.net/" target="_blank" rel="noopener noreferrer">Study the ecosystem ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Tabletop</span>
+                        <h3>DeskGame</h3>
+                        <p>Unlock board-game mechanics and templates to craft physical or print-on-demand revenue streams.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://deskgame.xyz/" target="_blank" rel="noopener noreferrer">Explore DeskGame ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Studio Builder</span>
+                        <h3>GameStudio.online</h3>
+                        <p>Prototype and distribute immersive games with multiplayer-ready infrastructure.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://gamestudio.online/en-US" target="_blank" rel="noopener noreferrer">Create with GameStudio ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Fandom AI</span>
+                        <h3>GhibliAI</h3>
+                        <p>Blend classic storytelling with AI fan art to inspire new membership and print ideas.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://www.ghibliai.org/" target="_blank" rel="noopener noreferrer">Enter GhibliAI ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="utilities">
+            <div class="section-header">
+                <div class="section-tag">Utilities &amp; Tooling</div>
+                <h2>Operational Utilities &amp; Experiments</h2>
+                <p>Automate the small stuff so you can focus on shipping value—these utilities streamline everything from timestamps to prototype sandboxes.</p>
+            </div>
+            <div class="tool-grid">
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Time Tools</span>
+                        <h3>DateTime.app</h3>
+                        <p>Convert time zones, plan drops, and localize schedules for global customer launches.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="https://datetime.app/zh-hans" target="_blank" rel="noopener noreferrer">Use DateTime.app ↗</a>
+                    </div>
+                </article>
+
+                <article class="tool-card">
+                    <div class="card-top">
+                        <span class="badge">Prototype</span>
+                        <h3>MCP.so</h3>
+                        <p>Experiment with lightweight microsites and concept validations on a fast .so domain.</p>
+                    </div>
+                    <div class="card-links">
+                        <a class="card-link" href="http://mcp.so/" target="_blank" rel="noopener noreferrer">Launch MCP.so ↗</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta-panel">
+            <h3>Turn AI experiments into sustainable income</h3>
+            <p>Bookmark this hub, remix the playbooks, and share your wins with the AIAIY community. New monetization routes are added frequently—check back for fresh inspiration.</p>
+            <a class="cta primary" href="index.html">⬅ Return to AIAIY Navigator</a>
+        </section>
+    </main>
+
+    <footer>
+        © 2024 AIAIY.COM · Curated AI monetization opportunities
+    </footer>
+</body>
+</html>
