@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量打开网站工具 | AIAIY</title>
+    <meta name="description" content="使用批量打开网站工具，一键打开常用的网址、工作站点或学习资源，支持顺序延迟、快速模板保存以及链接清理。">
+    <meta name="keywords" content="批量打开网站, 批量打开链接, 网站启动器, URL管理工具, 浏览器效率工具">
+    <link rel="canonical" href="https://www.aiaiy.com/batch-open.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1f2937 0%, #312e81 50%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 25px 45px rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(18px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(120deg, #38bdf8, #c084fc, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        textarea {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: #e2e8f0;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgba(14, 165, 233, 0.8);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+        }
+
+        .status-info {
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+        }
+
+        .status-warning {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #34d399;
+        }
+
+        .preset-chip {
+            background: rgba(30, 64, 175, 0.5);
+            color: #bfdbfe;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .preset-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(30, 64, 175, 0.35);
+        }
+
+        .divider {
+            border-top: 1px dashed rgba(148, 163, 184, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <main class="main-content container mx-auto px-4 py-10 lg:py-16">
+            <div class="max-w-5xl mx-auto space-y-10">
+                <header class="text-center space-y-4">
+                    <span class="inline-flex items-center gap-2 status-badge status-info">
+                        <span>🚀</span>
+                        <span>Batch Launcher</span>
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold gradient-text">批量打开网站工具</h1>
+                    <p class="text-lg text-slate-200 max-w-3xl mx-auto">
+                        整理常用链接，一键批量启动工作流或学习资源。支持自动补全协议、顺序延迟打开、防止重复以及个人模板保存，让您的浏览器启动更高效。
+                    </p>
+                </header>
+
+                <section class="glass-card p-8 lg:p-10 space-y-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-semibold text-sky-200">链接列表</h2>
+                            <p class="text-slate-300 text-sm">每行一个链接，支持同时粘贴带空格、逗号的混合内容。</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-200 text-sm">
+                            <span class="status-badge status-info" id="urlCount">0 个链接</span>
+                            <button id="clearList" class="px-3 py-2 rounded-xl bg-slate-800/60 hover:bg-slate-700/70 border border-slate-600/60 transition">清空</button>
+                        </div>
+                    </div>
+                    <textarea id="urlList" rows="10" class="w-full rounded-2xl p-4 text-base leading-relaxed" placeholder="例如：
+https://www.aiaiy.com
+https://www.google.com
+notion.so
+https://www.producthunt.com"></textarea>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <label class="glass-card p-4 flex flex-col gap-2">
+                            <span class="text-slate-200 text-sm font-medium">逐个打开延迟（毫秒）</span>
+                            <input type="number" id="openDelay" min="0" value="800" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-400" />
+                            <span class="text-xs text-slate-400">为避免浏览器拦截，推荐设置 500-1500 毫秒。</span>
+                        </label>
+                        <label class="glass-card p-4 flex flex-col gap-2">
+                            <span class="text-slate-200 text-sm font-medium">保存模板名称</span>
+                            <input type="text" id="presetName" placeholder="例如：每日启动、设计工具" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-400" />
+                            <button id="savePreset" class="mt-2 inline-flex justify-center items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-400 hover:to-violet-400 font-semibold text-white transition">
+                                💾 保存为模板
+                            </button>
+                        </label>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button id="openAll" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 hover:from-sky-400 hover:via-cyan-400 hover:to-emerald-400 font-semibold text-slate-900 transition shadow-lg shadow-sky-900/40">
+                            🔓 立即全部打开
+                        </button>
+                        <button id="openSequential" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/70 border border-slate-600/70 hover:bg-slate-800/80 font-semibold text-slate-100 transition">
+                            ⏱️ 按延迟逐个打开
+                        </button>
+                        <button id="deduplicate" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-700/70 hover:bg-slate-800/70 font-semibold text-slate-200 transition">
+                            🧹 清理重复与空行
+                        </button>
+                    </div>
+
+                    <div id="statusMessage" class="text-sm text-slate-300"></div>
+                </section>
+
+                <section class="glass-card p-8 lg:p-10 space-y-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-semibold text-sky-200">常用模板 & 快速填充</h2>
+                            <p class="text-slate-300 text-sm">点击即可填入上方链接区，可随时在右上角保存为自己的模板。</p>
+                        </div>
+                        <button id="clearPresets" class="px-4 py-2 rounded-xl border border-slate-600/60 text-slate-300 hover:bg-slate-800/70 transition text-sm">重置默认模板</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-3" id="presetContainer"></div>
+                        <div class="divider"></div>
+                        <div class="space-y-2 text-sm text-slate-300">
+                            <p class="font-semibold text-slate-200">使用建议：</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>浏览器可能会限制一次打开过多标签，请控制每批数量或使用延迟模式。</li>
+                                <li>如需在不同设备同步，可导出模板后发送给自己或团队。</li>
+                                <li>支持粘贴 Excel/表格中的链接，系统会自动提取有效 URL。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="glass-card p-8 lg:p-10 space-y-6">
+                    <h2 class="text-2xl font-semibold text-sky-200">导出模板</h2>
+                    <p class="text-sm text-slate-300">快速备份当前所有模板，复制文本即可在其它浏览器导入。</p>
+                    <textarea id="exportArea" rows="6" readonly class="w-full rounded-2xl p-4 text-base bg-slate-950/60 border border-slate-700/60 text-slate-300"></textarea>
+                    <button id="refreshExport" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-violet-500 to-indigo-500 hover:from-violet-400 hover:to-indigo-400 font-semibold text-white transition">
+                        🔄 更新导出内容
+                    </button>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="navigation.js"></script>
+    <script src="logo-fetcher.js"></script>
+    <script>
+        const urlList = document.getElementById('urlList');
+        const urlCount = document.getElementById('urlCount');
+        const openAllBtn = document.getElementById('openAll');
+        const openSequentialBtn = document.getElementById('openSequential');
+        const deduplicateBtn = document.getElementById('deduplicate');
+        const clearListBtn = document.getElementById('clearList');
+        const statusMessage = document.getElementById('statusMessage');
+        const openDelayInput = document.getElementById('openDelay');
+        const presetNameInput = document.getElementById('presetName');
+        const savePresetBtn = document.getElementById('savePreset');
+        const presetContainer = document.getElementById('presetContainer');
+        const clearPresetsBtn = document.getElementById('clearPresets');
+        const exportArea = document.getElementById('exportArea');
+        const refreshExportBtn = document.getElementById('refreshExport');
+
+        const STORAGE_KEY = 'aiaiy-batch-open-presets';
+
+        const defaultPresets = [
+            {
+                name: '每日工作启动',
+                urls: [
+                    'https://mail.google.com',
+                    'https://calendar.google.com',
+                    'https://www.notion.so',
+                    'https://slack.com/app',
+                    'https://www.aiaiy.com'
+                ]
+            },
+            {
+                name: 'AI 常用工具',
+                urls: [
+                    'https://chat.openai.com',
+                    'https://claude.ai',
+                    'https://www.midjourney.com',
+                    'https://runwayml.com'
+                ]
+            },
+            {
+                name: '设计灵感',
+                urls: [
+                    'https://dribbble.com',
+                    'https://www.behance.net',
+                    'https://www.pinterest.com',
+                    'https://www.awwwards.com'
+                ]
+            }
+        ];
+
+        function getStoredPresets() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return [...defaultPresets];
+                const parsed = JSON.parse(raw);
+                if (!Array.isArray(parsed)) return [...defaultPresets];
+                return parsed;
+            } catch (error) {
+                console.error('读取模板失败', error);
+                return [...defaultPresets];
+            }
+        }
+
+        function savePresets(presets) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(presets));
+            updateExport();
+        }
+
+        function ensureProtocol(url) {
+            if (/^(https?:)?\/\//i.test(url)) {
+                return url.startsWith('http') ? url : `https:${url}`;
+            }
+            return `https://${url}`;
+        }
+
+        function extractUrls(value) {
+            return value
+                .split(/\s+|,|;|\n/)
+                .map(item => item.trim())
+                .filter(item => item.length > 0)
+                .map(item => ensureProtocol(item))
+                .filter((item, index, arr) => arr.indexOf(item) === index);
+        }
+
+        function updateCount() {
+            const urls = extractUrls(urlList.value);
+            urlCount.textContent = `${urls.length} 个链接`;
+            return urls;
+        }
+
+        function showStatus(message, type = 'info') {
+            const typeClass = {
+                info: 'status-badge status-info',
+                success: 'status-badge status-success',
+                warning: 'status-badge status-warning'
+            }[type] || 'status-badge status-info';
+
+            statusMessage.innerHTML = `<span class="${typeClass}">${message}</span>`;
+        }
+
+        function openUrls(urls, sequential = false) {
+            if (urls.length === 0) {
+                showStatus('请先输入至少一个有效链接。', 'warning');
+                return;
+            }
+
+            const delay = Math.max(0, parseInt(openDelayInput.value, 10) || 0);
+            showStatus(`准备打开 ${urls.length} 个链接${sequential ? `，每个延迟 ${delay} 毫秒` : ''}。`, 'info');
+
+            if (!sequential) {
+                urls.forEach(url => window.open(url, '_blank'));
+                showStatus(`已尝试一次性打开 ${urls.length} 个链接。`, 'success');
+                return;
+            }
+
+            urls.forEach((url, index) => {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                    if (index === urls.length - 1) {
+                        showStatus(`已完成顺序打开 ${urls.length} 个链接。`, 'success');
+                    }
+                }, index * delay);
+            });
+        }
+
+        function fillUrls(urls) {
+            urlList.value = urls.join('\n');
+            updateCount();
+            showStatus(`已填充 ${urls.length} 个链接，可直接打开或保存。`, 'info');
+        }
+
+        function renderPresets() {
+            const presets = getStoredPresets();
+            presetContainer.innerHTML = '';
+            presets.forEach((preset, index) => {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'preset-chip';
+                chip.innerHTML = `<span>📁</span><span>${preset.name}</span>`;
+                chip.addEventListener('click', () => fillUrls(preset.urls));
+
+                const removeBtn = document.createElement('span');
+                removeBtn.textContent = '✖';
+                removeBtn.className = 'text-xs opacity-70 hover:opacity-100';
+                removeBtn.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const updated = getStoredPresets();
+                    updated.splice(index, 1);
+                    savePresets(updated);
+                    renderPresets();
+                    showStatus(`已删除模板「${preset.name}」。`, 'warning');
+                });
+
+                chip.appendChild(removeBtn);
+                presetContainer.appendChild(chip);
+            });
+            updateExport();
+        }
+
+        function updateExport() {
+            try {
+                const presets = getStoredPresets();
+                exportArea.value = JSON.stringify(presets, null, 2);
+            } catch (error) {
+                exportArea.value = '导出失败，请重试。';
+            }
+        }
+
+        function deduplicateList() {
+            const urls = extractUrls(urlList.value);
+            urlList.value = urls.join('\n');
+            updateCount();
+            showStatus(`已清理并保留 ${urls.length} 个唯一链接。`, 'success');
+        }
+
+        function clearList() {
+            urlList.value = '';
+            updateCount();
+            showStatus('已清空链接输入区。', 'info');
+        }
+
+        function saveCurrentPreset() {
+            const name = presetNameInput.value.trim();
+            const urls = extractUrls(urlList.value);
+
+            if (!name) {
+                showStatus('请填写模板名称后再保存。', 'warning');
+                return;
+            }
+            if (urls.length === 0) {
+                showStatus('模板中至少需要包含一个链接。', 'warning');
+                return;
+            }
+
+            const presets = getStoredPresets();
+            const existingIndex = presets.findIndex(item => item.name === name);
+            if (existingIndex >= 0) {
+                presets[existingIndex] = { name, urls };
+                showStatus(`已更新模板「${name}」。`, 'success');
+            } else {
+                presets.push({ name, urls });
+                showStatus(`已保存模板「${name}」。`, 'success');
+            }
+            savePresets(presets);
+            renderPresets();
+        }
+
+        function resetPresets() {
+            savePresets([...defaultPresets]);
+            renderPresets();
+            showStatus('已恢复默认模板。', 'info');
+        }
+
+        urlList.addEventListener('input', updateCount);
+        openAllBtn.addEventListener('click', () => openUrls(updateCount(), false));
+        openSequentialBtn.addEventListener('click', () => openUrls(updateCount(), true));
+        deduplicateBtn.addEventListener('click', deduplicateList);
+        clearListBtn.addEventListener('click', clearList);
+        savePresetBtn.addEventListener('click', saveCurrentPreset);
+        clearPresetsBtn.addEventListener('click', resetPresets);
+        refreshExportBtn.addEventListener('click', updateExport);
+
+        urlList.addEventListener('keydown', (event) => {
+            if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'enter') {
+                event.preventDefault();
+                openUrls(updateCount(), true);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPresets();
+            updateCount();
+            showStatus('粘贴或输入链接，支持 Ctrl/Command + Enter 触发顺序打开。', 'info');
+        });
+    </script>
+</body>
+</html>
