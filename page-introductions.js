@@ -7,31 +7,31 @@ class PageIntroductions {
     constructor() {
         this.introductions = {
             'index.html': {
-                title: 'AI工具导航 - 最全面的人工智能工具集合',
-                description: 'AI工具导航是专业的人工智能工具导航网站，收录最全面的AI工具，包括大模型、AI图片处理、AI视频制作、AI文字处理、AI音乐、AI设计师工具等，帮助您快速找到最适合的AI助手和工具。',
+                title: 'AI Tools Navigator - Comprehensive AI Tool Directory',
+                description: 'AI Tools Navigator is a professional directory that curates a comprehensive collection of AI solutions, including large language models, image editors, video creators, writing assistants, music generators, and design tools to help you quickly find the right AI assistant.',
                 features: [
-                    '🤖 主流AI大模型：DeepSeek、Google Gemini、Perplexity等',
-                    '🌐 网站服务：Cloudflare、Vercel、GitHub等',
-                    '💰 赚美金工具：Google AdSense、Analytics、Trends等',
-                    '📱 社交媒体：X、Instagram、Facebook等',
-                    '💎 广告联盟：Monetag、PropellerAds、Media.net等'
+                    '🤖 Leading AI Models: DeepSeek, Google Gemini, Perplexity, and more',
+                    '🌐 Web Services: Cloudflare, Vercel, GitHub, and additional infrastructure tools',
+                    '💰 Monetization Resources: Google AdSense, Analytics, Trends, and other revenue platforms',
+                    '📱 Social Platforms: X, Instagram, Facebook, and other global communities',
+                    '💎 Ad Networks: Monetag, PropellerAds, Media.net, and trusted partners'
                 ],
                 faq: [
                     {
-                        question: '这个网站收录了多少个AI工具？',
-                        answer: '目前收录了超过50个主流AI工具和网站，涵盖AI大模型、网站服务、赚钱工具、社交媒体等多个领域，持续更新中。'
+                        question: 'How many AI tools are listed on this site?',
+                        answer: 'We currently feature more than 50 leading AI tools and websites across AI models, web services, monetization resources, social media, and more, and we continue to expand the directory.'
                     },
                     {
-                        question: '如何快速找到我需要的AI工具？',
-                        answer: '网站按功能分类，您可以根据需求选择对应板块，每个工具都有详细说明和使用指南。'
+                        question: 'How can I quickly find the AI tool I need?',
+                        answer: 'Browse the categories that match your goals—each listing includes detailed descriptions and usage tips so you can get started fast.'
                     },
                     {
-                        question: '这些工具都是免费的吗？',
-                        answer: '网站收录的工具包括免费和付费版本，具体费用请查看各工具的官方网站。'
+                        question: 'Are all of these tools free to use?',
+                        answer: 'The directory includes both free and paid solutions. Please check each provider’s official website for the latest pricing information.'
                     },
                     {
-                        question: '如何推荐新的AI工具？',
-                        answer: '如果您发现优秀的AI工具，欢迎通过社交媒体联系我们，我们会认真评估后添加到导航中。'
+                        question: 'How do I recommend a new AI tool?',
+                        answer: 'If you discover a great AI tool, reach out to us through social media. We’ll review your suggestion and add it to the directory if it’s a good fit.'
                     }
                 ]
             },
@@ -279,17 +279,38 @@ class PageIntroductions {
      */
     createIntroductionHTML(pageName) {
         const intro = this.getIntroduction(pageName);
-        
+        const isEnglishPage = pageName === 'index.html';
+        const sectionTexts = {
+            introTitle: isEnglishPage ? '📖 Page Overview' : '📖 页面介绍',
+            featuresTitle: isEnglishPage ? '✨ Key Features' : '✨ 主要功能',
+            faqTitle: isEnglishPage ? '❓ Frequently Asked Questions' : '❓ 常见问题',
+            usageTitle: isEnglishPage ? '💡 Usage Tips' : '💡 使用建议',
+            gettingStartedTitle: isEnglishPage ? '🎯 Getting Started' : '🎯 如何开始',
+            gettingStartedBody: isEnglishPage
+                ? 'Explore the content on this page to understand each tool’s strengths, then choose the solutions that match your needs.'
+                : '浏览页面内容，了解各个工具的功能特点，根据您的具体需求选择合适的工具开始使用。',
+            advancedTitle: isEnglishPage ? '🚀 Power User Ideas' : '🚀 进阶使用',
+            advancedBody: isEnglishPage
+                ? 'Once you are comfortable with the basics, experiment with combining multiple tools to unlock advanced workflows and creative possibilities.'
+                : '熟悉基础功能后，可以尝试组合使用多个工具，探索更多高级功能和创意应用。',
+            contactTitle: isEnglishPage ? '📞 Contact Us' : '📞 联系我们',
+            contactDescription: isEnglishPage
+                ? 'If you encounter any issues or have suggestions while browsing, we’d love to hear from you.'
+                : '如果您在使用过程中遇到问题，或有任何建议和反馈，欢迎联系我们。',
+            emailLabel: isEnglishPage ? '📧 Email Us' : '📧 发送邮件',
+            githubLabel: '📂 GitHub'
+        };
+
         return `
         <!-- 页面介绍和FAQ部分 -->
         <section class="max-w-7xl mx-auto px-4 py-12 mt-20">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <!-- 页面介绍 -->
                 <div class="p-8 border-b border-gray-200">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">📖 页面介绍</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">${sectionTexts.introTitle}</h2>
                     <p class="text-lg text-gray-700 leading-relaxed mb-6">${intro.description}</p>
-                    
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">✨ 主要功能</h3>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">${sectionTexts.featuresTitle}</h3>
                     <ul class="space-y-2">
                         ${intro.features.map(feature => `
                             <li class="flex items-start">
@@ -302,7 +323,7 @@ class PageIntroductions {
 
                 <!-- FAQ部分 -->
                 <div class="p-8">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6">❓ 常见问题</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">${sectionTexts.faqTitle}</h2>
                     <div class="space-y-6">
                         ${intro.faq.map((item, index) => `
                             <div class="bg-gray-50 rounded-lg p-6">
@@ -318,29 +339,29 @@ class PageIntroductions {
 
                 <!-- 使用建议 -->
                 <div class="p-8 bg-gradient-to-r from-blue-50 to-purple-50">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">💡 使用建议</h2>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">${sectionTexts.usageTitle}</h2>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="bg-white rounded-lg p-6 shadow-sm">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">🎯 如何开始</h3>
-                            <p class="text-gray-700">浏览页面内容，了解各个工具的功能特点，根据您的具体需求选择合适的工具开始使用。</p>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">${sectionTexts.gettingStartedTitle}</h3>
+                            <p class="text-gray-700">${sectionTexts.gettingStartedBody}</p>
                         </div>
                         <div class="bg-white rounded-lg p-6 shadow-sm">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">🚀 进阶使用</h3>
-                            <p class="text-gray-700">熟悉基础功能后，可以尝试组合使用多个工具，探索更多高级功能和创意应用。</p>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">${sectionTexts.advancedTitle}</h3>
+                            <p class="text-gray-700">${sectionTexts.advancedBody}</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- 联系我们 -->
                 <div class="p-8 bg-gray-900 text-white">
-                    <h2 class="text-2xl font-bold mb-4">📞 联系我们</h2>
-                    <p class="text-gray-300 mb-4">如果您在使用过程中遇到问题，或有任何建议和反馈，欢迎联系我们。</p>
+                    <h2 class="text-2xl font-bold mb-4">${sectionTexts.contactTitle}</h2>
+                    <p class="text-gray-300 mb-4">${sectionTexts.contactDescription}</p>
                     <div class="flex flex-wrap gap-4">
                         <a href="mailto:contact@aiaiy.com" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
-                            📧 发送邮件
+                            ${sectionTexts.emailLabel}
                         </a>
                         <a href="https://github.com/your-repo" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors">
-                            📂 GitHub
+                            ${sectionTexts.githubLabel}
                         </a>
                     </div>
                 </div>
