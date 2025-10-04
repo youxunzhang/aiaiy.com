@@ -95,34 +95,85 @@
         
         /* 顶部横向导航栏 */
         .top-navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #E5E7EB;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+            border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 22px 40px -28px rgba(15, 23, 42, 0.45);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.75rem;
+            padding: 0.85rem 0;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-brand-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+
+        .nav-brand-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .nav-brand-tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem;
+            background: rgba(241, 245, 249, 0.92);
+            border-radius: 9999px;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .nav-link-horizontal {
-            color: #6B7280;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.65rem 1.1rem;
+            border-radius: 9999px;
             transition: all 0.2s ease;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            display: inline-block;
+            position: relative;
         }
 
         .nav-link-horizontal:hover {
-            color: #2563EB;
-            background: #F9FAFB;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-link-horizontal.active {
-            color: #2563EB;
-            background: #EFF6FF;
-            border-bottom: 2px solid #2563EB;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 12px 25px -16px rgba(37, 99, 235, 0.8);
         }
 
         /* 下拉菜单样式 */
@@ -134,30 +185,40 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            color: #6B7280;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            font: inherit;
+            color: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
-        .dropdown-toggle:hover {
-            color: #2563EB;
-            background: #F9FAFB;
+        .dropdown-toggle::after {
+            content: '';
+            width: 0.5rem;
+            height: 0.5rem;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(225deg);
         }
 
         .dropdown-menu {
             position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid #E5E7EB;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            min-width: 250px;
+            top: calc(100% + 0.75rem);
+            left: 50%;
+            transform: translate(-50%, -10px);
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            min-width: 260px;
+            padding: 0.75rem;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
             transition: all 0.3s ease;
             z-index: 1001;
         }
@@ -165,79 +226,216 @@
         .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translate(-50%, 0);
         }
 
         .dropdown-section {
             padding: 0.5rem;
+            border-radius: 0.75rem;
         }
 
         .dropdown-section-title {
             font-size: 0.75rem;
             font-weight: 600;
-            color: #9CA3AF;
+            color: #94a3b8;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 0.75rem;
-            margin-bottom: 0.25rem;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.75rem 0.5rem;
         }
 
         .dropdown-item {
-            display: block;
-            padding: 0.75rem;
-            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.75rem;
+            color: #1f2937;
             text-decoration: none;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             transition: all 0.2s ease;
             margin: 0.125rem 0;
         }
 
         .dropdown-item:hover {
-            background: #F3F4F6;
-            color: #2563EB;
+            background: #eff6ff;
+            color: var(--primary-color);
         }
 
         .dropdown-divider {
             height: 1px;
-            background: #E5E7EB;
-            margin: 0.5rem 0;
+            background: rgba(226, 232, 240, 0.8);
+            margin: 0.35rem 0;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .favorite-button,
+        .favorite-icon-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+            background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+            color: #ffffff;
+            box-shadow: 0 15px 30px -18px rgba(14, 165, 233, 0.6);
+            padding: 0.55rem 1.1rem;
+        }
+
+        .favorite-icon-button {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+        }
+
+        .favorite-button:hover,
+        .favorite-icon-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 30px -16px rgba(37, 99, 235, 0.55);
+        }
+
+        .favorite-button:focus-visible,
+        .favorite-icon-button:focus-visible,
+        .mobile-favorite:focus-visible {
+            outline: 2px solid rgba(14, 165, 233, 0.4);
+            outline-offset: 3px;
+        }
+
+        .favorite-button.is-active,
+        .favorite-icon-button.is-active,
+        .mobile-favorite.is-active {
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            box-shadow: 0 18px 32px -18px rgba(15, 23, 42, 0.65);
+        }
+
+        .favorite-icon {
+            width: 1.1rem;
+            height: 1.1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .favorite-icon path {
+            fill: none;
+            stroke: currentColor;
+            transition: fill 0.2s ease, stroke 0.2s ease;
+        }
+
+        .favorite-button.is-active .favorite-icon path,
+        .favorite-icon-button.is-active .favorite-icon path,
+        .mobile-favorite.is-active .favorite-icon path {
+            fill: currentColor;
+        }
+
+        .favorite-button.is-active .favorite-icon,
+        .favorite-icon-button.is-active .favorite-icon,
+        .mobile-favorite.is-active .favorite-icon {
+            transform: scale(1.05);
+        }
+
+        .favorite-button-label {
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
         }
 
         /* 移动端菜单 */
         .mobile-menu-toggle {
             background: none;
             border: none;
-            color: #6B7280;
+            color: #4b5563;
             cursor: pointer;
             padding: 0.5rem;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             transition: all 0.2s ease;
         }
 
         .mobile-menu-toggle:hover {
-            background: #F9FAFB;
-            color: #2563EB;
+            background: rgba(226, 232, 240, 0.6);
+            color: var(--primary-color);
         }
 
         .mobile-nav-link {
             display: block;
-            padding: 0.75rem 1rem;
-            color: #374151;
+            padding: 0.85rem 1.25rem;
+            color: #1f2937;
             text-decoration: none;
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             transition: all 0.2s ease;
         }
 
         .mobile-nav-link:hover {
-            background: #F3F4F6;
-            color: #2563EB;
+            background: rgba(226, 232, 240, 0.5);
+            color: var(--primary-color);
         }
 
         .mobile-nav-link.active {
-            background: #EFF6FF;
-            color: #2563EB;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
+        .mobile-menu {
+            background: rgba(248, 250, 252, 0.98);
+            border-top: 1px solid rgba(226, 232, 240, 0.7);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .mobile-menu a {
+            color: inherit;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(226, 232, 240, 0.5);
+        }
+
+        .mobile-favorite {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            margin-top: 0.75rem;
+            padding: 0.85rem 1rem;
+            border-radius: 0.85rem;
+            border: none;
+            background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: 0 16px 30px -20px rgba(37, 99, 235, 0.6);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mobile-favorite:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 32px -18px rgba(14, 165, 233, 0.6);
+        }
+
+        .mobile-favorite svg {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
         .main-content {
             margin-left: 0;
             transition: margin-left 0.3s ease;
@@ -690,10 +888,9 @@
     <!-- 顶部横向导航栏 -->
     <header class="top-navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo区域 -->
-                <div class="flex items-center space-x-3">
-                    <a href="index.html" class="flex items-center space-x-3">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="flex items-center gap-3">
                         <span class="block">
                           <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -708,22 +905,23 @@
                             <circle cx="24" cy="24" r="3.5" fill="#00f2fe" fill-opacity="0.7"/>
                           </svg>
                         </span>
-                        <span class="text-xl font-bold text-gray-900">AIAIY</span>
+                        <div class="nav-brand-info">
+                            <span class="nav-brand-title">AIAIY</span>
+                            <span class="nav-brand-tagline">AI Tools Navigator</span>
+                        </div>
                     </a>
                 </div>
 
-                <!-- 桌面导航菜单 -->
-                <nav class="hidden lg:flex space-x-8">
+                <nav class="nav-menu hidden lg:flex" aria-label="Primary navigation">
                     <a href="index.html" class="nav-link-horizontal active">🏠 Home</a>
                     <a href="ai-companies.html" class="nav-link-horizontal">🏢 AI Companies</a>
                     <a href="ai-ranking.html" class="nav-link-horizontal">📊 AI Rankings</a>
                     <a href="trends.html" class="nav-link-horizontal">📈 Trends</a>
                     <a href="ai-capabilities.html" class="nav-link-horizontal">⚡ AI Capabilities</a>
                     <a href="ai-money.html" class="nav-link-horizontal">💸 AI Money</a>
-                    
-                    <!-- 工具下拉菜单 -->
-                    <div class="relative dropdown">
-                        <button class="nav-link-horizontal dropdown-toggle">🛠️ Tools</button>
+
+                    <div class="dropdown">
+                        <button class="nav-link-horizontal dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">🛠️ Tools</button>
                         <div class="dropdown-menu">
                             <div class="dropdown-section">
                                 <div class="dropdown-section-title">Popular Tools</div>
@@ -752,17 +950,38 @@
                     </div>
                 </nav>
 
-                <!-- 移动端菜单按钮 -->
-                <button class="mobile-menu-toggle lg:hidden" id="mobileMenuToggle">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <div class="nav-actions">
+                    <button type="button" class="favorite-button hidden lg:inline-flex" id="favoriteButton" data-favorite-button aria-pressed="false" title="收藏">
+                        <svg class="favorite-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-7-4-7 4z"/>
+                        </svg>
+                        <span class="favorite-button-label">收藏</span>
+                    </button>
+                    <button type="button" class="favorite-icon-button lg:hidden" id="favoriteButtonCompact" data-favorite-button aria-pressed="false" aria-label="收藏当前页面" title="收藏">
+                        <svg class="favorite-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-7-4-7 4z"/>
+                        </svg>
+                        <span class="sr-only favorite-button-label">收藏</span>
+                    </button>
+                    <button class="mobile-menu-toggle lg:hidden" id="mobileMenuToggle" aria-label="打开主导航">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- 移动端导航菜单 -->
             <div class="mobile-menu lg:hidden hidden" id="mobileMenu">
                 <div class="py-4 space-y-2">
+                    <div class="px-4">
+                        <button type="button" class="mobile-favorite" id="favoriteButtonMobile" data-favorite-button aria-pressed="false">
+                            <svg class="favorite-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M6 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18l-7-4-7 4z"/>
+                            </svg>
+                            <span class="favorite-button-label">收藏</span>
+                        </button>
+                    </div>
                     <a href="index.html" class="mobile-nav-link active">🏠 Home</a>
                     <a href="ai-companies.html" class="mobile-nav-link">🏢 AI Companies</a>
                     <a href="ai-ranking.html" class="mobile-nav-link">📊 AI Rankings</a>
@@ -771,8 +990,8 @@
                     <a href="ai-money.html" class="mobile-nav-link">💸 AI Money</a>
                     
                     <!-- 工具分组 -->
-                    <div class="pt-2 border-t border-gray-200 mt-2">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">Popular Tools</div>
+                    <div class="pt-3 mt-3 border-t border-slate-200/70">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-4">Popular Tools</div>
                         <a href="coding.html" class="mobile-nav-link">💻 Coding</a>
                         <a href="designer.html" class="mobile-nav-link">🎨 Design</a>
                         <a href="writing.html" class="mobile-nav-link">✍️ Writing</a>
@@ -782,8 +1001,8 @@
                     </div>
                     
                     <!-- AI工具分组 -->
-                    <div class="pt-2 border-t border-gray-200 mt-2">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-4">AI Tools</div>
+                    <div class="pt-3 mt-3 border-t border-slate-200/70">
+                        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-4">AI Tools</div>
                         <a href="ailinks.html" class="mobile-nav-link">🤖 AI Links</a>
                         <a href="aicommunity.html" class="mobile-nav-link">👥 AI Community</a>
                         <a href="aicontent.html" class="mobile-nav-link">📄 AI Content</a>
@@ -1251,6 +1470,51 @@
                     link.classList.add('active');
                 }
             });
+
+            const FAVORITE_STORAGE_KEY = 'aiaiy-home-favorite';
+            const favoriteButtons = Array.from(document.querySelectorAll('[data-favorite-button]'));
+
+            const updateFavoriteUI = (isFavorited) => {
+                favoriteButtons.forEach(button => {
+                    button.classList.toggle('is-active', isFavorited);
+                    button.setAttribute('aria-pressed', String(isFavorited));
+                    const label = button.querySelector('.favorite-button-label');
+                    const labelText = isFavorited ? '已收藏' : '收藏';
+                    if (label) {
+                        label.textContent = labelText;
+                    }
+                    if (button.hasAttribute('title')) {
+                        button.setAttribute('title', labelText);
+                    }
+                    if (button.hasAttribute('aria-label')) {
+                        button.setAttribute('aria-label', isFavorited ? '取消收藏当前页面' : '收藏当前页面');
+                    }
+                });
+            };
+
+            let isFavorited = false;
+            try {
+                isFavorited = localStorage.getItem(FAVORITE_STORAGE_KEY) === 'true';
+            } catch (error) {
+                console.warn('收藏状态无法持久化：', error);
+            }
+
+            if (favoriteButtons.length) {
+                updateFavoriteUI(isFavorited);
+
+                favoriteButtons.forEach(button => {
+                    button.addEventListener('click', event => {
+                        event.stopPropagation();
+                        isFavorited = !isFavorited;
+                        updateFavoriteUI(isFavorited);
+                        try {
+                            localStorage.setItem(FAVORITE_STORAGE_KEY, String(isFavorited));
+                        } catch (error) {
+                            console.warn('收藏状态保存失败：', error);
+                        }
+                    });
+                });
+            }
         });
 
         // 粒子效果
