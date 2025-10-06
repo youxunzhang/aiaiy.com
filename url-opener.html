@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Opener 批量打开工具 | AIAIY</title>
+    <meta name="description" content="URL Opener 批量打开工具帮助你一次性打开多个网页，支持去重、补全协议以及顺序延迟打开，是提高浏览效率的实用工具。">
+    <meta name="keywords" content="url opener, 批量打开网页, 批量打开URL, 浏览器效率工具, 链接管理">
+    <link rel="canonical" href="https://www.aiaiy.com/url-opener.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 25px 45px rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(18px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(120deg, #38bdf8, #c084fc, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        textarea {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: #e2e8f0;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.85);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+        }
+
+        .status-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+
+        .status-warning {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+        }
+
+        .status-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #34d399;
+        }
+
+        .chip-button {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #cbd5f5;
+        }
+
+        .chip-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <main class="main-content container mx-auto px-4 py-10 lg:py-16">
+            <div class="max-w-5xl mx-auto space-y-10">
+                <header class="text-center space-y-4">
+                    <span class="inline-flex items-center gap-2 status-badge status-info">
+                        <span>🔗</span>
+                        <span>URL Opener</span>
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold gradient-text">URL Opener 批量打开网页工具</h1>
+                    <p class="text-lg text-slate-200 max-w-3xl mx-auto">
+                        URL Opener 帮助你一键启动多个网页，适合整理常用工具、工作流或学习链接。输入网址列表后即可批量打开，支持自动补全协议、去重及顺序延迟打开。
+                    </p>
+                </header>
+
+                <section class="glass-card p-8 lg:p-10 space-y-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-semibold text-sky-200">链接列表</h2>
+                            <p class="text-slate-300 text-sm">每行一个链接，支持粘贴带空格或逗号的混合内容。</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-200 text-sm">
+                            <span class="status-badge status-info" id="urlCount">0 个链接</span>
+                            <button id="clearList" class="px-3 py-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/70 border border-slate-700/60 transition">清空</button>
+                        </div>
+                    </div>
+                    <textarea id="urlInput" rows="10" class="w-full rounded-2xl p-4 text-base leading-relaxed" placeholder="例如：
+https://www.aiaiy.com
+https://www.openai.com
+notion.so
+producthunt.com"></textarea>
+
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <label class="glass-card p-4 flex flex-col gap-2">
+                            <span class="text-slate-200 text-sm font-medium">逐个打开延迟（毫秒）</span>
+                            <input type="number" id="openDelay" min="0" value="800" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-400" />
+                            <span class="text-xs text-slate-400">为避免浏览器拦截，推荐设置 500-1500 毫秒。</span>
+                        </label>
+                        <div class="glass-card p-4 space-y-2 text-sm text-slate-300">
+                            <p class="font-semibold text-slate-200">快速提示：</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>系统会自动去除重复链接并补全 https:// 协议。</li>
+                                <li>浏览器可能限制一次打开的标签数量，可尝试顺序模式。</li>
+                                <li>保持页面打开状态以确保标签正常弹出。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button id="openAll" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 hover:from-sky-400 hover:via-cyan-400 hover:to-emerald-400 font-semibold text-slate-900 transition shadow-lg shadow-sky-900/40">
+                            🚀 立即全部打开
+                        </button>
+                        <button id="openSequential" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/70 border border-slate-600/70 hover:bg-slate-800/80 font-semibold text-slate-100 transition">
+                            ⏱️ 按延迟逐个打开
+                        </button>
+                        <button id="cleanList" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-700/70 hover:bg-slate-800/70 font-semibold text-slate-200 transition">
+                            🧹 去重并清理
+                        </button>
+                        <button id="copyList" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-700/70 hover:bg-slate-800/70 font-semibold text-slate-200 transition">
+                            📋 复制列表
+                        </button>
+                    </div>
+
+                    <div id="statusMessage" class="text-sm text-slate-300"></div>
+                </section>
+
+                <section class="glass-card p-8 lg:p-10 space-y-6">
+                    <h2 class="text-2xl font-semibold text-sky-200">快速示例</h2>
+                    <p class="text-sm text-slate-300">点击下方示例按钮即可填充常用场景，方便测试 URL Opener。</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="chip-button" data-sample="https://www.aiaiy.com&#10;https://www.openai.com&#10;https://chat.openai.com">日常访问</button>
+                        <button class="chip-button" data-sample="https://www.producthunt.com&#10;https://www.indiehackers.com&#10;https://news.ycombinator.com">创意灵感</button>
+                        <button class="chip-button" data-sample="https://www.figma.com&#10;https://dribbble.com&#10;https://www.behance.net">设计灵感</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="navigation.js"></script>
+    <script src="logo-fetcher.js"></script>
+    <script>
+        const urlInput = document.getElementById('urlInput');
+        const urlCount = document.getElementById('urlCount');
+        const openAllBtn = document.getElementById('openAll');
+        const openSequentialBtn = document.getElementById('openSequential');
+        const cleanListBtn = document.getElementById('cleanList');
+        const copyListBtn = document.getElementById('copyList');
+        const clearListBtn = document.getElementById('clearList');
+        const statusMessage = document.getElementById('statusMessage');
+        const sampleButtons = document.querySelectorAll('.chip-button');
+        const delayInput = document.getElementById('openDelay');
+
+        function normalizeUrl(url) {
+            let clean = url.trim();
+            if (!clean) return null;
+
+            clean = clean.replace(/[，。,;；、]+$/g, '');
+
+            const protocolMatch = clean.match(/^([a-zA-Z][a-zA-Z\d+\-.]*):(\/\/)?/);
+            if (protocolMatch) {
+                const protocol = protocolMatch[1].toLowerCase();
+                const hasSlashes = Boolean(protocolMatch[2]);
+                const rest = clean.slice(protocolMatch[0].length);
+                clean = hasSlashes ? `${protocol}://${rest}` : `${protocol}:${rest}`;
+            } else {
+                clean = 'https://' + clean;
+            }
+
+            return clean;
+        }
+
+        function extractUrls() {
+            const rawText = urlInput.value;
+            const candidates = rawText
+                .replace(/[，；；、]/g, '\n')
+                .split(/\s+/)
+                .map(item => item.trim())
+                .filter(Boolean);
+
+            const unique = new Set();
+            const urls = [];
+
+            for (const candidate of candidates) {
+                const normalized = normalizeUrl(candidate);
+                if (!normalized) continue;
+                if (!unique.has(normalized)) {
+                    unique.add(normalized);
+                    urls.push(normalized);
+                }
+            }
+
+            return urls;
+        }
+
+        function updateCount() {
+            const urls = extractUrls();
+            urlCount.textContent = `${urls.length} 个链接`;
+            return urls;
+        }
+
+        function openUrls(urls, delay = 0) {
+            if (!urls.length) {
+                statusMessage.textContent = '没有可打开的有效链接，请先输入网址。';
+                statusMessage.className = 'text-sm text-amber-300';
+                return;
+            }
+
+            let blocked = 0;
+            urls.forEach((url, index) => {
+                const openAction = () => {
+                    const newWindow = window.open(url, '_blank');
+                    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                        blocked += 1;
+                    }
+                };
+
+                if (delay > 0) {
+                    setTimeout(openAction, index * delay);
+                } else {
+                    openAction();
+                }
+            });
+
+            const message = delay > 0
+                ? `正在按 ${delay}ms 延迟逐个打开 ${urls.length} 个链接。`
+                : `已尝试立即打开 ${urls.length} 个链接。`;
+
+            if (blocked > 0) {
+                statusMessage.textContent = `${message} 有 ${blocked} 个标签可能被浏览器阻止，请允许弹出窗口。`;
+                statusMessage.className = 'text-sm text-amber-300';
+            } else {
+                statusMessage.textContent = message;
+                statusMessage.className = 'text-sm text-emerald-300';
+            }
+        }
+
+        urlInput.addEventListener('input', updateCount);
+
+        openAllBtn.addEventListener('click', () => {
+            const urls = extractUrls();
+            openUrls(urls, 0);
+        });
+
+        openSequentialBtn.addEventListener('click', () => {
+            const urls = extractUrls();
+            const parsedDelay = parseInt(delayInput.value || '0', 10);
+            const delay = Number.isFinite(parsedDelay) ? Math.max(0, parsedDelay) : 0;
+            openUrls(urls, delay);
+        });
+
+        cleanListBtn.addEventListener('click', () => {
+            const urls = extractUrls();
+            urlInput.value = urls.join('\n');
+            updateCount();
+            statusMessage.textContent = `列表已清理并去重，剩余 ${urls.length} 个链接。`;
+            statusMessage.className = 'text-sm text-emerald-300';
+        });
+
+        copyListBtn.addEventListener('click', async () => {
+            const urls = extractUrls();
+            if (!urls.length) {
+                statusMessage.textContent = '没有可复制的内容，请先输入网址。';
+                statusMessage.className = 'text-sm text-amber-300';
+                return;
+            }
+            try {
+                await navigator.clipboard.writeText(urls.join('\n'));
+                statusMessage.textContent = '已复制整理后的链接列表。';
+                statusMessage.className = 'text-sm text-emerald-300';
+            } catch (error) {
+                statusMessage.textContent = '复制失败，请手动选中链接复制。';
+                statusMessage.className = 'text-sm text-amber-300';
+            }
+        });
+
+        clearListBtn.addEventListener('click', () => {
+            urlInput.value = '';
+            updateCount();
+            statusMessage.textContent = '已清空链接列表。';
+            statusMessage.className = 'text-sm text-slate-300';
+        });
+
+        sampleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                urlInput.value = button.dataset.sample || '';
+                updateCount();
+                statusMessage.textContent = '已填入示例链接，可直接尝试 URL Opener。';
+                statusMessage.className = 'text-sm text-emerald-300';
+            });
+        });
+
+        // 初始化计数
+        updateCount();
+    </script>
+</body>
+</html>
