@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sitemap 提交指南 | AIAIY - 全网搜索引擎收录入口</title>
+    <meta name="description" content="AI Sitemap 提交指南汇总了 Google、Bing、Yandex、百度、DuckDuckGo、Seznam、Naver 等搜索引擎的 sitemap 提交入口、登录方式与操作说明，帮助站长快速完成 AI 网站收录。">
+    <meta name="keywords" content="AI sitemap, sitemap 提交, 搜索引擎收录, Google Search Console, Bing Webmaster Tools, 百度站长平台, DuckDuckGo, Naver, Seznam, Yandex">
+    <link rel="canonical" href="https://www.aiaiy.com/ai-sitemap.html">
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        .simple-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .simple-navbar__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0.75rem 0;
+        }
+
+        .simple-navbar__brand {
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            line-height: 1.1;
+        }
+
+        .simple-navbar__tagline {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .simple-navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .simple-navbar__link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.35rem 0;
+        }
+
+        .simple-navbar__dropdown {
+            position: relative;
+        }
+
+        .simple-navbar__link--parent {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .simple-navbar__link--parent::after {
+            content: '';
+            display: inline-block;
+            width: 0.4rem;
+            height: 0.4rem;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        .simple-navbar__dropdown:hover .simple-navbar__link--parent::after {
+            transform: rotate(225deg);
+        }
+
+        .simple-navbar__dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-lg);
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .simple-navbar__dropdown:hover .simple-navbar__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .simple-navbar__dropdown-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .simple-navbar__dropdown-link:hover {
+            background: #eff6ff;
+            color: var(--primary-color);
+        }
+
+        .simple-navbar__link:hover,
+        .simple-navbar__link--active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            color: #ffffff;
+            padding: 5rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .sitemap-table-wrapper {
+            overflow-x: auto;
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 720px;
+        }
+
+        thead {
+            background: #f8fafc;
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        th {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        td {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .notes {
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .notes h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .notes ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .notes li {
+            display: flex;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .notes li span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .simple-navbar__links {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .simple-navbar__dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                min-width: auto;
+            }
+
+            .simple-navbar__dropdown-link {
+                padding-left: 0;
+            }
+
+            table {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="simple-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="simple-navbar__container">
+                <a href="index.html" class="simple-navbar__brand">AIAIY
+                    <span class="simple-navbar__tagline">AI Tools Navigator</span>
+                </a>
+                <nav class="simple-navbar__links" aria-label="Primary navigation">
+                    <a href="index.html" class="simple-navbar__link">Home</a>
+                    <a href="ai-companies.html" class="simple-navbar__link">AI Companies</a>
+                    <a href="ai-ranking.html" class="simple-navbar__link">AI Rankings</a>
+                    <a href="trends.html" class="simple-navbar__link">Trends</a>
+                    <a href="ai-capabilities.html" class="simple-navbar__link">AI Capabilities</a>
+                    <a href="ai-money.html" class="simple-navbar__link">AI Money</a>
+                    <div class="simple-navbar__dropdown">
+                        <a href="ai-tools-landing.html" class="simple-navbar__link simple-navbar__link--parent">AI Tools</a>
+                        <div class="simple-navbar__dropdown-menu" role="menu" aria-label="AI Tools submenu">
+                            <a href="ai-tools-landing.html" class="simple-navbar__dropdown-link" role="menuitem">AI Tools Hub</a>
+                            <a href="ai-sitemap.html" class="simple-navbar__dropdown-link simple-navbar__link--active" role="menuitem">AI Sitemap</a>
+                        </div>
+                    </div>
+                    <a href="batch-open.html" class="simple-navbar__link">Batch Open</a>
+                    <a href="https://hotspotgame.online/" class="simple-navbar__link" target="_blank" rel="noopener noreferrer">热点游戏</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>AI Sitemap 提交指南</h1>
+        <p>汇总全球主流搜索引擎的 sitemap 提交入口与操作要点，帮助 AI 网站快速完成收录，构建全面的索引覆盖。</p>
+    </section>
+
+    <main>
+        <section>
+            <h2 class="section-title">全网搜索引擎 Sitemap 提交入口</h2>
+            <p class="section-description">下表整合了 Google、Bing、Yandex、百度、DuckDuckGo、Seznam 与 Naver 等搜索引擎的 sitemap 提交渠道、登录方式与审核说明，可直接点击链接进入对应控制台。</p>
+            <div class="sitemap-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">搜索引擎</th>
+                            <th scope="col">提交入口</th>
+                            <th scope="col">登录方式</th>
+                            <th scope="col">说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google Search Console</td>
+                            <td><a class="badge" href="https://search.google.com/search-console/sitemaps" target="_blank" rel="noopener noreferrer">🔗 提交 sitemap</a></td>
+                            <td>Google 账号</td>
+                            <td>登录后选择站点，在左侧菜单「Sitemaps」中输入如 https://example.com/sitemap.xml 提交即可。</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft Bing Webmaster Tools</td>
+                            <td><a class="badge" href="https://www.bing.com/webmasters/sitemaps" target="_blank" rel="noopener noreferrer">🔗 提交 sitemap</a></td>
+                            <td>Microsoft 账号（支持用 Google 登录）</td>
+                            <td>支持同时提交给 Bing、Yahoo（共享索引系统）。</td>
+                        </tr>
+                        <tr>
+                            <td>Yandex Webmaster（俄罗斯）</td>
+                            <td><a class="badge" href="https://webmaster.yandex.com/sites/" target="_blank" rel="noopener noreferrer">🔗 提交 sitemap</a></td>
+                            <td>Yandex 账号</td>
+                            <td>支持添加 sitemap.xml 与 robots.txt 校验。</td>
+                        </tr>
+                        <tr>
+                            <td>Baidu（百度站长平台）</td>
+                            <td><a class="badge" href="https://ziyuan.baidu.com/site/sitemap" target="_blank" rel="noopener noreferrer">🔗 提交 sitemap</a></td>
+                            <td>百度账号</td>
+                            <td>需验证网站后，在“资源提交 &gt; sitemap”提交。仅收录中文网站。</td>
+                        </tr>
+                        <tr>
+                            <td>DuckDuckGo</td>
+                            <td>无单独提交入口</td>
+                            <td>自动抓取 Bing + Yahoo + 其他源</td>
+                            <td>DuckDuckGo 不提供 sitemap 提交，只需确保网站被 Bing 收录即可。</td>
+                        </tr>
+                        <tr>
+                            <td>Seznam（捷克）</td>
+                            <td><a class="badge" href="https://search.seznam.cz/pridej-stranku" target="_blank" rel="noopener noreferrer">🔗 手动提交</a></td>
+                            <td>可选账号</td>
+                            <td>支持手动提交主页及 sitemap。</td>
+                        </tr>
+                        <tr>
+                            <td>Naver（韩国）</td>
+                            <td><a class="badge" href="https://searchadvisor.naver.com/console/site" target="_blank" rel="noopener noreferrer">🔗 提交 sitemap</a></td>
+                            <td>Naver 账号</td>
+                            <td>类似 Google Search Console，可手动提交 sitemap。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="notes">
+            <h3>提交 sitemap 的最佳实践</h3>
+            <ul>
+                <li><span>1.</span> 确保 sitemap 文件可在浏览器正常访问，并返回 <code>200</code> 状态码。</li>
+                <li><span>2.</span> 使用 <code>https://</code> 绝对路径，并保持与站点首选域名一致，避免重复提交。</li>
+                <li><span>3.</span> 更新网站内容后同步刷新 sitemap，定期在各搜索引擎控制台查看抓取状态。</li>
+                <li><span>4.</span> 针对区域性搜索引擎（如百度、Yandex、Naver），可根据本地化需求提供对应语言的内容。</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        © 2024 AIAIY.COM · AI Tools Navigator. 如需更多 SEO &amp; 收录支持，请联系站长团队。
+    </footer>
+</body>
+</html>
