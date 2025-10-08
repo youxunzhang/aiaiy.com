@@ -145,6 +145,70 @@
             padding: 0.35rem 0;
         }
 
+        .simple-navbar__dropdown {
+            position: relative;
+        }
+
+        .simple-navbar__link--parent {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .simple-navbar__link--parent::after {
+            content: '';
+            display: inline-block;
+            width: 0.4rem;
+            height: 0.4rem;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.2s ease;
+        }
+
+        .simple-navbar__dropdown:hover .simple-navbar__link--parent::after {
+            transform: rotate(225deg);
+        }
+
+        .simple-navbar__dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-lg);
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+        }
+
+        .simple-navbar__dropdown:hover .simple-navbar__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .simple-navbar__dropdown-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .simple-navbar__dropdown-link:hover {
+            background: #eff6ff;
+            color: var(--primary-color);
+        }
+
         .simple-navbar__link:hover,
         .simple-navbar__link--active {
             color: var(--text-primary);
@@ -172,30 +236,50 @@
             .main-content {
                 padding: 1rem;
             }
-            
+
             .page-introduction {
                 padding: 2rem 1rem;
             }
-            
+
             .page-introduction h2 {
                 font-size: 2rem;
             }
-            
+
             .page-introduction p {
                 font-size: 1rem;
             }
-            
+
             .bg-gradient-to-r h1 {
                 font-size: 2.5rem;
             }
-            
+
             .bg-gradient-to-r p {
                 font-size: 1.1rem;
             }
-            
+
             .bg-gradient-to-r .flex {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+
+            .simple-navbar__links {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .simple-navbar__dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                min-width: auto;
+            }
+
+            .simple-navbar__dropdown-link {
+                padding-left: 0;
             }
         }
         
@@ -625,7 +709,13 @@
                     <a href="trends.html" class="simple-navbar__link">Trends</a>
                     <a href="ai-capabilities.html" class="simple-navbar__link">AI Capabilities</a>
                     <a href="ai-money.html" class="simple-navbar__link">AI Money</a>
-                    <a href="ai-tools-landing.html" class="simple-navbar__link">AI Tools</a>
+                    <div class="simple-navbar__dropdown">
+                        <a href="ai-tools-landing.html" class="simple-navbar__link simple-navbar__link--parent">AI Tools</a>
+                        <div class="simple-navbar__dropdown-menu" role="menu" aria-label="AI Tools submenu">
+                            <a href="ai-tools-landing.html" class="simple-navbar__dropdown-link" role="menuitem">AI Tools Hub</a>
+                            <a href="ai-sitemap.html" class="simple-navbar__dropdown-link" role="menuitem">AI Sitemap</a>
+                        </div>
+                    </div>
                     <a href="batch-open.html" class="simple-navbar__link">Batch Open</a>
                     <a href="https://hotspotgame.online/" class="simple-navbar__link" target="_blank" rel="noopener noreferrer">热点游戏</a>
                 </nav>
