@@ -378,13 +378,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-size: contain;
+            background-size: 120px auto;
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.08;
             transition: all 0.3s ease;
             z-index: 1;
             filter: grayscale(100%) brightness(1.2);
+        }
+
+        @media (max-width: 1024px) {
+            .tool-logo-bg {
+                background-size: 100px auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tool-logo-bg {
+                background-size: 80px auto;
+            }
         }
         
         .tool-card:hover .tool-logo-bg {
