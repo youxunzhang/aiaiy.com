@@ -42,49 +42,167 @@ class HomepageLogoManager {
         // 预定义的高质量LOGO映射
         this.logoMappings = {
             // AI Foundation Models
-            'deepseek.com': 'https://chat.deepseek.com/favicon.ico',
-            'chat.deepseek.com': 'https://chat.deepseek.com/favicon.ico',
-            'google.com': 'https://www.google.com/favicon.ico',
-            'gemini.google.com': 'https://www.google.com/favicon.ico',
-            'perplexity.ai': 'https://www.perplexity.ai/favicon.ico',
-            'www.perplexity.ai': 'https://www.perplexity.ai/favicon.ico',
-            'chatbot.app': 'https://chat.chatbot.app/favicon.ico',
-            'chat.chatbot.app': 'https://chat.chatbot.app/favicon.ico',
-            'claude.ai': 'https://claude.ai/favicon.ico',
-            'grok.com': 'https://grok.com/favicon.ico',
-            'www.grok.com': 'https://grok.com/favicon.ico',
+            'chatgpt.com': [
+                'https://chatgpt.com/apple-touch-icon.png',
+                'https://chatgpt.com/favicon.ico',
+                'https://logo.clearbit.com/chatgpt.com'
+            ],
+            'deepseek.com': [
+                'https://chat.deepseek.com/apple-touch-icon.png',
+                'https://chat.deepseek.com/favicon.ico',
+                'https://logo.clearbit.com/deepseek.com'
+            ],
+            'chat.deepseek.com': [
+                'https://chat.deepseek.com/apple-touch-icon.png',
+                'https://chat.deepseek.com/favicon.ico'
+            ],
+            'google.com': [
+                'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png',
+                'https://www.google.com/favicon.ico'
+            ],
+            'gemini.google.com': [
+                'https://www.gstatic.com/lamda/images/share-favicon-512x512.png',
+                'https://logo.clearbit.com/gemini.google.com'
+            ],
+            'perplexity.ai': [
+                'https://www.perplexity.ai/icons/icon-512x512.png',
+                'https://www.perplexity.ai/favicon.ico',
+                'https://logo.clearbit.com/perplexity.ai'
+            ],
+            'chatbot.app': [
+                'https://chat.chatbot.app/apple-touch-icon.png',
+                'https://chat.chatbot.app/favicon.ico',
+                'https://logo.clearbit.com/chatbot.app'
+            ],
+            'chat.chatbot.app': [
+                'https://chat.chatbot.app/apple-touch-icon.png',
+                'https://chat.chatbot.app/favicon.ico'
+            ],
+            'claude.ai': [
+                'https://claude.ai/apple-touch-icon.png',
+                'https://claude.ai/favicon.ico',
+                'https://logo.clearbit.com/claude.ai'
+            ],
+            'grok.com': [
+                'https://grok.com/apple-touch-icon.png',
+                'https://grok.com/favicon.ico',
+                'https://logo.clearbit.com/grok.com'
+            ],
             // 备用高质量LOGO
-            'deepseek': 'https://chat.deepseek.com/favicon.ico',
-            'gemini': 'https://www.google.com/favicon.ico',
-            'perplexity': 'https://www.perplexity.ai/favicon.ico',
-            'chatbot': 'https://chat.chatbot.app/favicon.ico',
-            'claude': 'https://claude.ai/favicon.ico',
-            'grok': 'https://grok.com/favicon.ico',
-            
+            'deepseek': [
+                'https://chat.deepseek.com/apple-touch-icon.png',
+                'https://chat.deepseek.com/favicon.ico'
+            ],
+            'gemini': [
+                'https://www.gstatic.com/lamda/images/share-favicon-512x512.png'
+            ],
+            'perplexity': [
+                'https://www.perplexity.ai/icons/icon-512x512.png'
+            ],
+            'chatbot': [
+                'https://chat.chatbot.app/apple-touch-icon.png'
+            ],
+            'claude': [
+                'https://claude.ai/apple-touch-icon.png'
+            ],
+            'grok': [
+                'https://grok.com/apple-touch-icon.png'
+            ],
+
             // Website Services
-            'cloudflare.com': 'https://www.cloudflare.com/favicon.ico',
-            'vercel.com': 'https://vercel.com/favicon.ico',
-            'domain.com': 'https://www.domain.com/favicon.ico',
-            'github.com': 'https://github.com/favicon.ico',
-            
+            'cloudflare.com': [
+                'https://www.cloudflare.com/img/logo-cloudflare-dark.svg',
+                'https://www.cloudflare.com/img/logo-cloudflare.png',
+                'https://logo.clearbit.com/cloudflare.com'
+            ],
+            'vercel.com': [
+                'https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png',
+                'https://vercel.com/favicon.ico',
+                'https://logo.clearbit.com/vercel.com'
+            ],
+            'domain.com': [
+                'https://www.domain.com/apple-touch-icon.png',
+                'https://www.domain.com/favicon-196x196.png',
+                'https://logo.clearbit.com/domain.com'
+            ],
+            'github.com': [
+                'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+                'https://github.githubassets.com/favicons/favicon.png'
+            ],
+
             // Make Money Online
-            'adsense.google.com': 'https://adsense.google.com/favicon.ico',
-            'analytics.google.com': 'https://analytics.google.com/favicon.ico',
-            'trends.google.com': 'https://trends.google.com/favicon.ico',
-            'search.google.com': 'https://search.google.com/favicon.ico',
-            'spaceship.com': 'https://www.spaceship.com/favicon.ico',
-            'similarweb.com': 'https://www.similarweb.com/favicon.ico',
-            
+            'adsense.google.com': [
+                'https://www.gstatic.com/adsense/social/fb_adSense_icon_512dp.png',
+                'https://logo.clearbit.com/adsense.google.com'
+            ],
+            'analytics.google.com': [
+                'https://ssl.gstatic.com/analytics/20240410-01/landing/img/home/google-analytics-icon.png',
+                'https://logo.clearbit.com/analytics.google.com'
+            ],
+            'trends.google.com': [
+                'https://ssl.gstatic.com/trends_nrtr/3351_RC01/static/images/apple-touch-icon.png',
+                'https://logo.clearbit.com/trends.google.com'
+            ],
+            'search.google.com': [
+                'https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png',
+                'https://logo.clearbit.com/search.google.com'
+            ],
+            'spaceship.com': [
+                'https://www.spaceship.com/apple-touch-icon.png',
+                'https://www.spaceship.com/favicon.ico',
+                'https://logo.clearbit.com/spaceship.com'
+            ],
+            'similarweb.com': [
+                'https://www.similarweb.com/static/favicon/similarweb-icon-192x192.png',
+                'https://www.similarweb.com/static/favicon/favicon-96x96.png',
+                'https://logo.clearbit.com/similarweb.com'
+            ],
+
             // Social Media
-            'x.com': 'https://x.com/favicon.ico',
-            'instagram.com': 'https://www.instagram.com/favicon.ico',
-            'facebook.com': 'https://www.facebook.com/favicon.ico',
-            
+            'x.com': [
+                'https://abs.twimg.com/responsive-web/client-web/icon-ios.b1fc7275.png',
+                'https://logo.clearbit.com/x.com'
+            ],
+            'instagram.com': [
+                'https://www.instagram.com/static/images/ico/apple-touch-icon-180x180.png/1006fb1c8a3f.png',
+                'https://logo.clearbit.com/instagram.com'
+            ],
+            'facebook.com': [
+                'https://www.facebook.com/images/fb_icon_325x325.png',
+                'https://logo.clearbit.com/facebook.com'
+            ],
+
             // 广告联盟
-            'monetag.com': 'https://monetag.com/favicon.ico',
-            'propellerads.com': 'https://propellerads.com/favicon.ico',
-            'media.net': 'https://www.media.net/favicon.ico',
-            'adsterra.com': 'https://adsterra.com/favicon.ico',
+            'monetag.com': [
+                'https://monetag.com/assets/favicon/android-chrome-192x192.png',
+                'https://monetag.com/favicon.ico',
+                'https://logo.clearbit.com/monetag.com'
+            ],
+            'propellerads.com': [
+                'https://propellerads.com/wp-content/uploads/2019/03/cropped-PROP-Logo-Black-192x192.png',
+                'https://propellerads.com/favicon.ico',
+                'https://logo.clearbit.com/propellerads.com'
+            ],
+            'media.net': [
+                'https://www.media.net/wp-content/themes/media.net/images/favicon-196x196.png',
+                'https://www.media.net/favicon.ico',
+                'https://logo.clearbit.com/media.net'
+            ],
+            'adsterra.com': [
+                'https://adsterra.com/wp-content/uploads/2021/05/cropped-Adsterra_icon-192x192.png',
+                'https://adsterra.com/favicon.ico',
+                'https://logo.clearbit.com/adsterra.com'
+            ],
+            'beta.publishers.adsterra.com': [
+                'https://beta.publishers.adsterra.com/assets/favicon/android-chrome-192x192.png',
+                'https://adsterra.com/wp-content/uploads/2021/05/cropped-Adsterra_icon-192x192.png'
+            ],
+
+            // Tools & Resources
+            'query.domains': [
+                'https://query.domains/apple-touch-icon.png',
+                'https://query.domains/favicon.ico'
+            ]
         };
     }
 
@@ -104,76 +222,82 @@ class HomepageLogoManager {
      * 获取LOGO URL - 使用favicon-fetcher
      */
     async getLogoUrl(domain) {
-        // 检查缓存
+        const candidateSet = new Set();
+
         if (this.logoCache[domain]) {
-            return this.logoCache[domain];
+            candidateSet.add(this.logoCache[domain]);
         }
 
-        // 检查预定义映射
-        if (this.logoMappings[domain]) {
-            const logoUrl = this.logoMappings[domain];
-            this.logoCache[domain] = logoUrl;
-            this.saveToLocalStorage();
-            return logoUrl;
+        const mappedLogos = this.logoMappings[domain];
+        if (mappedLogos) {
+            const urls = Array.isArray(mappedLogos) ? mappedLogos : [mappedLogos];
+            urls.filter(Boolean).forEach(url => candidateSet.add(url));
         }
 
-        // 使用favicon-fetcher获取favicon
-        if (window.faviconFetcher) {
-            const faviconUrl = await window.faviconFetcher.getFaviconUrl(domain);
-            if (faviconUrl) {
-                this.logoCache[domain] = faviconUrl;
-                this.saveToLocalStorage();
-                return faviconUrl;
+        if (window.faviconFetcher && typeof window.faviconFetcher.getFaviconUrl === 'function') {
+            try {
+                const faviconUrl = await window.faviconFetcher.getFaviconUrl(domain);
+                if (faviconUrl) {
+                    candidateSet.add(faviconUrl);
+                }
+            } catch (error) {
+                console.warn(`Failed to fetch favicon for ${domain}:`, error);
             }
         }
 
-        return null;
+        const googleFallback = `https://www.google.com/s2/favicons?domain=${domain}&sz=256`;
+        candidateSet.add(googleFallback);
+
+        return Array.from(candidateSet);
+    }
+
+    /**
+     * 检查LOGO资源是否可加载
+     */
+    tryLoadLogo(url) {
+        if (!url) {
+            return Promise.resolve(false);
+        }
+
+        return new Promise(resolve => {
+            const img = new Image();
+            img.referrerPolicy = 'no-referrer';
+            img.decoding = 'async';
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
     }
 
     /**
      * 获取LOGO数据
      */
     async getLogo(domain) {
-        const logoUrl = await this.getLogoUrl(domain);
-        if (!logoUrl) {
+        const logoUrls = await this.getLogoUrl(domain);
+        if (!logoUrls || logoUrls.length === 0) {
             return null;
         }
 
-        try {
-            const response = await fetch(logoUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+        for (const url of logoUrls) {
+            try {
+                const isLoadable = await this.tryLoadLogo(url);
+                if (!isLoadable) {
+                    continue;
+                }
 
-            const blob = await response.blob();
-            const reader = new FileReader();
-            
-            return new Promise((resolve) => {
-                reader.onload = () => {
-                    resolve({
-                        dataUrl: reader.result,
-                        domain: domain
-                    });
+                this.logoCache[domain] = url;
+                this.saveToLocalStorage();
+                return {
+                    url,
+                    domain
                 };
-                reader.readAsDataURL(blob);
-            });
-        } catch (error) {
-            console.warn(`Failed to fetch logo for ${domain}:`, error);
-            return null;
-        }
-    }
-
-    /**
-     * 创建LOGO背景HTML
-     */
-    createLogoBackgroundHtml(logoData, domain) {
-        if (!logoData) {
-            return '';
+            } catch (error) {
+                console.warn(`Failed to preload logo image from ${url}:`, error);
+                continue;
+            }
         }
 
-        return `
-            <div class="tool-logo-bg" title="${domain}" style="background-image: url('${logoData.dataUrl}');"></div>
-        `;
+        return null;
     }
 
     /**
@@ -185,8 +309,10 @@ class HomepageLogoManager {
         }
 
         const fallbackIcons = {
+            'chatgpt.com': '🤖',
             'deepseek.com': '🔍',
             'google.com': '🔍',
+            'gemini.google.com': '✨',
             'perplexity.ai': '🤔',
             'chatbot.app': '💬',
             'claude.ai': '🧠',
@@ -208,6 +334,8 @@ class HomepageLogoManager {
             'propellerads.com': '⚡',
             'media.net': '📰',
             'adsterra.com': '🌍',
+            'beta.publishers.adsterra.com': '🌍',
+            'query.domains': '🌐'
         };
 
         return fallbackIcons[domain] || '🌐';
@@ -246,21 +374,31 @@ class HomepageLogoManager {
         }
 
         if (logoData) {
-            logoBgContainer.innerHTML = this.createLogoBackgroundHtml(logoData, domain);
+            logoBgContainer.classList.remove('fallback');
+            logoBgContainer.title = domain;
+            logoBgContainer.textContent = '';
+            logoBgContainer.style.backgroundImage = `url('${logoData.url}')`;
+            logoBgContainer.style.background = '';
+            logoBgContainer.style.display = '';
+            logoBgContainer.style.alignItems = '';
+            logoBgContainer.style.justifyContent = '';
+            logoBgContainer.style.fontSize = '';
+            logoBgContainer.style.color = '';
+            logoBgContainer.style.opacity = '';
         } else {
             // 如果没有获取到LOGO，使用fallback图标
             const fallbackIcon = this.getFallbackIcon(domain);
-            logoBgContainer.innerHTML = `
-                <div class="tool-logo-bg fallback" title="${domain}" style="
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 2rem;
-                    color: white;
-                    opacity: 0.1;
-                ">${fallbackIcon}</div>
-            `;
+            logoBgContainer.classList.add('fallback');
+            logoBgContainer.title = domain;
+            logoBgContainer.style.backgroundImage = 'none';
+            logoBgContainer.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            logoBgContainer.style.display = 'flex';
+            logoBgContainer.style.alignItems = 'center';
+            logoBgContainer.style.justifyContent = 'center';
+            logoBgContainer.style.fontSize = '2rem';
+            logoBgContainer.style.color = 'white';
+            logoBgContainer.style.opacity = '0.1';
+            logoBgContainer.textContent = fallbackIcon;
         }
     }
 
