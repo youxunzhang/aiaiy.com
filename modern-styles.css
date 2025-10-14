@@ -395,6 +395,92 @@ body {
     overflow: hidden;
 }
 
+.tool-card--with-favicon {
+    padding: 1.75rem 1.5rem;
+}
+
+.tool-card--with-favicon .tool-card__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tool-card--with-favicon .tool-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.tool-card--with-favicon .tool-card__text h3 {
+    margin-bottom: 0;
+}
+
+.tool-favicon {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 24px -12px rgba(79, 70, 229, 0.45);
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card--with-favicon:hover .tool-favicon {
+    transform: scale(1.05);
+    box-shadow: 0 16px 30px -12px rgba(79, 70, 229, 0.55);
+}
+
+.tool-favicon__initial {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    transition: opacity 0.2s ease;
+}
+
+.tool-favicon__image {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    border-radius: 50%;
+    display: none;
+    filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.25));
+}
+
+.tool-favicon--image .tool-favicon__image {
+    display: block;
+}
+
+.tool-favicon--image .tool-favicon__initial {
+    opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tool-card--with-favicon {
+        background: rgba(17, 24, 39, 0.92);
+        border-color: rgba(148, 163, 184, 0.2);
+        box-shadow: 0 18px 32px -18px rgba(15, 23, 42, 0.7);
+    }
+
+    .tool-card--with-favicon .tool-card__text h3 {
+        color: #f8fafc;
+    }
+
+    .tool-card--with-favicon .tool-card__text p {
+        color: #cbd5f5;
+    }
+
+    .tool-favicon {
+        background: linear-gradient(135deg, rgba(129, 140, 248, 0.9), rgba(167, 139, 250, 0.9));
+        box-shadow: 0 18px 36px -18px rgba(129, 140, 248, 0.65);
+    }
+}
+
 .tool-card::before {
     content: '';
     position: absolute;
