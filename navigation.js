@@ -18,6 +18,7 @@ class NavigationManager {
         if (path.includes('ai-companies.html')) return 'ai-companies';
         if (path.includes('play-game.html')) return 'play-game';
         if (path.includes('ai-hotspots.html')) return 'ai-hotspots';
+        if (path.includes('ai-news.html')) return 'ai-news';
         if (path.includes('real-needs.html')) return 'real-needs';
         if (path.includes('ai-ranking.html')) return 'ai-ranking';
         if (path.includes('ai-overseas.html')) return 'ai-overseas';
@@ -139,6 +140,7 @@ class NavigationManager {
                     <a href="ai-companies.html" class="nav-link" data-page="ai-companies">🏢 AI公司</a>
                     <a href="play-game.html" class="nav-link" data-page="play-game">🎮 游戏</a>
                     <a href="ai-hotspots.html" class="nav-link" data-page="ai-hotspots">🔥 AI热点</a>
+                    <a href="ai-news.html" class="nav-link" data-page="ai-news">📰 AI NEWS</a>
                     <a href="real-needs.html" class="nav-link" data-page="real-needs">🎯 真需求</a>
                     <a href="ai-ranking.html" class="nav-link" data-page="ai-ranking">📊 AI榜单</a>
                     <a href="ai-overseas.html" class="nav-link" data-page="ai-overseas">🌍 AI出海</a>
