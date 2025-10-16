@@ -76,6 +76,10 @@
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
         
         * {
             margin: 0;
@@ -229,6 +233,138 @@
         .main-content {
             margin-left: 0;
             transition: margin-left 0.3s ease;
+        }
+
+        .homepage-layout {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 100%;
+            padding: 0 1.5rem 4rem 0;
+        }
+
+        .homepage-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .category-sidebar {
+            position: sticky;
+            top: 96px;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-left: none;
+            border-radius: 0 1rem 1rem 0;
+            box-shadow: var(--shadow-md);
+            padding: 1.5rem;
+            min-width: 240px;
+            max-width: 280px;
+        }
+
+        .category-sidebar__title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .category-sidebar__list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-sidebar__item {
+            width: 100%;
+        }
+
+        .category-sidebar__link {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 0.65rem 0.75rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        .category-sidebar__link:hover {
+            background: #eff6ff;
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        .category-sidebar__link--active {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-sidebar__icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .category-sidebar__link--active .category-sidebar__icon {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        @media (max-width: 1200px) {
+            .homepage-layout {
+                padding: 0 1.25rem 3rem;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .homepage-layout {
+                flex-direction: column;
+                padding: 0 1.25rem 3rem;
+            }
+
+            .category-sidebar {
+                position: static;
+                width: 100%;
+                max-width: none;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                box-shadow: var(--shadow-sm);
+                border-left: 1px solid rgba(226, 232, 240, 0.8);
+                border-radius: 0.75rem;
+            }
+
+            .category-sidebar__list {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+            }
+
+            .category-sidebar__item {
+                flex: 0 0 auto;
+            }
+
+            .category-sidebar__link {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .homepage-layout {
+                padding: 0 1rem 2.5rem;
+            }
         }
 
         /* 移动端响应式 */
@@ -439,11 +575,13 @@
             color: #1f2937;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.4;
         }
-        
+
         .tool-card p {
             color: #6b7280;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             line-height: 1.5;
         }
         
@@ -740,29 +878,48 @@
 
     <!-- 主要内容区域 -->
     <main class="main-content">
-        <!-- 页面标题区域 -->
-        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 mb-8">
-            <div class="max-w-7xl mx-auto px-4 text-center">
-                <h1 class="text-5xl font-bold mb-4">AI Tools Navigator 2025</h1>
-                <p class="text-xl opacity-90 max-w-3xl mx-auto">Compare the best free AI tools without login for developers, students, creators, and businesses.</p>
-                <div class="mt-8 flex justify-center space-x-4">
-                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                        🚀 Free AI Tools Online
-                    </div>
-                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                        💡 AI API Integration
-                    </div>
-                    <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                        ⚙️ Productivity Automation
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="homepage-layout">
+            <aside class="category-sidebar" aria-label="Homepage sections">
+                <h2 class="category-sidebar__title">Browse AI categories</h2>
+                <nav>
+                    <ul class="category-sidebar__list">
+                        <li class="category-sidebar__item"><a href="#overview" class="category-sidebar__link category-sidebar__link--active" data-target="overview"><span class="category-sidebar__icon">🏠</span><span>Overview</span></a></li>
+                        <li class="category-sidebar__item"><a href="#ai-foundation-models" class="category-sidebar__link" data-target="ai-foundation-models"><span class="category-sidebar__icon">🧠</span><span>Foundation Models</span></a></li>
+                        <li class="category-sidebar__item"><a href="#website-services" class="category-sidebar__link" data-target="website-services"><span class="category-sidebar__icon">🌐</span><span>Website Services</span></a></li>
+                        <li class="category-sidebar__item"><a href="#make-money" class="category-sidebar__link" data-target="make-money"><span class="category-sidebar__icon">💰</span><span>Make Money Online</span></a></li>
+                        <li class="category-sidebar__item"><a href="#social-media" class="category-sidebar__link" data-target="social-media"><span class="category-sidebar__icon">📣</span><span>Social Media</span></a></li>
+                        <li class="category-sidebar__item"><a href="#ad-networks" class="category-sidebar__link" data-target="ad-networks"><span class="category-sidebar__icon">📈</span><span>Ad Networks</span></a></li>
+                        <li class="category-sidebar__item"><a href="#free-ai-tools" class="category-sidebar__link" data-target="free-ai-tools"><span class="category-sidebar__icon">🛠️</span><span>Free AI Tools</span></a></li>
+                        <li class="category-sidebar__item"><a href="#compare-tools" class="category-sidebar__link" data-target="compare-tools"><span class="category-sidebar__icon">📊</span><span>Compare AI Tools</span></a></li>
+                        <li class="category-sidebar__item"><a href="#directory-overview" class="category-sidebar__link" data-target="directory-overview"><span class="category-sidebar__icon">📚</span><span>Directory Overview</span></a></li>
+                    </ul>
+                </nav>
+            </aside>
 
-        <div class="max-w-7xl mx-auto px-4 py-12" id="ai-models">
-        <section class="mb-20 fade-in">
+            <div class="homepage-content">
+                <!-- 页面标题区域 -->
+                <section id="overview" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 mb-8 rounded-3xl shadow-lg">
+                    <div class="max-w-7xl mx-auto px-4 text-center">
+                        <h1 class="text-5xl font-bold mb-4">AI Tools Navigator 2025</h1>
+                        <p class="text-xl opacity-90 max-w-3xl mx-auto">Compare the best free AI tools without login for developers, students, creators, and businesses.</p>
+                        <div class="mt-8 flex justify-center space-x-4">
+                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                                🚀 Free AI Tools Online
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                                💡 AI API Integration
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
+                                ⚙️ Productivity Automation
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="max-w-7xl pl-0 sm:pl-4 pr-4 py-12">
+        <section id="ai-foundation-models" class="mb-20 fade-in">
             <h2 class="category-title">AI Foundation Models &amp; Machine Learning Tools</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://chatgpt.com/" target="_blank" class="tool-card modern-card">
                     <div class="tool-content">
                         <h3 class="text-xl font-bold mb-2 text-gray-800">ChatGPT</h3>
@@ -809,9 +966,9 @@
         </section>
 
         <!-- 网站服务 -->
-        <section class="mb-20 fade-in">
+        <section id="website-services" class="mb-20 fade-in">
             <h2 class="category-title">Website Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
                     <div class="tool-content">
                         <h3 class="text-xl font-bold mb-2 text-gray-800">Cloudflare</h3>
@@ -850,9 +1007,9 @@
         </section>
 
         <!-- 新增 赚美金 板块 -->
-        <section class="mb-20 fade-in">
+        <section id="make-money" class="mb-20 fade-in">
             <h2 class="category-title">Make Money Online</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
                     <div class="tool-content">
                         <h3 class="text-xl font-bold mb-2 text-gray-800">Google AdSense</h3>
@@ -905,9 +1062,9 @@
         </section>
 
         <!-- 新增 社交媒体 板块 -->
-        <section class="mb-20 fade-in">
+        <section id="social-media" class="mb-20 fade-in">
             <h2 class="category-title">Social Media</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://x.com/home" target="_blank" class="tool-card modern-card">
                     <div class="tool-content">
                         <h3 class="text-xl font-bold mb-2 text-gray-800">X (formerly Twitter)</h3>
@@ -930,7 +1087,7 @@
         </section>
 
         <!-- 广告联盟 -->
-        <section class="mb-20 fade-in">
+        <section id="ad-networks" class="mb-20 fade-in">
             <h2 class="category-title">Ad Networks</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Monetag -->
@@ -985,7 +1142,7 @@
 
 
         <!-- 🤖 大模型 板块置顶 -->
-        <section class="max-w-7xl mx-auto px-4 py-12" aria-labelledby="free-ai-tools-online">
+        <section id="free-ai-tools" class="max-w-7xl mx-auto px-4 py-12" aria-labelledby="free-ai-tools-online">
             <h2 id="free-ai-tools-online" class="text-3xl font-bold text-center text-gray-900 mb-6">Free AI Tools Online</h2>
             <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-10">Explore curated free AI tools online, from open source AI tools to platforms that work without login. Our navigator highlights ai image generator tools, ai video generator online suites, ai text to speech tools, and ai chatbot platforms built for rapid AI API integration.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1012,7 +1169,7 @@
             </div>
         </section>
 
-        <section class="bg-slate-50 py-14" aria-labelledby="compare-best-ai-tools">
+        <section id="compare-tools" class="bg-slate-50 py-14" aria-labelledby="compare-best-ai-tools">
             <div class="max-w-7xl mx-auto px-4">
                 <h2 id="compare-best-ai-tools" class="text-3xl font-bold text-center text-gray-900 mb-6">Compare the Best AI Tools</h2>
                 <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center">Use our AI Tools Navigator to compare ai tools 2025 across every artificial intelligence platform category. Track machine learning tools for research, evaluate productivity automation stacks, and follow trending AI startups before they go mainstream.</p>
@@ -1044,11 +1201,12 @@
         </section>
 
 
+                </div>
+            </div>
         </div>
-    </main>
 
         <!-- 页面介绍开始 -->
-        <section class="page-introduction bg-gradient-to-br from-blue-50 to-indigo-100 py-16 mt-16">
+        <section id="directory-overview" class="page-introduction bg-gradient-to-br from-blue-50 to-indigo-100 py-16 mt-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">Welcome to AIAIY.COM: AI Tools Directory</h2>
@@ -1089,6 +1247,8 @@
         </section>
         <!-- 页面介绍结束 -->
 
+    </main>
+
         <!-- 页脚 -->
         <footer class="glass py-8 mt-12">
             <div class="container mx-auto px-4 text-center">
@@ -1114,9 +1274,6 @@
                 <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. Curated premium AI tools. Contact: wx: zhangyouxun2013</div>
             </div>
         </footer>
-    </main>
-
-
     <!-- 引入首页LOGO优化器 -->
     <script src="homepage-logo-optimizer.js"></script>
     
@@ -1167,6 +1324,64 @@
                         button.style.borderColor = 'var(--text-primary)';
                     }
                 });
+            }
+
+            const sidebarLinks = Array.from(document.querySelectorAll('.category-sidebar__link'));
+            const sectionIds = sidebarLinks.map(link => link.dataset.target).filter(Boolean);
+
+            const setActiveSidebarLink = (id) => {
+                if (!id) return;
+                sidebarLinks.forEach(link => {
+                    if (link.dataset.target === id) {
+                        link.classList.add('category-sidebar__link--active');
+                        link.setAttribute('aria-current', 'true');
+                    } else {
+                        link.classList.remove('category-sidebar__link--active');
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            };
+
+            if (sectionIds.length && 'IntersectionObserver' in window) {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setActiveSidebarLink(entry.target.id);
+                        }
+                    });
+                }, {
+                    rootMargin: '-40% 0px -50% 0px',
+                    threshold: 0
+                });
+
+                sectionIds.forEach(id => {
+                    const section = document.getElementById(id);
+                    if (section) {
+                        sectionObserver.observe(section);
+                    }
+                });
+            }
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const targetId = link.dataset.target;
+                    if (!targetId) return;
+                    setActiveSidebarLink(targetId);
+                });
+            });
+
+            window.addEventListener('hashchange', () => {
+                const currentHash = window.location.hash.replace('#', '');
+                if (sectionIds.includes(currentHash)) {
+                    setActiveSidebarLink(currentHash);
+                }
+            });
+
+            const initialHash = window.location.hash.replace('#', '');
+            if (sectionIds.includes(initialHash)) {
+                setActiveSidebarLink(initialHash);
+            } else if (sectionIds.length) {
+                setActiveSidebarLink(sectionIds[0]);
             }
 
             createParticles();
