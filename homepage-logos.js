@@ -395,9 +395,9 @@ class HomepageLogoManager {
             logoBgContainer.style.display = 'flex';
             logoBgContainer.style.alignItems = 'center';
             logoBgContainer.style.justifyContent = 'center';
-            logoBgContainer.style.fontSize = '2rem';
+            logoBgContainer.style.fontSize = '1.75rem';
             logoBgContainer.style.color = 'white';
-            logoBgContainer.style.opacity = '0.1';
+            logoBgContainer.style.opacity = '';
             logoBgContainer.textContent = fallbackIcon;
         }
     }
