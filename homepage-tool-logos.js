@@ -182,7 +182,7 @@ class HomepageToolLogoManager {
                     // Emoji fallback - 创建渐变背景
                     logoBg.style.backgroundImage = 'none';
                     logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
-                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
+                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${logo}</div>`;
                 }
                 
                 console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
