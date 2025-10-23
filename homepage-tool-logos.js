@@ -175,12 +175,14 @@ class HomepageToolLogoManager {
                 
                 if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
                     // 图片LOGO
-                    logoBg.style.backgroundImage = `url(${logo})`;
                     logoBg.style.background = 'none';
+                    logoBg.style.backgroundColor = '#ffffff';
+                    logoBg.style.backgroundImage = `url(${logo})`;
                     logoBg.innerHTML = '';
                 } else if (logo) {
                     // Emoji fallback - 创建渐变背景
                     logoBg.style.backgroundImage = 'none';
+                    logoBg.style.removeProperty('background-color');
                     logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
                     logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${logo}</div>`;
                 }
@@ -215,26 +217,24 @@ class HomepageToolLogoManager {
                 return url;
             }
 
-            try {
-                const logoUrl = await this.fetchLogo(url, domain);
-                this.logoCache.set(domain, logoUrl);
+            const testedUrl = await this.findBestIconUrl([url]);
+            if (testedUrl) {
+                this.logoCache.set(domain, testedUrl);
                 this.saveToLocalStorage();
-                return logoUrl;
-            } catch (error) {
-                console.warn(`Failed to fetch logo for ${domain}:`, error);
-                this.logoCache.set(domain, fallback);
-                this.saveToLocalStorage();
-                return fallback;
+                return testedUrl;
             }
+
+            this.logoCache.set(domain, fallback);
+            this.saveToLocalStorage();
+            return fallback;
         }
 
         // 尝试从网站获取favicon
         try {
             const faviconUrl = await this.getFaviconUrl(domain, url);
-            const logoUrl = await this.fetchLogo(faviconUrl, domain);
-            this.logoCache.set(domain, logoUrl);
+            this.logoCache.set(domain, faviconUrl);
             this.saveToLocalStorage();
-            return logoUrl;
+            return faviconUrl;
         } catch (error) {
             console.warn(`Failed to get favicon for ${domain}:`, error);
             const fallback = this.getFallbackIcon(domain);
@@ -251,55 +251,23 @@ class HomepageToolLogoManager {
      * @returns {Promise<string>} favicon URL
      */
     async getFaviconUrl(domain, url = '') {
-        const baseUrl = url || `https://${domain}`;
+        const baseUrl = this.getOrigin(url || `https://${domain}`);
         const faviconUrls = [
-            `${baseUrl}/favicon.ico`,
-            `${baseUrl}/favicon.png`,
+            `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=128`,
+            `${baseUrl}/favicon-196x196.png`,
+            `${baseUrl}/favicon-192x192.png`,
             `${baseUrl}/apple-touch-icon.png`,
-            `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
-            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=64`
+            `${baseUrl}/favicon.png`,
+            `${baseUrl}/favicon.ico`
         ];
 
-        for (const faviconUrl of faviconUrls) {
-            try {
-                const response = await fetch(faviconUrl, { 
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                if (response.ok || response.status === 0) {
-                    return faviconUrl;
-                }
-            } catch (error) {
-                continue;
-            }
+        const bestUrl = await this.findBestIconUrl(faviconUrls);
+        if (!bestUrl) {
+            throw new Error('No favicon found');
         }
 
-        throw new Error('No favicon found');
-    }
-
-    /**
-     * 获取LOGO图片
-     * @param {string} url - LOGO URL
-     * @param {string} domain - 域名
-     * @returns {Promise<string>} base64编码的图片
-     */
-    async fetchLogo(url, domain) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            
-            const blob = await response.blob();
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(blob);
-            });
-        } catch (error) {
-            throw new Error(`Failed to fetch logo: ${error.message}`);
-        }
+        return bestUrl;
     }
 
     /**
@@ -359,6 +327,64 @@ class HomepageToolLogoManager {
             // 如果不是完整URL，尝试直接使用
             return url.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
         }
+    }
+
+    /**
+     * 获取URL的origin
+     * @param {string} url
+     * @returns {string}
+     */
+    getOrigin(url) {
+        try {
+            const { origin } = new URL(url);
+            return origin;
+        } catch (error) {
+            return url.replace(/\/$/, '');
+        }
+    }
+
+    /**
+     * 查找第一个可用的图标URL
+     * @param {string[]} urls
+     * @returns {Promise<string|null>}
+     */
+    async findBestIconUrl(urls = []) {
+        for (const candidate of urls) {
+            if (!candidate) continue;
+            const available = await this.testImage(candidate);
+            if (available) {
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 通过加载图片检测URL是否可用
+     * @param {string} url
+     * @returns {Promise<boolean>}
+     */
+    testImage(url) {
+        if (typeof Image === 'undefined') {
+            return Promise.resolve(true);
+        }
+        return new Promise((resolve) => {
+            const img = new Image();
+            const cleanup = () => {
+                img.onload = null;
+                img.onerror = null;
+            };
+            img.onload = () => {
+                cleanup();
+                resolve(true);
+            };
+            img.onerror = () => {
+                cleanup();
+                resolve(false);
+            };
+            const cacheBuster = url.includes('?') ? `&cacheBust=${Date.now()}` : `?cacheBust=${Date.now()}`;
+            img.src = `${url}${cacheBuster}`;
+        });
     }
 
     /**
