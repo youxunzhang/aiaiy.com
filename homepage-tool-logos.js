@@ -158,13 +158,41 @@ class HomepageToolLogoManager {
                 link = card.querySelector('a');
                 href = link ? link.getAttribute('href') : null;
             }
-            
+
             if (!href) continue;
 
             try {
-                const domain = this.extractDomain(href);
-                const logo = await this.getLogo(domain, href);
-                
+                const {
+                    brandDomain = '',
+                    brandLogo = '',
+                    brandEmoji = '',
+                    brandColor = ''
+                } = card.dataset || {};
+
+                const normalizedDomain = (brandDomain || this.extractDomain(href) || '').toLowerCase();
+
+                let logo = null;
+
+                if (brandLogo) {
+                    try {
+                        const directLogo = await this.validateDirectLogo(brandLogo);
+                        if (directLogo) {
+                            logo = directLogo;
+                            if (normalizedDomain) {
+                                this.logoCache.set(normalizedDomain, directLogo);
+                                this.saveToLocalStorage();
+                            }
+                        }
+                    } catch (directError) {
+                        console.warn(`Failed to use direct logo for ${normalizedDomain || href}:`, directError);
+                    }
+                }
+
+                if (!logo) {
+                    const resolvedDomain = normalizedDomain || this.extractDomain(href);
+                    logo = await this.getLogo(resolvedDomain, href);
+                }
+
                 // 创建或获取LOGO背景元素
                 let logoBg = card.querySelector('.tool-logo-bg');
                 if (!logoBg) {
@@ -176,22 +204,78 @@ class HomepageToolLogoManager {
                 if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
                     // 图片LOGO
                     logoBg.style.background = 'none';
-                    logoBg.style.backgroundColor = '#ffffff';
+                    if (brandColor) {
+                        logoBg.style.backgroundColor = this.applyAlpha(brandColor, 0.12);
+                        logoBg.style.borderColor = this.applyAlpha(brandColor, 0.35);
+                        logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(brandColor, 0.45)}`;
+                    } else {
+                        logoBg.style.backgroundColor = '#ffffff';
+                        logoBg.style.removeProperty('border-color');
+                        logoBg.style.boxShadow = '0 16px 32px -24px rgba(15, 23, 42, 0.5)';
+                    }
                     logoBg.style.backgroundImage = `url(${logo})`;
                     logoBg.innerHTML = '';
                 } else if (logo) {
                     // Emoji fallback - 创建渐变背景
                     logoBg.style.backgroundImage = 'none';
                     logoBg.style.removeProperty('background-color');
-                    logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
+                    const gradientColor = brandColor || '#3B82F6';
+                    logoBg.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.15)}, rgba(147, 51, 234, 0.08))`;
+                    logoBg.style.borderColor = this.applyAlpha(gradientColor, 0.25);
+                    logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.4)}`;
                     logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${logo}</div>`;
+                } else if (brandEmoji) {
+                    logoBg.style.backgroundImage = 'none';
+                    logoBg.style.removeProperty('background-color');
+                    const gradientColor = brandColor || '#2563EB';
+                    logoBg.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.15)}, rgba(99, 102, 241, 0.08))`;
+                    logoBg.style.borderColor = this.applyAlpha(gradientColor, 0.25);
+                    logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.4)}`;
+                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${brandEmoji}</div>`;
                 }
-                
-                console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
+
+                console.log(`✅ 成功为 ${(normalizedDomain || this.extractDomain(href))} 添加LOGO背景`);
             } catch (error) {
                 console.warn(`Failed to add logo for ${href}:`, error);
             }
         }
+    }
+
+    /**
+     * 校验直接提供的LOGO链接是否可用
+     * @param {string} logoUrl
+     * @returns {Promise<string|null>}
+     */
+    async validateDirectLogo(logoUrl) {
+        const isValid = await this.testImage(logoUrl);
+        return isValid ? logoUrl : null;
+    }
+
+    /**
+     * 将颜色转换为具有透明度的rgba格式
+     * @param {string} color 十六进制颜色值
+     * @param {number} alpha 透明度
+     * @returns {string}
+     */
+    applyAlpha(color, alpha = 0.1) {
+        if (!color) {
+            return `rgba(59, 130, 246, ${alpha})`;
+        }
+
+        const normalized = color.trim();
+        if (!normalized.startsWith('#') || (normalized.length !== 7 && normalized.length !== 4)) {
+            return `rgba(59, 130, 246, ${alpha})`;
+        }
+
+        const expandHex = (value) => value.split('').map(ch => ch + ch).join('');
+        const baseHex = normalized.slice(1);
+        const hex = normalized.length === 4 ? expandHex(baseHex) : baseHex;
+
+        const r = parseInt(hex.slice(0, 2), 16);
+        const g = parseInt(hex.slice(2, 4), 16);
+        const b = parseInt(hex.slice(4, 6), 16);
+
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
     }
 
     /**
