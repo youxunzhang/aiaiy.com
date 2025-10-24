@@ -201,40 +201,26 @@ class HomepageToolLogoManager {
                     card.insertBefore(logoBg, card.firstChild);
                 }
                 
-                if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
-                    // 图片LOGO
-                    logoBg.style.background = 'none';
-                    if (brandColor) {
-                        logoBg.style.backgroundColor = this.applyAlpha(brandColor, 0.12);
-                        logoBg.style.borderColor = this.applyAlpha(brandColor, 0.35);
-                        logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(brandColor, 0.45)}`;
-                    } else {
-                        logoBg.style.backgroundColor = '#ffffff';
-                        logoBg.style.removeProperty('border-color');
-                        logoBg.style.boxShadow = '0 16px 32px -24px rgba(15, 23, 42, 0.5)';
-                    }
-                    logoBg.style.backgroundImage = `url(${logo})`;
-                    logoBg.innerHTML = '';
-                } else if (logo) {
-                    // Emoji fallback - 创建渐变背景
-                    logoBg.style.backgroundImage = 'none';
-                    logoBg.style.removeProperty('background-color');
-                    const gradientColor = brandColor || '#3B82F6';
-                    logoBg.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.15)}, rgba(147, 51, 234, 0.08))`;
-                    logoBg.style.borderColor = this.applyAlpha(gradientColor, 0.25);
-                    logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.4)}`;
-                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${logo}</div>`;
-                } else if (brandEmoji) {
-                    logoBg.style.backgroundImage = 'none';
-                    logoBg.style.removeProperty('background-color');
-                    const gradientColor = brandColor || '#2563EB';
-                    logoBg.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.15)}, rgba(99, 102, 241, 0.08))`;
-                    logoBg.style.borderColor = this.applyAlpha(gradientColor, 0.25);
-                    logoBg.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.4)}`;
-                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.75rem; opacity: 0.35;">${brandEmoji}</div>`;
-                }
+                const fallbackEmoji = logo && !logo.startsWith('data:image') && !logo.startsWith('http') && !logo.startsWith('//')
+                    ? logo
+                    : brandEmoji;
 
-                console.log(`✅ 成功为 ${(normalizedDomain || this.extractDomain(href))} 添加LOGO背景`);
+                if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
+                    this.renderImageLogo({
+                        element: logoBg,
+                        url: logo,
+                        color: brandColor,
+                        emoji: fallbackEmoji,
+                        card
+                    });
+                } else {
+                    this.renderFallbackLogo({
+                        element: logoBg,
+                        color: brandColor,
+                        emoji: fallbackEmoji,
+                        card
+                    });
+                }
             } catch (error) {
                 console.warn(`Failed to add logo for ${href}:`, error);
             }
@@ -276,6 +262,111 @@ class HomepageToolLogoManager {
         const b = parseInt(hex.slice(4, 6), 16);
 
         return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    /**
+     * 为图标容器应用基础样式
+     * @param {HTMLElement} element
+     * @param {string} color
+     */
+    applyBaseLogoStyles(element, color) {
+        element.classList.remove('tool-logo-bg--fallback');
+        element.innerHTML = '';
+        element.style.backgroundImage = 'none';
+
+        if (color) {
+            element.style.backgroundColor = this.applyAlpha(color, 0.12);
+            element.style.borderColor = this.applyAlpha(color, 0.35);
+            element.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(color, 0.45)}`;
+            element.style.color = '#1d4ed8';
+        } else {
+            element.style.backgroundColor = '#ffffff';
+            element.style.borderColor = 'rgba(148, 163, 184, 0.25)';
+            element.style.boxShadow = '0 18px 36px -28px rgba(15, 23, 42, 0.45)';
+            element.style.color = '#1d4ed8';
+        }
+    }
+
+    /**
+     * 渲染图片LOGO
+     * @param {Object} params
+     */
+    renderImageLogo({ element, url, color, emoji, card }) {
+        this.applyBaseLogoStyles(element, color);
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `${this.getToolName(card)} logo`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.referrerPolicy = 'no-referrer';
+        img.className = 'tool-logo-img';
+
+        img.onerror = () => {
+            this.renderFallbackLogo({ element, color, emoji, card });
+        };
+
+        element.appendChild(img);
+    }
+
+    /**
+     * 渲染Emoji或首字母的LOGO
+     * @param {Object} params
+     */
+    renderFallbackLogo({ element, color, emoji, card }) {
+        element.classList.add('tool-logo-bg--fallback');
+        const gradientColor = color || '#2563EB';
+        element.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.18)}, rgba(99, 102, 241, 0.12))`;
+        element.style.borderColor = this.applyAlpha(gradientColor, 0.35);
+        element.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.42)}`;
+        element.style.color = '#1d4ed8';
+        element.innerHTML = '';
+
+        const displaySymbol = (emoji && emoji.trim()) || this.getFallbackLetter(card);
+        element.textContent = displaySymbol;
+    }
+
+    /**
+     * 获取工具名称
+     * @param {HTMLElement} card
+     * @returns {string}
+     */
+    getToolName(card) {
+        const titleEl = card.querySelector('h3');
+        if (titleEl && titleEl.textContent.trim()) {
+            return titleEl.textContent.trim();
+        }
+
+        const domain = card.dataset?.brandDomain;
+        if (domain) {
+            return domain.replace(/^www\./, '');
+        }
+
+        const link = card.tagName === 'A' ? card : card.querySelector('a');
+        if (link && link.getAttribute('href')) {
+            return this.extractDomain(link.getAttribute('href'));
+        }
+
+        return 'AI Tool';
+    }
+
+    /**
+     * 获取首字母fallback
+     * @param {HTMLElement} card
+     * @returns {string}
+     */
+    getFallbackLetter(card) {
+        const name = this.getToolName(card);
+        if (!name) {
+            return 'AI';
+        }
+
+        const letter = name.trim().charAt(0).toUpperCase();
+        if (!letter || !/[A-Z0-9]/i.test(letter)) {
+            return 'AI';
+        }
+
+        return letter;
     }
 
     /**
