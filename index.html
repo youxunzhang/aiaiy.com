@@ -790,9 +790,181 @@
         .section {
             padding: 4rem 0;
         }
-        
+
         .section:nth-child(even) {
             background: var(--surface-color);
+        }
+
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .content-section:nth-of-type(even) {
+            background: #f8fafc;
+        }
+
+        .content-section__inner {
+            max-width: 72rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .content-section__header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .content-section__header h2 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-section__header p {
+            max-width: 50rem;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .content-grid {
+            display: grid;
+            gap: 1.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-grid--two {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .content-grid--three {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .content-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 1.75rem;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+        }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        .quality-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .quality-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .quality-icon {
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .policy-note {
+            background: rgba(37, 99, 235, 0.08);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .timeline__item {
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline__item h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline__item span {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+        }
+
+        .resource-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1rem;
+            background: #ffffff;
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .resource-links a:hover {
+            color: var(--primary-color);
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
+            border-radius: 1.25rem;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(226, 232, 240, 0.7);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
         }
         
         .container {
@@ -994,6 +1166,8 @@
                         <li class="category-sidebar__item"><a href="#free-ai-tools" class="category-sidebar__link" data-target="free-ai-tools"><span class="category-sidebar__icon">🛠️</span><span>Free AI Tools</span></a></li>
                         <li class="category-sidebar__item"><a href="#compare-tools" class="category-sidebar__link" data-target="compare-tools"><span class="category-sidebar__icon">📊</span><span>Compare AI Tools</span></a></li>
                         <li class="category-sidebar__item"><a href="#directory-overview" class="category-sidebar__link" data-target="directory-overview"><span class="category-sidebar__icon">📚</span><span>Directory Overview</span></a></li>
+                        <li class="category-sidebar__item"><a href="#editorial-standards" class="category-sidebar__link" data-target="editorial-standards"><span class="category-sidebar__icon">📝</span><span>Editorial Standards</span></a></li>
+                        <li class="category-sidebar__item"><a href="#content-roadmap" class="category-sidebar__link" data-target="content-roadmap"><span class="category-sidebar__icon">📅</span><span>Content Roadmap</span></a></li>
                     </ul>
                 </nav>
             </aside>
@@ -1739,6 +1913,84 @@
             </div>
         </section>
         <!-- 页面介绍结束 -->
+
+        <section id="editorial-standards" class="content-section fade-in">
+            <div class="content-section__inner">
+                <div class="content-section__header">
+                    <h2>Editorial Standards &amp; Review Process</h2>
+                    <p>Every listing on AIAIY.COM is researched, tested, and updated by editors with hands-on experience deploying AI tools for content production, marketing automation, education, and enterprise workflows. We document the commercial model of each tool, check availability in multiple regions, and confirm the latest feature releases before recommending it to our readers.</p>
+                </div>
+                <div class="content-grid content-grid--two">
+                    <article class="content-card">
+                        <h3>Research-driven Curation</h3>
+                        <p>Our research analysts monitor product changelogs, public roadmaps, and user communities to understand how each AI service is evolving. Listings are only published when we can clearly explain the differentiators that make the product useful for a particular audience.</p>
+                        <ul class="quality-list" aria-label="Research checklist">
+                            <li><span class="quality-icon">🔍</span><span>Verify the tool’s ownership, pricing, and compliance statements directly with the official website or documentation.</span></li>
+                            <li><span class="quality-icon">🧪</span><span>Run at least one real workflow—such as generating a campaign, automating a report, or training a model—to confirm the advertised capabilities.</span></li>
+                            <li><span class="quality-icon">🌍</span><span>Note regional limitations, supported languages, and accessibility considerations so global readers can make informed choices.</span></li>
+                        </ul>
+                    </article>
+                    <article class="content-card">
+                        <h3>Quality Signals We Track</h3>
+                        <p>Each page highlights transparent pricing, onboarding difficulty, integrations, and user support options. We update the metadata whenever a vendor changes their business model, adds a notable feature, or retires a product tier.</p>
+                        <ul class="quality-list" aria-label="Quality signals">
+                            <li><span class="quality-icon">✅</span><span>Product stability, uptime commitments, and published security standards.</span></li>
+                            <li><span class="quality-icon">📈</span><span>Evidence of active development such as GitHub releases, roadmap milestones, or verified community announcements.</span></li>
+                            <li><span class="quality-icon">🤝</span><span>Availability of tutorials, onboarding support, and inclusive documentation for beginners.</span></li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="policy-note" role="note">
+                    We follow Google AdSense publisher policies by prioritizing human-written summaries, disclosing affiliate relationships when applicable, and removing low-value or duplicated pages. If a tool fails to meet our accuracy requirements it is flagged for revision within 48 hours.
+                </div>
+                <div class="resource-links" aria-label="Quality resources">
+                    <a href="seo.html">SEO Playbook</a>
+                    <a href="aicontent.html">AI Content Lab</a>
+                    <a href="https://support.google.com/adsense/answer/1348739" target="_blank" rel="noopener noreferrer">AdSense Content Policy</a>
+                    <a href="https://developers.google.com/search/blog/2022/08/helpful-content-update" target="_blank" rel="noopener noreferrer">Helpful Content Update</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="content-roadmap" class="content-section fade-in" aria-labelledby="content-roadmap-heading">
+            <div class="content-section__inner">
+                <div class="content-section__header">
+                    <h2 id="content-roadmap-heading">Content Roadmap &amp; User Experience Improvements</h2>
+                    <p>To keep the directory helpful for returning visitors, we plan structured updates every month. Each cycle includes reader interviews, data refreshes, and interface polishing to ensure the browsing experience remains fast, accessible, and valuable.</p>
+                </div>
+                <div class="timeline" aria-label="Content roadmap timeline">
+                    <div class="timeline__item">
+                        <span>Weekly</span>
+                        <h3>Accuracy Review &amp; Link Validation</h3>
+                        <p>Automated crawlers and manual spot checks ensure that outbound links, login requirements, and pricing tables are current. Broken experiences are fixed within 24 hours or the listing is temporarily archived.</p>
+                    </div>
+                    <div class="timeline__item">
+                        <span>Monthly</span>
+                        <h3>Category Deep Dives</h3>
+                        <p>We expand at least two categories with new comparisons, workflow templates, and performance benchmarks. Recent additions include accessible AI audio editors and compliance-focused AI governance suites.</p>
+                    </div>
+                    <div class="timeline__item">
+                        <span>Quarterly</span>
+                        <h3>User Feedback Sprints</h3>
+                        <p>Newsletter subscribers and community partners share the projects they are building. Their questions inform new FAQ entries, glossary terms, and video walkthroughs that lower the barrier to adopting responsible AI.</p>
+                    </div>
+                </div>
+                <div class="content-grid content-grid--two" style="margin-top:2.5rem;">
+                    <article class="content-card">
+                        <h3>Accessibility &amp; Performance</h3>
+                        <p>We audit Core Web Vitals, color contrast ratios, and keyboard navigation to guarantee that the directory performs on mobile devices and assistive technologies. Lightweight illustrations replace heavy assets so pages load quickly even on slower networks.</p>
+                    </article>
+                    <article class="content-card">
+                        <h3>Community Participation</h3>
+                        <p>Readers can propose new AI tools, request tutorials, or report policy concerns via email or our upcoming feedback form. Each submission is logged in our editorial tracker, triaged within two business days, and responded to with the resolution status.</p>
+                    </article>
+                </div>
+                <div class="contact-card" aria-label="Contact information">
+                    <h3>Share Your Feedback</h3>
+                    <p>Let us know if you discover outdated screenshots, inaccurate descriptions, or accessibility issues. Contact us at <a href="mailto:hello@aiaiy.com" class="text-blue-600 underline">hello@aiaiy.com</a> or via WeChat (ID: zhangyouxun2013). Editorial notes are reviewed by senior staff to maintain transparency and trust.</p>
+                </div>
+            </div>
+        </section>
 
     </main>
 
