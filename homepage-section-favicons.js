@@ -2,7 +2,6 @@
     const SECTION_TITLES = new Set([
         'AI Foundation Models & Machine Learning Tools',
         'Website Services',
-        'SaaS Platforms',
         'Make Money Online',
         'Social Media',
         'Ad Networks'

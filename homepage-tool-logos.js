@@ -158,41 +158,13 @@ class HomepageToolLogoManager {
                 link = card.querySelector('a');
                 href = link ? link.getAttribute('href') : null;
             }
-
+            
             if (!href) continue;
 
             try {
-                const {
-                    brandDomain = '',
-                    brandLogo = '',
-                    brandEmoji = '',
-                    brandColor = ''
-                } = card.dataset || {};
-
-                const normalizedDomain = (brandDomain || this.extractDomain(href) || '').toLowerCase();
-
-                let logo = null;
-
-                if (brandLogo) {
-                    try {
-                        const directLogo = await this.validateDirectLogo(brandLogo);
-                        if (directLogo) {
-                            logo = directLogo;
-                            if (normalizedDomain) {
-                                this.logoCache.set(normalizedDomain, directLogo);
-                                this.saveToLocalStorage();
-                            }
-                        }
-                    } catch (directError) {
-                        console.warn(`Failed to use direct logo for ${normalizedDomain || href}:`, directError);
-                    }
-                }
-
-                if (!logo) {
-                    const resolvedDomain = normalizedDomain || this.extractDomain(href);
-                    logo = await this.getLogo(resolvedDomain, href);
-                }
-
+                const domain = this.extractDomain(href);
+                const logo = await this.getLogo(domain, href);
+                
                 // 创建或获取LOGO背景元素
                 let logoBg = card.querySelector('.tool-logo-bg');
                 if (!logoBg) {
@@ -201,172 +173,23 @@ class HomepageToolLogoManager {
                     card.insertBefore(logoBg, card.firstChild);
                 }
                 
-                const fallbackEmoji = logo && !logo.startsWith('data:image') && !logo.startsWith('http') && !logo.startsWith('//')
-                    ? logo
-                    : brandEmoji;
-
                 if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
-                    this.renderImageLogo({
-                        element: logoBg,
-                        url: logo,
-                        color: brandColor,
-                        emoji: fallbackEmoji,
-                        card
-                    });
-                } else {
-                    this.renderFallbackLogo({
-                        element: logoBg,
-                        color: brandColor,
-                        emoji: fallbackEmoji,
-                        card
-                    });
+                    // 图片LOGO
+                    logoBg.style.backgroundImage = `url(${logo})`;
+                    logoBg.style.background = 'none';
+                    logoBg.innerHTML = '';
+                } else if (logo) {
+                    // Emoji fallback - 创建渐变背景
+                    logoBg.style.backgroundImage = 'none';
+                    logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
+                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
                 }
+                
+                console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
             } catch (error) {
                 console.warn(`Failed to add logo for ${href}:`, error);
             }
         }
-    }
-
-    /**
-     * 校验直接提供的LOGO链接是否可用
-     * @param {string} logoUrl
-     * @returns {Promise<string|null>}
-     */
-    async validateDirectLogo(logoUrl) {
-        const isValid = await this.testImage(logoUrl);
-        return isValid ? logoUrl : null;
-    }
-
-    /**
-     * 将颜色转换为具有透明度的rgba格式
-     * @param {string} color 十六进制颜色值
-     * @param {number} alpha 透明度
-     * @returns {string}
-     */
-    applyAlpha(color, alpha = 0.1) {
-        if (!color) {
-            return `rgba(59, 130, 246, ${alpha})`;
-        }
-
-        const normalized = color.trim();
-        if (!normalized.startsWith('#') || (normalized.length !== 7 && normalized.length !== 4)) {
-            return `rgba(59, 130, 246, ${alpha})`;
-        }
-
-        const expandHex = (value) => value.split('').map(ch => ch + ch).join('');
-        const baseHex = normalized.slice(1);
-        const hex = normalized.length === 4 ? expandHex(baseHex) : baseHex;
-
-        const r = parseInt(hex.slice(0, 2), 16);
-        const g = parseInt(hex.slice(2, 4), 16);
-        const b = parseInt(hex.slice(4, 6), 16);
-
-        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-
-    /**
-     * 为图标容器应用基础样式
-     * @param {HTMLElement} element
-     * @param {string} color
-     */
-    applyBaseLogoStyles(element, color) {
-        element.classList.remove('tool-logo-bg--fallback');
-        element.innerHTML = '';
-        element.style.backgroundImage = 'none';
-
-        if (color) {
-            element.style.backgroundColor = this.applyAlpha(color, 0.12);
-            element.style.borderColor = this.applyAlpha(color, 0.35);
-            element.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(color, 0.45)}`;
-            element.style.color = '#1d4ed8';
-        } else {
-            element.style.backgroundColor = '#ffffff';
-            element.style.borderColor = 'rgba(148, 163, 184, 0.25)';
-            element.style.boxShadow = '0 18px 36px -28px rgba(15, 23, 42, 0.45)';
-            element.style.color = '#1d4ed8';
-        }
-    }
-
-    /**
-     * 渲染图片LOGO
-     * @param {Object} params
-     */
-    renderImageLogo({ element, url, color, emoji, card }) {
-        this.applyBaseLogoStyles(element, color);
-
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = `${this.getToolName(card)} logo`;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.referrerPolicy = 'no-referrer';
-        img.className = 'tool-logo-img';
-
-        img.onerror = () => {
-            this.renderFallbackLogo({ element, color, emoji, card });
-        };
-
-        element.appendChild(img);
-    }
-
-    /**
-     * 渲染Emoji或首字母的LOGO
-     * @param {Object} params
-     */
-    renderFallbackLogo({ element, color, emoji, card }) {
-        element.classList.add('tool-logo-bg--fallback');
-        const gradientColor = color || '#2563EB';
-        element.style.background = `linear-gradient(135deg, ${this.applyAlpha(gradientColor, 0.18)}, rgba(99, 102, 241, 0.12))`;
-        element.style.borderColor = this.applyAlpha(gradientColor, 0.35);
-        element.style.boxShadow = `0 18px 36px -26px ${this.applyAlpha(gradientColor, 0.42)}`;
-        element.style.color = '#1d4ed8';
-        element.innerHTML = '';
-
-        const displaySymbol = (emoji && emoji.trim()) || this.getFallbackLetter(card);
-        element.textContent = displaySymbol;
-    }
-
-    /**
-     * 获取工具名称
-     * @param {HTMLElement} card
-     * @returns {string}
-     */
-    getToolName(card) {
-        const titleEl = card.querySelector('h3');
-        if (titleEl && titleEl.textContent.trim()) {
-            return titleEl.textContent.trim();
-        }
-
-        const domain = card.dataset?.brandDomain;
-        if (domain) {
-            return domain.replace(/^www\./, '');
-        }
-
-        const link = card.tagName === 'A' ? card : card.querySelector('a');
-        if (link && link.getAttribute('href')) {
-            return this.extractDomain(link.getAttribute('href'));
-        }
-
-        return 'AI Tool';
-    }
-
-    /**
-     * 获取首字母fallback
-     * @param {HTMLElement} card
-     * @returns {string}
-     */
-    getFallbackLetter(card) {
-        const name = this.getToolName(card);
-        if (!name) {
-            return 'AI';
-        }
-
-        const letter = name.trim().charAt(0).toUpperCase();
-        if (!letter || !/[A-Z0-9]/i.test(letter)) {
-            return 'AI';
-        }
-
-        return letter;
     }
 
     /**
@@ -392,24 +215,26 @@ class HomepageToolLogoManager {
                 return url;
             }
 
-            const testedUrl = await this.findBestIconUrl([url]);
-            if (testedUrl) {
-                this.logoCache.set(domain, testedUrl);
+            try {
+                const logoUrl = await this.fetchLogo(url, domain);
+                this.logoCache.set(domain, logoUrl);
                 this.saveToLocalStorage();
-                return testedUrl;
+                return logoUrl;
+            } catch (error) {
+                console.warn(`Failed to fetch logo for ${domain}:`, error);
+                this.logoCache.set(domain, fallback);
+                this.saveToLocalStorage();
+                return fallback;
             }
-
-            this.logoCache.set(domain, fallback);
-            this.saveToLocalStorage();
-            return fallback;
         }
 
         // 尝试从网站获取favicon
         try {
             const faviconUrl = await this.getFaviconUrl(domain, url);
-            this.logoCache.set(domain, faviconUrl);
+            const logoUrl = await this.fetchLogo(faviconUrl, domain);
+            this.logoCache.set(domain, logoUrl);
             this.saveToLocalStorage();
-            return faviconUrl;
+            return logoUrl;
         } catch (error) {
             console.warn(`Failed to get favicon for ${domain}:`, error);
             const fallback = this.getFallbackIcon(domain);
@@ -426,23 +251,55 @@ class HomepageToolLogoManager {
      * @returns {Promise<string>} favicon URL
      */
     async getFaviconUrl(domain, url = '') {
-        const baseUrl = this.getOrigin(url || `https://${domain}`);
+        const baseUrl = url || `https://${domain}`;
         const faviconUrls = [
-            `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
-            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=128`,
-            `${baseUrl}/favicon-196x196.png`,
-            `${baseUrl}/favicon-192x192.png`,
-            `${baseUrl}/apple-touch-icon.png`,
+            `${baseUrl}/favicon.ico`,
             `${baseUrl}/favicon.png`,
-            `${baseUrl}/favicon.ico`
+            `${baseUrl}/apple-touch-icon.png`,
+            `https://www.google.com/s2/favicons?domain=${domain}&sz=64`,
+            `https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${baseUrl}&size=64`
         ];
 
-        const bestUrl = await this.findBestIconUrl(faviconUrls);
-        if (!bestUrl) {
-            throw new Error('No favicon found');
+        for (const faviconUrl of faviconUrls) {
+            try {
+                const response = await fetch(faviconUrl, { 
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                if (response.ok || response.status === 0) {
+                    return faviconUrl;
+                }
+            } catch (error) {
+                continue;
+            }
         }
 
-        return bestUrl;
+        throw new Error('No favicon found');
+    }
+
+    /**
+     * 获取LOGO图片
+     * @param {string} url - LOGO URL
+     * @param {string} domain - 域名
+     * @returns {Promise<string>} base64编码的图片
+     */
+    async fetchLogo(url, domain) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            
+            const blob = await response.blob();
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        } catch (error) {
+            throw new Error(`Failed to fetch logo: ${error.message}`);
+        }
     }
 
     /**
@@ -502,64 +359,6 @@ class HomepageToolLogoManager {
             // 如果不是完整URL，尝试直接使用
             return url.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
         }
-    }
-
-    /**
-     * 获取URL的origin
-     * @param {string} url
-     * @returns {string}
-     */
-    getOrigin(url) {
-        try {
-            const { origin } = new URL(url);
-            return origin;
-        } catch (error) {
-            return url.replace(/\/$/, '');
-        }
-    }
-
-    /**
-     * 查找第一个可用的图标URL
-     * @param {string[]} urls
-     * @returns {Promise<string|null>}
-     */
-    async findBestIconUrl(urls = []) {
-        for (const candidate of urls) {
-            if (!candidate) continue;
-            const available = await this.testImage(candidate);
-            if (available) {
-                return candidate;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 通过加载图片检测URL是否可用
-     * @param {string} url
-     * @returns {Promise<boolean>}
-     */
-    testImage(url) {
-        if (typeof Image === 'undefined') {
-            return Promise.resolve(true);
-        }
-        return new Promise((resolve) => {
-            const img = new Image();
-            const cleanup = () => {
-                img.onload = null;
-                img.onerror = null;
-            };
-            img.onload = () => {
-                cleanup();
-                resolve(true);
-            };
-            img.onerror = () => {
-                cleanup();
-                resolve(false);
-            };
-            const cacheBuster = url.includes('?') ? `&cacheBust=${Date.now()}` : `?cacheBust=${Date.now()}`;
-            img.src = `${url}${cacheBuster}`;
-        });
     }
 
     /**
