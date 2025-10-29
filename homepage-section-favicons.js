@@ -4,7 +4,12 @@
         'Website Services',
         'Make Money Online',
         'Social Media',
-        'Ad Networks'
+        'Ad Networks',
+        'AI基础大模型与机器学习工具',
+        '网站服务',
+        'AI变现渠道',
+        '社交媒体',
+        '广告联盟'
     ]);
 
     document.addEventListener('DOMContentLoaded', () => {

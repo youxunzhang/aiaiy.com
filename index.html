@@ -534,31 +534,33 @@
 
         /* 工具卡片LOGO背景 */
         .tool-logo-bg {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, #eff6ff 0%, #eef2ff 100%);
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.1) 100%);
             border: 1px solid rgba(148, 163, 184, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 60%;
-            box-shadow: 0 12px 30px -18px rgba(30, 41, 59, 0.6);
+            background-size: 70%;
+            box-shadow: 0 12px 30px -18px rgba(30, 41, 59, 0.45);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             z-index: 2;
+            flex-shrink: 0;
         }
 
         .tool-card:hover .tool-logo-bg {
             transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 18px 40px -24px rgba(30, 41, 59, 0.6);
+            box-shadow: 0 18px 40px -24px rgba(30, 41, 59, 0.55);
         }
 
         .tool-logo-bg.fallback {
             background: linear-gradient(135deg, #2563eb 0%, #6366f1 100%);
             color: #ffffff;
-            font-size: 1.75rem;
+            font-size: 1.4rem;
         }
 
         .tool-content {
@@ -584,13 +586,16 @@
             line-height: 1.6;
         }
 
-        /* Hide tool favicons/logo badges while keeping text layout */
+        /* 工具卡片品牌LOGO样式 */
         .tool-card--with-favicon {
             padding: 1.5rem !important;
         }
 
         .tool-card--with-favicon .tool-card__inner {
-            display: contents;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
         }
 
         .tool-card--with-favicon .tool-card__text {
@@ -603,9 +608,56 @@
             margin-bottom: 0;
         }
 
-        .tool-favicon,
-        .tool-logo-bg {
-            display: none !important;
+        .tool-favicon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(79, 70, 229, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 25px -20px rgba(15, 23, 42, 0.55);
+        }
+
+        .tool-card--with-favicon:hover .tool-favicon {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px -22px rgba(30, 58, 138, 0.6);
+        }
+
+        .tool-favicon__initial {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #1e293b;
+            opacity: 0.75;
+            transition: opacity 0.2s ease;
+        }
+
+        .tool-favicon__image {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            border-radius: 12px;
+            display: none;
+            filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.18));
+        }
+
+        .tool-favicon.tool-favicon--image .tool-favicon__image {
+            display: block;
+        }
+
+        .tool-favicon.tool-favicon--image .tool-favicon__initial {
+            opacity: 0;
+        }
+
+        .tool-favicon.tool-favicon--fallback {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(99, 102, 241, 0.25));
+            color: #fff;
         }
         
 
@@ -1450,27 +1502,27 @@
     
     <!-- 引入首页LOGO优化器 -->
     <script src="homepage-logo-optimizer.js"></script>
-    
+
     <!-- 引入页面介绍组件 -->
     <script src="page-introductions.js"></script>
-    
+
     <!-- 引入简化Favicon获取器 -->
     <script src="simple-favicon-loader.js"></script>
-    
+
     <!-- 引入品牌LOGO背景展示器 -->
     <script src="brand-logo-background.js"></script>
-    
+
     <!-- 引入首页LOGO管理器 -->
     <script src="homepage-logo-manager.js"></script>
-    
+
     <!-- 引入首页品牌LOGO背景 -->
     <script src="homepage-brand-logos.js"></script>
-    
-    <!-- 引入首页工具卡片LOGO管理器 -->
-    <script src="homepage-tool-logos.js"></script>
 
     <!-- 引入首页板块favicon增强器 -->
     <script src="homepage-section-favicons.js"></script>
+
+    <!-- 引入首页工具卡片LOGO管理器 -->
+    <script src="homepage-tool-logos.js"></script>
 
     <!-- 引入首页LOGO功能验证器 -->
     <script src="verify-homepage-logos.js"></script>
