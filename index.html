@@ -68,19 +68,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #64748b;
-            --accent-color: #0ea5e9;
-            --background-color: #ffffff;
-            --surface-color: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --primary-color: #60a5fa;
+            --primary-hover: #93c5fd;
+            --secondary-color: rgba(226, 232, 255, 0.75);
+            --accent-color: #00f2fe;
+            --background-color: #050814;
+            --surface-color: rgba(15, 23, 42, 0.72);
+            --border-color: rgba(148, 163, 184, 0.22);
+            --text-primary: #f8fbff;
+            --text-secondary: rgba(226, 232, 255, 0.78);
+            --text-muted: rgba(148, 163, 184, 0.65);
+            --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.25);
+            --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.45);
+            --shadow-lg: 0 35px 65px rgba(0, 0, 0, 0.6);
+            --glass-bg: rgba(15, 23, 42, 0.75);
+            --glass-border: rgba(148, 163, 184, 0.22);
         }
 
         html {
@@ -95,12 +100,35 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: #FAFAFA;
-            color: #111827;
+            background: radial-gradient(circle at top left, rgba(79, 172, 254, 0.22), transparent 45%),
+                        radial-gradient(circle at bottom right, rgba(120, 119, 198, 0.28), transparent 55%),
+                        var(--background-color);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(79, 172, 254, 0.22) 0%, transparent 55%),
+                radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.18) 0%, transparent 55%),
+                radial-gradient(circle at 50% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 55%);
+            filter: blur(0px);
+            z-index: -2;
+            animation: backgroundShift 24s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            33% { transform: translate3d(-18px, -12px, 0) scale(1.03); }
+            66% { transform: translate3d(14px, 16px, 0) scale(1.02); }
         }
         
         /* 顶部导航 */
@@ -108,8 +136,10 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(4, 7, 20, 0.88);
+            backdrop-filter: blur(22px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 22px 45px rgba(2, 6, 23, 0.45);
         }
 
         .simple-navbar__container {
@@ -129,13 +159,14 @@
             font-weight: 700;
             text-decoration: none;
             line-height: 1.1;
+            letter-spacing: 0.08em;
         }
 
         .simple-navbar__tagline {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(148, 163, 184, 0.65);
+            letter-spacing: 0.24em;
             text-transform: uppercase;
         }
 
@@ -152,7 +183,21 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            padding: 0.35rem 0;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .simple-navbar__link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0.2rem;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.25s ease;
+            border-radius: 999px;
         }
 
         .simple-navbar__dropdown {
@@ -184,11 +229,11 @@
             position: absolute;
             top: calc(100% + 0.5rem);
             left: 0;
-            background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: rgba(8, 13, 33, 0.92);
+            border: 1px solid var(--glass-border);
             box-shadow: var(--shadow-lg);
-            border-radius: 0.75rem;
-            padding: 0.5rem;
+            border-radius: 0.85rem;
+            padding: 0.75rem;
             min-width: 200px;
             opacity: 0;
             visibility: hidden;
@@ -205,8 +250,8 @@
 
         .simple-navbar__dropdown-link {
             display: block;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.5rem;
+            padding: 0.55rem 0.85rem;
+            border-radius: 0.65rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
@@ -215,14 +260,19 @@
         }
 
         .simple-navbar__dropdown-link:hover {
-            background: #eff6ff;
-            color: var(--primary-color);
+            background: rgba(96, 165, 250, 0.12);
+            color: var(--text-primary);
         }
 
         .simple-navbar__link:hover,
         .simple-navbar__link--active {
             color: var(--text-primary);
             font-weight: 600;
+        }
+
+        .simple-navbar__link:hover::after,
+        .simple-navbar__link--active::after {
+            width: 100%;
         }
 
         .sr-only {
@@ -246,7 +296,7 @@
             align-items: flex-start;
             gap: 2rem;
             width: 100%;
-            padding: 0 1.5rem 4rem 0;
+            padding: 0 1.5rem 4rem;
         }
 
         .homepage-content {
@@ -257,14 +307,15 @@
         .category-sidebar {
             position: sticky;
             top: 96px;
-            background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: rgba(8, 13, 33, 0.82);
+            border: 1px solid var(--glass-border);
             border-left: none;
             border-radius: 0 1rem 1rem 0;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             padding: 1.5rem;
             min-width: 240px;
             max-width: 280px;
+            backdrop-filter: blur(22px);
         }
 
         .category-sidebar__title {
@@ -295,19 +346,19 @@
             font-size: 0.95rem;
             padding: 0.65rem 0.75rem;
             border-radius: 0.75rem;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
         }
 
         .category-sidebar__link:hover {
-            background: #eff6ff;
-            color: var(--primary-color);
+            background: rgba(96, 165, 250, 0.12);
+            color: var(--text-primary);
             transform: translateX(4px);
         }
 
         .category-sidebar__link--active {
-            background: #2563eb;
+            background: var(--primary-gradient);
             color: #ffffff;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 10px 24px rgba(79, 172, 254, 0.35);
         }
 
         .category-sidebar__icon {
@@ -317,13 +368,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #eff6ff;
+            background: rgba(96, 165, 250, 0.15);
             color: var(--primary-color);
             font-size: 1.1rem;
+            transition: background 0.25s ease, color 0.25s ease;
         }
 
         .category-sidebar__link--active .category-sidebar__icon {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.28);
             color: #ffffff;
         }
 
@@ -348,8 +400,9 @@
                 overflow-x: auto;
                 white-space: nowrap;
                 box-shadow: var(--shadow-sm);
-                border-left: 1px solid rgba(226, 232, 240, 0.8);
+                border-left: 1px solid var(--glass-border);
                 border-radius: 0.75rem;
+                background: rgba(8, 13, 33, 0.82);
             }
 
             .category-sidebar__list {
@@ -429,74 +482,113 @@
         
 
         
-        /* Clean hero section */
         .hero-section {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: var(--surface-color);
-            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            border-radius: 32px;
+            background: linear-gradient(135deg, rgba(10, 15, 38, 0.9), rgba(18, 26, 52, 0.9));
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
         }
-        
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background: radial-gradient(circle at 20% 20%, rgba(79, 172, 254, 0.38), transparent 55%),
+                        radial-gradient(circle at 80% 30%, rgba(118, 75, 162, 0.35), transparent 55%);
+            opacity: 0.85;
+            z-index: 0;
+            filter: blur(0px);
+        }
+
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 1;
+            max-width: 920px;
             margin: 0 auto;
             padding: 0 1.5rem;
+            text-align: center;
         }
-        
+
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 800;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            line-height: 1.15;
             color: var(--text-primary);
+            letter-spacing: -0.01em;
+            text-shadow: 0 18px 48px rgba(37, 99, 235, 0.35);
         }
-        
+
         .hero-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            font-size: clamp(1.15rem, 2vw, 1.35rem);
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             font-weight: 400;
         }
-        
+
         .hero-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
-        .hero-button {
-            background: var(--primary-color);
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            color: white;
+
+        .hero-badges {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .hero-badge {
+            padding: 0.65rem 1.4rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
             font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 12px 25px -12px rgba(79, 172, 254, 0.45);
+        }
+
+        .hero-button {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 999px;
+            padding: 0.85rem 1.9rem;
+            color: white;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            box-shadow: 0 18px 30px -12px rgba(79, 172, 254, 0.55);
         }
-        
+
         .hero-button:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 22px 45px -10px rgba(79, 172, 254, 0.65);
         }
-        
+
         .hero-button.secondary {
             background: transparent;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(96, 165, 250, 0.35);
             color: var(--text-primary);
+            box-shadow: none;
         }
-        
+
         .hero-button.secondary:hover {
-            background: var(--surface-color);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+            background: rgba(96, 165, 250, 0.12);
+            border-color: rgba(148, 163, 184, 0.45);
+            color: var(--text-primary);
         }
         
         /* 现代化工具卡片 */
@@ -506,30 +598,98 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 1.25rem;
-            padding: 1.5rem;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            padding: 1.6rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
-            box-shadow: 0 18px 40px -24px rgba(15, 23, 42, 0.45);
+            box-shadow: var(--shadow-sm);
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             overflow: hidden;
             isolation: isolate;
+            backdrop-filter: blur(24px);
+        }
+
+        .glass-panel {
+            position: relative;
+            padding: 3rem 2.5rem;
+            border-radius: 28px;
+            background: rgba(8, 13, 33, 0.78);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(24px);
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.12), rgba(118, 75, 162, 0.1));
+            opacity: 0.9;
+            z-index: 0;
+        }
+
+        .glass-panel > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-panel .text-gray-900,
+        .glass-panel .text-gray-800,
+        .glass-panel .text-slate-900 {
+            color: var(--text-primary) !important;
+        }
+
+        .glass-panel .text-gray-700,
+        .glass-panel .text-gray-600,
+        .glass-panel .text-gray-500,
+        .glass-panel .text-slate-600 {
+            color: var(--text-secondary) !important;
+        }
+
+        .glass-card {
+            background: rgba(10, 16, 38, 0.88);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(18px);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 55px -20px rgba(37, 99, 235, 0.35);
+        }
+
+        .glass-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.55rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(12px);
         }
 
         .tool-card::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.06), transparent 45%);
+            background: radial-gradient(circle at top left, rgba(79, 172, 254, 0.18), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(118, 75, 162, 0.12), transparent 45%);
             z-index: 1;
             pointer-events: none;
         }
 
         .tool-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(37, 99, 235, 0.35);
-            box-shadow: 0 25px 50px -20px rgba(30, 64, 175, 0.45);
+            transform: translateY(-8px);
+            border-color: rgba(96, 165, 250, 0.55);
+            box-shadow: 0 28px 60px -18px rgba(37, 99, 235, 0.45);
         }
 
         /* 工具卡片LOGO背景 */
@@ -537,8 +697,8 @@
             width: 48px;
             height: 48px;
             border-radius: 16px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.1) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(99, 102, 241, 0.18) 100%);
+            border: 1px solid rgba(148, 163, 184, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -573,7 +733,7 @@
 
         /* 工具卡片文字样式优化 */
         .tool-card h3 {
-            color: #0f172a;
+            color: var(--text-primary);
             font-weight: 700;
             font-size: 1.05rem;
             line-height: 1.4;
@@ -581,9 +741,33 @@
         }
 
         .tool-card p {
-            color: #64748b;
+            color: var(--text-secondary);
             font-size: 0.85rem;
             line-height: 1.6;
+        }
+
+        .tool-card .text-gray-800,
+        .tool-card .text-gray-900,
+        .tool-card .text-slate-900 {
+            color: var(--text-primary) !important;
+        }
+
+        .tool-card .text-gray-600,
+        .tool-card .text-gray-500,
+        .tool-card .text-slate-500,
+        .tool-card .text-slate-600 {
+            color: var(--text-secondary) !important;
+        }
+
+        .tool-card .bg-green-100,
+        .tool-card .bg-blue-100,
+        .tool-card .bg-orange-100,
+        .tool-card .bg-purple-100,
+        .tool-card .bg-teal-100,
+        .tool-card .bg-indigo-100 {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-secondary) !important;
+            border: 1px solid rgba(148, 163, 184, 0.24);
         }
 
         /* 工具卡片品牌LOGO样式 */
@@ -664,11 +848,13 @@
         
         /* Clean category titles */
         .category-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2.25rem;
             text-align: center;
             color: var(--text-primary);
+            text-shadow: 0 18px 42px rgba(15, 118, 255, 0.25);
+            letter-spacing: -0.01em;
         }
         
         .category-subtitle {
@@ -679,6 +865,14 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin: 0 auto 2.5rem;
+            max-width: 900px;
         }
         
         /* Simple animations */
@@ -699,9 +893,10 @@
         
         /* Clean footer */
         .footer {
-            background: var(--surface-color);
-            border-top: 1px solid var(--border-color);
+            background: rgba(6, 9, 24, 0.92);
+            border-top: 1px solid var(--glass-border);
             padding: 3rem 0 1.5rem;
+            backdrop-filter: blur(18px);
         }
         
         .footer-content {
@@ -726,15 +921,33 @@
         }
         
         .footer-section a:hover {
-            color: var(--primary-color);
+            color: var(--text-primary);
         }
-        
+
         .footer-bottom {
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--glass-border);
             margin-top: 2rem;
             padding-top: 1.5rem;
             text-align: center;
             color: var(--text-muted);
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            justify-content: center;
+        }
+
+        .footer-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.25s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--text-primary);
         }
         
         /* Responsive design */
@@ -754,18 +967,29 @@
             }
         }
         
-        /* Remove all the flashy effects */
-        .glass, .modern-card, .gradient-text, .tech-button, .neon-text, .pulse-glow {
-            /* Reset to clean styles */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        /* Clean section styling */
         .section {
             padding: 4rem 0;
+            position: relative;
         }
-        
+
+        .section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(13, 19, 40, 0.65), rgba(9, 13, 28, 0.65));
+            opacity: 0.55;
+            z-index: -1;
+            border-radius: 32px;
+        }
+
         .section:nth-child(even) {
-            background: var(--surface-color);
+            background: transparent;
         }
         
         .container {
@@ -839,9 +1063,30 @@
             fill: currentColor;
         }
         
-        /* Remove particle effects and complex animations */
-        .particles, .particle {
-            display: none;
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 9999px;
+            opacity: 0;
+            box-shadow: 0 0 18px rgba(0, 242, 254, 0.45);
+            animation: floatParticle 8s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.45; }
+            50% { transform: translate3d(0, -120px, 0) scale(1.1); opacity: 0.8; }
+            80% { opacity: 0.3; }
         }
         
         /* Clean button styles */
@@ -973,26 +1218,20 @@
 
             <div class="homepage-content">
                 <!-- 页面标题区域 -->
-                <section id="overview" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 mb-8 rounded-3xl shadow-lg">
-                    <div class="max-w-7xl mx-auto px-4 text-center">
-                        <h1 class="text-5xl font-bold mb-4">AI工具导航2025</h1>
-                        <p class="text-xl opacity-90 max-w-3xl mx-auto">精选无需登录的顶级免费AI工具，覆盖开发者、学生、创作者与企业场景。</p>
-                        <div class="mt-8 flex justify-center space-x-4">
-                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                                🚀 在线免费AI工具
-                            </div>
-                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                                💡 AI API集成
-                            </div>
-                            <div class="bg-white bg-opacity-20 rounded-full px-6 py-2 text-sm">
-                                ⚙️ 生产力自动化
-                            </div>
+                <section id="overview" class="hero-section fade-in">
+                    <div class="hero-content">
+                        <h1 id="heroTitle" class="hero-title">AI工具导航2025</h1>
+                        <p id="heroSubtitle" class="hero-subtitle">精选无需登录的顶级免费AI工具，覆盖开发者、学生、创作者与企业场景。</p>
+                        <div class="hero-badges">
+                            <span class="hero-badge">🚀 在线免费AI工具</span>
+                            <span class="hero-badge">💡 AI API集成</span>
+                            <span class="hero-badge">⚙️ 生产力自动化</span>
                         </div>
                     </div>
                 </section>
 
                 <div class="max-w-7xl pl-0 sm:pl-4 pr-4 py-12">
-        <section id="ai-foundation-models" class="mb-20 fade-in">
+        <section id="ai-foundation-models" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">AI基础大模型与机器学习工具</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://chatgpt.com/" target="_blank" class="tool-card modern-card">
@@ -1041,7 +1280,7 @@
         </section>
 
         <!-- 网站服务 -->
-        <section id="website-services" class="mb-20 fade-in">
+        <section id="website-services" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">网站服务</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
@@ -1082,7 +1321,7 @@
         </section>
 
         <!-- 新增 赚美金 板块 -->
-        <section id="make-money" class="mb-20 fade-in">
+        <section id="make-money" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">AI变现渠道</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
@@ -1137,7 +1376,7 @@
         </section>
 
         <!-- 新增 社交媒体 板块 -->
-        <section id="social-media" class="mb-20 fade-in">
+        <section id="social-media" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">社交媒体</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 <a href="https://x.com/home" target="_blank" class="tool-card modern-card">
@@ -1162,7 +1401,7 @@
         </section>
 
         <!-- 广告联盟 -->
-        <section id="ad-networks" class="mb-20 fade-in">
+        <section id="ad-networks" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">广告联盟</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <!-- Monetag -->
@@ -1217,61 +1456,59 @@
 
 
         <!-- 🤖 大模型 板块置顶 -->
-        <section id="free-ai-tools" class="max-w-7xl mx-auto px-4 py-12" aria-labelledby="free-ai-tools-online">
-            <h2 id="free-ai-tools-online" class="text-3xl font-bold text-center text-gray-900 mb-6">免费AI工具精选</h2>
-            <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center mb-10">精心挑选的免费AI工具，从开源解决方案到免登录平台一应俱全。涵盖AI图像生成、AI视频制作、AI语音合成与AI聊天机器人，助你快速完成AI API集成。</p>
+        <section id="free-ai-tools" class="glass-panel max-w-7xl mx-auto fade-in" aria-labelledby="free-ai-tools-online">
+            <h2 id="free-ai-tools-online" class="category-title">免费AI工具精选</h2>
+            <p class="section-lead">精心挑选的免费AI工具，从开源解决方案到免登录平台一应俱全。涵盖AI图像生成、AI视频制作、AI语音合成与AI聊天机器人，助你快速完成AI API集成。</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="image.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all border border-slate-100">
-                    <div class="text-sm uppercase tracking-wide text-blue-500 font-semibold mb-2">创意灵感</div>
-                    <div class="text-xl font-bold text-gray-900 mb-2">AI图像生成工具</div>
-                    <p class="text-gray-600 text-sm">使用免费AI工具与开源模型创建艺术作品、产品稿与品牌视觉素材。</p>
+                <a href="image.html" class="glass-card">
+                    <div class="text-sm uppercase tracking-wide text-blue-400 font-semibold mb-2">创意灵感</div>
+                    <div class="text-xl font-bold text-white mb-2">AI图像生成工具</div>
+                    <p class="text-sm text-gray-300">使用免费AI工具与开源模型创建艺术作品、产品稿与品牌视觉素材。</p>
                 </a>
-                <a href="video.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all border border-slate-100">
-                    <div class="text-sm uppercase tracking-wide text-purple-500 font-semibold mb-2">营销推广</div>
-                    <div class="text-xl font-bold text-gray-900 mb-2">AI在线视频生成</div>
-                    <p class="text-gray-600 text-sm">借助浏览器端AI视频工具，数分钟内完成宣传片与教程制作。</p>
+                <a href="video.html" class="glass-card">
+                    <div class="text-sm uppercase tracking-wide text-purple-300 font-semibold mb-2">营销推广</div>
+                    <div class="text-xl font-bold text-white mb-2">AI在线视频生成</div>
+                    <p class="text-sm text-gray-300">借助浏览器端AI视频工具，数分钟内完成宣传片与教程制作。</p>
                 </a>
-                <a href="audio.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all border border-slate-100">
-                    <div class="text-sm uppercase tracking-wide text-emerald-500 font-semibold mb-2">语音合成</div>
-                    <div class="text-xl font-bold text-gray-900 mb-2">AI文字转语音工具</div>
-                    <p class="text-gray-600 text-sm">将脚本转换成多语种的真实旁白、播客与教学音频。</p>
+                <a href="audio.html" class="glass-card">
+                    <div class="text-sm uppercase tracking-wide text-emerald-300 font-semibold mb-2">语音合成</div>
+                    <div class="text-xl font-bold text-white mb-2">AI文字转语音工具</div>
+                    <p class="text-sm text-gray-300">将脚本转换成多语种的真实旁白、播客与教学音频。</p>
                 </a>
-                <a href="aiagent.html" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all border border-slate-100">
-                    <div class="text-sm uppercase tracking-wide text-amber-500 font-semibold mb-2">智能客服</div>
-                    <div class="text-xl font-bold text-gray-900 mb-2">AI聊天机器人平台</div>
-                    <p class="text-gray-600 text-sm">部署融合聊天自动化与机器学习能力的对话式助手。</p>
+                <a href="aiagent.html" class="glass-card">
+                    <div class="text-sm uppercase tracking-wide text-amber-300 font-semibold mb-2">智能客服</div>
+                    <div class="text-xl font-bold text-white mb-2">AI聊天机器人平台</div>
+                    <p class="text-sm text-gray-300">部署融合聊天自动化与机器学习能力的对话式助手。</p>
                 </a>
             </div>
         </section>
 
-        <section id="compare-tools" class="bg-slate-50 py-14" aria-labelledby="compare-best-ai-tools">
-            <div class="max-w-7xl mx-auto px-4">
-                <h2 id="compare-best-ai-tools" class="text-3xl font-bold text-center text-gray-900 mb-6">对比热门AI工具</h2>
-                <p class="text-lg text-gray-600 max-w-4xl mx-auto text-center">利用AI工具导航，对比2025年各类人工智能平台。追踪科研机器学习工具，评估效率自动化方案，把握AI初创趋势，抢先布局新机会。</p>
-                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">学生专用AI工具</h3>
-                        <p class="text-gray-600 mb-4">为学习者提供课程辅助、笔记助手与创意工作室，重点推荐无需登录的免费AI工具。</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>支持协作写作、抽认卡生成以及提升可及性的AI文字转语音工具。</span></li>
-                            <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>开源AI工具，助力编程练习、研究摘要撰写与视觉项目灵感。</span></li>
-                        </ul>
-                    </div>
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">商业增长AI工具</h3>
-                        <p class="text-gray-600 mb-4">借助AI聊天机器人、营销副驾与API集成看板，优化客户旅程与增长效率。</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>覆盖销售、客服与内容生产的效率自动化流程。</span></li>
-                            <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>洞察AI初创趋势与竞品动态的智能平台。</span></li>
-                        </ul>
-                    </div>
+        <section id="compare-tools" class="glass-panel max-w-7xl mx-auto my-20 fade-in" aria-labelledby="compare-best-ai-tools">
+            <h2 id="compare-best-ai-tools" class="category-title">对比热门AI工具</h2>
+            <p class="section-lead">利用AI工具导航，对比2025年各类人工智能平台。追踪科研机器学习工具，评估效率自动化方案，把握AI初创趋势，抢先布局新机会。</p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="glass-card">
+                    <h3 class="text-2xl font-semibold text-white mb-4">学生专用AI工具</h3>
+                    <p class="text-gray-300 mb-4">为学习者提供课程辅助、笔记助手与创意工作室，重点推荐无需登录的免费AI工具。</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start gap-2"><span class="text-blue-400 mt-1">•</span><span>支持协作写作、抽认卡生成以及提升可及性的AI文字转语音工具。</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-400 mt-1">•</span><span>开源AI工具，助力编程练习、研究摘要撰写与视觉项目灵感。</span></li>
+                    </ul>
                 </div>
-                <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-gray-700">2025年AI工具对比指南</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-gray-700">人工智能平台评测</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-gray-700">机器学习工具目录</span>
-                    <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-gray-700">热门AI初创雷达</span>
+                <div class="glass-card">
+                    <h3 class="text-2xl font-semibold text-white mb-4">商业增长AI工具</h3>
+                    <p class="text-gray-300 mb-4">借助AI聊天机器人、营销副驾与API集成看板，优化客户旅程与增长效率。</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start gap-2"><span class="text-purple-300 mt-1">•</span><span>覆盖销售、客服与内容生产的效率自动化流程。</span></li>
+                        <li class="flex items-start gap-2"><span class="text-purple-300 mt-1">•</span><span>洞察AI初创趋势与竞品动态的智能平台。</span></li>
+                    </ul>
                 </div>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+                <span class="glass-chip">2025年AI工具对比指南</span>
+                <span class="glass-chip">人工智能平台评测</span>
+                <span class="glass-chip">机器学习工具目录</span>
+                <span class="glass-chip">热门AI初创雷达</span>
             </div>
         </section>
 
@@ -1281,42 +1518,36 @@
         </div>
 
         <!-- 页面介绍开始 -->
-        <section id="directory-overview" class="page-introduction bg-gradient-to-br from-blue-50 to-indigo-100 py-16 mt-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6">欢迎来到AIAIY.COM：AI工具目录</h2>
-                    <p class="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">AI工具导航精选优质AI工具与服务，具备以下特色：</p>
+        <section id="directory-overview" class="glass-panel page-introduction max-w-7xl mx-auto mt-20 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="category-title">欢迎来到AIAIY.COM：AI工具目录</h2>
+                <p class="section-lead">AI工具导航精选优质AI工具与服务，聚焦效率提升、创意启发与商业增长，为你呈现值得收藏的AI资源。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="glass-card">
+                    <h3 class="text-lg font-semibold text-white mb-3">覆盖场景广泛</h3>
+                    <p class="text-gray-300 leading-relaxed">涵盖文本生成、图像处理、视频创作、数据分析等多元能力。</p>
                 </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-3">覆盖场景广泛</h3>
-                        <p class="text-gray-700 leading-relaxed">涵盖文本生成、图像处理、视频创作、数据分析等多元能力。</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-3">支持免费试用</h3>
-                        <p class="text-gray-700 leading-relaxed">大多数工具提供免费试用，便于评估并节省成本。</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-3">分类清晰易查</h3>
-                        <p class="text-gray-700 leading-relaxed">按功能精细分类，快速定位所需工具。</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-3">持续上新维护</h3>
-                        <p class="text-gray-700 leading-relaxed">持续补充新工具，保持目录新鲜实用。</p>
-                    </div>
+                <div class="glass-card">
+                    <h3 class="text-lg font-semibold text-white mb-3">支持免费试用</h3>
+                    <p class="text-gray-300 leading-relaxed">大多数工具提供免费试用，便于评估并节省成本。</p>
                 </div>
-                
-                <div class="text-center">
-                    <p class="text-lg text-gray-700 font-medium mb-6">AI工具导航为你提供高效便捷的AI工具发现与使用途径。</p>
-                    <div class="flex justify-center space-x-4">
-                        <a href="ai-capabilities.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg">
-                            了解更多
-                        </a>
-                        <a href="ai-ranking.html" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200 shadow-md hover:shadow-lg">
-                            AI排行榜
-                        </a>
-                    </div>
+                <div class="glass-card">
+                    <h3 class="text-lg font-semibold text-white mb-3">分类清晰易查</h3>
+                    <p class="text-gray-300 leading-relaxed">按功能精细分类，快速定位所需工具。</p>
+                </div>
+                <div class="glass-card">
+                    <h3 class="text-lg font-semibold text-white mb-3">持续上新维护</h3>
+                    <p class="text-gray-300 leading-relaxed">持续补充新工具，保持目录新鲜实用。</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="section-lead mb-8">AI工具导航为你提供高效便捷的AI工具发现与使用途径。</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="ai-capabilities.html" class="hero-button">了解更多</a>
+                    <a href="ai-ranking.html" class="hero-button secondary">AI排行榜</a>
                 </div>
             </div>
         </section>
@@ -1325,7 +1556,7 @@
     </main>
 
         <!-- 页脚 -->
-        <footer class="glass py-8 mt-12">
+        <footer class="footer mt-12">
             <div class="container mx-auto px-4 text-center">
                 <div class="flex items-center justify-center space-x-3 mb-6">
                     <span class="text-2xl font-bold gradient-text">AI工具导航</span>
