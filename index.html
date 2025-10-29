@@ -591,6 +591,216 @@
             color: var(--text-primary);
         }
         
+        /* 首页产品陈列 */
+        .product-showcase {
+            padding: 2.75rem 2.5rem;
+            border-radius: 30px;
+            background: rgba(7, 12, 28, 0.86);
+        }
+
+        .product-showcase__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .product-showcase__title {
+            font-size: clamp(1.5rem, 2.3vw, 1.9rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .product-showcase__subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 520px;
+        }
+
+        .product-showcase__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.65rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            color: rgba(191, 219, 254, 0.95);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .product-showcase__cta:hover,
+        .product-showcase__cta:focus-visible {
+            border-color: rgba(96, 165, 250, 0.45);
+            color: #ffffff;
+            box-shadow: 0 18px 40px -24px rgba(59, 130, 246, 0.55);
+        }
+
+        .product-showcase__cta svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .product-showcase__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.55rem 1.3rem;
+            border-radius: 999px;
+            background: rgba(96, 165, 250, 0.12);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 16px 35px -24px rgba(59, 130, 246, 0.55);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1.6rem;
+            border-radius: 22px;
+            background: linear-gradient(145deg, rgba(12, 16, 34, 0.95), rgba(30, 41, 59, 0.82));
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            box-shadow: 0 18px 40px -26px rgba(15, 23, 42, 0.85);
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.22), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(165, 180, 252, 0.18), transparent 45%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover,
+        .product-card:focus-visible {
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.45);
+            box-shadow: 0 28px 55px -24px rgba(59, 130, 246, 0.55);
+        }
+
+        .product-card:hover::after,
+        .product-card:focus-visible::after {
+            opacity: 1;
+        }
+
+        .product-card__icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #ffffff;
+        }
+
+        .product-card__title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .product-card__description {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .product-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: auto;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(148, 197, 255, 0.95);
+            letter-spacing: 0.01em;
+        }
+
+        .product-card__cta svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .product-card--jasper .product-card__icon {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .product-card--copyai .product-card__icon {
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+        }
+
+        .product-card--writesonic .product-card__icon {
+            background: linear-gradient(135deg, #6366f1, #22d3ee);
+        }
+
+        .product-card--rytr .product-card__icon {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+        }
+
+        .product-card--quillbot .product-card__icon {
+            background: linear-gradient(135deg, #22c55e, #4ade80);
+        }
+
+        .product-card--anyword .product-card__icon {
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+        }
+
+        .product-card--wordtune .product-card__icon {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+        }
+
+        .product-card--grammarly .product-card__icon {
+            background: linear-gradient(135deg, #10b981, #34d399);
+        }
+
+        .product-card--notion .product-card__icon {
+            background: linear-gradient(135deg, #111827, #334155);
+        }
+
+        .product-card--ink .product-card__icon {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+        }
+
+        @media (max-width: 768px) {
+            .product-showcase {
+                padding: 2.25rem 1.75rem;
+            }
+
+            .product-showcase__header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+
         /* 现代化工具卡片 */
         .tool-card {
             position: relative;
@@ -1204,6 +1414,7 @@
                 <nav>
                     <ul class="category-sidebar__list">
                         <li class="category-sidebar__item"><a href="#overview" class="category-sidebar__link category-sidebar__link--active" data-target="overview"><span class="category-sidebar__icon">🏠</span><span>总览</span></a></li>
+                        <li class="category-sidebar__item"><a href="#ai-writing-showcase" class="category-sidebar__link" data-target="ai-writing-showcase"><span class="category-sidebar__icon">✍️</span><span>AI写作</span></a></li>
                         <li class="category-sidebar__item"><a href="#ai-foundation-models" class="category-sidebar__link" data-target="ai-foundation-models"><span class="category-sidebar__icon">🧠</span><span>基础大模型</span></a></li>
                         <li class="category-sidebar__item"><a href="#website-services" class="category-sidebar__link" data-target="website-services"><span class="category-sidebar__icon">🌐</span><span>网站服务</span></a></li>
                         <li class="category-sidebar__item"><a href="#make-money" class="category-sidebar__link" data-target="make-money"><span class="category-sidebar__icon">💰</span><span>AI变现渠道</span></a></li>
@@ -1231,6 +1442,136 @@
                 </section>
 
                 <div class="max-w-7xl pl-0 sm:pl-4 pr-4 py-12">
+        <section id="ai-writing-showcase" class="glass-panel product-showcase mb-20 fade-in" aria-labelledby="ai-writing-tools">
+            <div class="product-showcase__header">
+                <div>
+                    <div class="product-showcase__badge" aria-hidden="true">
+                        <span>✍️</span>
+                        <span>AI写作助手</span>
+                    </div>
+                    <h2 id="ai-writing-tools" class="product-showcase__title">首页精选AI写作工具</h2>
+                    <p class="product-showcase__subtitle">覆盖营销文案、语法润色、长篇创作与团队协作等写作场景，为内容创作者和企业提供最快速的灵感与执行力。</p>
+                </div>
+                <a class="product-showcase__cta" href="writing.html">探索更多AI写作工具
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+            <div class="product-grid" role="list">
+                <a href="https://www.jasper.ai/" target="_blank" rel="noopener noreferrer" class="product-card product-card--jasper" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">J</div>
+                    <div class="product-card__title">Jasper</div>
+                    <p class="product-card__description">营销团队的AI内容创作火箭手，快速产出品牌一致的长短文案。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://www.copy.ai/" target="_blank" rel="noopener noreferrer" class="product-card product-card--copyai" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">C</div>
+                    <div class="product-card__title">Copy.ai</div>
+                    <p class="product-card__description">电商与创业者快速撰写产品描述与广告文案的全能助手。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://writesonic.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--writesonic" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">W</div>
+                    <div class="product-card__title">Writesonic</div>
+                    <p class="product-card__description">AI驱动的营销写作平台，覆盖广告、登陆页与长文内容生产。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://rytr.me/" target="_blank" rel="noopener noreferrer" class="product-card product-card--rytr" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">R</div>
+                    <div class="product-card__title">Rytr</div>
+                    <p class="product-card__description">高性价比的多语言写作助手，轻松生成博客、邮件与社交内容。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://quillbot.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--quillbot" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">Q</div>
+                    <div class="product-card__title">QuillBot</div>
+                    <p class="product-card__description">智能改写与语法检查组合，帮助你快速润色并保持原意。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://anyword.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--anyword" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">A</div>
+                    <div class="product-card__title">Anyword</div>
+                    <p class="product-card__description">数据驱动的广告与社交媒体文案优化工具，预测点击与转化。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://www.wordtune.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--wordtune" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">W</div>
+                    <div class="product-card__title">Wordtune</div>
+                    <p class="product-card__description">提升表达清晰度、语气与结构的智能写作助手，让内容更有说服力。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://www.grammarly.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--grammarly" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">G</div>
+                    <div class="product-card__title">Grammarly</div>
+                    <p class="product-card__description">全球领先的语法校对与语气建议平台，实时提升写作质量。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://www.notion.so/product/ai" target="_blank" rel="noopener noreferrer" class="product-card product-card--notion" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">N</div>
+                    <div class="product-card__title">Notion AI</div>
+                    <p class="product-card__description">将笔记、知识库与智能写作融合，适合团队协同的创作流程。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+                <a href="https://inkforall.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--ink" role="listitem">
+                    <div class="product-card__icon" aria-hidden="true">I</div>
+                    <div class="product-card__title">INK</div>
+                    <p class="product-card__description">结合SEO建议与内容评分的AI平台，帮助文章快速获得搜索排名。</p>
+                    <span class="product-card__cta">立即体验
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </section>
         <section id="ai-foundation-models" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">AI基础大模型与机器学习工具</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
