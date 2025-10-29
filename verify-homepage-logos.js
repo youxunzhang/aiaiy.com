@@ -38,27 +38,26 @@ class HomepageLogoVerifier {
         // 检查每个卡片
         toolCards.forEach((card, index) => {
             const href = card.getAttribute('href') || (card.querySelector('a') ? card.querySelector('a').getAttribute('href') : null);
-            const logoBg = card.querySelector('.tool-logo-bg');
-            
+
             if (href) {
                 const domain = this.extractDomain(href);
-                
-                if (logoBg) {
+
+                if (this.hasVisibleLogo(card)) {
                     this.results.success++;
                     this.results.details.push({
                         domain: domain,
                         status: 'success',
-                        message: 'LOGO背景已添加'
+                        message: '品牌LOGO已添加'
                     });
-                    console.log(`✅ ${domain} - LOGO背景已添加`);
+                    console.log(`✅ ${domain} - 品牌LOGO已添加`);
                 } else {
                     this.results.failed++;
                     this.results.details.push({
                         domain: domain,
                         status: 'failed',
-                        message: 'LOGO背景未找到'
+                        message: '品牌LOGO未找到'
                     });
-                    console.log(`❌ ${domain} - LOGO背景未找到`);
+                    console.log(`❌ ${domain} - 品牌LOGO未找到`);
                 }
             }
         });
@@ -99,24 +98,23 @@ class HomepageLogoVerifier {
 
         cards.forEach(card => {
             const href = card.getAttribute('href') || (card.querySelector('a') ? card.querySelector('a').getAttribute('href') : null);
-            const logoBg = card.querySelector('.tool-logo-bg');
-            
+
             if (href) {
                 const domain = this.extractDomain(href);
-                
-                if (logoBg) {
+
+                if (this.hasVisibleLogo(card)) {
                     results.success++;
                     results.details.push({
                         domain: domain,
                         status: 'success',
-                        message: 'LOGO背景已添加'
+                        message: '品牌LOGO已添加'
                     });
                 } else {
                     results.failed++;
                     results.details.push({
                         domain: domain,
                         status: 'failed',
-                        message: 'LOGO背景未找到'
+                        message: '品牌LOGO未找到'
                     });
                 }
             }
@@ -193,6 +191,29 @@ class HomepageLogoVerifier {
             const icon = detail.status === 'success' ? '✅' : '❌';
             console.log(`${icon} ${detail.domain} - ${detail.message}`);
         });
+    }
+
+    /**
+     * 判断工具卡片是否已经展示品牌LOGO
+     * @param {HTMLElement} card - 工具卡片
+     * @returns {boolean}
+     */
+    hasVisibleLogo(card) {
+        const logoBg = card.querySelector('.tool-logo-bg');
+        if (logoBg) {
+            const hasBackgroundImage = logoBg.style.backgroundImage && logoBg.style.backgroundImage !== 'none';
+            const hasContent = logoBg.textContent && logoBg.textContent.trim().length > 0;
+            if (hasBackgroundImage || hasContent) {
+                return true;
+            }
+        }
+
+        const faviconWrapper = card.querySelector('.tool-favicon');
+        if (!faviconWrapper) {
+            return false;
+        }
+
+        return faviconWrapper.classList.contains('tool-favicon--image') || faviconWrapper.classList.contains('tool-favicon--fallback');
     }
 
     /**

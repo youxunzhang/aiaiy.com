@@ -147,7 +147,7 @@ class HomepageToolLogoManager {
     async addLogosToToolCards() {
         // 查找所有工具卡片，包括带有modern-card类的
         const toolCards = document.querySelectorAll('.tool-card, .modern-card');
-        
+
         for (const card of toolCards) {
             // 处理两种情况：1) card本身就是链接 2) card包含链接
             let link, href;
@@ -164,15 +164,22 @@ class HomepageToolLogoManager {
             try {
                 const domain = this.extractDomain(href);
                 const logo = await this.getLogo(domain, href);
-                
-                // 创建或获取LOGO背景元素
+                const faviconWrapper = card.querySelector('.tool-favicon');
+                if (faviconWrapper) {
+                    this.applyLogoToFavicon(faviconWrapper, logo, domain);
+                    faviconWrapper.setAttribute('data-logo-domain', domain);
+                    console.log(`✅ 成功为 ${domain} 添加品牌LOGO`);
+                    continue;
+                }
+
+                // 创建或获取LOGO背景元素（作为兼容方案）
                 let logoBg = card.querySelector('.tool-logo-bg');
                 if (!logoBg) {
                     logoBg = document.createElement('div');
                     logoBg.className = 'tool-logo-bg';
                     card.insertBefore(logoBg, card.firstChild);
                 }
-                
+
                 if (logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'))) {
                     // 图片LOGO
                     logoBg.style.backgroundImage = `url(${logo})`;
@@ -182,14 +189,62 @@ class HomepageToolLogoManager {
                     // Emoji fallback - 创建渐变背景
                     logoBg.style.backgroundImage = 'none';
                     logoBg.style.background = `linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))`;
-                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; opacity: 0.3;">${logo}</div>`;
+                    logoBg.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.1rem; opacity: 0.3;">${logo}</div>`;
                 }
-                
+
                 console.log(`✅ 成功为 ${domain} 添加LOGO背景`);
             } catch (error) {
                 console.warn(`Failed to add logo for ${href}:`, error);
             }
         }
+    }
+
+    /**
+     * 将LOGO应用到工具卡片上的品牌徽标
+     * @param {HTMLElement} faviconWrapper - 包含LOGO的容器
+     * @param {string} logo - LOGO数据或回退字符
+     * @param {string} domain - 域名
+     */
+    applyLogoToFavicon(faviconWrapper, logo, domain = '') {
+        if (!faviconWrapper) return;
+
+        let image = faviconWrapper.querySelector('.tool-favicon__image');
+        let initial = faviconWrapper.querySelector('.tool-favicon__initial');
+
+        const isImageLogo = logo && (logo.startsWith('data:image') || logo.startsWith('http') || logo.startsWith('//'));
+
+        if (isImageLogo) {
+            if (!image) {
+                image = document.createElement('img');
+                image.className = 'tool-favicon__image';
+                image.alt = '';
+                image.loading = 'lazy';
+                image.decoding = 'async';
+                image.referrerPolicy = 'no-referrer';
+                faviconWrapper.appendChild(image);
+            }
+
+            image.src = logo;
+            faviconWrapper.classList.add('tool-favicon--image');
+            faviconWrapper.classList.remove('tool-favicon--fallback');
+            return;
+        }
+
+        if (!initial) {
+            initial = document.createElement('span');
+            initial.className = 'tool-favicon__initial';
+            faviconWrapper.appendChild(initial);
+        }
+
+        const fallbackIcon = logo || this.getFallbackIcon(domain);
+        initial.textContent = fallbackIcon;
+
+        if (image) {
+            image.removeAttribute('src');
+        }
+
+        faviconWrapper.classList.add('tool-favicon--fallback');
+        faviconWrapper.classList.remove('tool-favicon--image');
     }
 
     /**
