@@ -711,8 +711,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            color: #ffffff;
+            padding: 6px;
+            overflow: hidden;
+        }
+
+        .product-card__icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background-color: rgba(15, 23, 42, 0.85);
+            object-fit: contain;
         }
 
         .product-card__title {
@@ -1461,7 +1469,9 @@
             </div>
             <div class="product-grid" role="list">
                 <a href="https://www.jasper.ai/" target="_blank" rel="noopener noreferrer" class="product-card product-card--jasper" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">J</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/jasper.ai" alt="Jasper logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Jasper</div>
                     <p class="product-card__description">营销团队的AI内容创作火箭手，快速产出品牌一致的长短文案。</p>
                     <span class="product-card__cta">立即体验
@@ -1472,7 +1482,9 @@
                     </span>
                 </a>
                 <a href="https://www.copy.ai/" target="_blank" rel="noopener noreferrer" class="product-card product-card--copyai" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">C</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/copy.ai" alt="Copy.ai logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Copy.ai</div>
                     <p class="product-card__description">电商与创业者快速撰写产品描述与广告文案的全能助手。</p>
                     <span class="product-card__cta">立即体验
@@ -1483,7 +1495,9 @@
                     </span>
                 </a>
                 <a href="https://writesonic.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--writesonic" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">W</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/writesonic.com" alt="Writesonic logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Writesonic</div>
                     <p class="product-card__description">AI驱动的营销写作平台，覆盖广告、登陆页与长文内容生产。</p>
                     <span class="product-card__cta">立即体验
@@ -1494,7 +1508,9 @@
                     </span>
                 </a>
                 <a href="https://rytr.me/" target="_blank" rel="noopener noreferrer" class="product-card product-card--rytr" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">R</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/rytr.me" alt="Rytr logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Rytr</div>
                     <p class="product-card__description">高性价比的多语言写作助手，轻松生成博客、邮件与社交内容。</p>
                     <span class="product-card__cta">立即体验
@@ -1505,7 +1521,9 @@
                     </span>
                 </a>
                 <a href="https://quillbot.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--quillbot" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">Q</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/quillbot.com" alt="QuillBot logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">QuillBot</div>
                     <p class="product-card__description">智能改写与语法检查组合，帮助你快速润色并保持原意。</p>
                     <span class="product-card__cta">立即体验
@@ -1516,7 +1534,9 @@
                     </span>
                 </a>
                 <a href="https://anyword.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--anyword" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">A</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/anyword.com" alt="Anyword logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Anyword</div>
                     <p class="product-card__description">数据驱动的广告与社交媒体文案优化工具，预测点击与转化。</p>
                     <span class="product-card__cta">立即体验
@@ -1527,7 +1547,9 @@
                     </span>
                 </a>
                 <a href="https://www.wordtune.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--wordtune" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">W</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/wordtune.com" alt="Wordtune logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Wordtune</div>
                     <p class="product-card__description">提升表达清晰度、语气与结构的智能写作助手，让内容更有说服力。</p>
                     <span class="product-card__cta">立即体验
@@ -1538,7 +1560,9 @@
                     </span>
                 </a>
                 <a href="https://www.grammarly.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--grammarly" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">G</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/grammarly.com" alt="Grammarly logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Grammarly</div>
                     <p class="product-card__description">全球领先的语法校对与语气建议平台，实时提升写作质量。</p>
                     <span class="product-card__cta">立即体验
@@ -1549,7 +1573,9 @@
                     </span>
                 </a>
                 <a href="https://www.notion.so/product/ai" target="_blank" rel="noopener noreferrer" class="product-card product-card--notion" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">N</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/notion.so" alt="Notion AI logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">Notion AI</div>
                     <p class="product-card__description">将笔记、知识库与智能写作融合，适合团队协同的创作流程。</p>
                     <span class="product-card__cta">立即体验
@@ -1560,7 +1586,9 @@
                     </span>
                 </a>
                 <a href="https://inkforall.com/" target="_blank" rel="noopener noreferrer" class="product-card product-card--ink" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">I</div>
+                    <div class="product-card__icon" aria-hidden="true">
+                        <img src="https://logo.clearbit.com/inkforall.com" alt="INK logo" loading="lazy">
+                    </div>
                     <div class="product-card__title">INK</div>
                     <p class="product-card__description">结合SEO建议与内容评分的AI平台，帮助文章快速获得搜索排名。</p>
                     <span class="product-card__cta">立即体验
