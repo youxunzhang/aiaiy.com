@@ -57,7 +57,7 @@ class BrandLogoBackground {
             pointer-events: none;
             z-index: -1;
             overflow: hidden;
-            opacity: 0.1;
+            opacity: 0.2;
         `;
         
         document.body.appendChild(backgroundContainer);
