@@ -827,6 +827,232 @@
             backdrop-filter: blur(24px);
         }
 
+        .modern-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.55rem 1.75rem;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(10, 16, 38, 0.92), rgba(15, 23, 42, 0.86));
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            overflow: hidden;
+            isolation: isolate;
+            text-decoration: none;
+            backdrop-filter: blur(22px);
+        }
+
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.28), transparent 58%),
+                        radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.18), transparent 62%);
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            z-index: 0;
+        }
+
+        .modern-card:hover,
+        .modern-card:focus-visible {
+            transform: translateY(-8px);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 28px 60px -18px rgba(37, 99, 235, 0.45);
+        }
+
+        .modern-card:hover::before,
+        .modern-card:focus-visible::before {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .modern-card__icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.9), rgba(118, 75, 162, 0.9));
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.55);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+
+        .modern-card__icon::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            opacity: 0.8;
+        }
+
+        .modern-card__text {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            z-index: 1;
+        }
+
+        .modern-card__badge {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 255, 0.6);
+        }
+
+        .modern-card__title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modern-card__description {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            margin: 0;
+            max-width: 16rem;
+        }
+
+        .modern-card__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.35rem;
+        }
+
+        .modern-card__chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.16);
+            color: rgba(226, 232, 255, 0.72);
+            font-size: 0.7rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .modern-card--chatgpt .modern-card__icon {
+            background: linear-gradient(135deg, #22d3ee, #6366f1);
+        }
+
+        .modern-card--deepseek .modern-card__icon {
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+        }
+
+        .modern-card--gemini .modern-card__icon {
+            background: linear-gradient(135deg, #60a5fa, #9333ea);
+        }
+
+        .modern-card--perplexity .modern-card__icon {
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+        }
+
+        .modern-card--grok .modern-card__icon {
+            background: linear-gradient(135deg, #f472b6, #db2777);
+        }
+
+        .modern-card--chatbot .modern-card__icon {
+            background: linear-gradient(135deg, #34d399, #059669);
+        }
+
+        .modern-card--claude .modern-card__icon {
+            background: linear-gradient(135deg, #facc15, #f97316);
+        }
+
+        .modern-card--cloudflare .modern-card__icon {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+        }
+
+        .modern-card--vercel .modern-card__icon {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+        }
+
+        .modern-card--domain .modern-card__icon {
+            background: linear-gradient(135deg, #38bdf8, #2563eb);
+        }
+
+        .modern-card--github .modern-card__icon {
+            background: linear-gradient(135deg, #f8fafc, #94a3b8);
+            color: #0f172a;
+        }
+
+        .modern-card--query .modern-card__icon {
+            background: linear-gradient(135deg, #67e8f9, #22d3ee);
+        }
+
+        .modern-card--adsense .modern-card__icon {
+            background: linear-gradient(135deg, #22c55e, #10b981);
+        }
+
+        .modern-card--adsterra .modern-card__icon {
+            background: linear-gradient(135deg, #fb7185, #f43f5e);
+        }
+
+        .modern-card--analytics .modern-card__icon {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+        }
+
+        .modern-card--trends .modern-card__icon {
+            background: linear-gradient(135deg, #60a5fa, #2563eb);
+        }
+
+        .modern-card--search-console .modern-card__icon {
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+        }
+
+        .modern-card--spaceship .modern-card__icon {
+            background: linear-gradient(135deg, #6366f1, #14b8a6);
+        }
+
+        .modern-card--monetag .modern-card__icon {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+        }
+
+        .modern-card--similarweb .modern-card__icon {
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+        }
+
+        .modern-card--x .modern-card__icon {
+            background: linear-gradient(135deg, #ffffff, #cbd5f5);
+            color: #0f172a;
+        }
+
+        .modern-card--instagram .modern-card__icon {
+            background: linear-gradient(135deg, #f87171, #f472b6);
+        }
+
+        .modern-card--facebook .modern-card__icon {
+            background: linear-gradient(135deg, #60a5fa, #2563eb);
+        }
+
+        .modern-card--propellerads .modern-card__icon {
+            background: linear-gradient(135deg, #fcd34d, #f97316);
+        }
+
+        .modern-card--medianet .modern-card__icon {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+        }
+
+        .modern-card--adsterra-network .modern-card__icon {
+            background: linear-gradient(135deg, #fda4af, #fb7185);
+        }
+
+        .modern-card__description strong {
+            color: inherit;
+        }
+
         .glass-panel {
             position: relative;
             padding: 3rem 2.5rem;
@@ -1603,47 +1829,61 @@
         </section>
         <section id="ai-foundation-models" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">AI基础大模型与机器学习工具</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                <a href="https://chatgpt.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatGPT</h3>
-                        <p class="text-gray-600">OpenAI对话式AI</p>
+            <div class="grid modern-card-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                <a href="https://chatgpt.com/" target="_blank" class="modern-card modern-card--chatgpt" aria-label="ChatGPT - OpenAI多模态AI助手">
+                    <div class="modern-card__icon" aria-hidden="true">GPT</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">OpenAI 聊天模型</span>
+                        <h3 class="modern-card__title">ChatGPT</h3>
+                        <p class="modern-card__description">OpenAI多模态AI助手</p>
                     </div>
                 </a>
-                <a href="https://chat.deepseek.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Deepseek</h3>
-                        <p class="text-gray-600">深度学习聊天模型</p>
+                <a href="https://chat.deepseek.com/" target="_blank" class="modern-card modern-card--deepseek" aria-label="DeepSeek - 深度学习聊天模型">
+                    <div class="modern-card__icon" aria-hidden="true">DS</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">xAI 深度学习</span>
+                        <h3 class="modern-card__title">DeepSeek</h3>
+                        <p class="modern-card__description">深度学习聊天模型</p>
                     </div>
                 </a>
-                <a href="https://gemini.google.com/app" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Gemini</h3>
-                        <p class="text-gray-600">谷歌最新AI助手</p>
+                <a href="https://gemini.google.com/app" target="_blank" class="modern-card modern-card--gemini" aria-label="Google Gemini - 谷歌最新AI助手">
+                    <div class="modern-card__icon" aria-hidden="true">Ge</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">Google 多模态</span>
+                        <h3 class="modern-card__title">Google Gemini</h3>
+                        <p class="modern-card__description">谷歌最新AI助手</p>
                     </div>
                 </a>
-                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Perplexity</h3>
-                        <p class="text-gray-600">AI驱动搜索引擎</p>
+                <a href="https://www.perplexity.ai/" target="_blank" class="modern-card modern-card--perplexity" aria-label="Perplexity - AI驱动搜索引擎">
+                    <div class="modern-card__icon" aria-hidden="true">PX</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">AI 搜索引擎</span>
+                        <h3 class="modern-card__title">Perplexity</h3>
+                        <p class="modern-card__description">AI驱动搜索引擎</p>
                     </div>
                 </a>
-                <a href="https://grok.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Grok</h3>
-                        <p class="text-gray-600">xAI对话式AI</p>
+                <a href="https://grok.com/" target="_blank" class="modern-card modern-card--grok" aria-label="Grok - xAI对话式AI">
+                    <div class="modern-card__icon" aria-hidden="true">GK</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">xAI 对话模型</span>
+                        <h3 class="modern-card__title">Grok</h3>
+                        <p class="modern-card__description">xAI对话式AI</p>
                     </div>
                 </a>
-                <a href="https://chat.chatbot.app/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">ChatBot</h3>
-                        <p class="text-gray-600">AI聊天助手</p>
+                <a href="https://chat.chatbot.app/" target="_blank" class="modern-card modern-card--chatbot" aria-label="ChatBot - AI聊天助手">
+                    <div class="modern-card__icon" aria-hidden="true">CB</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">ChatBot 平台</span>
+                        <h3 class="modern-card__title">ChatBot</h3>
+                        <p class="modern-card__description">AI聊天助手</p>
                     </div>
                 </a>
-                <a href="https://claude.ai/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Claude</h3>
-                        <p class="text-gray-600">Anthropic AI助手</p>
+                <a href="https://claude.ai/" target="_blank" class="modern-card modern-card--claude" aria-label="Claude - Anthropic AI助手">
+                    <div class="modern-card__icon" aria-hidden="true">CL</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">Anthropic 模型</span>
+                        <h3 class="modern-card__title">Claude</h3>
+                        <p class="modern-card__description">Anthropic AI助手</p>
                     </div>
                 </a>
             </div>
@@ -1652,39 +1892,49 @@
         <!-- 网站服务 -->
         <section id="website-services" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">网站服务</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Cloudflare</h3>
-                        <p class="text-gray-600">网站加速与安全防护</p>
+            <div class="grid modern-card-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="modern-card modern-card--cloudflare" aria-label="Cloudflare - 网站加速与安全防护">
+                    <div class="modern-card__icon" aria-hidden="true">CF</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">CDN &amp; Security</span>
+                        <h3 class="modern-card__title">Cloudflare</h3>
+                        <p class="modern-card__description">网站加速与安全防护</p>
                     </div>
                 </a>
-                
-                <a href="https://vercel.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Vercel</h3>
-                        <p class="text-gray-600">前端部署平台</p>
+
+                <a href="https://vercel.com/" target="_blank" class="modern-card modern-card--vercel" aria-label="Vercel - 前端部署平台">
+                    <div class="modern-card__icon" aria-hidden="true">VC</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">前端部署</span>
+                        <h3 class="modern-card__title">Vercel</h3>
+                        <p class="modern-card__description">前端部署平台</p>
                     </div>
                 </a>
-                
-                <a href="https://www.domain.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Domain.com</h3>
-                        <p class="text-gray-600">域名注册服务</p>
+
+                <a href="https://www.domain.com/" target="_blank" class="modern-card modern-card--domain" aria-label="Domain.com - 域名注册服务">
+                    <div class="modern-card__icon" aria-hidden="true">DM</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">域名注册</span>
+                        <h3 class="modern-card__title">Domain.com</h3>
+                        <p class="modern-card__description">域名注册服务</p>
                     </div>
                 </a>
-                
-                <a href="https://github.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">GitHub</h3>
-                        <p class="text-gray-600">全球最大的开源协作平台</p>
+
+                <a href="https://github.com/" target="_blank" class="modern-card modern-card--github" aria-label="GitHub - 全球最大的开源协作平台">
+                    <div class="modern-card__icon" aria-hidden="true">GH</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">Open Source</span>
+                        <h3 class="modern-card__title">GitHub</h3>
+                        <p class="modern-card__description">全球最大的开源协作平台</p>
                     </div>
                 </a>
-                
-                <a href="https://query.domains/zh-hans" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Query.Domains</h3>
-                        <p class="text-gray-600">批量域名可用性检查工具</p>
+
+                <a href="https://query.domains/zh-hans" target="_blank" class="modern-card modern-card--query" aria-label="Query.Domains - 批量域名可用性检查工具">
+                    <div class="modern-card__icon" aria-hidden="true">QD</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">域名查询</span>
+                        <h3 class="modern-card__title">Query.Domains</h3>
+                        <p class="modern-card__description">批量域名可用性检查工具</p>
                     </div>
                 </a>
             </div>
@@ -1693,53 +1943,69 @@
         <!-- 新增 赚美金 板块 -->
         <section id="make-money" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">AI变现渠道</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                <a href="https://adsense.google.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google AdSense</h3>
-                        <p class="text-gray-600">网站变现与广告平台</p>
+            <div class="grid modern-card-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                <a href="https://adsense.google.com/" target="_blank" class="modern-card modern-card--adsense" aria-label="Google AdSense - 网站变现与广告平台">
+                    <div class="modern-card__icon" aria-hidden="true">GA</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告变现</span>
+                        <h3 class="modern-card__title">Google AdSense</h3>
+                        <p class="modern-card__description">网站变现与广告平台</p>
                     </div>
                 </a>
-                <a href="https://beta.publishers.adsterra.com/referral/ReXZsSgpUf" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Adsterra</h3>
-                        <p class="text-gray-600">智能变现的全球广告网络</p>
+                <a href="https://beta.publishers.adsterra.com/referral/ReXZsSgpUf" target="_blank" class="modern-card modern-card--adsterra" aria-label="Adsterra - 智能变现的全球广告网络">
+                    <div class="modern-card__icon" aria-hidden="true">AS</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告联盟</span>
+                        <h3 class="modern-card__title">Adsterra</h3>
+                        <p class="modern-card__description">智能变现的全球广告网络</p>
                     </div>
                 </a>
-                <a href="https://analytics.google.com/analytics/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Analytics</h3>
-                        <p class="text-gray-600">网站流量分析</p>
+                <a href="https://analytics.google.com/analytics/" target="_blank" class="modern-card modern-card--analytics" aria-label="Google Analytics - 网站流量分析">
+                    <div class="modern-card__icon" aria-hidden="true">AN</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">数据分析</span>
+                        <h3 class="modern-card__title">Google Analytics</h3>
+                        <p class="modern-card__description">网站流量分析</p>
                     </div>
                 </a>
-                <a href="https://trends.google.com/trends/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google 趋势</h3>
-                        <p class="text-gray-600">趋势与热度分析</p>
+                <a href="https://trends.google.com/trends/" target="_blank" class="modern-card modern-card--trends" aria-label="Google 趋势 - 趋势与热度分析">
+                    <div class="modern-card__icon" aria-hidden="true">GT</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">热点洞察</span>
+                        <h3 class="modern-card__title">Google 趋势</h3>
+                        <p class="modern-card__description">趋势与热度分析</p>
                     </div>
                 </a>
-                <a href="https://search.google.com/search-console/about" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Google Search Console</h3>
-                        <p class="text-gray-600">SEO与网站管理</p>
+                <a href="https://search.google.com/search-console/about" target="_blank" class="modern-card modern-card--search-console" aria-label="Google Search Console - SEO与网站管理">
+                    <div class="modern-card__icon" aria-hidden="true">SC</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">SEO 工具</span>
+                        <h3 class="modern-card__title">Google Search Console</h3>
+                        <p class="modern-card__description">SEO与网站管理</p>
                     </div>
                 </a>
-                <a href="https://www.spaceship.com/zh/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Spaceship</h3>
-                        <p class="text-gray-600">现代云托管与主机服务</p>
+                <a href="https://www.spaceship.com/zh/" target="_blank" class="modern-card modern-card--spaceship" aria-label="Spaceship - 现代云托管与主机服务">
+                    <div class="modern-card__icon" aria-hidden="true">SS</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">云托管</span>
+                        <h3 class="modern-card__title">Spaceship</h3>
+                        <p class="modern-card__description">现代云托管与主机服务</p>
                     </div>
                 </a>
-                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Monetag</h3>
-                        <p class="text-gray-600">AI驱动的变现平台</p>
+                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="modern-card modern-card--monetag" aria-label="Monetag - AI驱动的变现平台">
+                    <div class="modern-card__icon" aria-hidden="true">MT</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">收益优化</span>
+                        <h3 class="modern-card__title">Monetag</h3>
+                        <p class="modern-card__description">AI驱动的变现平台</p>
                     </div>
                 </a>
-                <a href="https://www.similarweb.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">SimilarWeb</h3>
-                        <p class="text-gray-600">网站流量与竞品分析</p>
+                <a href="https://www.similarweb.com/" target="_blank" class="modern-card modern-card--similarweb" aria-label="SimilarWeb - 网站流量与竞品分析">
+                    <div class="modern-card__icon" aria-hidden="true">SW</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">竞品分析</span>
+                        <h3 class="modern-card__title">SimilarWeb</h3>
+                        <p class="modern-card__description">网站流量与竞品分析</p>
                     </div>
                 </a>
             </div>
@@ -1748,23 +2014,29 @@
         <!-- 新增 社交媒体 板块 -->
         <section id="social-media" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">社交媒体</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-                <a href="https://x.com/home" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">X (formerly Twitter)</h3>
-                        <p class="text-gray-600">全球社交平台</p>
+            <div class="grid modern-card-grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                <a href="https://x.com/home" target="_blank" class="modern-card modern-card--x" aria-label="X - 全球社交平台">
+                    <div class="modern-card__icon" aria-hidden="true">X</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">实时社交</span>
+                        <h3 class="modern-card__title">X (Twitter)</h3>
+                        <p class="modern-card__description">全球社交平台</p>
                     </div>
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Instagram</h3>
-                        <p class="text-gray-600">照片与短视频社交</p>
+                <a href="https://www.instagram.com/" target="_blank" class="modern-card modern-card--instagram" aria-label="Instagram - 图片与短视频社区">
+                    <div class="modern-card__icon" aria-hidden="true">IG</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">视觉社区</span>
+                        <h3 class="modern-card__title">Instagram</h3>
+                        <p class="modern-card__description">照片与短视频社交</p>
                     </div>
                 </a>
-                <a href="https://www.facebook.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Facebook</h3>
-                        <p class="text-gray-600">全球最大的社交网络</p>
+                <a href="https://www.facebook.com/" target="_blank" class="modern-card modern-card--facebook" aria-label="Facebook - 全球最大的社交网络">
+                    <div class="modern-card__icon" aria-hidden="true">FB</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">社交网络</span>
+                        <h3 class="modern-card__title">Facebook</h3>
+                        <p class="modern-card__description">全球最大的社交网络</p>
                     </div>
                 </a>
             </div>
@@ -1773,51 +2045,55 @@
         <!-- 广告联盟 -->
         <section id="ad-networks" class="glass-panel mb-20 fade-in">
             <h2 class="category-title">广告联盟</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Monetag -->
-                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Monetag</h3>
-                        <p class="text-gray-600">AI驱动的变现平台</p>
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">高CPM</span>
-                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">全球覆盖</span>
+            <div class="grid modern-card-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="modern-card modern-card--monetag" aria-label="Monetag - AI驱动的变现平台">
+                    <div class="modern-card__icon" aria-hidden="true">MT</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告联盟</span>
+                        <h3 class="modern-card__title">Monetag</h3>
+                        <p class="modern-card__description">AI驱动的变现平台</p>
+                        <div class="modern-card__meta">
+                            <span class="modern-card__chip">高CPM</span>
+                            <span class="modern-card__chip">全球覆盖</span>
                         </div>
                     </div>
                 </a>
-                
-                <!-- PropellerAds -->
-                <a href="https://propellerads.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">PropellerAds</h3>
-                        <p class="text-gray-600">高收益广告网络</p>
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">快速结算</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">多种广告形式</span>
+
+                <a href="https://propellerads.com/" target="_blank" class="modern-card modern-card--propellerads" aria-label="PropellerAds - 高收益广告网络">
+                    <div class="modern-card__icon" aria-hidden="true">PA</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告联盟</span>
+                        <h3 class="modern-card__title">PropellerAds</h3>
+                        <p class="modern-card__description">高收益广告网络</p>
+                        <div class="modern-card__meta">
+                            <span class="modern-card__chip">快速结算</span>
+                            <span class="modern-card__chip">多种广告形式</span>
                         </div>
                     </div>
                 </a>
-                
-                <!-- Media.net -->
-                <a href="https://www.media.net/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Media.net</h3>
-                        <p class="text-gray-600">Yahoo-Bing上下文广告</p>
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">优质广告资源</span>
-                            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded-full">智能优化</span>
+
+                <a href="https://www.media.net/" target="_blank" class="modern-card modern-card--medianet" aria-label="Media.net - Yahoo-Bing上下文广告">
+                    <div class="modern-card__icon" aria-hidden="true">MN</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告联盟</span>
+                        <h3 class="modern-card__title">Media.net</h3>
+                        <p class="modern-card__description">Yahoo-Bing上下文广告</p>
+                        <div class="modern-card__meta">
+                            <span class="modern-card__chip">优质资源</span>
+                            <span class="modern-card__chip">智能优化</span>
                         </div>
                     </div>
                 </a>
-                
-                <!-- Adsterra -->
-                <a href="https://adsterra.com/" target="_blank" class="tool-card modern-card">
-                    <div class="tool-content">
-                        <h3 class="text-xl font-bold mb-2 text-gray-800">Adsterra</h3>
-                        <p class="text-gray-600">全球广告网络平台</p>
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">全球覆盖</span>
-                            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">收益突出</span>
+
+                <a href="https://adsterra.com/" target="_blank" class="modern-card modern-card--adsterra-network" aria-label="Adsterra - 全球广告网络平台">
+                    <div class="modern-card__icon" aria-hidden="true">AS</div>
+                    <div class="modern-card__text">
+                        <span class="modern-card__badge">广告联盟</span>
+                        <h3 class="modern-card__title">Adsterra</h3>
+                        <p class="modern-card__description">全球广告网络平台</p>
+                        <div class="modern-card__meta">
+                            <span class="modern-card__chip">全球覆盖</span>
+                            <span class="modern-card__chip">收益突出</span>
                         </div>
                     </div>
                 </a>
