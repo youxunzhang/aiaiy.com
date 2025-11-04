@@ -1649,6 +1649,227 @@
             background: var(--surface-color);
         }
     </style>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --secondary-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #f1f5f9;
+            --accent-color: #0ea5e9;
+            --background-color: #f5f7fb;
+            --surface-color: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+            --page-background: #f5f7fb;
+        }
+
+        body {
+            background: var(--page-background);
+            color: var(--text-primary);
+        }
+
+        body::before {
+            content: none;
+        }
+
+        .simple-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+            backdrop-filter: none;
+        }
+
+        .simple-navbar__link {
+            color: var(--text-secondary);
+        }
+
+        .simple-navbar__link:hover,
+        .simple-navbar__link--active {
+            color: var(--primary-color);
+        }
+
+        .simple-navbar__dropdown-menu {
+            background: #ffffff;
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .homepage-layout {
+            padding-top: 2rem;
+        }
+
+        .category-sidebar {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: none;
+        }
+
+        .category-sidebar__link {
+            color: var(--text-secondary);
+        }
+
+        .category-sidebar__link:hover {
+            background: #f8fafc;
+            color: var(--primary-color);
+        }
+
+        .category-sidebar__link--active {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            box-shadow: none;
+        }
+
+        .hero-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero-section::before {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.08));
+            opacity: 1;
+        }
+
+        .hero-title {
+            color: var(--text-primary);
+            text-shadow: none;
+        }
+
+        .hero-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .hero-badge {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            box-shadow: none;
+        }
+
+        .hero-button {
+            background: var(--primary-gradient);
+            box-shadow: none;
+        }
+
+        .hero-button.secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .hero-button.secondary:hover {
+            background: #f8fafc;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .product-showcase {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-showcase__badge {
+            background: #eff6ff;
+            border: 1px solid rgba(37, 99, 235, 0.18);
+            color: var(--primary-color);
+            box-shadow: none;
+        }
+
+        .product-showcase__cta {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card::after {
+            display: none;
+        }
+
+        .product-card:hover,
+        .product-card:focus-visible {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .product-card__cta {
+            color: var(--primary-color);
+        }
+
+        .modern-card,
+        .glass-panel,
+        .glass-card,
+        .tool-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: none;
+        }
+
+        .modern-card::before,
+        .tool-card::after {
+            display: none;
+        }
+
+        .glass-panel {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .glass-panel::before {
+            display: none;
+        }
+
+        .modern-card:hover,
+        .tool-card:hover,
+        .glass-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .tool-logo-bg {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+        }
+
+        .tool-logo-bg.fallback {
+            background: var(--primary-gradient);
+        }
+
+        .stats-card,
+        .news-card,
+        .resource-card,
+        .curated-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .footer { 
+            background: #ffffff;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--text-secondary);
+        }
+    </style>
     <meta name="theme-color" content="#00f2fe">
     <meta name="msapplication-TileColor" content="#00f2fe">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2192,24 +2413,24 @@
             <p class="section-lead">精心挑选的免费AI工具，从开源解决方案到免登录平台一应俱全。涵盖AI图像生成、AI视频制作、AI语音合成与AI聊天机器人，助你快速完成AI API集成。</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <a href="image.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-blue-400 font-semibold mb-2">创意灵感</div>
-                    <div class="text-xl font-bold text-white mb-2">AI图像生成工具</div>
-                    <p class="text-sm text-gray-300">使用免费AI工具与开源模型创建艺术作品、产品稿与品牌视觉素材。</p>
+                    <div class="text-sm uppercase tracking-wide text-blue-500 font-semibold mb-2">创意灵感</div>
+                    <div class="text-xl font-bold text-slate-900 mb-2">AI图像生成工具</div>
+                    <p class="text-sm text-slate-600">使用免费AI工具与开源模型创建艺术作品、产品稿与品牌视觉素材。</p>
                 </a>
                 <a href="video.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-purple-300 font-semibold mb-2">营销推广</div>
-                    <div class="text-xl font-bold text-white mb-2">AI在线视频生成</div>
-                    <p class="text-sm text-gray-300">借助浏览器端AI视频工具，数分钟内完成宣传片与教程制作。</p>
+                    <div class="text-sm uppercase tracking-wide text-purple-500 font-semibold mb-2">营销推广</div>
+                    <div class="text-xl font-bold text-slate-900 mb-2">AI在线视频生成</div>
+                    <p class="text-sm text-slate-600">借助浏览器端AI视频工具，数分钟内完成宣传片与教程制作。</p>
                 </a>
                 <a href="audio.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-emerald-300 font-semibold mb-2">语音合成</div>
-                    <div class="text-xl font-bold text-white mb-2">AI文字转语音工具</div>
-                    <p class="text-sm text-gray-300">将脚本转换成多语种的真实旁白、播客与教学音频。</p>
+                    <div class="text-sm uppercase tracking-wide text-emerald-500 font-semibold mb-2">语音合成</div>
+                    <div class="text-xl font-bold text-slate-900 mb-2">AI文字转语音工具</div>
+                    <p class="text-sm text-slate-600">将脚本转换成多语种的真实旁白、播客与教学音频。</p>
                 </a>
                 <a href="aiagent.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-amber-300 font-semibold mb-2">智能客服</div>
-                    <div class="text-xl font-bold text-white mb-2">AI聊天机器人平台</div>
-                    <p class="text-sm text-gray-300">部署融合聊天自动化与机器学习能力的对话式助手。</p>
+                    <div class="text-sm uppercase tracking-wide text-amber-500 font-semibold mb-2">智能客服</div>
+                    <div class="text-xl font-bold text-slate-900 mb-2">AI聊天机器人平台</div>
+                    <p class="text-sm text-slate-600">部署融合聊天自动化与机器学习能力的对话式助手。</p>
                 </a>
             </div>
         </section>
@@ -2219,19 +2440,19 @@
             <p class="section-lead">利用AI工具导航，对比2025年各类人工智能平台。追踪科研机器学习工具，评估效率自动化方案，把握AI初创趋势，抢先布局新机会。</p>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div class="glass-card">
-                    <h3 class="text-2xl font-semibold text-white mb-4">学生专用AI工具</h3>
-                    <p class="text-gray-300 mb-4">为学习者提供课程辅助、笔记助手与创意工作室，重点推荐无需登录的免费AI工具。</p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-start gap-2"><span class="text-blue-400 mt-1">•</span><span>支持协作写作、抽认卡生成以及提升可及性的AI文字转语音工具。</span></li>
-                        <li class="flex items-start gap-2"><span class="text-blue-400 mt-1">•</span><span>开源AI工具，助力编程练习、研究摘要撰写与视觉项目灵感。</span></li>
+                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">学生专用AI工具</h3>
+                    <p class="text-slate-600 mb-4">为学习者提供课程辅助、笔记助手与创意工作室，重点推荐无需登录的免费AI工具。</p>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>支持协作写作、抽认卡生成以及提升可及性的AI文字转语音工具。</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>开源AI工具，助力编程练习、研究摘要撰写与视觉项目灵感。</span></li>
                     </ul>
                 </div>
                 <div class="glass-card">
-                    <h3 class="text-2xl font-semibold text-white mb-4">商业增长AI工具</h3>
-                    <p class="text-gray-300 mb-4">借助AI聊天机器人、营销副驾与API集成看板，优化客户旅程与增长效率。</p>
-                    <ul class="space-y-2 text-gray-300">
-                        <li class="flex items-start gap-2"><span class="text-purple-300 mt-1">•</span><span>覆盖销售、客服与内容生产的效率自动化流程。</span></li>
-                        <li class="flex items-start gap-2"><span class="text-purple-300 mt-1">•</span><span>洞察AI初创趋势与竞品动态的智能平台。</span></li>
+                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">商业增长AI工具</h3>
+                    <p class="text-slate-600 mb-4">借助AI聊天机器人、营销副驾与API集成看板，优化客户旅程与增长效率。</p>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>覆盖销售、客服与内容生产的效率自动化流程。</span></li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>洞察AI初创趋势与竞品动态的智能平台。</span></li>
                     </ul>
                 </div>
             </div>
@@ -2257,25 +2478,25 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-white mb-3">覆盖场景广泛</h3>
-                    <p class="text-gray-300 leading-relaxed">涵盖文本生成、图像处理、视频创作、数据分析等多元能力。</p>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">覆盖场景广泛</h3>
+                    <p class="text-slate-600 leading-relaxed">涵盖文本生成、图像处理、视频创作、数据分析等多元能力。</p>
                 </div>
                 <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-white mb-3">支持免费试用</h3>
-                    <p class="text-gray-300 leading-relaxed">大多数工具提供免费试用，便于评估并节省成本。</p>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">支持免费试用</h3>
+                    <p class="text-slate-600 leading-relaxed">大多数工具提供免费试用，便于评估并节省成本。</p>
                 </div>
                 <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-white mb-3">分类清晰易查</h3>
-                    <p class="text-gray-300 leading-relaxed">按功能精细分类，快速定位所需工具。</p>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">分类清晰易查</h3>
+                    <p class="text-slate-600 leading-relaxed">按功能精细分类，快速定位所需工具。</p>
                 </div>
                 <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-white mb-3">持续上新维护</h3>
-                    <p class="text-gray-300 leading-relaxed">持续补充新工具，保持目录新鲜实用。</p>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-3">持续上新维护</h3>
+                    <p class="text-slate-600 leading-relaxed">持续补充新工具，保持目录新鲜实用。</p>
                 </div>
             </div>
 
             <div class="text-center">
-                <p class="section-lead mb-8">AI工具导航为你提供高效便捷的AI工具发现与使用途径。</p>
+                <p class="section-lead mb-8 text-slate-600">AI工具导航为你提供高效便捷的AI工具发现与使用途径。</p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="ai-capabilities.html" class="hero-button">了解更多</a>
                     <a href="ai-ranking.html" class="hero-button secondary">AI排行榜</a>
@@ -2292,7 +2513,7 @@
                 <div class="flex items-center justify-center space-x-3 mb-6">
                     <span class="text-2xl font-bold gradient-text">AI工具导航</span>
                 </div>
-                <p class="text-gray-300 mb-4 text-lg">发现提升效率的优质AI工具</p>
+                <p class="text-slate-600 mb-4 text-lg">发现提升效率的优质AI工具</p>
                 <nav class="footer-nav" aria-label="网站导航">
                     <a href="index.html">首页</a>
                     <a href="ai-companies.html">AI公司</a>
