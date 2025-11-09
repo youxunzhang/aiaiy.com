@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI工具详情 - AIAIY.COM</title>
+    <meta name="description" content="查看精选AI工具的详细介绍、核心功能、适用场景与价格信息。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: rgba(15, 23, 42, 0.72);
+            --border: rgba(148, 163, 184, 0.18);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5f5;
+            --accent: #38bdf8;
+            --muted: rgba(148, 163, 184, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 55%),
+                        radial-gradient(circle at bottom, rgba(14, 116, 144, 0.25), transparent 55%),
+                        var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(16px);
+            background: rgba(15, 23, 42, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 2.8rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.6;
+            background: var(--hero-gradient, linear-gradient(135deg, #38bdf8, #6366f1));
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .hero-tagline {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hero-summary {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-actions a {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-actions .primary-btn {
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-actions .secondary-btn {
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(148, 163, 184, 0.14);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+        }
+
+        .info-card h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .chip {
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.18);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background: rgba(15, 23, 42, 0.55);
+            border-radius: 28px;
+            border: 1px solid var(--border);
+        }
+
+        .empty-state h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-card {
+                padding: 2rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-tagline {
+                font-size: 1.8rem;
+            }
+
+            .hero-actions {
+                width: 100%;
+            }
+
+            .hero-actions a {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a class="nav-brand" href="../index.html">AIAIY.COM</a>
+            <a class="nav-back" href="../index.html">← 返回首页</a>
+        </div>
+    </header>
+
+    <main id="mainContent" aria-live="polite"></main>
+
+    <script src="product-data.js"></script>
+    <script>
+        const mainContent = document.getElementById('mainContent');
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+        const product = window.getProductData ? window.getProductData(productId) : null;
+
+        if (!product) {
+            document.title = '未找到产品 - AIAIY.COM';
+            mainContent.innerHTML = `
+                <section class="empty-state">
+                    <h1>未找到对应的产品</h1>
+                    <p>链接可能已失效或产品尚未收录。你可以返回首页继续浏览其他 AI 工具。</p>
+                    <a class="nav-back" style="font-size:1rem" href="../index.html">回到首页</a>
+                </section>
+            `;
+        } else {
+            document.title = `${product.name} - AI工具详情 - AIAIY.COM`;
+            document.querySelector(':root').style.setProperty('--hero-gradient', product.heroGradient || 'linear-gradient(135deg, #38bdf8, #6366f1)');
+
+            const renderList = (items) => {
+                if (!items || !items.length) return '<p class="text-muted">暂无相关信息</p>';
+                return `
+                    <ul>
+                        ${items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+            };
+
+            const renderChips = (items) => {
+                if (!items || !items.length) return '';
+                return `
+                    <div class="chip-list">
+                        ${items.map(item => `<span class="chip">${item}</span>`).join('')}
+                    </div>
+                `;
+            };
+
+            mainContent.innerHTML = `
+                <article>
+                    <section class="hero-card">
+                        <div class="hero-content">
+                            <div class="hero-meta">
+                                <div class="hero-logo" aria-hidden="true">
+                                    ${product.logo ? `<img src="${product.logo}" alt="${product.name} logo" loading="lazy">` : product.name.charAt(0)}
+                                </div>
+                                <div>
+                                    <p class="chip">${product.category || 'AI 工具'}</p>
+                                    <h1 class="hero-tagline">${product.name}</h1>
+                                </div>
+                            </div>
+                            <p class="hero-summary">${product.summary || ''}</p>
+                            <div class="hero-actions">
+                                <a class="primary-btn" href="${product.website}" target="_blank" rel="noopener noreferrer">访问官网 →</a>
+                                <a class="secondary-btn" href="../writing.html">查看更多写作工具</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="grid" aria-label="产品详细信息">
+                        <div class="info-card">
+                            <h2>核心功能</h2>
+                            ${renderList(product.keyFeatures)}
+                        </div>
+                        <div class="info-card">
+                            <h2>适用人群</h2>
+                            ${renderList(product.idealUsers)}
+                        </div>
+                        <div class="info-card">
+                            <h2>价格与方案</h2>
+                            ${renderList(product.pricing)}
+                        </div>
+                        <div class="info-card">
+                            <h2>亮点 & 优势</h2>
+                            ${renderList(product.highlights)}
+                        </div>
+                    </section>
+
+                    <section class="grid" aria-label="生态与相关资源">
+                        <div class="info-card">
+                            <h2>常用集成</h2>
+                            ${renderChips(product.integrations)}
+                        </div>
+                        <div class="info-card">
+                            <h2>相关工具推荐</h2>
+                            ${renderChips(product.relatedTools)}
+                        </div>
+                    </section>
+                </article>
+            `;
+        }
+    </script>
+</body>
+</html>
