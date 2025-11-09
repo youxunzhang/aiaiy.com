@@ -30,7 +30,9 @@ const PRODUCT_DATA = {
       '内置抄袭检测与 SEO 建议，保障内容可靠性'
     ],
     integrations: ['Surfer SEO', 'HubSpot', 'Notion', 'Webflow', 'Google Docs'],
-    relatedTools: ['Copy.ai', 'Anyword', 'INK']
+    relatedTools: ['Copy.ai', 'Anyword', 'INK'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   'copy.ai': {
     id: 'copy.ai',
@@ -63,7 +65,9 @@ const PRODUCT_DATA = {
       '工作流可与 Zapier、Make 等自动化平台衔接'
     ],
     integrations: ['HubSpot', 'Marketo', 'Zapier', 'Shopify'],
-    relatedTools: ['Jasper', 'Anyword', 'Wordtune']
+    relatedTools: ['Jasper', 'Anyword', 'Wordtune'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   writesonic: {
     id: 'writesonic',
@@ -96,7 +100,9 @@ const PRODUCT_DATA = {
       '与 WordPress、Zapier 和 Chrome 插件深度集成'
     ],
     integrations: ['WordPress', 'Zapier', 'Chrome Extension', 'Semrush'],
-    relatedTools: ['Jasper', 'Copy.ai', 'Rytr']
+    relatedTools: ['Jasper', 'Copy.ai', 'Rytr'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   rytr: {
     id: 'rytr',
@@ -129,7 +135,9 @@ const PRODUCT_DATA = {
       '提供社区「Rytr Me」分享与获取提示词灵感'
     ],
     integrations: ['Chrome Extension', 'WordPress', 'Semrush'],
-    relatedTools: ['Writesonic', 'Copy.ai', 'Wordtune']
+    relatedTools: ['Writesonic', 'Copy.ai', 'Wordtune'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   quillbot: {
     id: 'quillbot',
@@ -162,7 +170,9 @@ const PRODUCT_DATA = {
       '抄袭检测器覆盖 100+ 亿网页与学术资源'
     ],
     integrations: ['Chrome Extension', 'Word Plugin', 'Google Docs'],
-    relatedTools: ['Grammarly', 'Wordtune', 'INK']
+    relatedTools: ['Grammarly', 'Wordtune', 'INK'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   anyword: {
     id: 'anyword',
@@ -195,7 +205,9 @@ const PRODUCT_DATA = {
       '关键词库与竞争分析帮助快速定位创意方向'
     ],
     integrations: ['Facebook Ads', 'Google Ads', 'HubSpot', 'WordPress'],
-    relatedTools: ['Copy.ai', 'Jasper', 'INK']
+    relatedTools: ['Copy.ai', 'Jasper', 'INK'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   wordtune: {
     id: 'wordtune',
@@ -228,7 +240,9 @@ const PRODUCT_DATA = {
       '支持 Slack、Gmail、Notion 等常用工具场景'
     ],
     integrations: ['Chrome Extension', 'Slack', 'Gmail', 'Notion'],
-    relatedTools: ['QuillBot', 'Grammarly', 'Notion AI']
+    relatedTools: ['QuillBot', 'Grammarly', 'Notion AI'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   grammarly: {
     id: 'grammarly',
@@ -261,7 +275,9 @@ const PRODUCT_DATA = {
       'AI 写作提示支持自定义角色与语气'
     ],
     integrations: ['Microsoft Word', 'Google Docs', 'Slack', 'Gmail'],
-    relatedTools: ['QuillBot', 'Wordtune', 'Notion AI']
+    relatedTools: ['QuillBot', 'Wordtune', 'Notion AI'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   'notion-ai': {
     id: 'notion-ai',
@@ -294,7 +310,9 @@ const PRODUCT_DATA = {
       '与 Slack、Jira、GitHub 等应用整合，保持信息同步'
     ],
     integrations: ['Slack', 'Jira', 'GitHub', 'Google Calendar'],
-    relatedTools: ['Jasper', 'Wordtune', 'Notion Templates']
+    relatedTools: ['Jasper', 'Wordtune', 'Notion Templates'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   },
   ink: {
     id: 'ink',
@@ -327,7 +345,9 @@ const PRODUCT_DATA = {
       '支持团队协作与审批流程'
     ],
     integrations: ['WordPress', 'Chrome Extension', 'Semrush'],
-    relatedTools: ['Anyword', 'Writesonic', 'Jasper']
+    relatedTools: ['Anyword', 'Writesonic', 'Jasper'],
+    collectionLink: '../writing.html',
+    collectionLabel: '查看更多写作工具'
   }
 };
 

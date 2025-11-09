@@ -277,7 +277,91 @@
         const mainContent = document.getElementById('mainContent');
         const params = new URLSearchParams(window.location.search);
         const productId = params.get('id');
-        const product = window.getProductData ? window.getProductData(productId) : null;
+        const FALLBACK_TTL = 1000 * 60 * 15; // 15 minutes
+
+        const normalizeArray = (value, defaultValue = []) => {
+            if (Array.isArray(value)) {
+                return value.filter(item => typeof item === 'string' && item.trim().length > 0);
+            }
+
+            if (typeof value === 'string' && value.trim().length > 0) {
+                return [value.trim()];
+            }
+
+            return Array.isArray(defaultValue) ? defaultValue : [];
+        };
+
+        const getSectionFallback = (pending) => {
+            if (!pending || !pending.sectionTitle) {
+                return {
+                    collectionLink: '../index.html',
+                    collectionLabel: '返回首页浏览更多工具'
+                };
+            }
+
+            const slug = pending.sectionId || pending.sectionTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            return {
+                collectionLink: `../index.html#${slug}`,
+                collectionLabel: `返回 ${pending.sectionTitle}`
+            };
+        };
+
+        const getPendingProduct = (requestedId) => {
+            try {
+                const raw = sessionStorage.getItem('pendingProduct');
+                if (!raw) return null;
+
+                const parsed = JSON.parse(raw);
+                const matchesId = parsed && parsed.id && requestedId && parsed.id.toLowerCase() === requestedId.toLowerCase();
+                const notExpired = parsed && parsed.storedAt && (Date.now() - parsed.storedAt) < FALLBACK_TTL;
+
+                if (matchesId && notExpired) {
+                    sessionStorage.removeItem('pendingProduct');
+                    const sectionInfo = getSectionFallback(parsed);
+                    return {
+                        ...parsed,
+                        keyFeatures: normalizeArray(parsed.keyFeatures, parsed.summary ? [parsed.summary] : []),
+                        idealUsers: normalizeArray(parsed.idealUsers, parsed.category ? [`正在寻找${parsed.category}解决方案的团队`] : []),
+                        pricing: normalizeArray(parsed.pricing, ['访问官网了解定价信息']),
+                        highlights: normalizeArray(parsed.highlights, parsed.summary ? [`了解更多 ${parsed.name} 的使用体验`] : []),
+                        integrations: normalizeArray(parsed.integrations),
+                        relatedTools: normalizeArray(parsed.relatedTools),
+                        collectionLink: parsed.collectionLink || sectionInfo.collectionLink,
+                        collectionLabel: parsed.collectionLabel || sectionInfo.collectionLabel,
+                        heroGradient: parsed.heroGradient || 'linear-gradient(135deg, #38bdf8, #6366f1)',
+                        isGenerated: true
+                    };
+                }
+
+                return null;
+            } catch (error) {
+                console.warn('Failed to parse pending product info:', error);
+                return null;
+            }
+        };
+
+        const renderList = (items) => {
+            const content = normalizeArray(items);
+            if (!content.length) return '<p class="text-muted">暂无相关信息</p>';
+            return `
+                <ul>
+                    ${content.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            `;
+        };
+
+        const renderChips = (items) => {
+            const content = normalizeArray(items);
+            if (!content.length) return '';
+            return `
+                <div class="chip-list">
+                    ${content.map(item => `<span class="chip">${item}</span>`).join('')}
+                </div>
+            `;
+        };
+
+        const baseProduct = window.getProductData ? window.getProductData(productId) : null;
+        const product = baseProduct || getPendingProduct(productId);
 
         if (!product) {
             document.title = '未找到产品 - AIAIY.COM';
@@ -292,23 +376,10 @@
             document.title = `${product.name} - AI工具详情 - AIAIY.COM`;
             document.querySelector(':root').style.setProperty('--hero-gradient', product.heroGradient || 'linear-gradient(135deg, #38bdf8, #6366f1)');
 
-            const renderList = (items) => {
-                if (!items || !items.length) return '<p class="text-muted">暂无相关信息</p>';
-                return `
-                    <ul>
-                        ${items.map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                `;
-            };
-
-            const renderChips = (items) => {
-                if (!items || !items.length) return '';
-                return `
-                    <div class="chip-list">
-                        ${items.map(item => `<span class="chip">${item}</span>`).join('')}
-                    </div>
-                `;
-            };
+            const collectionLink = product.collectionLink || '../index.html';
+            const collectionLabel = product.collectionLabel || '返回首页浏览更多工具';
+            const heroSummary = product.summary || product.tagline || '';
+            const websiteLink = product.website || product.productUrl;
 
             mainContent.innerHTML = `
                 <article>
@@ -316,20 +387,22 @@
                         <div class="hero-content">
                             <div class="hero-meta">
                                 <div class="hero-logo" aria-hidden="true">
-                                    ${product.logo ? `<img src="${product.logo}" alt="${product.name} logo" loading="lazy">` : product.name.charAt(0)}
+                                    ${product.logo ? `<img src="${product.logo}" alt="${product.name} logo" loading="lazy">` : (product.name ? product.name.charAt(0) : 'AI')}
                                 </div>
                                 <div>
                                     <p class="chip">${product.category || 'AI 工具'}</p>
                                     <h1 class="hero-tagline">${product.name}</h1>
                                 </div>
                             </div>
-                            <p class="hero-summary">${product.summary || ''}</p>
+                            <p class="hero-summary">${heroSummary}</p>
                             <div class="hero-actions">
-                                <a class="primary-btn" href="${product.website}" target="_blank" rel="noopener noreferrer">访问官网 →</a>
-                                <a class="secondary-btn" href="../writing.html">查看更多写作工具</a>
+                                ${websiteLink ? `<a class="primary-btn" href="${websiteLink}" target="_blank" rel="noopener noreferrer">访问官网 →</a>` : ''}
+                                <a class="secondary-btn" href="${collectionLink}">${collectionLabel}</a>
                             </div>
                         </div>
                     </section>
+
+                    ${product.isGenerated ? `<section class="info-card" style="margin-top:1.5rem;">提示：以下内容由系统根据首页信息自动生成，访问官网获取更详细的官方介绍。</section>` : ''}
 
                     <section class="grid" aria-label="产品详细信息">
                         <div class="info-card">
