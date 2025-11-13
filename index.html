@@ -400,6 +400,17 @@
             object-fit: contain;
         }
 
+        .ai-card__icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(147, 51, 234, 0.12));
+        }
+
         .ai-card__name {
             font-size: 1rem;
             font-weight: 600;
@@ -564,7 +575,6 @@
                             <h2 id="ai-writing-latest" class="category-panel__heading">热门对话模型即时速览</h2>
                             <p class="category-panel__meta">汇总 ChatGPT、DeepSeek、Gemini 等旗舰AI助手的最新升级，覆盖写作、搜索与办公需求。</p>
                         </div>
-                        <a class="category-panel__cta" href="https://www.amz123.com/" target="_blank" rel="noopener noreferrer">AMZ123 选择加入 DeepSeek，立即领取模型权益 &gt;&gt;</a>
                     </div>
                     <div class="update-filters" role="group" aria-label="更新筛选">
                         <button type="button" class="update-filters__btn is-active">全部</button>
@@ -954,21 +964,29 @@
                     </div>
                     <div class="ai-card-grid">
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">✍️</span>
+                            <span class="sr-only">写作团队工具对比图标</span>
                             <span class="ai-card__badge">写作团队</span>
                             <span class="ai-card__name">Jasper vs. Writer</span>
                             <span class="ai-card__tagline">Jasper 模板丰富，Writer 擅长品牌统一，按需组合。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">🎬</span>
+                            <span class="sr-only">视频创作工具对比图标</span>
                             <span class="ai-card__badge">视频创作</span>
                             <span class="ai-card__name">Runway vs. Pika</span>
                             <span class="ai-card__tagline">Runway 在特效更强，Pika 上手门槛低，适合短视频。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">🔍</span>
+                            <span class="sr-only">搜索答疑工具对比图标</span>
                             <span class="ai-card__badge">搜索答疑</span>
                             <span class="ai-card__name">Perplexity vs. Gemini</span>
                             <span class="ai-card__tagline">Perplexity 引用清晰，Gemini 适合多模态任务。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">🤝</span>
+                            <span class="sr-only">团队协作工具对比图标</span>
                             <span class="ai-card__badge">团队协作</span>
                             <span class="ai-card__name">Notion AI vs. ClickUp Brain</span>
                             <span class="ai-card__tagline">Notion 优势在文档，ClickUp 聚焦任务管理。</span>
@@ -987,21 +1005,29 @@
                     </div>
                     <div class="ai-card-grid">
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">🗂️</span>
+                            <span class="sr-only">导航覆盖图标</span>
                             <span class="ai-card__badge">覆盖全面</span>
                             <span class="ai-card__name">200+ 类别</span>
                             <span class="ai-card__tagline">从写作、设计到开发，整理常用工具与真实口碑。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">⚡</span>
+                            <span class="sr-only">实时收录图标</span>
                             <span class="ai-card__badge">每周更新</span>
                             <span class="ai-card__name">实时收录</span>
                             <span class="ai-card__tagline">跟踪大模型升级、价格变动与热门插件。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">📄</span>
+                            <span class="sr-only">行业模板图标</span>
                             <span class="ai-card__badge">实战指南</span>
                             <span class="ai-card__name">行业模板</span>
                             <span class="ai-card__tagline">精选 SOP 与 Prompt，帮助你快速落地。</span>
                         </div>
                         <div class="ai-card">
+                            <span class="ai-card__icon" aria-hidden="true">📣</span>
+                            <span class="sr-only">社区共建图标</span>
                             <span class="ai-card__badge">社区共建</span>
                             <span class="ai-card__name">欢迎投稿</span>
                             <span class="ai-card__tagline">提交你的 AI 作品或经验，我们将在导航页展示。</span>
