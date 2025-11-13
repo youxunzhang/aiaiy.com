@@ -64,215 +64,38 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="modern-styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+            <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --primary-color: #60a5fa;
-            --primary-hover: #93c5fd;
-            --secondary-color: rgba(226, 232, 255, 0.75);
-            --accent-color: #00f2fe;
-            --background-color: #050814;
-            --surface-color: rgba(15, 23, 42, 0.72);
-            --border-color: rgba(148, 163, 184, 0.22);
-            --text-primary: #f8fbff;
-            --text-secondary: rgba(226, 232, 255, 0.78);
-            --text-muted: rgba(148, 163, 184, 0.65);
-            --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.25);
-            --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.45);
-            --shadow-lg: 0 35px 65px rgba(0, 0, 0, 0.6);
-            --glass-bg: rgba(15, 23, 42, 0.75);
-            --glass-border: rgba(148, 163, 184, 0.22);
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --danger-color: #ef4444;
+            --surface-color: #ffffff;
+            --surface-muted: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-        
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            background: radial-gradient(circle at top left, rgba(79, 172, 254, 0.22), transparent 45%),
-                        radial-gradient(circle at bottom right, rgba(120, 119, 198, 0.28), transparent 55%),
-                        var(--background-color);
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--surface-muted);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            position: relative;
-            min-height: 100vh;
+            line-height: 1.5;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(79, 172, 254, 0.22) 0%, transparent 55%),
-                radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.18) 0%, transparent 55%),
-                radial-gradient(circle at 50% 20%, rgba(0, 242, 254, 0.12) 0%, transparent 55%);
-            filter: blur(0px);
-            z-index: -2;
-            animation: backgroundShift 24s ease-in-out infinite;
-        }
-
-        @keyframes backgroundShift {
-            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-            33% { transform: translate3d(-18px, -12px, 0) scale(1.03); }
-            66% { transform: translate3d(14px, 16px, 0) scale(1.02); }
-        }
-        
-        /* 顶部导航 */
-        .simple-navbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(4, 7, 20, 0.88);
-            backdrop-filter: blur(22px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 22px 45px rgba(2, 6, 23, 0.45);
-        }
-
-        .simple-navbar__container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-            padding: 0.75rem 0;
-        }
-
-        .simple-navbar__brand {
-            display: flex;
-            flex-direction: column;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            line-height: 1.1;
-            letter-spacing: 0.08em;
-        }
-
-        .simple-navbar__tagline {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: rgba(148, 163, 184, 0.65);
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-        }
-
-        .simple-navbar__links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-left: auto;
-        }
-
-        .simple-navbar__link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.5rem 0;
-            position: relative;
-            transition: color 0.25s ease;
-        }
-
-        .simple-navbar__link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0.2rem;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gradient);
-            transition: width 0.25s ease;
-            border-radius: 999px;
-        }
-
-        .simple-navbar__dropdown {
-            position: relative;
-        }
-
-        .simple-navbar__link--parent {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .simple-navbar__link--parent::after {
-            content: '';
-            display: inline-block;
-            width: 0.4rem;
-            height: 0.4rem;
-            border-right: 2px solid currentColor;
-            border-bottom: 2px solid currentColor;
-            transform: rotate(45deg);
-            transition: transform 0.2s ease;
-        }
-
-        .simple-navbar__dropdown:hover .simple-navbar__link--parent::after {
-            transform: rotate(225deg);
-        }
-
-        .simple-navbar__dropdown-menu {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            left: 0;
-            background: rgba(8, 13, 33, 0.92);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            border-radius: 0.85rem;
-            padding: 0.75rem;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.2s ease;
-            z-index: 1000;
-        }
-
-        .simple-navbar__dropdown:hover .simple-navbar__dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .simple-navbar__dropdown-link {
-            display: block;
-            padding: 0.55rem 0.85rem;
-            border-radius: 0.65rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        .simple-navbar__dropdown-link:hover {
-            background: rgba(96, 165, 250, 0.12);
-            color: var(--text-primary);
-        }
-
-        .simple-navbar__link:hover,
-        .simple-navbar__link--active {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .simple-navbar__link:hover::after,
-        .simple-navbar__link--active::after {
-            width: 100%;
+        a {
+            color: inherit;
         }
 
         .sr-only {
@@ -286,17 +109,113 @@
             white-space: nowrap;
             border: 0;
         }
+
+        .simple-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.04);
+        }
+
+        .simple-navbar__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            flex-wrap: wrap;
+        }
+
+        .simple-navbar__brand {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .simple-navbar__tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .simple-navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .simple-navbar__link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .simple-navbar__link:hover,
+        .simple-navbar__link--active {
+            color: var(--primary-color);
+        }
+
+        .simple-navbar__dropdown {
+            position: relative;
+        }
+
+        .simple-navbar__dropdown-menu {
+            position: absolute;
+            inset-inline-start: 0;
+            top: calc(100% + 0.5rem);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-md);
+            padding: 0.75rem;
+            display: none;
+            min-width: 200px;
+        }
+
+        .simple-navbar__dropdown:hover .simple-navbar__dropdown-menu {
+            display: block;
+        }
+
+        .simple-navbar__dropdown-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .simple-navbar__dropdown-link:hover {
+            background: var(--surface-muted);
+            color: var(--primary-color);
+        }
+
         .main-content {
-            margin-left: 0;
-            transition: margin-left 0.3s ease;
+            padding: 0 1.5rem 3rem;
         }
 
         .homepage-layout {
             display: flex;
             align-items: flex-start;
             gap: 2rem;
-            width: 100%;
-            padding: 0 1.5rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
         }
 
         .homepage-content {
@@ -306,16 +225,13 @@
 
         .category-sidebar {
             position: sticky;
-            top: 96px;
-            background: rgba(8, 13, 33, 0.82);
-            border: 1px solid var(--glass-border);
-            border-left: none;
-            border-radius: 0 1rem 1rem 0;
+            top: 88px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
             box-shadow: var(--shadow-sm);
-            padding: 1.5rem;
-            min-width: 240px;
-            max-width: 280px;
-            backdrop-filter: blur(22px);
+            padding: 1.25rem;
+            min-width: 230px;
         }
 
         .category-sidebar__title {
@@ -327,1569 +243,219 @@
 
         .category-sidebar__list {
             list-style: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-        }
-
-        .category-sidebar__item {
-            width: 100%;
         }
 
         .category-sidebar__link {
             display: flex;
             align-items: center;
             gap: 0.65rem;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.65rem 0.75rem;
+            padding: 0.55rem 0.75rem;
             border-radius: 0.75rem;
-            transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
 
         .category-sidebar__link:hover {
-            background: rgba(96, 165, 250, 0.12);
-            color: var(--text-primary);
-            transform: translateX(4px);
-        }
-
-        .category-sidebar__link--active {
-            background: var(--primary-gradient);
-            color: #ffffff;
-            box-shadow: 0 10px 24px rgba(79, 172, 254, 0.35);
+            background: var(--surface-muted);
+            color: var(--primary-color);
         }
 
         .category-sidebar__icon {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 0.75rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(96, 165, 250, 0.15);
-            color: var(--primary-color);
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 0.5rem;
+            background: var(--surface-muted);
             font-size: 1.1rem;
-            transition: background 0.25s ease, color 0.25s ease;
         }
 
-        .category-sidebar__link--active .category-sidebar__icon {
-            background: rgba(255, 255, 255, 0.28);
+        .category-panel {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .category-panel__header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-panel__title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-panel__eyebrow {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .category-panel__heading {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .category-panel__meta {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .category-panel__cta {
+            color: var(--danger-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .update-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .update-filters__btn {
+            padding: 0.4rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .update-filters__btn.is-active,
+        .update-filters__btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
             color: #ffffff;
         }
 
-        @media (max-width: 1200px) {
-            .homepage-layout {
-                padding: 0 1.25rem 3rem;
-                gap: 1.5rem;
-            }
+        .ai-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .ai-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1.1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            text-decoration: none;
+            background: #ffffff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .ai-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .ai-card__logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ai-card__logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ai-card__name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .ai-card__tagline {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .ai-card__badge {
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .section-note {
+            margin-top: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         @media (max-width: 1024px) {
             .homepage-layout {
                 flex-direction: column;
-                padding: 0 1.25rem 3rem;
+                padding-inline: 0;
             }
 
             .category-sidebar {
                 position: static;
                 width: 100%;
-                max-width: none;
-                display: block;
                 overflow-x: auto;
-                white-space: nowrap;
-                box-shadow: var(--shadow-sm);
-                border-left: 1px solid var(--glass-border);
-                border-radius: 0.75rem;
-                background: rgba(8, 13, 33, 0.82);
+                display: flex;
+                gap: 0.75rem;
+                padding: 1rem;
             }
 
             .category-sidebar__list {
                 flex-direction: row;
-                flex-wrap: nowrap;
-                gap: 0.75rem;
             }
 
             .category-sidebar__item {
                 flex: 0 0 auto;
             }
-
-            .category-sidebar__link {
-                white-space: nowrap;
-            }
         }
 
         @media (max-width: 640px) {
-            .homepage-layout {
+            .main-content {
                 padding: 0 1rem 2.5rem;
             }
-        }
 
-        /* 移动端响应式 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 1rem;
+            .category-panel {
+                padding: 1.25rem;
             }
-
-            .page-introduction {
-                padding: 2rem 1rem;
-            }
-
-            .page-introduction h2 {
-                font-size: 2rem;
-            }
-
-            .page-introduction p {
-                font-size: 1rem;
-            }
-
-            .bg-gradient-to-r h1 {
-                font-size: 2.5rem;
-            }
-
-            .bg-gradient-to-r p {
-                font-size: 1.1rem;
-            }
-
-            .bg-gradient-to-r .flex {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .simple-navbar__links {
-                width: 100%;
-                justify-content: flex-start;
-            }
-
-            .simple-navbar__dropdown-menu {
-                position: static;
-                transform: none;
-                opacity: 1;
-                visibility: visible;
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                min-width: auto;
-            }
-
-            .simple-navbar__dropdown-link {
-                padding-left: 0;
-            }
-        }
-        
-
-        
-
-        
-        .hero-section {
-            position: relative;
-            padding: 5rem 0;
-            margin-bottom: 3rem;
-            border-radius: 32px;
-            background: linear-gradient(135deg, rgba(10, 15, 38, 0.9), rgba(18, 26, 52, 0.9));
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            inset: -20%;
-            background: radial-gradient(circle at 20% 20%, rgba(79, 172, 254, 0.38), transparent 55%),
-                        radial-gradient(circle at 80% 30%, rgba(118, 75, 162, 0.35), transparent 55%);
-            opacity: 0.85;
-            z-index: 0;
-            filter: blur(0px);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.15;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-            text-shadow: 0 18px 48px rgba(37, 99, 235, 0.35);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.15rem, 2vw, 1.35rem);
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .hero-badges {
-            display: flex;
-            gap: 0.85rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2.5rem;
-        }
-
-        .hero-badge {
-            padding: 0.65rem 1.4rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid rgba(148, 163, 184, 0.22);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 12px 25px -12px rgba(79, 172, 254, 0.45);
-        }
-
-        .hero-button {
-            background: var(--primary-gradient);
-            border: none;
-            border-radius: 999px;
-            padding: 0.85rem 1.9rem;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            box-shadow: 0 18px 30px -12px rgba(79, 172, 254, 0.55);
-        }
-
-        .hero-button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 22px 45px -10px rgba(79, 172, 254, 0.65);
-        }
-
-        .hero-button.secondary {
-            background: transparent;
-            border: 1px solid rgba(96, 165, 250, 0.35);
-            color: var(--text-primary);
-            box-shadow: none;
-        }
-
-        .hero-button.secondary:hover {
-            background: rgba(96, 165, 250, 0.12);
-            border-color: rgba(148, 163, 184, 0.45);
-            color: var(--text-primary);
-        }
-        
-        /* 首页产品陈列 */
-        .product-showcase {
-            padding: 2.75rem 2.5rem;
-            border-radius: 30px;
-            background: rgba(7, 12, 28, 0.86);
-        }
-
-        .product-showcase__header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
-        .product-showcase__title {
-            font-size: clamp(1.5rem, 2.3vw, 1.9rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-        }
-
-        .product-showcase__subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            max-width: 520px;
-        }
-
-        .product-showcase__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.65rem 1.1rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.28);
-            color: rgba(191, 219, 254, 0.95);
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .product-showcase__cta:hover,
-        .product-showcase__cta:focus-visible {
-            border-color: rgba(96, 165, 250, 0.45);
-            color: #ffffff;
-            box-shadow: 0 18px 40px -24px rgba(59, 130, 246, 0.55);
-        }
-
-        .product-showcase__cta svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .product-showcase__badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            padding: 0.55rem 1.3rem;
-            border-radius: 999px;
-            background: rgba(96, 165, 250, 0.12);
-            border: 1px solid rgba(148, 163, 184, 0.28);
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 16px 35px -24px rgba(59, 130, 246, 0.55);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.75rem;
-            align-items: stretch;
-        }
-
-        .product-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1.85rem;
-            border-radius: 22px;
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(226, 232, 240, 0.85);
-            box-shadow: 0 22px 38px -24px rgba(15, 23, 42, 0.35);
-            text-decoration: none;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-            min-height: 100%;
-            color: #0f172a;
-        }
-
-        .product-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: linear-gradient(145deg, rgba(59, 130, 246, 0.08), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-            pointer-events: none;
-        }
-
-        .product-card:hover,
-        .product-card:focus-visible {
-            transform: translateY(-6px);
-            border-color: rgba(96, 165, 250, 0.65);
-            box-shadow: 0 30px 55px -24px rgba(59, 130, 246, 0.45);
-        }
-
-        .product-card:hover::after,
-        .product-card:focus-visible::after {
-            opacity: 1;
-        }
-
-        .product-card__icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            overflow: hidden;
-            background: #f8fafc;
-            border: 1px solid rgba(226, 232, 240, 0.9);
-        }
-
-        .product-card__icon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 14px;
-            background-color: transparent;
-            object-fit: contain;
-        }
-
-        .product-card__title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #0f172a;
-            letter-spacing: -0.01em;
-        }
-
-        .product-card__description {
-            font-size: 0.92rem;
-            line-height: 1.55;
-            color: #475569;
-        }
-
-        .product-card__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            margin-top: auto;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #2563eb;
-            letter-spacing: 0.01em;
-        }
-
-        .product-card__cta svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .product-card__cta svg path {
-            stroke: currentColor;
-        }
-
-        @media (max-width: 1024px) {
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            }
-        }
-
-        @media (max-width: 640px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .product-card--jasper .product-card__icon {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        }
-
-        .product-card--copyai .product-card__icon {
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
-        }
-
-        .product-card--writesonic .product-card__icon {
-            background: linear-gradient(135deg, #6366f1, #22d3ee);
-        }
-
-        .product-card--rytr .product-card__icon {
-            background: linear-gradient(135deg, #f59e0b, #f97316);
-        }
-
-        .product-card--quillbot .product-card__icon {
-            background: linear-gradient(135deg, #22c55e, #4ade80);
-        }
-
-        .product-card--anyword .product-card__icon {
-            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
-        }
-
-        .product-card--wordtune .product-card__icon {
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-        }
-
-        .product-card--grammarly .product-card__icon {
-            background: linear-gradient(135deg, #10b981, #34d399);
-        }
-
-        .product-card--notion .product-card__icon {
-            background: linear-gradient(135deg, #111827, #334155);
-        }
-
-        .product-card--ink .product-card__icon {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-        }
-
-        @media (max-width: 768px) {
-            .product-showcase {
-                padding: 2.25rem 1.75rem;
-            }
-
-            .product-showcase__header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .product-grid {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-        }
-
-        /* 现代化工具卡片 */
-        .tool-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1.25rem;
-            padding: 1.6rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            overflow: hidden;
-            isolation: isolate;
-            backdrop-filter: blur(24px);
-        }
-
-        .modern-card {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.55rem 1.75rem;
-            border-radius: 26px;
-            background: linear-gradient(135deg, rgba(10, 16, 38, 0.92), rgba(15, 23, 42, 0.86));
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            overflow: hidden;
-            isolation: isolate;
-            text-decoration: none;
-            backdrop-filter: blur(22px);
-            height: 100%;
-        }
-
-        .modern-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.28), transparent 58%),
-                        radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.18), transparent 62%);
-            opacity: 0;
-            transform: scale(0.96);
-            transition: opacity 0.35s ease, transform 0.35s ease;
-            z-index: 0;
-        }
-
-        .modern-card:hover,
-        .modern-card:focus-visible {
-            transform: translateY(-8px);
-            border-color: rgba(96, 165, 250, 0.5);
-            box-shadow: 0 28px 60px -18px rgba(37, 99, 235, 0.45);
-        }
-
-        .modern-card:hover::before,
-        .modern-card:focus-visible::before {
-            opacity: 1;
-            transform: scale(1.08);
-        }
-
-        .modern-card__icon {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.9), rgba(118, 75, 162, 0.9));
-            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.55);
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            z-index: 1;
-        }
-
-        .modern-card .tool-logo-bg {
-            display: none !important;
-        }
-
-        .modern-card__icon::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: 22px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            opacity: 0.8;
-        }
-
-        .modern-card__text {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-            z-index: 1;
-        }
-
-        .modern-card__badge {
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: rgba(226, 232, 255, 0.6);
-        }
-
-        .modern-card__title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .modern-card__description {
-            font-size: 0.98rem;
-            color: var(--text-secondary);
-            margin: 0;
-            max-width: 16rem;
-        }
-
-        .modern-card__meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-top: 0.35rem;
-        }
-
-        .modern-card__chip {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.18rem 0.6rem;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, 0.16);
-            color: rgba(226, 232, 255, 0.72);
-            font-size: 0.7rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .modern-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            grid-auto-rows: 1fr;
-            gap: clamp(1.25rem, 2vw, 1.75rem);
-            align-items: stretch;
-        }
-
-        @media (min-width: 1280px) {
-            .modern-card-grid {
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .modern-card {
-                padding: 1.4rem 1.5rem;
-                gap: 1.25rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .modern-card-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .modern-card {
-                padding: 1.3rem 1.45rem;
-                gap: 1.1rem;
-            }
-
-            .modern-card__icon {
-                width: 54px;
-                height: 54px;
-                border-radius: 18px;
-                font-size: 1rem;
-            }
-
-            .modern-card__title {
-                font-size: 1.18rem;
-            }
-
-            .modern-card__description {
-                font-size: 0.92rem;
-                max-width: none;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .modern-card-grid {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-
-            .glass-panel {
-                padding: 2.35rem 1.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .modern-card {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 1.2rem 1.3rem;
-            }
-
-            .modern-card__icon {
-                width: 48px;
-                height: 48px;
-                border-radius: 16px;
-                font-size: 0.95rem;
-            }
-
-            .modern-card__text {
-                gap: 0.3rem;
-            }
-
-            .modern-card__badge {
-                font-size: 0.7rem;
-            }
-        }
-
-        .modern-card--chatgpt .modern-card__icon {
-            background: linear-gradient(135deg, #22d3ee, #6366f1);
-        }
-
-        .modern-card--deepseek .modern-card__icon {
-            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-        }
-
-        .modern-card--gemini .modern-card__icon {
-            background: linear-gradient(135deg, #60a5fa, #9333ea);
-        }
-
-        .modern-card--perplexity .modern-card__icon {
-            background: linear-gradient(135deg, #fbbf24, #f97316);
-        }
-
-        .modern-card--grok .modern-card__icon {
-            background: linear-gradient(135deg, #f472b6, #db2777);
-        }
-
-        .modern-card--chatbot .modern-card__icon {
-            background: linear-gradient(135deg, #34d399, #059669);
-        }
-
-        .modern-card--claude .modern-card__icon {
-            background: linear-gradient(135deg, #facc15, #f97316);
-        }
-
-        .modern-card--cloudflare .modern-card__icon {
-            background: linear-gradient(135deg, #f97316, #fb923c);
-        }
-
-        .modern-card--vercel .modern-card__icon {
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-        }
-
-        .modern-card--domain .modern-card__icon {
-            background: linear-gradient(135deg, #38bdf8, #2563eb);
-        }
-
-        .modern-card--github .modern-card__icon {
-            background: linear-gradient(135deg, #f8fafc, #94a3b8);
-            color: #0f172a;
-        }
-
-        .modern-card--query .modern-card__icon {
-            background: linear-gradient(135deg, #67e8f9, #22d3ee);
-        }
-
-        .modern-card--adsense .modern-card__icon {
-            background: linear-gradient(135deg, #22c55e, #10b981);
-        }
-
-        .modern-card--adsterra .modern-card__icon {
-            background: linear-gradient(135deg, #fb7185, #f43f5e);
-        }
-
-        .modern-card--analytics .modern-card__icon {
-            background: linear-gradient(135deg, #f59e0b, #f97316);
-        }
-
-        .modern-card--trends .modern-card__icon {
-            background: linear-gradient(135deg, #60a5fa, #2563eb);
-        }
-
-        .modern-card--search-console .modern-card__icon {
-            background: linear-gradient(135deg, #22d3ee, #3b82f6);
-        }
-
-        .modern-card--spaceship .modern-card__icon {
-            background: linear-gradient(135deg, #6366f1, #14b8a6);
-        }
-
-        .modern-card--monetag .modern-card__icon {
-            background: linear-gradient(135deg, #f87171, #ef4444);
-        }
-
-        .modern-card--similarweb .modern-card__icon {
-            background: linear-gradient(135deg, #fbbf24, #f97316);
-        }
-
-        .modern-card--x .modern-card__icon {
-            background: linear-gradient(135deg, #ffffff, #cbd5f5);
-            color: #0f172a;
-        }
-
-        .modern-card--instagram .modern-card__icon {
-            background: linear-gradient(135deg, #f87171, #f472b6);
-        }
-
-        .modern-card--facebook .modern-card__icon {
-            background: linear-gradient(135deg, #60a5fa, #2563eb);
-        }
-
-        .modern-card--propellerads .modern-card__icon {
-            background: linear-gradient(135deg, #fcd34d, #f97316);
-        }
-
-        .modern-card--medianet .modern-card__icon {
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-        }
-
-        .modern-card--adsterra-network .modern-card__icon {
-            background: linear-gradient(135deg, #fda4af, #fb7185);
-        }
-
-        .modern-card__description strong {
-            color: inherit;
-        }
-
-        .glass-panel {
-            position: relative;
-            padding: 3rem 2.5rem;
-            border-radius: 28px;
-            background: rgba(8, 13, 33, 0.78);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(24px);
-            margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
-        }
-
-        .glass-panel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.12), rgba(118, 75, 162, 0.1));
-            opacity: 0.9;
-            z-index: 0;
-        }
-
-        .glass-panel > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .glass-panel .text-gray-900,
-        .glass-panel .text-gray-800,
-        .glass-panel .text-slate-900 {
-            color: var(--text-primary) !important;
-        }
-
-        .glass-panel .text-gray-700,
-        .glass-panel .text-gray-600,
-        .glass-panel .text-gray-500,
-        .glass-panel .text-slate-600 {
-            color: var(--text-secondary) !important;
-        }
-
-        .glass-card {
-            background: rgba(10, 16, 38, 0.88);
-            border: 1px solid var(--glass-border);
-            border-radius: 22px;
-            box-shadow: var(--shadow-sm);
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(18px);
-        }
-
-        .glass-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 55px -20px rgba(37, 99, 235, 0.35);
-        }
-
-        .glass-chip {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.55rem 1.2rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(148, 163, 184, 0.24);
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
-            backdrop-filter: blur(12px);
-        }
-
-        .tool-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top left, rgba(79, 172, 254, 0.18), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(118, 75, 162, 0.12), transparent 45%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(96, 165, 250, 0.55);
-            box-shadow: 0 28px 60px -18px rgba(37, 99, 235, 0.45);
-        }
-
-        /* 工具卡片LOGO背景 */
-        .tool-logo-bg {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(99, 102, 241, 0.18) 100%);
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 70%;
-            box-shadow: 0 12px 30px -18px rgba(30, 41, 59, 0.45);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            z-index: 2;
-            flex-shrink: 0;
-        }
-
-        .tool-card:hover .tool-logo-bg {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 18px 40px -24px rgba(30, 41, 59, 0.55);
-        }
-
-        .tool-logo-bg.fallback {
-            background: linear-gradient(135deg, #2563eb 0%, #6366f1 100%);
-            color: #ffffff;
-            font-size: 1.4rem;
-        }
-
-        .tool-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        /* 工具卡片文字样式优化 */
-        .tool-card h3 {
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.05rem;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-        }
-
-        .tool-card p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-
-        .tool-card .text-gray-800,
-        .tool-card .text-gray-900,
-        .tool-card .text-slate-900 {
-            color: var(--text-primary) !important;
-        }
-
-        .tool-card .text-gray-600,
-        .tool-card .text-gray-500,
-        .tool-card .text-slate-500,
-        .tool-card .text-slate-600 {
-            color: var(--text-secondary) !important;
-        }
-
-        .tool-card .bg-green-100,
-        .tool-card .bg-blue-100,
-        .tool-card .bg-orange-100,
-        .tool-card .bg-purple-100,
-        .tool-card .bg-teal-100,
-        .tool-card .bg-indigo-100 {
-            background-color: rgba(255, 255, 255, 0.08) !important;
-            color: var(--text-secondary) !important;
-            border: 1px solid rgba(148, 163, 184, 0.24);
-        }
-
-        /* 工具卡片品牌LOGO样式 */
-        .tool-card--with-favicon {
-            padding: 1.5rem !important;
-        }
-
-        .tool-card--with-favicon .tool-card__inner {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .tool-card--with-favicon .tool-card__text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .tool-card--with-favicon .tool-card__text h3 {
-            margin-bottom: 0;
-        }
-
-        .tool-favicon {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(79, 70, 229, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.25);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 10px 25px -20px rgba(15, 23, 42, 0.55);
-        }
-
-        .tool-card--with-favicon:hover .tool-favicon {
-            transform: translateY(-1px);
-            box-shadow: 0 16px 32px -22px rgba(30, 58, 138, 0.6);
-        }
-
-        .tool-favicon__initial {
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: #1e293b;
-            opacity: 0.75;
-            transition: opacity 0.2s ease;
-        }
-
-        .tool-favicon__image {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-            border-radius: 12px;
-            display: none;
-            filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.18));
-        }
-
-        .tool-favicon.tool-favicon--image .tool-favicon__image {
-            display: block;
-        }
-
-        .tool-favicon.tool-favicon--image .tool-favicon__initial {
-            opacity: 0;
-        }
-
-        .tool-favicon.tool-favicon--fallback {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(99, 102, 241, 0.25));
-            color: #fff;
-        }
-        
-
-        
-        /* Clean category titles */
-        .category-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 2.25rem;
-            text-align: center;
-            color: var(--text-primary);
-            text-shadow: 0 18px 42px rgba(15, 118, 255, 0.25);
-            letter-spacing: -0.01em;
-        }
-        
-        .category-subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-lead {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin: 0 auto 2.5rem;
-            max-width: 900px;
-        }
-        
-        /* Simple animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        /* Clean footer */
-        .footer {
-            background: rgba(6, 9, 24, 0.92);
-            border-top: 1px solid var(--glass-border);
-            padding: 3rem 0 1.5rem;
-            backdrop-filter: blur(18px);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .footer-section a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            display: block;
-            padding: 0.25rem 0;
-            transition: color 0.2s ease;
-        }
-        
-        .footer-section a:hover {
-            color: var(--text-primary);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--glass-border);
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
-        }
-
-        .footer-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1.5rem;
-            justify-content: center;
-        }
-
-        .footer-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.25s ease;
-        }
-
-        .footer-nav a:hover {
-            color: var(--text-primary);
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-button {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .tool-card {
-                margin-bottom: 1rem;
-            }
-        }
-        
-        .gradient-text {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .section {
-            padding: 4rem 0;
-            position: relative;
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(13, 19, 40, 0.65), rgba(9, 13, 28, 0.65));
-            opacity: 0.55;
-            z-index: -1;
-            border-radius: 32px;
-        }
-
-        .section:nth-child(even) {
-            background: transparent;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        /* Clean grid layout */
-        .grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-        @media (max-width: 1024px) {
-            .grid-cols-4 { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 640px) {
-            .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: repeat(1, 1fr); }
-        }
-        
-        /* Clean link styling */
-        .tool-card a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .tool-card a:hover {
-            color: var(--primary-color);
-        }
-        
-        .tool-description {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-        }
-        
-        /* Clean mobile menu */
-        .mobile-menu {
-            background: var(--background-color);
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .mobile-menu a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.2s ease;
-        }
-        
-        .mobile-menu a:hover {
-            background: var(--surface-color);
-        }
-        
-        /* Clean SVG icons */
-        .icon {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: currentColor;
-        }
-        
-        .particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--accent-color);
-            border-radius: 9999px;
-            opacity: 0;
-            box-shadow: 0 0 18px rgba(0, 242, 254, 0.45);
-            animation: floatParticle 8s ease-in-out infinite;
-        }
-
-        @keyframes floatParticle {
-            0%, 100% { transform: translate3d(0, 0, 0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.45; }
-            50% { transform: translate3d(0, -120px, 0) scale(1.1); opacity: 0.8; }
-            80% { opacity: 0.3; }
-        }
-        
-        /* Clean button styles */
-        .btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-hover);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: var(--border-color);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--surface-color);
-        }
-    </style>
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            --secondary-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --secondary-color: #f1f5f9;
-            --accent-color: #0ea5e9;
-            --background-color: #f5f7fb;
-            --surface-color: #ffffff;
-            --border-color: #e2e8f0;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
-            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
-            --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
-            --page-background: #f5f7fb;
-        }
-
-        body {
-            background: var(--page-background);
-            color: var(--text-primary);
-        }
-
-        body::before {
-            content: none;
-        }
-
-        .simple-navbar {
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-            backdrop-filter: none;
-        }
-
-        .simple-navbar__link {
-            color: var(--text-secondary);
-        }
-
-        .simple-navbar__link:hover,
-        .simple-navbar__link--active {
-            color: var(--primary-color);
-        }
-
-        .simple-navbar__dropdown-menu {
-            background: #ffffff;
-            border-color: var(--border-color);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .homepage-layout {
-            padding-top: 2rem;
-        }
-
-        .category-sidebar {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: none;
-        }
-
-        .category-sidebar__link {
-            color: var(--text-secondary);
-        }
-
-        .category-sidebar__link:hover {
-            background: #f8fafc;
-            color: var(--primary-color);
-        }
-
-        .category-sidebar__link--active {
-            background: var(--primary-gradient);
-            color: #ffffff;
-            box-shadow: none;
-        }
-
-        .hero-section {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .hero-section::before {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.08));
-            opacity: 1;
-        }
-
-        .hero-title {
-            color: var(--text-primary);
-            text-shadow: none;
-        }
-
-        .hero-subtitle {
-            color: var(--text-secondary);
-        }
-
-        .hero-badge {
-            background: #f1f5f9;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            box-shadow: none;
-        }
-
-        .hero-button {
-            background: var(--primary-gradient);
-            box-shadow: none;
-        }
-
-        .hero-button.secondary {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .hero-button.secondary:hover {
-            background: #f8fafc;
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .product-showcase {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .product-showcase__badge {
-            background: #eff6ff;
-            border: 1px solid rgba(37, 99, 235, 0.18);
-            color: var(--primary-color);
-            box-shadow: none;
-        }
-
-        .product-showcase__cta {
-            border-color: var(--border-color);
-            color: var(--text-secondary);
-        }
-
-        .product-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .product-card::after {
-            display: none;
-        }
-
-        .product-card:hover,
-        .product-card:focus-visible {
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-        }
-
-        .product-card__cta {
-            color: var(--primary-color);
-        }
-
-        .modern-card,
-        .glass-panel,
-        .glass-card,
-        .tool-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: none;
-        }
-
-        .modern-card::before,
-        .tool-card::after {
-            display: none;
-        }
-
-        .glass-panel {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .glass-panel::before {
-            display: none;
-        }
-
-        .modern-card:hover,
-        .tool-card:hover,
-        .glass-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-color);
-        }
-
-        .tool-logo-bg {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            box-shadow: none;
-        }
-
-        .tool-logo-bg.fallback {
-            background: var(--primary-gradient);
-        }
-
-        .stats-card,
-        .news-card,
-        .resource-card,
-        .curated-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .footer { 
-            background: #ffffff;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-
-        .footer a {
-            color: var(--text-secondary);
         }
     </style>
     <meta name="theme-color" content="#00f2fe">
@@ -1990,532 +556,459 @@
             </aside>
 
             <div class="homepage-content">
-                <!-- 页面标题区域 -->
-                <section id="overview"></section>
+                <section id="ai-writing-showcase" class="category-panel" aria-labelledby="ai-writing-latest">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">更新AI</span>
+                            <h2 id="ai-writing-latest" class="category-panel__heading">热门对话模型即时速览</h2>
+                            <p class="category-panel__meta">汇总 ChatGPT、DeepSeek、Gemini 等旗舰AI助手的最新升级，覆盖写作、搜索与办公需求。</p>
+                        </div>
+                        <a class="category-panel__cta" href="https://www.amz123.com/" target="_blank" rel="noopener noreferrer">AMZ123 选择加入 DeepSeek，立即领取模型权益 &gt;&gt;</a>
+                    </div>
+                    <div class="update-filters" role="group" aria-label="更新筛选">
+                        <button type="button" class="update-filters__btn is-active">全部</button>
+                        <button type="button" class="update-filters__btn">对话模型</button>
+                        <button type="button" class="update-filters__btn">写作助手</button>
+                        <button type="button" class="update-filters__btn">办公效率</button>
+                        <button type="button" class="update-filters__btn">创意多模态</button>
+                    </div>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/openai.com" alt="ChatGPT logo" loading="lazy"></span>
+                            <span class="ai-card__name">ChatGPT</span>
+                            <span class="ai-card__tagline">OpenAI 旗舰对话式 AI，插件与语音同步升级。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/deepseek.com" alt="DeepSeek logo" loading="lazy"></span>
+                            <span class="ai-card__name">DeepSeek</span>
+                            <span class="ai-card__tagline">大规模推理模型，支持长文本与代码协作。</span>
+                        </a>
+                        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Gemini logo" loading="lazy"></span>
+                            <span class="ai-card__name">Gemini</span>
+                            <span class="ai-card__tagline">Google 多模态助手，支持图像、音频与代码理解。</span>
+                        </a>
+                        <a class="ai-card" href="https://yiyan.baidu.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/baidu.com" alt="文心一言 logo" loading="lazy"></span>
+                            <span class="ai-card__name">文心一言</span>
+                            <span class="ai-card__tagline">百度文心大模型推出行业套餐与知识库服务。</span>
+                        </a>
+                        <a class="ai-card" href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/moonshot.cn" alt="Kimi logo" loading="lazy"></span>
+                            <span class="ai-card__name">Kimi</span>
+                            <span class="ai-card__tagline">无限字数的中文长文助手，新增 PPT 快速生成功能。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.bing.com/chat" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/bing.com" alt="Bing Copilot logo" loading="lazy"></span>
+                            <span class="ai-card__name">Bing Copilot</span>
+                            <span class="ai-card__tagline">微软搜索副驾，整合实时网页结果与创意模式。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.jasper.ai/chat" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/jasper.ai" alt="Jasper Chat logo" loading="lazy"></span>
+                            <span class="ai-card__name">Jasper Chat</span>
+                            <span class="ai-card__tagline">营销团队的 AI 写作副驾，支持品牌语气微调。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.anthropic.com/claude" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/anthropic.com" alt="Claude logo" loading="lazy"></span>
+                            <span class="ai-card__name">Claude 3.5</span>
+                            <span class="ai-card__tagline">Anthropic 新版 Opus，长文档分析与代码解释更强。</span>
+                        </a>
+                        <a class="ai-card" href="https://openai.com/sora" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/openai.com" alt="Sora logo" loading="lazy"></span>
+                            <span class="ai-card__name">Sora</span>
+                            <span class="ai-card__tagline">文本生成视频实验开放测试，适合广告与短片创作。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.x.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/x.ai" alt="Grok logo" loading="lazy"></span>
+                            <span class="ai-card__name">Grok</span>
+                            <span class="ai-card__tagline">X 平台提供的实时热点模型，擅长社交舆情总结。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/perplexity.ai" alt="Perplexity logo" loading="lazy"></span>
+                            <span class="ai-card__name">Perplexity</span>
+                            <span class="ai-card__tagline">实时检索问答助手，提供引用来源与研究模式。</span>
+                        </a>
+                        <a class="ai-card" href="https://tongyi.aliyun.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="通义千问 logo" loading="lazy"></span>
+                            <span class="ai-card__name">通义千问</span>
+                            <span class="ai-card__tagline">阿里云推出行业模型与 PPT 生成套件，适配企业协作。</span>
+                        </a>
+                        <a class="ai-card" href="https://xinghuo.xfyun.cn/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/iflytek.com" alt="讯飞星火 logo" loading="lazy"></span>
+                            <span class="ai-card__name">讯飞星火</span>
+                            <span class="ai-card__tagline">教育与政企场景全面升级，语音识别与翻译强化。</span>
+                        </a>
+                        <a class="ai-card" href="https://hunyuan.tencent.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/tencent.com" alt="腾讯混元 logo" loading="lazy"></span>
+                            <span class="ai-card__name">腾讯混元</span>
+                            <span class="ai-card__tagline">集成到企业微信与 QQ 浏览器的轻量对话助手。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.microsoft.com/copilot" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft Copilot logo" loading="lazy"></span>
+                            <span class="ai-card__name">Microsoft Copilot</span>
+                            <span class="ai-card__tagline">Office 全家桶 AI 副驾，新版支持 PowerPoint 设计。</span>
+                        </a>
+                        <a class="ai-card" href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="NotebookLM logo" loading="lazy"></span>
+                            <span class="ai-card__name">NotebookLM</span>
+                            <span class="ai-card__tagline">Google 出品的资料总结工具，新增音频播客导出。</span>
+                        </a>
+                        <a class="ai-card" href="https://poe.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/poe.com" alt="Poe logo" loading="lazy"></span>
+                            <span class="ai-card__name">Poe</span>
+                            <span class="ai-card__tagline">一站聚合多模型，轻松搭建自定义 Prompt 机器人。</span>
+                        </a>
+                        <a class="ai-card" href="https://character.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/character.ai" alt="Character.AI logo" loading="lazy"></span>
+                            <span class="ai-card__name">Character.AI</span>
+                            <span class="ai-card__tagline">创作虚拟人格与娱乐聊天，推出联机语音模式。</span>
+                        </a>
+                        <a class="ai-card" href="https://pi.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/inflection.ai" alt="Pi logo" loading="lazy"></span>
+                            <span class="ai-card__name">Inflection Pi</span>
+                            <span class="ai-card__tagline">情感化对话体验，适合陪伴与日程提醒。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.sensetime.com/sensenova" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/sensetime.com" alt="SenseNova logo" loading="lazy"></span>
+                            <span class="ai-card__name">SenseNova</span>
+                            <span class="ai-card__tagline">商汤日日新多模态模型，面向 3D 创意与工业设计。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.writer.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/writer.com" alt="Writer logo" loading="lazy"></span>
+                            <span class="ai-card__name">Writer</span>
+                            <span class="ai-card__tagline">企业知识库驱动的写作平台，统一风格与术语。</span>
+                        </a>
+                    </div>
+                </section>
 
-                <div class="max-w-7xl pl-0 sm:pl-4 pr-4 py-12">
-        <section id="ai-writing-showcase" class="glass-panel product-showcase mb-20 fade-in" aria-labelledby="ai-writing-tools">
-            <div class="product-showcase__header">
-                <div>
-                    <div class="product-showcase__badge" aria-hidden="true">
-                        <span>✍️</span>
-                        <span>AI写作助手</span>
-                    </div>
-                    <h2 id="ai-writing-tools" class="product-showcase__title">首页精选AI写作工具</h2>
-                    <p class="product-showcase__subtitle">覆盖营销文案、语法润色、长篇创作与团队协作等写作场景，为内容创作者和企业提供最快速的灵感与执行力。</p>
-                </div>
-                <a class="product-showcase__cta" href="writing.html">探索更多AI写作工具
-                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
-            </div>
-            <div class="product-grid" role="list">
-                <a href="products/product.html?id=jasper" class="product-card product-card--jasper" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/jasper.ai" alt="Jasper logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Jasper</div>
-                    <p class="product-card__description">营销团队的AI内容创作火箭手，快速产出品牌一致的长短文案。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=copy.ai" class="product-card product-card--copyai" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/copy.ai" alt="Copy.ai logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Copy.ai</div>
-                    <p class="product-card__description">电商与创业者快速撰写产品描述与广告文案的全能助手。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=writesonic" class="product-card product-card--writesonic" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/writesonic.com" alt="Writesonic logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Writesonic</div>
-                    <p class="product-card__description">AI驱动的营销写作平台，覆盖广告、登陆页与长文内容生产。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=rytr" class="product-card product-card--rytr" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/rytr.me" alt="Rytr logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Rytr</div>
-                    <p class="product-card__description">高性价比的多语言写作助手，轻松生成博客、邮件与社交内容。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=quillbot" class="product-card product-card--quillbot" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/quillbot.com" alt="QuillBot logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">QuillBot</div>
-                    <p class="product-card__description">智能改写与语法检查组合，帮助你快速润色并保持原意。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=anyword" class="product-card product-card--anyword" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/anyword.com" alt="Anyword logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Anyword</div>
-                    <p class="product-card__description">数据驱动的广告与社交媒体文案优化工具，预测点击与转化。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=wordtune" class="product-card product-card--wordtune" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/wordtune.com" alt="Wordtune logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Wordtune</div>
-                    <p class="product-card__description">提升表达清晰度、语气与结构的智能写作助手，让内容更有说服力。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=grammarly" class="product-card product-card--grammarly" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/grammarly.com" alt="Grammarly logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Grammarly</div>
-                    <p class="product-card__description">全球领先的语法校对与语气建议平台，实时提升写作质量。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=notion-ai" class="product-card product-card--notion" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/notion.so" alt="Notion AI logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">Notion AI</div>
-                    <p class="product-card__description">将笔记、知识库与智能写作融合，适合团队协同的创作流程。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-                <a href="products/product.html?id=ink" class="product-card product-card--ink" role="listitem">
-                    <div class="product-card__icon" aria-hidden="true">
-                        <img src="https://logo.clearbit.com/inkforall.com" alt="INK logo" loading="lazy">
-                    </div>
-                    <div class="product-card__title">INK</div>
-                    <p class="product-card__description">结合SEO建议与内容评分的AI平台，帮助文章快速获得搜索排名。</p>
-                    <span class="product-card__cta">立即体验
-                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                            <path d="M4 10h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="m10 5 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                </a>
-            </div>
-        </section>
-        <section id="ai-foundation-models" class="glass-panel mb-20 fade-in">
-            <h2 class="category-title">AI基础大模型与机器学习工具</h2>
-            <div class="modern-card-grid">
-                <a href="https://chatgpt.com/" target="_blank" class="modern-card modern-card--chatgpt" aria-label="ChatGPT - OpenAI多模态AI助手">
-                    <div class="modern-card__icon" aria-hidden="true">GPT</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">OpenAI 聊天模型</span>
-                        <h3 class="modern-card__title">ChatGPT</h3>
-                        <p class="modern-card__description">OpenAI多模态AI助手</p>
-                    </div>
-                </a>
-                <a href="https://chat.deepseek.com/" target="_blank" class="modern-card modern-card--deepseek" aria-label="DeepSeek - 深度学习聊天模型">
-                    <div class="modern-card__icon" aria-hidden="true">DS</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">xAI 深度学习</span>
-                        <h3 class="modern-card__title">DeepSeek</h3>
-                        <p class="modern-card__description">深度学习聊天模型</p>
-                    </div>
-                </a>
-                <a href="https://gemini.google.com/app" target="_blank" class="modern-card modern-card--gemini" aria-label="Google Gemini - 谷歌最新AI助手">
-                    <div class="modern-card__icon" aria-hidden="true">Ge</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">Google 多模态</span>
-                        <h3 class="modern-card__title">Google Gemini</h3>
-                        <p class="modern-card__description">谷歌最新AI助手</p>
-                    </div>
-                </a>
-                <a href="https://www.perplexity.ai/" target="_blank" class="modern-card modern-card--perplexity" aria-label="Perplexity - AI驱动搜索引擎">
-                    <div class="modern-card__icon" aria-hidden="true">PX</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">AI 搜索引擎</span>
-                        <h3 class="modern-card__title">Perplexity</h3>
-                        <p class="modern-card__description">AI驱动搜索引擎</p>
-                    </div>
-                </a>
-                <a href="https://grok.com/" target="_blank" class="modern-card modern-card--grok" aria-label="Grok - xAI对话式AI">
-                    <div class="modern-card__icon" aria-hidden="true">GK</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">xAI 对话模型</span>
-                        <h3 class="modern-card__title">Grok</h3>
-                        <p class="modern-card__description">xAI对话式AI</p>
-                    </div>
-                </a>
-                <a href="https://chat.chatbot.app/" target="_blank" class="modern-card modern-card--chatbot" aria-label="ChatBot - AI聊天助手">
-                    <div class="modern-card__icon" aria-hidden="true">CB</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">ChatBot 平台</span>
-                        <h3 class="modern-card__title">ChatBot</h3>
-                        <p class="modern-card__description">AI聊天助手</p>
-                    </div>
-                </a>
-                <a href="https://claude.ai/" target="_blank" class="modern-card modern-card--claude" aria-label="Claude - Anthropic AI助手">
-                    <div class="modern-card__icon" aria-hidden="true">CL</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">Anthropic 模型</span>
-                        <h3 class="modern-card__title">Claude</h3>
-                        <p class="modern-card__description">Anthropic AI助手</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 网站服务 -->
-        <section id="website-services" class="glass-panel mb-20 fade-in">
-            <h2 class="category-title">网站服务</h2>
-            <div class="modern-card-grid">
-                <a href="https://www.cloudflare.com/zh-cn/" target="_blank" class="modern-card modern-card--cloudflare" aria-label="Cloudflare - 网站加速与安全防护">
-                    <div class="modern-card__icon" aria-hidden="true">CF</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">CDN &amp; Security</span>
-                        <h3 class="modern-card__title">Cloudflare</h3>
-                        <p class="modern-card__description">网站加速与安全防护</p>
-                    </div>
-                </a>
-
-                <a href="https://vercel.com/" target="_blank" class="modern-card modern-card--vercel" aria-label="Vercel - 前端部署平台">
-                    <div class="modern-card__icon" aria-hidden="true">VC</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">前端部署</span>
-                        <h3 class="modern-card__title">Vercel</h3>
-                        <p class="modern-card__description">前端部署平台</p>
-                    </div>
-                </a>
-
-                <a href="https://www.domain.com/" target="_blank" class="modern-card modern-card--domain" aria-label="Domain.com - 域名注册服务">
-                    <div class="modern-card__icon" aria-hidden="true">DM</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">域名注册</span>
-                        <h3 class="modern-card__title">Domain.com</h3>
-                        <p class="modern-card__description">域名注册服务</p>
-                    </div>
-                </a>
-
-                <a href="https://github.com/" target="_blank" class="modern-card modern-card--github" aria-label="GitHub - 全球最大的开源协作平台">
-                    <div class="modern-card__icon" aria-hidden="true">GH</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">Open Source</span>
-                        <h3 class="modern-card__title">GitHub</h3>
-                        <p class="modern-card__description">全球最大的开源协作平台</p>
-                    </div>
-                </a>
-
-                <a href="https://query.domains/zh-hans" target="_blank" class="modern-card modern-card--query" aria-label="Query.Domains - 批量域名可用性检查工具">
-                    <div class="modern-card__icon" aria-hidden="true">QD</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">域名查询</span>
-                        <h3 class="modern-card__title">Query.Domains</h3>
-                        <p class="modern-card__description">批量域名可用性检查工具</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 新增 赚美金 板块 -->
-        <section id="make-money" class="glass-panel mb-20 fade-in">
-            <h2 class="category-title">AI变现渠道</h2>
-            <div class="modern-card-grid">
-                <a href="https://adsense.google.com/" target="_blank" class="modern-card modern-card--adsense" aria-label="Google AdSense - 网站变现与广告平台">
-                    <div class="modern-card__icon" aria-hidden="true">GA</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告变现</span>
-                        <h3 class="modern-card__title">Google AdSense</h3>
-                        <p class="modern-card__description">网站变现与广告平台</p>
-                    </div>
-                </a>
-                <a href="https://beta.publishers.adsterra.com/referral/ReXZsSgpUf" target="_blank" class="modern-card modern-card--adsterra" aria-label="Adsterra - 智能变现的全球广告网络">
-                    <div class="modern-card__icon" aria-hidden="true">AS</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告联盟</span>
-                        <h3 class="modern-card__title">Adsterra</h3>
-                        <p class="modern-card__description">智能变现的全球广告网络</p>
-                    </div>
-                </a>
-                <a href="https://analytics.google.com/analytics/" target="_blank" class="modern-card modern-card--analytics" aria-label="Google Analytics - 网站流量分析">
-                    <div class="modern-card__icon" aria-hidden="true">AN</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">数据分析</span>
-                        <h3 class="modern-card__title">Google Analytics</h3>
-                        <p class="modern-card__description">网站流量分析</p>
-                    </div>
-                </a>
-                <a href="https://trends.google.com/trends/" target="_blank" class="modern-card modern-card--trends" aria-label="Google 趋势 - 趋势与热度分析">
-                    <div class="modern-card__icon" aria-hidden="true">GT</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">热点洞察</span>
-                        <h3 class="modern-card__title">Google 趋势</h3>
-                        <p class="modern-card__description">趋势与热度分析</p>
-                    </div>
-                </a>
-                <a href="https://search.google.com/search-console/about" target="_blank" class="modern-card modern-card--search-console" aria-label="Google Search Console - SEO与网站管理">
-                    <div class="modern-card__icon" aria-hidden="true">SC</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">SEO 工具</span>
-                        <h3 class="modern-card__title">Google Search Console</h3>
-                        <p class="modern-card__description">SEO与网站管理</p>
-                    </div>
-                </a>
-                <a href="https://www.spaceship.com/zh/" target="_blank" class="modern-card modern-card--spaceship" aria-label="Spaceship - 现代云托管与主机服务">
-                    <div class="modern-card__icon" aria-hidden="true">SS</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">云托管</span>
-                        <h3 class="modern-card__title">Spaceship</h3>
-                        <p class="modern-card__description">现代云托管与主机服务</p>
-                    </div>
-                </a>
-                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="modern-card modern-card--monetag" aria-label="Monetag - AI驱动的变现平台">
-                    <div class="modern-card__icon" aria-hidden="true">MT</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">收益优化</span>
-                        <h3 class="modern-card__title">Monetag</h3>
-                        <p class="modern-card__description">AI驱动的变现平台</p>
-                    </div>
-                </a>
-                <a href="https://www.similarweb.com/" target="_blank" class="modern-card modern-card--similarweb" aria-label="SimilarWeb - 网站流量与竞品分析">
-                    <div class="modern-card__icon" aria-hidden="true">SW</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">竞品分析</span>
-                        <h3 class="modern-card__title">SimilarWeb</h3>
-                        <p class="modern-card__description">网站流量与竞品分析</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 新增 社交媒体 板块 -->
-        <section id="social-media" class="glass-panel mb-20 fade-in">
-            <h2 class="category-title">社交媒体</h2>
-            <div class="modern-card-grid">
-                <a href="https://x.com/home" target="_blank" class="modern-card modern-card--x" aria-label="X - 全球社交平台">
-                    <div class="modern-card__icon" aria-hidden="true">X</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">实时社交</span>
-                        <h3 class="modern-card__title">X (Twitter)</h3>
-                        <p class="modern-card__description">全球社交平台</p>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/" target="_blank" class="modern-card modern-card--instagram" aria-label="Instagram - 图片与短视频社区">
-                    <div class="modern-card__icon" aria-hidden="true">IG</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">视觉社区</span>
-                        <h3 class="modern-card__title">Instagram</h3>
-                        <p class="modern-card__description">照片与短视频社交</p>
-                    </div>
-                </a>
-                <a href="https://www.facebook.com/" target="_blank" class="modern-card modern-card--facebook" aria-label="Facebook - 全球最大的社交网络">
-                    <div class="modern-card__icon" aria-hidden="true">FB</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">社交网络</span>
-                        <h3 class="modern-card__title">Facebook</h3>
-                        <p class="modern-card__description">全球最大的社交网络</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 广告联盟 -->
-        <section id="ad-networks" class="glass-panel mb-20 fade-in">
-            <h2 class="category-title">广告联盟</h2>
-            <div class="modern-card-grid">
-                <a href="https://monetag.com/?ref_id=zQZR" target="_blank" class="modern-card modern-card--monetag" aria-label="Monetag - AI驱动的变现平台">
-                    <div class="modern-card__icon" aria-hidden="true">MT</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告联盟</span>
-                        <h3 class="modern-card__title">Monetag</h3>
-                        <p class="modern-card__description">AI驱动的变现平台</p>
-                        <div class="modern-card__meta">
-                            <span class="modern-card__chip">高CPM</span>
-                            <span class="modern-card__chip">全球覆盖</span>
+                <section id="ai-foundation-models" class="category-panel" aria-labelledby="foundation-models">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">基础大模型</span>
+                            <h2 id="foundation-models" class="category-panel__heading">API 接入与企业级模型服务</h2>
+                            <p class="category-panel__meta">精选最受欢迎的基础模型平台，覆盖推理、嵌入、微调与部署。</p>
                         </div>
                     </div>
-                </a>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://platform.openai.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/openai.com" alt="OpenAI Platform logo" loading="lazy"></span>
+                            <span class="ai-card__name">OpenAI Platform</span>
+                            <span class="ai-card__tagline">GPT-4.1、o1 系列与批处理，适合构建高质量应用。</span>
+                        </a>
+                        <a class="ai-card" href="https://platform.deepseek.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/deepseek.com" alt="DeepSeek API logo" loading="lazy"></span>
+                            <span class="ai-card__name">DeepSeek API</span>
+                            <span class="ai-card__tagline">高性价比推理模型，提供 R1 推理与通用 Turbo。</span>
+                        </a>
+                        <a class="ai-card" href="https://ai.google.dev/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google AI Studio logo" loading="lazy"></span>
+                            <span class="ai-card__name">Google AI Studio</span>
+                            <span class="ai-card__tagline">Gemini 1.5 Pro/Flash 在线调试与生成式 API 套件。</span>
+                        </a>
+                        <a class="ai-card" href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/anthropic.com" alt="Anthropic Console logo" loading="lazy"></span>
+                            <span class="ai-card__name">Anthropic Console</span>
+                            <span class="ai-card__tagline">Claude 3.5 Sonnet 支持工具调用与企业安全控制。</span>
+                        </a>
+                        <a class="ai-card" href="https://aws.amazon.com/cn/bedrock/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/aws.amazon.com" alt="Amazon Bedrock logo" loading="lazy"></span>
+                            <span class="ai-card__name">Amazon Bedrock</span>
+                            <span class="ai-card__tagline">统一入口接入 Anthropic、Meta Llama 与 Stability 模型。</span>
+                        </a>
+                        <a class="ai-card" href="https://azure.microsoft.com/zh-cn/products/ai-services/openai-service" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/microsoft.com" alt="Azure OpenAI logo" loading="lazy"></span>
+                            <span class="ai-card__name">Azure OpenAI</span>
+                            <span class="ai-card__tagline">企业级合规环境托管 GPT，与 Azure 生态深度集成。</span>
+                        </a>
+                        <a class="ai-card" href="https://cloud.baidu.com/product/wenxinworkshop" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/baidu.com" alt="文心千帆 logo" loading="lazy"></span>
+                            <span class="ai-card__name">文心千帆</span>
+                            <span class="ai-card__tagline">私有化部署、行业模型与知识库一体化能力。</span>
+                        </a>
+                        <a class="ai-card" href="https://cloud.tencent.com/product/hunyuan" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/tencent.com" alt="腾讯混元 API logo" loading="lazy"></span>
+                            <span class="ai-card__name">腾讯混元 API</span>
+                            <span class="ai-card__tagline">覆盖对话、视觉理解与语音合成的全栈接口。</span>
+                        </a>
+                    </div>
+                </section>
 
-                <a href="https://propellerads.com/" target="_blank" class="modern-card modern-card--propellerads" aria-label="PropellerAds - 高收益广告网络">
-                    <div class="modern-card__icon" aria-hidden="true">PA</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告联盟</span>
-                        <h3 class="modern-card__title">PropellerAds</h3>
-                        <p class="modern-card__description">高收益广告网络</p>
-                        <div class="modern-card__meta">
-                            <span class="modern-card__chip">快速结算</span>
-                            <span class="modern-card__chip">多种广告形式</span>
+                <section id="website-services" class="category-panel" aria-labelledby="website-services-title">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">网站服务</span>
+                            <h2 id="website-services-title" class="category-panel__heading">搭建与运营网站的 AI 工具</h2>
+                            <p class="category-panel__meta">从内容管理到用户分析，帮助站长提效的在线服务。</p>
                         </div>
                     </div>
-                </a>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://www.canva.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/canva.com" alt="Canva logo" loading="lazy"></span>
+                            <span class="ai-card__name">Canva</span>
+                            <span class="ai-card__tagline">Magic Design 模式一键生成海报、社媒与网站图。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/notion.so" alt="Notion logo" loading="lazy"></span>
+                            <span class="ai-card__name">Notion AI</span>
+                            <span class="ai-card__tagline">团队知识库与网站文案同步生成，支持数据库总结。</span>
+                        </a>
+                        <a class="ai-card" href="https://zapier.com/ai" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/zapier.com" alt="Zapier logo" loading="lazy"></span>
+                            <span class="ai-card__name">Zapier AI</span>
+                            <span class="ai-card__tagline">连接 6000+ SaaS，自动化表单、邮件与客户跟踪。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.semrush.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/semrush.com" alt="Semrush logo" loading="lazy"></span>
+                            <span class="ai-card__name">Semrush ContentShake</span>
+                            <span class="ai-card__tagline">AI 生成 SEO 文章结构，实时给出关键词建议。</span>
+                        </a>
+                        <a class="ai-card" href="https://framer.com/ai" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/framer.com" alt="Framer logo" loading="lazy"></span>
+                            <span class="ai-card__name">Framer AI</span>
+                            <span class="ai-card__tagline">输入提示即可生成响应式网页，并支持一键上线。</span>
+                        </a>
+                        <a class="ai-card" href="https://vercel.com/ai" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/vercel.com" alt="Vercel logo" loading="lazy"></span>
+                            <span class="ai-card__name">Vercel AI SDK</span>
+                            <span class="ai-card__tagline">Next.js + AI SDK 构建聊天、流式输出与工具调用。</span>
+                        </a>
+                    </div>
+                </section>
 
-                <a href="https://www.media.net/" target="_blank" class="modern-card modern-card--medianet" aria-label="Media.net - Yahoo-Bing上下文广告">
-                    <div class="modern-card__icon" aria-hidden="true">MN</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告联盟</span>
-                        <h3 class="modern-card__title">Media.net</h3>
-                        <p class="modern-card__description">Yahoo-Bing上下文广告</p>
-                        <div class="modern-card__meta">
-                            <span class="modern-card__chip">优质资源</span>
-                            <span class="modern-card__chip">智能优化</span>
+                <section id="make-money" class="category-panel" aria-labelledby="ai-monetize">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">AI 变现渠道</span>
+                            <h2 id="ai-monetize" class="category-panel__heading">副业与创作者必备平台</h2>
+                            <p class="category-panel__meta">精选高收益分成项目，让你的 AI 作品快速产生回报。</p>
                         </div>
                     </div>
-                </a>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://affiliate-program.amazon.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/amazon.com" alt="Amazon Associates logo" loading="lazy"></span>
+                            <span class="ai-card__name">Amazon Associates</span>
+                            <span class="ai-card__tagline">借助 AI 写作批量生成测评内容，获取电商佣金。</span>
+                        </a>
+                        <a class="ai-card" href="https://creator.shopify.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/shopify.com" alt="Shopify Collabs logo" loading="lazy"></span>
+                            <span class="ai-card__name">Shopify Collabs</span>
+                            <span class="ai-card__tagline">与独立站品牌合作，导入 AI 生成的社媒内容。</span>
+                        </a>
+                        <a class="ai-card" href="https://partner.canva.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/canva.com" alt="Canva Creators logo" loading="lazy"></span>
+                            <span class="ai-card__name">Canva Creators</span>
+                            <span class="ai-card__tagline">上传 AI 模板获取分成，适合设计师和自媒体作者。</span>
+                        </a>
+                        <a class="ai-card" href="https://affiliate.hubspot.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/hubspot.com" alt="HubSpot Affiliate logo" loading="lazy"></span>
+                            <span class="ai-card__name">HubSpot Affiliate</span>
+                            <span class="ai-card__tagline">推广 CRM 与营销自动化，提供高额循环佣金。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.midjourney.com/home/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/midjourney.com" alt="Midjourney logo" loading="lazy"></span>
+                            <span class="ai-card__name">Midjourney 创作</span>
+                            <span class="ai-card__tagline">输出定制海报、角色图，售卖数字资产与授权。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.patreon.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/patreon.com" alt="Patreon logo" loading="lazy"></span>
+                            <span class="ai-card__name">Patreon</span>
+                            <span class="ai-card__tagline">发布 AI 教程、提示词资源，吸引订阅粉丝支持。</span>
+                        </a>
+                    </div>
+                </section>
 
-                <a href="https://adsterra.com/" target="_blank" class="modern-card modern-card--adsterra-network" aria-label="Adsterra - 全球广告网络平台">
-                    <div class="modern-card__icon" aria-hidden="true">AS</div>
-                    <div class="modern-card__text">
-                        <span class="modern-card__badge">广告联盟</span>
-                        <h3 class="modern-card__title">Adsterra</h3>
-                        <p class="modern-card__description">全球广告网络平台</p>
-                        <div class="modern-card__meta">
-                            <span class="modern-card__chip">全球覆盖</span>
-                            <span class="modern-card__chip">收益突出</span>
+                <section id="social-media" class="category-panel" aria-labelledby="social-ai">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">社交媒体</span>
+                            <h2 id="social-ai" class="category-panel__heading">AI 驱动的内容排程与增长工具</h2>
+                            <p class="category-panel__meta">优化图文、短视频与直播运营，让社交账号稳定增长。</p>
                         </div>
                     </div>
-                </a>
-            </div>
-        </section>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://www.buffer.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/buffer.com" alt="Buffer logo" loading="lazy"></span>
+                            <span class="ai-card__name">Buffer AI Assistant</span>
+                            <span class="ai-card__tagline">自动生成社交文案与发布时间建议。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.socialbee.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/socialbee.com" alt="SocialBee logo" loading="lazy"></span>
+                            <span class="ai-card__name">SocialBee</span>
+                            <span class="ai-card__tagline">AI 分类内容池，支持多平台循环排程。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.capcut.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/capcut.com" alt="CapCut logo" loading="lazy"></span>
+                            <span class="ai-card__name">CapCut AI</span>
+                            <span class="ai-card__tagline">脚本生成短视频，提供热门模板与智能配音。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.descript.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/descript.com" alt="Descript logo" loading="lazy"></span>
+                            <span class="ai-card__name">Descript</span>
+                            <span class="ai-card__tagline">播客与短视频剪辑 AI 助手，支持文字编辑音频。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.invideo.io/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/invideo.io" alt="InVideo logo" loading="lazy"></span>
+                            <span class="ai-card__name">InVideo</span>
+                            <span class="ai-card__tagline">脚本到视频自动化，适合 YouTube 与 TikTok 账号。</span>
+                        </a>
+                        <a class="ai-card" href="https://lumen5.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/lumen5.com" alt="Lumen5 logo" loading="lazy"></span>
+                            <span class="ai-card__name">Lumen5</span>
+                            <span class="ai-card__tagline">博客与新闻稿快速转短视频，支持品牌模板。</span>
+                        </a>
+                    </div>
+                </section>
 
+                <section id="ad-networks" class="category-panel" aria-labelledby="ad-network-title">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">广告联盟</span>
+                            <h2 id="ad-network-title" class="category-panel__heading">为流量变现挑选高转化网络</h2>
+                            <p class="category-panel__meta">结合 AI 内容站与垂直流量的联盟资源，提升收益效率。</p>
+                        </div>
+                    </div>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://www.google.com/adsense/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google AdSense logo" loading="lazy"></span>
+                            <span class="ai-card__name">Google AdSense</span>
+                            <span class="ai-card__tagline">全球覆盖度最高的内容广告联盟。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.ezoic.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/ezoic.com" alt="Ezoic logo" loading="lazy"></span>
+                            <span class="ai-card__name">Ezoic</span>
+                            <span class="ai-card__tagline">AI 自动调节广告布局，提高 RPM 与用户体验。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.media.net/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/media.net" alt="Media.net logo" loading="lazy"></span>
+                            <span class="ai-card__name">Media.net</span>
+                            <span class="ai-card__tagline">雅虎 + Bing 联盟，适合英文内容站。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.propellerads.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/propellerads.com" alt="PropellerAds logo" loading="lazy"></span>
+                            <span class="ai-card__name">PropellerAds</span>
+                            <span class="ai-card__tagline">原生与推送广告结合，填充率高。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.mgid.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/mgid.com" alt="MGID logo" loading="lazy"></span>
+                            <span class="ai-card__name">MGID</span>
+                            <span class="ai-card__tagline">原生广告聚合平台，支持细分兴趣定向。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.outbrain.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/outbrain.com" alt="Outbrain logo" loading="lazy"></span>
+                            <span class="ai-card__name">Outbrain</span>
+                            <span class="ai-card__tagline">与全球媒体合作的推荐流广告联盟。</span>
+                        </a>
+                    </div>
+                </section>
 
-        <!-- 🤖 大模型 板块置顶 -->
-        <section id="free-ai-tools" class="glass-panel max-w-7xl mx-auto fade-in" aria-labelledby="free-ai-tools-online">
-            <h2 id="free-ai-tools-online" class="category-title">免费AI工具精选</h2>
-            <p class="section-lead">精心挑选的免费AI工具，从开源解决方案到免登录平台一应俱全。涵盖AI图像生成、AI视频制作、AI语音合成与AI聊天机器人，助你快速完成AI API集成。</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="image.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-blue-500 font-semibold mb-2">创意灵感</div>
-                    <div class="text-xl font-bold text-slate-900 mb-2">AI图像生成工具</div>
-                    <p class="text-sm text-slate-600">使用免费AI工具与开源模型创建艺术作品、产品稿与品牌视觉素材。</p>
-                </a>
-                <a href="video.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-purple-500 font-semibold mb-2">营销推广</div>
-                    <div class="text-xl font-bold text-slate-900 mb-2">AI在线视频生成</div>
-                    <p class="text-sm text-slate-600">借助浏览器端AI视频工具，数分钟内完成宣传片与教程制作。</p>
-                </a>
-                <a href="audio.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-emerald-500 font-semibold mb-2">语音合成</div>
-                    <div class="text-xl font-bold text-slate-900 mb-2">AI文字转语音工具</div>
-                    <p class="text-sm text-slate-600">将脚本转换成多语种的真实旁白、播客与教学音频。</p>
-                </a>
-                <a href="aiagent.html" class="glass-card">
-                    <div class="text-sm uppercase tracking-wide text-amber-500 font-semibold mb-2">智能客服</div>
-                    <div class="text-xl font-bold text-slate-900 mb-2">AI聊天机器人平台</div>
-                    <p class="text-sm text-slate-600">部署融合聊天自动化与机器学习能力的对话式助手。</p>
-                </a>
-            </div>
-        </section>
+                <section id="free-ai-tools" class="category-panel" aria-labelledby="free-ai-title">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">免费 AI 工具</span>
+                            <h2 id="free-ai-title" class="category-panel__heading">无需付费即可上手的精选组合</h2>
+                            <p class="category-panel__meta">适合学生、个人创作者与创业团队的高性价比工具。</p>
+                        </div>
+                    </div>
+                    <div class="ai-card-grid">
+                        <a class="ai-card" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/deepseek.com" alt="DeepSeek 免费版 logo" loading="lazy"></span>
+                            <span class="ai-card__name">DeepSeek 免费版</span>
+                            <span class="ai-card__tagline">无需登录即可体验中文推理模型。</span>
+                        </a>
+                        <a class="ai-card" href="https://gamma.app/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/gamma.app" alt="Gamma logo" loading="lazy"></span>
+                            <span class="ai-card__name">Gamma</span>
+                            <span class="ai-card__tagline">AI 生成演示文稿与网页，提供基础免费额度。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.leonardo.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/leonardo.ai" alt="Leonardo AI logo" loading="lazy"></span>
+                            <span class="ai-card__name">Leonardo AI</span>
+                            <span class="ai-card__tagline">每日赠送积分的图像生成器，支持游戏素材风格。</span>
+                        </a>
+                        <a class="ai-card" href="https://firefly.adobe.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/adobe.com" alt="Adobe Firefly logo" loading="lazy"></span>
+                            <span class="ai-card__name">Adobe Firefly</span>
+                            <span class="ai-card__tagline">Creative Cloud 用户免费试用图像和文本效果生成。</span>
+                        </a>
+                        <a class="ai-card" href="https://www.loom.com/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/loom.com" alt="Loom logo" loading="lazy"></span>
+                            <span class="ai-card__name">Loom AI</span>
+                            <span class="ai-card__tagline">会议纪要与视频总结自动生成，提高远程协作效率。</span>
+                        </a>
+                        <a class="ai-card" href="https://otter.ai/" target="_blank" rel="noopener noreferrer">
+                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/otter.ai" alt="Otter.ai logo" loading="lazy"></span>
+                            <span class="ai-card__name">Otter.ai</span>
+                            <span class="ai-card__tagline">会议实时字幕与摘要，支持中文转写。</span>
+                        </a>
+                    </div>
+                </section>
 
-        <section id="compare-tools" class="glass-panel max-w-7xl mx-auto my-20 fade-in" aria-labelledby="compare-best-ai-tools">
-            <h2 id="compare-best-ai-tools" class="category-title">对比热门AI工具</h2>
-            <p class="section-lead">利用AI工具导航，对比2025年各类人工智能平台。追踪科研机器学习工具，评估效率自动化方案，把握AI初创趋势，抢先布局新机会。</p>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="glass-card">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">学生专用AI工具</h3>
-                    <p class="text-slate-600 mb-4">为学习者提供课程辅助、笔记助手与创意工作室，重点推荐无需登录的免费AI工具。</p>
-                    <ul class="space-y-2 text-slate-600">
-                        <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>支持协作写作、抽认卡生成以及提升可及性的AI文字转语音工具。</span></li>
-                        <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span><span>开源AI工具，助力编程练习、研究摘要撰写与视觉项目灵感。</span></li>
-                    </ul>
-                </div>
-                <div class="glass-card">
-                    <h3 class="text-2xl font-semibold text-slate-900 mb-4">商业增长AI工具</h3>
-                    <p class="text-slate-600 mb-4">借助AI聊天机器人、营销副驾与API集成看板，优化客户旅程与增长效率。</p>
-                    <ul class="space-y-2 text-slate-600">
-                        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>覆盖销售、客服与内容生产的效率自动化流程。</span></li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span><span>洞察AI初创趋势与竞品动态的智能平台。</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <span class="glass-chip">2025年AI工具对比指南</span>
-                <span class="glass-chip">人工智能平台评测</span>
-                <span class="glass-chip">机器学习工具目录</span>
-                <span class="glass-chip">热门AI初创雷达</span>
-            </div>
-        </section>
+                <section id="compare-tools" class="category-panel" aria-labelledby="compare-ai-title">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">对比 AI 工具</span>
+                            <h2 id="compare-ai-title" class="category-panel__heading">快速挑选最适合你的 AI 方案</h2>
+                            <p class="category-panel__meta">围绕成本、速度、模型表现三个维度给出推荐组合。</p>
+                        </div>
+                    </div>
+                    <div class="ai-card-grid">
+                        <div class="ai-card">
+                            <span class="ai-card__badge">写作团队</span>
+                            <span class="ai-card__name">Jasper vs. Writer</span>
+                            <span class="ai-card__tagline">Jasper 模板丰富，Writer 擅长品牌统一，按需组合。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">视频创作</span>
+                            <span class="ai-card__name">Runway vs. Pika</span>
+                            <span class="ai-card__tagline">Runway 在特效更强，Pika 上手门槛低，适合短视频。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">搜索答疑</span>
+                            <span class="ai-card__name">Perplexity vs. Gemini</span>
+                            <span class="ai-card__tagline">Perplexity 引用清晰，Gemini 适合多模态任务。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">团队协作</span>
+                            <span class="ai-card__name">Notion AI vs. ClickUp Brain</span>
+                            <span class="ai-card__tagline">Notion 优势在文档，ClickUp 聚焦任务管理。</span>
+                        </div>
+                    </div>
+                    <p class="section-note">想要了解更多组合方案？前往 <a href="ai-ranking.html">AI 排行榜</a> 与 <a href="ai-capabilities.html">能力地图</a> 获取深度分析。</p>
+                </section>
 
-
-                </div>
+                <section id="directory-overview" class="category-panel" aria-labelledby="directory-intro">
+                    <div class="category-panel__header">
+                        <div class="category-panel__title">
+                            <span class="category-panel__eyebrow">导航概览</span>
+                            <h2 id="directory-intro" class="category-panel__heading">AIAIY.COM 让你更快找到靠谱的 AI 工具</h2>
+                            <p class="category-panel__meta">我们持续跟踪全球 AI 新品、整理最佳实践，并保持页面每日更新。</p>
+                        </div>
+                    </div>
+                    <div class="ai-card-grid">
+                        <div class="ai-card">
+                            <span class="ai-card__badge">覆盖全面</span>
+                            <span class="ai-card__name">200+ 类别</span>
+                            <span class="ai-card__tagline">从写作、设计到开发，整理常用工具与真实口碑。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">每周更新</span>
+                            <span class="ai-card__name">实时收录</span>
+                            <span class="ai-card__tagline">跟踪大模型升级、价格变动与热门插件。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">实战指南</span>
+                            <span class="ai-card__name">行业模板</span>
+                            <span class="ai-card__tagline">精选 SOP 与 Prompt，帮助你快速落地。</span>
+                        </div>
+                        <div class="ai-card">
+                            <span class="ai-card__badge">社区共建</span>
+                            <span class="ai-card__name">欢迎投稿</span>
+                            <span class="ai-card__tagline">提交你的 AI 作品或经验，我们将在导航页展示。</span>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-
-        <!-- 页面介绍开始 -->
-        <section id="directory-overview" class="glass-panel page-introduction max-w-7xl mx-auto mt-20 fade-in">
-            <div class="text-center mb-12">
-                <h2 class="category-title">欢迎来到AIAIY.COM：AI工具目录</h2>
-                <p class="section-lead">AI工具导航精选优质AI工具与服务，聚焦效率提升、创意启发与商业增长，为你呈现值得收藏的AI资源。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-slate-900 mb-3">覆盖场景广泛</h3>
-                    <p class="text-slate-600 leading-relaxed">涵盖文本生成、图像处理、视频创作、数据分析等多元能力。</p>
-                </div>
-                <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-slate-900 mb-3">支持免费试用</h3>
-                    <p class="text-slate-600 leading-relaxed">大多数工具提供免费试用，便于评估并节省成本。</p>
-                </div>
-                <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-slate-900 mb-3">分类清晰易查</h3>
-                    <p class="text-slate-600 leading-relaxed">按功能精细分类，快速定位所需工具。</p>
-                </div>
-                <div class="glass-card">
-                    <h3 class="text-lg font-semibold text-slate-900 mb-3">持续上新维护</h3>
-                    <p class="text-slate-600 leading-relaxed">持续补充新工具，保持目录新鲜实用。</p>
-                </div>
-            </div>
-
-            <div class="text-center">
-                <p class="section-lead mb-8 text-slate-600">AI工具导航为你提供高效便捷的AI工具发现与使用途径。</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="ai-capabilities.html" class="hero-button">了解更多</a>
-                    <a href="ai-ranking.html" class="hero-button secondary">AI排行榜</a>
-                </div>
-            </div>
-        </section>
-        <!-- 页面介绍结束 -->
-
     </main>
 
         <!-- 页脚 -->
