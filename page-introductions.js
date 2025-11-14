@@ -375,8 +375,12 @@ class PageIntroductions {
      */
     autoAddIntroduction() {
         const currentPage = this.getCurrentPageName();
+        // 首页不需要显示页面介绍内容
+        if (currentPage === 'index.html') {
+            return;
+        }
         const introHTML = this.createIntroductionHTML(currentPage);
-        
+
         // 查找main标签的结束位置
         const mainElement = document.querySelector('main');
         if (mainElement) {
