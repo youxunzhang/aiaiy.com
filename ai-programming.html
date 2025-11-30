@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI编程导航 | 一站汇总顶尖AI编程与开发工具</title>
+    <meta name="description" content="AI编程工具全览，涵盖代码助手、云端IDE、自动化测试与部署平台，快速直达所有高效开发入口。">
+    <meta name="keywords" content="AI编程, AI代码助手, AI IDE, AI开发工具, GitHub Copilot, Cursor, Codeium, Replit, Codespaces">
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-color: #0ea5e9;
+            --surface-color: #f8fafc;
+            --surface-muted: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --gradient: linear-gradient(120deg, #2563eb, #7c3aed);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #0b1224;
+            color: var(--text-primary);
+        }
+
+        a { color: inherit; }
+
+        .simple-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .simple-navbar__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+        .simple-navbar__brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #111827;
+            text-decoration: none;
+        }
+        .simple-navbar__tagline {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .simple-navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .simple-navbar__link {
+            padding: 0.45rem 0.75rem;
+            border-radius: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .simple-navbar__link:hover { color: var(--primary-color); background: var(--surface-muted); }
+        .simple-navbar__link--active { color: #fff; background: var(--gradient); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); }
+
+        .page-hero {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 20%, rgba(37,99,235,0.2), transparent 25%),
+                        radial-gradient(circle at 80% 10%, rgba(124,58,237,0.2), transparent 25%),
+                        #0b1224;
+            padding: 4.5rem 1.5rem 3rem;
+            color: #e2e8f0;
+        }
+        .page-hero__card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero__title { font-size: 2rem; margin: 0 0 0.75rem; }
+        .page-hero__subtitle { color: #cbd5e1; margin: 0 0 1.25rem; max-width: 720px; }
+        .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            color: #e2e8f0;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .main-wrapper { max-width: 1200px; margin: -80px auto 0; padding: 0 1.25rem 4rem; position: relative; z-index: 1; }
+        .grid-section { background: #ffffff; border-radius: 1.25rem; padding: 1.5rem; border: 1px solid var(--border-color); box-shadow: 0 15px 45px rgba(15,23,42,0.15); margin-bottom: 1.5rem; }
+        .section-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+        .section-title { font-size: 1.35rem; margin: 0; color: var(--text-primary); }
+        .section-desc { color: var(--text-secondary); margin: 0; }
+
+        .ai-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .ai-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .ai-card:hover { transform: translateY(-3px); border-color: var(--primary-color); box-shadow: 0 16px 38px rgba(37,99,235,0.12); }
+        .ai-card__header { display: flex; align-items: center; gap: 0.75rem; }
+        .ai-card__logo { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; color: #0f172a; background: var(--surface-muted); border: 1px solid var(--border-color); }
+        .ai-card__title { font-size: 1rem; margin: 0; }
+        .ai-card__tag { font-size: 0.85rem; color: var(--primary-color); font-weight: 700; }
+        .ai-card__desc { margin: 0; color: var(--text-secondary); line-height: 1.5; }
+        .ai-card__meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .meta-pill { background: var(--surface-muted); color: var(--text-secondary); padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.85rem; }
+
+        @media (max-width: 960px) {
+            .simple-navbar__links { display: none; }
+            .page-hero { padding-top: 3.5rem; }
+            .main-wrapper { margin-top: -60px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="simple-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="simple-navbar__container">
+                <a href="index.html" class="simple-navbar__brand">AIAIY <span class="simple-navbar__tagline">AI工具导航</span></a>
+                <nav class="simple-navbar__links" aria-label="主导航">
+                    <a href="index.html" class="simple-navbar__link">首页</a>
+                    <a href="ai-companies.html" class="simple-navbar__link">AI公司</a>
+                    <a href="ai-ranking.html" class="simple-navbar__link">AI排行榜</a>
+                    <a href="trends.html" class="simple-navbar__link">AI趋势</a>
+                    <a href="ai-capabilities.html" class="simple-navbar__link">AI能力地图</a>
+                    <a href="ai-news.html" class="simple-navbar__link">AI资讯</a>
+                    <a href="ai-money.html" class="simple-navbar__link">AI变现</a>
+                    <a href="ai-programming.html" class="simple-navbar__link simple-navbar__link--active">AI编程</a>
+                    <a href="ai-tools-landing.html" class="simple-navbar__link">AI工具</a>
+                    <a href="ai-sitemap.html" class="simple-navbar__link">站点地图</a>
+                    <a href="batch-open.html" class="simple-navbar__link">批量打开</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero__card">
+            <div class="badge-row">
+                <span class="pill">⚡ 代码助手</span>
+                <span class="pill">☁️ 云端IDE</span>
+                <span class="pill">🚀 自动化部署</span>
+            </div>
+            <h1 class="page-hero__title">AI编程全景导航</h1>
+            <p class="page-hero__subtitle">一站式收录编程必备的AI产品与开发平台。覆盖从代码补全、智能文档到云端协作与交付，让每一次开发都更高效。</p>
+        </div>
+    </section>
+
+    <main class="main-wrapper">
+        <section class="grid-section" id="assistants">
+            <div class="section-head">
+                <div>
+                    <p class="pill" style="background: var(--surface-muted); color: var(--primary-color); border-color: var(--border-color);">核心代码助手</p>
+                    <h2 class="section-title">写代码的AI搭子</h2>
+                    <p class="section-desc">智能补全、解释与重构，覆盖主流编辑器与团队协作场景。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <a class="ai-card" href="https://github.com/features/copilot" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#0ea5e9,#2563eb);">C</div>
+                        <div>
+                            <h3 class="ai-card__title">GitHub Copilot</h3>
+                            <div class="ai-card__tag">VS Code / JetBrains / Neovim</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">实时代码补全与函数建议，深度集成GitHub生态，支持多语言项目。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">自动补全</span><span class="meta-pill">代码解读</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.cursor.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#7c3aed,#2563eb);">Cu</div>
+                        <div>
+                            <h3 class="ai-card__title">Cursor IDE</h3>
+                            <div class="ai-card__tag">AI原生IDE</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">提供代码对话、上下文搜索与自动重构，适合全栈与快速原型开发。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">对话式开发</span><span class="meta-pill">多模型</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://codeium.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#22c55e,#0ea5e9);">Co</div>
+                        <div>
+                            <h3 class="ai-card__title">Codeium</h3>
+                            <div class="ai-card__tag">免费个人版</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">跨IDE的快速补全与代码聊天，团队可自建私有模型与知识库。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">私有部署</span><span class="meta-pill">团队空间</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.tabnine.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#06b6d4,#3b82f6);">T</div>
+                        <div>
+                            <h3 class="ai-card__title">Tabnine</h3>
+                            <div class="ai-card__tag">本地与云模型</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">支持离线推理的AI编码助手，保护代码隐私，并提供团队风格调优。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">离线模式</span><span class="meta-pill">团队安全</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://aws.amazon.com/codewhisperer/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#f59e0b,#f97316);">Aw</div>
+                        <div>
+                            <h3 class="ai-card__title">Amazon CodeWhisperer</h3>
+                            <div class="ai-card__tag">AWS深度集成</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">针对AWS与云原生场景优化的智能补全，提供安全扫描与合规提示。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">安全扫描</span><span class="meta-pill">云原生</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.jetbrains.com/ai/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#ec4899,#8b5cf6);">JB</div>
+                        <div>
+                            <h3 class="ai-card__title">JetBrains AI Assistant</h3>
+                            <div class="ai-card__tag">IDE内联</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">IntelliJ系列官方AI插件，支持代码意图、解释、生成测试与重构建议。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">IDE原生</span><span class="meta-pill">测试生成</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://claude.ai/code" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#6366f1,#a855f7);">Cl</div>
+                        <div>
+                            <h3 class="ai-card__title">Claude Code</h3>
+                            <div class="ai-card__tag">长文本上下文</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">支持大规模代码库的对话式理解与重构，结合项目知识进行精准回复。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">大上下文</span><span class="meta-pill">代码解析</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://about.sourcegraph.com/cody" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#0ea5e9,#22c55e);">Cd</div>
+                        <div>
+                            <h3 class="ai-card__title">Sourcegraph Cody</h3>
+                            <div class="ai-card__tag">代码搜索</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">结合语义搜索与代码索引的AI助手，适合大型仓库的定位、生成与解释。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">语义搜索</span><span class="meta-pill">多仓库</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="grid-section" id="ide">
+            <div class="section-head">
+                <div>
+                    <p class="pill" style="background: var(--surface-muted); color: var(--primary-color); border-color: var(--border-color);">云端IDE与协作</p>
+                    <h2 class="section-title">随时随地写代码</h2>
+                    <p class="section-desc">无需本地环境，打开浏览器即可编码、调试与分享项目。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <a class="ai-card" href="https://replit.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#f97316,#f43f5e);">R</div>
+                        <div>
+                            <h3 class="ai-card__title">Replit</h3>
+                            <div class="ai-card__tag">Ghostwriter内置</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">即时运行与协作的云端开发平台，支持多语言、一键托管与AI自动修复。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">多人协作</span><span class="meta-pill">在线部署</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://github.com/features/codespaces" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#111827,#2563eb); color:#e5e7eb;">Gh</div>
+                        <div>
+                            <h3 class="ai-card__title">GitHub Codespaces</h3>
+                            <div class="ai-card__tag">云端VS Code</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">基于云的全功能开发环境，预装依赖与端口转发，直接联动Copilot。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">云端容器</span><span class="meta-pill">团队模板</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://gitpod.io/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#f97316,#fb7185);">Gp</div>
+                        <div>
+                            <h3 class="ai-card__title">Gitpod</h3>
+                            <div class="ai-card__tag">Dev Environments</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">基于配置的可复现开发空间，支持OpenVSCode、JetBrains Gateway与AI助手集成。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">可复现</span><span class="meta-pill">自动预构建</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://stackblitz.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#06b6d4,#7c3aed);">Sb</div>
+                        <div>
+                            <h3 class="ai-card__title">StackBlitz</h3>
+                            <div class="ai-card__tag">前端实时预览</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">浏览器内极速前端环境，支持WebContainers、即时预览与AI代码建议。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">WebContainers</span><span class="meta-pill">零配置</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://codesandbox.io/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#2563eb,#0ea5e9);">Cs</div>
+                        <div>
+                            <h3 class="ai-card__title">CodeSandbox</h3>
+                            <div class="ai-card__tag">分支预览</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">支持云端开发容器、分支预览与PR沙盒，便于前后端协作与演示。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">云容器</span><span class="meta-pill">团队协作</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://glitch.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#ec4899,#fbbf24);">G</div>
+                        <div>
+                            <h3 class="ai-card__title">Glitch</h3>
+                            <div class="ai-card__tag">即时上线</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">快速搭建与分享全栈应用，实时协作编辑，适合原型与教学场景。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">实时协作</span><span class="meta-pill">一键分享</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="grid-section" id="delivery">
+            <div class="section-head">
+                <div>
+                    <p class="pill" style="background: var(--surface-muted); color: var(--primary-color); border-color: var(--border-color);">测试与交付</p>
+                    <h2 class="section-title">让产品更稳、更快上线</h2>
+                    <p class="section-desc">将AI用于测试、代码审查与持续交付，自动排查风险并生成部署脚本。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <a class="ai-card" href="https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-for-pull-requests" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#0ea5e9,#6366f1);">PR</div>
+                        <div>
+                            <h3 class="ai-card__title">Copilot Pull Requests</h3>
+                            <div class="ai-card__tag">自动审查</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">基于AI的PR摘要与审查建议，帮助快速识别变更风险并完善描述。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">审查建议</span><span class="meta-pill">变更摘要</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.codeium.com/codeium-chat" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#22c55e,#14b8a6);">QA</div>
+                        <div>
+                            <h3 class="ai-card__title">Codeium Chat</h3>
+                            <div class="ai-card__tag">测试用例生成</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">通过对话生成单测与端到端用例，结合代码上下文给出修复与优化方案。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">单测生成</span><span class="meta-pill">故障排查</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.perplexity.ai/hub" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#0ea5e9,#22d3ee);">Px</div>
+                        <div>
+                            <h3 class="ai-card__title">Perplexity for Devs</h3>
+                            <div class="ai-card__tag">技术调研</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">快速检索方案与依赖最佳实践，生成部署脚本、配置示例与性能调优建议。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">部署脚本</span><span class="meta-pill">性能优化</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://console.cloud.google.com/code-assist" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#4285f4,#34a853);">GA</div>
+                        <div>
+                            <h3 class="ai-card__title">Gemini Code Assist</h3>
+                            <div class="ai-card__tag">GCP原生</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">在Cloud控制台直接获得AI补全、部署配置建议与安全扫描，适配多种GCP服务。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">云部署</span><span class="meta-pill">安全检查</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://platform.openai.com/" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#111827,#14b8a6); color:#e5e7eb;">OA</div>
+                        <div>
+                            <h3 class="ai-card__title">OpenAI Platform</h3>
+                            <div class="ai-card__tag">API与评测</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">调用o1、GPT等模型完成代码生成、评测与代理编排，支持自定义工具调用。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">API</span><span class="meta-pill">评测</span>
+                    </div>
+                </a>
+                <a class="ai-card" href="https://www.perforce.com/products/helix-alm/helix-qac" target="_blank" rel="noopener">
+                    <div class="ai-card__header">
+                        <div class="ai-card__logo" style="background: linear-gradient(135deg,#f59e0b,#ef4444);">Q</div>
+                        <div>
+                            <h3 class="ai-card__title">AI静态检测工具</h3>
+                            <div class="ai-card__tag">质量与合规</div>
+                        </div>
+                    </div>
+                    <p class="ai-card__desc">结合静态扫描与AI建议的质量平台，输出安全、规范与性能优化报告。</p>
+                    <div class="ai-card__meta">
+                        <span class="meta-pill">安全检测</span><span class="meta-pill">规范修复</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

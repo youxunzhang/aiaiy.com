@@ -26,6 +26,7 @@ class NavigationManager {
         if (path.includes('trends.html')) return 'trends';
         if (path.includes('ai-capabilities.html')) return 'ai-capabilities';
         if (path.includes('lunch-recommendations.html')) return 'lunch-recommendations';
+        if (path.includes('ai-programming.html')) return 'ai-programming';
         if (path.includes('coding.html')) return 'coding';
         if (path.includes('designer.html')) return 'designer';
         if (path.includes('writing.html')) return 'writing';
@@ -148,8 +149,9 @@ class NavigationManager {
                     <a href="trends.html" class="nav-link" data-page="trends">📈 趋势</a>
                     <a href="ai-capabilities.html" class="nav-link" data-page="ai-capabilities">⚡ AI功能</a>
                     <a href="lunch-recommendations.html" class="nav-link" data-page="lunch-recommendations">🍽️ 午餐推荐</a>
-                    
+
                     <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4 mt-8">工具页面</div>
+                    <a href="ai-programming.html" class="nav-link" data-page="ai-programming">🧑‍💻 AI编程</a>
                     <a href="coding.html" class="nav-link" data-page="coding">💻 编程工具</a>
                     <a href="designer.html" class="nav-link" data-page="designer">🎨 设计师工具</a>
                     <a href="writing.html" class="nav-link" data-page="writing">✍️ 写作工具</a>
