@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程与网站运营导航 | AIAIY</title>
+    <meta name="description" content="复制首页的清爽样式，精选编程助手、SEO监测与网站SaaS产品，一站查看核心功能与优势。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-color: #0ea5e9;
+            --surface-color: #ffffff;
+            --surface-muted: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--surface-muted);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .simple-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.04);
+        }
+
+        .simple-navbar__container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            flex-wrap: wrap;
+        }
+
+        .simple-navbar__brand {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .simple-navbar__tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .simple-navbar__links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .simple-navbar__link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .simple-navbar__link:hover,
+        .simple-navbar__link--active {
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .page-hero {
+            background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.08), transparent 25%),
+                        radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.12), transparent 25%),
+                        var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .page-hero__title {
+            margin: 0 0 0.35rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .page-hero__desc {
+            margin: 0 0 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            background: var(--surface-muted);
+            color: var(--text-secondary);
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-panel {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-panel__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .category-panel__title { display: flex; flex-direction: column; gap: 0.35rem; }
+        .category-panel__eyebrow { font-size: 0.9rem; font-weight: 600; color: var(--primary-color); letter-spacing: 0.1em; }
+        .category-panel__heading { margin: 0; font-size: 1.45rem; font-weight: 800; }
+        .category-panel__meta { margin: 0; color: var(--text-secondary); }
+
+        .ai-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .ai-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            padding: 1.1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            background: #ffffff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .ai-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .ai-card__icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.12));
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .ai-card__name { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+        .ai-card__tagline { font-size: 0.9rem; color: var(--text-secondary); }
+        .ai-card__description { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+
+        @media (max-width: 768px) {
+            .simple-navbar__container { flex-direction: column; align-items: flex-start; }
+            .simple-navbar__links { width: 100%; }
+            .category-panel__header { align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header class="simple-navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="simple-navbar__container">
+                <a href="index.html" class="simple-navbar__brand">AIAIY
+                    <span class="simple-navbar__tagline">AI工具导航</span>
+                </a>
+                <nav class="simple-navbar__links" aria-label="主导航">
+                    <a href="index.html" class="simple-navbar__link">首页</a>
+                    <a href="ai-companies.html" class="simple-navbar__link">AI公司</a>
+                    <a href="ai-ranking.html" class="simple-navbar__link">AI排行榜</a>
+                    <a href="trends.html" class="simple-navbar__link">AI趋势</a>
+                    <a href="ai-capabilities.html" class="simple-navbar__link">AI能力地图</a>
+                    <a href="ai-news.html" class="simple-navbar__link">AI资讯</a>
+                    <a href="ai-money.html" class="simple-navbar__link">AI变现</a>
+                    <a href="ai-programming-tools.html" class="simple-navbar__link">AI编程</a>
+                    <a href="programming.html" class="simple-navbar__link simple-navbar__link--active">编程与站点</a>
+                    <a href="ai-tools-landing.html" class="simple-navbar__link">AI工具</a>
+                    <a href="https://seodog.cn/" class="simple-navbar__link" target="_blank" rel="noopener noreferrer">AI 工具</a>
+                    <a href="batch-open.html" class="simple-navbar__link">批量打开</a>
+                    <a href="https://hotspotgame.online/" class="simple-navbar__link" target="_blank" rel="noopener noreferrer">游戏</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="page-hero">
+            <h1 class="page-hero__title">编程与网站运营工具清单</h1>
+            <p class="page-hero__desc">沿用首页的简洁卡片样式，把SEO监测、AI编程助手与网站SaaS产品一次收录，方便开发者和站长快速筛选。</p>
+            <div class="badge-row">
+                <span class="pill">代码助手</span>
+                <span class="pill">SEO监测</span>
+                <span class="pill">建站与部署</span>
+                <span class="pill">多语言生态</span>
+            </div>
+        </section>
+
+        <section class="category-panel" aria-labelledby="seo-stack">
+            <div class="category-panel__header">
+                <div class="category-panel__title">
+                    <span class="category-panel__eyebrow">搜索与监测</span>
+                    <h2 id="seo-stack" class="category-panel__heading">SEO 抓取 &amp; 数据分析</h2>
+                    <p class="category-panel__meta">覆盖索引收集、外链监测与性能优化的必备工具。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <div class="ai-card">
+                    <span class="ai-card__icon">GSC</span>
+                    <span class="ai-card__name">Google Search Console</span>
+                    <span class="ai-card__tagline">收集索引与覆盖情况</span>
+                    <p class="ai-card__description">监控网站健康、抓取状态与流量波动，提交站点地图并排查异常。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">GA</span>
+                    <span class="ai-card__name">Google Analytics 4</span>
+                    <span class="ai-card__tagline">全景行为分析</span>
+                    <p class="ai-card__description">追踪用户行为、转化漏斗与自然流量表现，支持事件埋点与归因。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">A</span>
+                    <span class="ai-card__name">Ahrefs</span>
+                    <span class="ai-card__tagline">外链与关键词</span>
+                    <p class="ai-card__description">监测外链质量、关键词挖掘与竞争对手排名，洞察域名权重变化。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">S</span>
+                    <span class="ai-card__name">Semrush</span>
+                    <span class="ai-card__tagline">综合SEO与竞价</span>
+                    <p class="ai-card__description">关键词追踪、域名对比与广告分析一体化，覆盖SEO与付费流量场景。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">SF</span>
+                    <span class="ai-card__name">Screaming Frog</span>
+                    <span class="ai-card__tagline">本地爬虫抓取</span>
+                    <p class="ai-card__description">快速排查死链、重定向、元数据与站点结构问题，支持导出诊断报告。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Bing</span>
+                    <span class="ai-card__name">Bing Webmaster</span>
+                    <span class="ai-card__tagline">站点地图与诊断</span>
+                    <p class="ai-card__description">提交 Sitemap、查看索引覆盖，获取抓取诊断与SEO建议。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">度</span>
+                    <span class="ai-card__name">百度搜索资源平台</span>
+                    <span class="ai-card__tagline">索引推送</span>
+                    <p class="ai-card__description">站点收录、索引提交与流量数据中心，适配中文搜索生态。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">站</span>
+                    <span class="ai-card__name">站长工具</span>
+                    <span class="ai-card__tagline">SEO综合评分</span>
+                    <p class="ai-card__description">域名查询、外链检测与站点体检的一站式辅助工具。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">5118</span>
+                    <span class="ai-card__name">5118</span>
+                    <span class="ai-card__tagline">长尾词与监控</span>
+                    <p class="ai-card__description">挖掘长尾关键词、监控排名并洞察行业词库走势。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">PSI</span>
+                    <span class="ai-card__name">PageSpeed Insights</span>
+                    <span class="ai-card__tagline">性能与核心指标</span>
+                    <p class="ai-card__description">评估核心网页指标，给出性能优化建议，提升用户体验与SEO得分。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-panel" aria-labelledby="dev-stack">
+            <div class="category-panel__header">
+                <div class="category-panel__title">
+                    <span class="category-panel__eyebrow">编程工具</span>
+                    <h2 id="dev-stack" class="category-panel__heading">AI 编程助手与开发平台</h2>
+                    <p class="category-panel__meta">云端 IDE、代码补全、自动化测试与协作工具合辑。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <div class="ai-card">
+                    <span class="ai-card__icon">Programming</span>
+                    <span class="ai-card__name">AI编程助手与开发平台</span>
+                    <span class="ai-card__tagline">覆盖代码补全、云端IDE、自动化测试与生成式站点搭建</span>
+                    <p class="ai-card__description">集合开发、测试与协作能力，为团队提供一站式AI工作流。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">C</span>
+                    <span class="ai-card__name">Cursor</span>
+                    <span class="ai-card__tagline">AI代码编辑器</span>
+                    <p class="ai-card__description">深度集成大模型的编程体验，支持对话式生成与多文件改写。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">W</span>
+                    <span class="ai-card__name">Windsurf</span>
+                    <span class="ai-card__tagline">AI编程助手</span>
+                    <p class="ai-card__description">提供智能补全、上下文理解与快速项目导航的IDE助手。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">V</span>
+                    <span class="ai-card__name">VS Code</span>
+                    <span class="ai-card__tagline">专业代码编辑器</span>
+                    <p class="ai-card__description">流行的跨平台开发环境，支持丰富插件与远程协作能力。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">B</span>
+                    <span class="ai-card__name">bolt.new</span>
+                    <span class="ai-card__tagline">快速 Web 应用创建</span>
+                    <p class="ai-card__description">在浏览器内快速生成并运行现代 Web 应用的即时开发平台。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">T</span>
+                    <span class="ai-card__name">Tailwind CSS</span>
+                    <span class="ai-card__tagline">实用优先 CSS 框架</span>
+                    <p class="ai-card__description">通过原子化样式快速搭建界面，配合构建工具实现高效开发。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">M</span>
+                    <span class="ai-card__name">MiniMax Agent</span>
+                    <span class="ai-card__tagline">AI编程助手</span>
+                    <p class="ai-card__description">基于大模型的代码对话与生成助手，支持中文场景与多语言能力。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">C</span>
+                    <span class="ai-card__name">Carrd</span>
+                    <span class="ai-card__tagline">单页网站构建器</span>
+                    <p class="ai-card__description">轻量化建站工具，适合快速制作个人或活动落地页。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">🤖</span>
+                    <span class="ai-card__name">GitHub Copilot</span>
+                    <span class="ai-card__tagline">AI代码补全</span>
+                    <p class="ai-card__description">上下文感知的实时补全与聊天助手，适配主流IDE与框架。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">C</span>
+                    <span class="ai-card__name">Cline</span>
+                    <span class="ai-card__tagline">结对编程助手</span>
+                    <p class="ai-card__description">热门的AI结对工具，支持多轮上下文与任务拆分执行。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Tabnine</span>
+                    <span class="ai-card__name">Tabnine</span>
+                    <span class="ai-card__tagline">AI代码补全</span>
+                    <p class="ai-card__description">多语言支持的补全工具，提供本地与云端模型选项。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Codeium</span>
+                    <span class="ai-card__name">Codeium</span>
+                    <span class="ai-card__tagline">AI编程助手</span>
+                    <p class="ai-card__description">备受好评的代码补全与解释助手，覆盖多种IDE生态。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">⚙️</span>
+                    <span class="ai-card__name">Blackbox AI</span>
+                    <span class="ai-card__tagline">多语言助手</span>
+                    <p class="ai-card__description">支持多语言的代码补全、搜索与自动生成，兼容浏览器与IDE插件。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">AW</span>
+                    <span class="ai-card__name">Amazon CodeWhisperer</span>
+                    <span class="ai-card__tagline">AWS代码建议</span>
+                    <p class="ai-card__description">基于安全扫描的智能建议，为 AWS 开发提供深度集成体验。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">R</span>
+                    <span class="ai-card__name">Replit AI</span>
+                    <span class="ai-card__tagline">云端实时协作</span>
+                    <p class="ai-card__description">集成编码、部署与多人协作的在线 IDE，实时预览与托管。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Sourcegraph Cody</span>
+                    <span class="ai-card__name">Sourcegraph Cody</span>
+                    <span class="ai-card__tagline">企业级代码检索</span>
+                    <p class="ai-card__description">面向大型代码库的智能问答与引用，支持安全的私有部署。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">CodiumAI</span>
+                    <span class="ai-card__name">CodiumAI</span>
+                    <span class="ai-card__tagline">自动化测试生成</span>
+                    <p class="ai-card__description">自动生成测试与审阅建议，帮助提升代码质量和覆盖率。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">SB</span>
+                    <span class="ai-card__name">StackBlitz AI</span>
+                    <span class="ai-card__tagline">即时运行环境</span>
+                    <p class="ai-card__description">浏览器内即时运行项目的 AI 协作平台，零配置启动开发。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Mu</span>
+                    <span class="ai-card__name">Mutable AI</span>
+                    <span class="ai-card__tagline">重构与注释</span>
+                    <p class="ai-card__description">自动补全注释、生成文档并支持重构的 AI 工作流助手。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Ai</span>
+                    <span class="ai-card__name">Aider</span>
+                    <span class="ai-card__tagline">命令行结对</span>
+                    <p class="ai-card__description">在终端中通过自然语言与模型协作编程，适合代码库批量改动。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Copilot Workspace</span>
+                    <span class="ai-card__name">Copilot Workspace</span>
+                    <span class="ai-card__tagline">端到端AI开发</span>
+                    <p class="ai-card__description">规划任务、生成代码并自动提交的全流程 AI 开发沙盒。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Pi</span>
+                    <span class="ai-card__name">Pieces Copilot</span>
+                    <span class="ai-card__tagline">本地知识库</span>
+                    <p class="ai-card__description">本地优先的开发者知识库与 AI 结对助手，聚合代码片段与上下文。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Ct</span>
+                    <span class="ai-card__name">Continue</span>
+                    <span class="ai-card__tagline">开源IDE扩展</span>
+                    <p class="ai-card__description">开源的 IDE Copilot，支持自建模型与本地部署的智能补全体验。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Co</span>
+                    <span class="ai-card__name">Google Colab</span>
+                    <span class="ai-card__tagline">云端Python实验</span>
+                    <p class="ai-card__description">谷歌提供的云端 Python 与 AI 实验环境，免配置运行笔记本。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Ph</span>
+                    <span class="ai-card__name">Phind</span>
+                    <span class="ai-card__tagline">搜索型编程助手</span>
+                    <p class="ai-card__description">面向开发者的搜索式问答，提供带引用的代码解答与示例。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Cg</span>
+                    <span class="ai-card__name">CodeGeeX</span>
+                    <span class="ai-card__tagline">多语言生成模型</span>
+                    <p class="ai-card__description">支持多语言的代码生成模型，提供 IDE 插件与在线体验。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">W</span>
+                    <span class="ai-card__name">Windsurf (Coder)</span>
+                    <span class="ai-card__tagline">全栈编码IDE</span>
+                    <p class="ai-card__description">Coder 推出的多文件编辑与大模型协作 IDE，面向全栈场景。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Ct</span>
+                    <span class="ai-card__name">Continue (开源IDE Copilot)</span>
+                    <span class="ai-card__tagline">开源IDE Copilot</span>
+                    <p class="ai-card__description">支持本地与云端大模型的代码补全和对话，强调隐私与可控性。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-panel" aria-labelledby="site-stack">
+            <div class="category-panel__header">
+                <div class="category-panel__title">
+                    <span class="category-panel__eyebrow">网站与SaaS</span>
+                    <h2 id="site-stack" class="category-panel__heading">建站、域名与部署生态</h2>
+                    <p class="category-panel__meta">从域名、云服务器到可视化建站与AI生成落地页的全链路方案。</p>
+                </div>
+            </div>
+            <div class="ai-card-grid">
+                <div class="ai-card">
+                    <span class="ai-card__icon">C</span>
+                    <span class="ai-card__name">Cloudflare</span>
+                    <span class="ai-card__tagline">网站加速与安全</span>
+                    <p class="ai-card__description">CDN、WAF 与零信任接入，提升站点性能并防护恶意流量。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">🚀</span>
+                    <span class="ai-card__name">Vercel</span>
+                    <span class="ai-card__tagline">前端部署平台</span>
+                    <p class="ai-card__description">针对前端框架优化的 CI/CD 与边缘网络，适合 Jamstack 与全栈应用。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">D</span>
+                    <span class="ai-card__name">Domain.com</span>
+                    <span class="ai-card__tagline">域名注册</span>
+                    <p class="ai-card__description">主流后缀注册与 DNS 管理，快速启动站点基础设施。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">T</span>
+                    <span class="ai-card__name">There's An AI For That</span>
+                    <span class="ai-card__tagline">AI 工具发现</span>
+                    <p class="ai-card__description">聚合最新 AI 产品的检索平台，便于快速筛选合适的生产力工具。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">R</span>
+                    <span class="ai-card__name">ReadMake</span>
+                    <span class="ai-card__tagline">内容创作</span>
+                    <p class="ai-card__description">帮助创作者进行文案与素材生产的 AI 驱动工具。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">T</span>
+                    <span class="ai-card__name">ThemeForest</span>
+                    <span class="ai-card__tagline">模板市场</span>
+                    <p class="ai-card__description">丰富的前端与 CMS 主题，覆盖多种设计风格与行业落地页。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">S</span>
+                    <span class="ai-card__name">spaceship</span>
+                    <span class="ai-card__tagline">云服务器与托管</span>
+                    <p class="ai-card__description">现代化云主机与托管方案，支持自动化部署与监控。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">阿</span>
+                    <span class="ai-card__name">阿里云</span>
+                    <span class="ai-card__tagline">云计算服务</span>
+                    <p class="ai-card__description">提供弹性计算、数据库与 AI 能力，覆盖企业级云上场景。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">G</span>
+                    <span class="ai-card__name">Google AdSense</span>
+                    <span class="ai-card__tagline">网站变现</span>
+                    <p class="ai-card__description">通过广告网络实现流量变现，支持多终端格式与收益分析。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">💻</span>
+                    <span class="ai-card__name">GitHub</span>
+                    <span class="ai-card__tagline">开源协作</span>
+                    <p class="ai-card__description">全球最大的代码托管平台，支持 Issue、PR 与 CI/CD 工作流。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Q</span>
+                    <span class="ai-card__name">Query.Domains</span>
+                    <span class="ai-card__tagline">域名可用性检查</span>
+                    <p class="ai-card__description">批量查询域名状态，辅助品牌命名与注册决策。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">N</span>
+                    <span class="ai-card__name">Notion</span>
+                    <span class="ai-card__tagline">团队协作</span>
+                    <p class="ai-card__description">集文档、数据库与项目管理于一体的协作工作区。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">F</span>
+                    <span class="ai-card__name">Framer AI</span>
+                    <span class="ai-card__tagline">AI建站设计</span>
+                    <p class="ai-card__description">通过提示生成整站布局与文案的设计工具，快速导出可用页面。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Webflow</span>
+                    <span class="ai-card__name">Webflow</span>
+                    <span class="ai-card__tagline">可视化建站</span>
+                    <p class="ai-card__description">拖拽式前端设计与托管，支持响应式布局与组件化开发。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Shopify</span>
+                    <span class="ai-card__name">Shopify</span>
+                    <span class="ai-card__tagline">电商建站</span>
+                    <p class="ai-card__description">成熟的电商 SaaS，覆盖产品管理、支付、物流与营销生态。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">AI</span>
+                    <span class="ai-card__name">Durable AI建站</span>
+                    <span class="ai-card__tagline">一分钟生成</span>
+                    <p class="ai-card__description">输入行业即可生成品牌网站与文案，适合中小企业快速上线。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">W</span>
+                    <span class="ai-card__name">WordPress.com</span>
+                    <span class="ai-card__tagline">托管式博客</span>
+                    <p class="ai-card__description">经典的博客与 CMS 平台，提供托管、安全与主题生态。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">N</span>
+                    <span class="ai-card__name">Netlify</span>
+                    <span class="ai-card__tagline">JAMstack 部署</span>
+                    <p class="ai-card__description">自动化 CI/CD、无服务器函数与边缘网络的 JAMstack 平台。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">S</span>
+                    <span class="ai-card__name">Supabase</span>
+                    <span class="ai-card__tagline">开源后端</span>
+                    <p class="ai-card__description">Postgres、Auth 与实时 API 的全栈后端，即插即用替代 Firebase。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Softr</span>
+                    <span class="ai-card__name">Softr</span>
+                    <span class="ai-card__tagline">Airtable建站</span>
+                    <p class="ai-card__description">基于 Airtable 数据的可视化网站与客户门户生成器。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Td</span>
+                    <span class="ai-card__name">Typedream AI</span>
+                    <span class="ai-card__tagline">轻量落地页</span>
+                    <p class="ai-card__description">一键生成登陆页与表单，内置 AI 文案与设计样式。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Re</span>
+                    <span class="ai-card__name">Relume AI</span>
+                    <span class="ai-card__tagline">组件生成库</span>
+                    <p class="ai-card__description">Figma 与 Webflow 团队常用的 AI 组件库，快速拼装高保真页面。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Tp</span>
+                    <span class="ai-card__name">TeleportHQ</span>
+                    <span class="ai-card__tagline">设计转前端</span>
+                    <p class="ai-card__description">从设计稿快速生成可编辑前端代码与组件的可视化平台。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Do</span>
+                    <span class="ai-card__name">Dorik AI</span>
+                    <span class="ai-card__tagline">拖拽式生成</span>
+                    <p class="ai-card__description">支持多语言落地页的 AI 建站工具，提供模板与可视化编辑。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Squarespace</span>
+                    <span class="ai-card__name">Squarespace</span>
+                    <span class="ai-card__tagline">一体化建站</span>
+                    <p class="ai-card__description">覆盖站点、商店与品牌营销的旗舰建站平台。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">F</span>
+                    <span class="ai-card__name">Framer AI</span>
+                    <span class="ai-card__tagline">提示生成整站</span>
+                    <p class="ai-card__description">通过提示快速生成整站布局与文案，便于二次编辑与上线。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Du</span>
+                    <span class="ai-card__name">Durable AI</span>
+                    <span class="ai-card__tagline">一键建站</span>
+                    <p class="ai-card__description">面向小型企业的一键建站与营销落地页生成器。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Ui</span>
+                    <span class="ai-card__name">Uizard</span>
+                    <span class="ai-card__tagline">草图转界面</span>
+                    <p class="ai-card__description">将草图与线框快速转为可编辑界面，适合原型验证。</p>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-card__icon">Du</span>
+                    <span class="ai-card__name">Durable AI 建站</span>
+                    <span class="ai-card__tagline">自动生成</span>
+                    <p class="ai-card__description">输入行业与位置即可生成站点、文案与品牌素材的全自动建站助手。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
