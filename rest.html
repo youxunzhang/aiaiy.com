@@ -24,7 +24,9 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--surface-muted);
+            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.12), transparent 55%),
+                var(--surface-muted);
             color: var(--text-primary);
             min-height: 100vh;
         }
@@ -37,8 +39,8 @@
         }
 
         .breath-circle {
-            width: 240px;
-            height: 240px;
+            width: clamp(180px, 60vw, 240px);
+            height: clamp(180px, 60vw, 240px);
             border-radius: 9999px;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.03));
             border: 2px solid rgba(37, 99, 235, 0.35);
@@ -97,6 +99,38 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
         }
+
+        .action-buttons {
+            gap: 12px;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(14px);
+        }
+
+        @media (max-width: 640px) {
+            .main-content {
+                padding-top: 2.5rem;
+                padding-bottom: 2.5rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons button {
+                width: 100%;
+            }
+
+            #phaseCountdown {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -131,7 +165,7 @@
                             <div class="text-sm text-slate-500">保持平稳坐姿，视线自然放松。</div>
                         </div>
 
-                        <div class="flex flex-wrap gap-4 justify-center">
+                        <div class="action-buttons flex flex-wrap justify-center">
                             <button id="startButton" class="primary-button px-6 py-3 rounded-2xl">开始</button>
                             <button id="resetButton" class="secondary-button px-6 py-3 rounded-2xl">重置</button>
                         </div>
@@ -145,15 +179,15 @@
                         <div class="space-y-4">
                             <label class="block">
                                 <span class="text-sm font-medium text-slate-700">吸气时长（秒）</span>
-                                <input id="inhaleInput" type="number" min="1" value="4" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                                <input id="inhaleInput" type="number" min="1" value="4" inputmode="numeric" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                             <label class="block">
                                 <span class="text-sm font-medium text-slate-700">停顿时长（秒）</span>
-                                <input id="holdInput" type="number" min="0" value="2" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                                <input id="holdInput" type="number" min="0" value="2" inputmode="numeric" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                             <label class="block">
                                 <span class="text-sm font-medium text-slate-700">吐气时长（秒）</span>
-                                <input id="exhaleInput" type="number" min="1" value="6" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                                <input id="exhaleInput" type="number" min="1" value="6" inputmode="numeric" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                         </div>
                         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
