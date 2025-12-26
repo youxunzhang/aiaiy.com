@@ -9,80 +9,93 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="modern-styles.css">
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --surface-color: #ffffff;
+            --surface-muted: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+            --shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.2), transparent 45%),
-                linear-gradient(135deg, #0f172a 0%, #1f2937 55%, #0b1120 100%);
-            color: #e2e8f0;
+            background: var(--surface-muted);
+            color: var(--text-primary);
             min-height: 100vh;
         }
 
         .glass-card {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow-md);
         }
 
         .breath-circle {
             width: 240px;
             height: 240px;
             border-radius: 9999px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.35), rgba(56, 189, 248, 0.05));
-            border: 2px solid rgba(56, 189, 248, 0.4);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.03));
+            border: 2px solid rgba(37, 99, 235, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
             transition-property: transform, box-shadow, border-color;
             transition-timing-function: ease-in-out;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 18px 35px rgba(37, 99, 235, 0.15);
         }
 
         .breath-circle.is-hold {
-            border-color: rgba(167, 139, 250, 0.65);
-            box-shadow: 0 0 50px rgba(167, 139, 250, 0.5);
+            border-color: rgba(99, 102, 241, 0.45);
+            box-shadow: 0 18px 32px rgba(99, 102, 241, 0.18);
         }
 
         .breath-circle.is-exhale {
-            border-color: rgba(74, 222, 128, 0.45);
-            box-shadow: 0 0 35px rgba(74, 222, 128, 0.4);
+            border-color: rgba(34, 197, 94, 0.35);
+            box-shadow: 0 16px 28px rgba(34, 197, 94, 0.15);
         }
 
         .time-input {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            color: #e2e8f0;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
         }
 
         .time-input:focus {
             outline: none;
-            border-color: rgba(56, 189, 248, 0.8);
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+            border-color: rgba(37, 99, 235, 0.7);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         .primary-button {
-            background: linear-gradient(135deg, #38bdf8, #6366f1);
-            color: #0f172a;
+            background: var(--primary-color);
+            color: #ffffff;
             font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
         .primary-button:hover {
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
         }
 
         .secondary-button {
-            background: rgba(148, 163, 184, 0.2);
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            color: #e2e8f0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: var(--surface-muted);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .secondary-button:hover {
+            border-color: rgba(148, 163, 184, 0.8);
             transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(148, 163, 184, 0.25);
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
         }
     </style>
 </head>
@@ -91,11 +104,19 @@
         <main class="main-content container mx-auto px-4 py-10 lg:py-16">
             <div class="max-w-5xl mx-auto space-y-10">
                 <header class="text-center space-y-4">
-                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-200 text-sm font-medium">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-700 text-sm font-medium">
                         🧘 呼吸休息
                     </span>
-                    <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-100">跟随节奏，给自己一段安静的呼吸</h1>
-                    <p class="text-lg text-slate-300 max-w-3xl mx-auto">默认节奏：吸气 4 秒、停顿 2 秒、吐气 6 秒。你可以根据需要调整每一段时长。</p>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-900">跟随节奏，给自己一段安静的呼吸</h1>
+                    <p class="text-lg text-slate-600 max-w-3xl mx-auto">默认节奏：吸气 4 秒、停顿 2 秒、吐气 6 秒。你可以根据需要调整每一段时长。</p>
+                    <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-slate-600">
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 极简</span>
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 专注功能</span>
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 低门槛</span>
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 快速可用</span>
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 无干扰</span>
+                        <span class="rounded-full bg-white px-3 py-1 shadow-sm">✔ 用户即时满足</span>
+                    </div>
                 </header>
 
                 <section class="glass-card p-8 lg:p-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -103,11 +124,11 @@
                         <div class="flex flex-col items-center gap-6">
                             <div id="breathCircle" class="breath-circle">
                                 <div class="text-center">
-                                    <div id="phaseLabel" class="text-2xl font-semibold text-sky-100">吸气</div>
-                                    <div id="phaseCountdown" class="text-5xl font-extrabold text-white">4s</div>
+                                    <div id="phaseLabel" class="text-2xl font-semibold text-slate-700">吸气</div>
+                                    <div id="phaseCountdown" class="text-5xl font-extrabold text-slate-900">4s</div>
                                 </div>
                             </div>
-                            <div class="text-sm text-slate-400">保持平稳坐姿，视线自然放松。</div>
+                            <div class="text-sm text-slate-500">保持平稳坐姿，视线自然放松。</div>
                         </div>
 
                         <div class="flex flex-wrap gap-4 justify-center">
@@ -118,25 +139,25 @@
 
                     <div class="space-y-6">
                         <div>
-                            <h2 class="text-xl font-semibold text-slate-100">节奏设置</h2>
-                            <p class="text-sm text-slate-400">建议保持稳定、顺畅的呼吸节奏。</p>
+                            <h2 class="text-xl font-semibold text-slate-900">节奏设置</h2>
+                            <p class="text-sm text-slate-500">建议保持稳定、顺畅的呼吸节奏。</p>
                         </div>
                         <div class="space-y-4">
                             <label class="block">
-                                <span class="text-sm font-medium text-slate-200">吸气时长（秒）</span>
+                                <span class="text-sm font-medium text-slate-700">吸气时长（秒）</span>
                                 <input id="inhaleInput" type="number" min="1" value="4" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                             <label class="block">
-                                <span class="text-sm font-medium text-slate-200">停顿时长（秒）</span>
+                                <span class="text-sm font-medium text-slate-700">停顿时长（秒）</span>
                                 <input id="holdInput" type="number" min="0" value="2" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                             <label class="block">
-                                <span class="text-sm font-medium text-slate-200">吐气时长（秒）</span>
+                                <span class="text-sm font-medium text-slate-700">吐气时长（秒）</span>
                                 <input id="exhaleInput" type="number" min="1" value="6" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
                             </label>
                         </div>
-                        <div class="rounded-2xl border border-slate-700/70 bg-slate-900/60 p-4 text-sm text-slate-300">
-                            <p class="font-semibold text-slate-200">当前节奏</p>
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+                            <p class="font-semibold text-slate-800">当前节奏</p>
                             <p id="rhythmSummary">吸气 4s · 停顿 2s · 吐气 6s</p>
                         </div>
                     </div>
