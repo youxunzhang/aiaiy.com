@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呼吸休息 - 自定义节奏练习</title>
+    <meta name="description" content="呼吸休息页面，默认吸气4秒、停顿2秒、吐气6秒，并支持自定义节奏设置。">
+    <link rel="canonical" href="https://www.aiaiy.com/rest.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.2), transparent 45%),
+                linear-gradient(135deg, #0f172a 0%, #1f2937 55%, #0b1120 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(18px);
+        }
+
+        .breath-circle {
+            width: 240px;
+            height: 240px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.35), rgba(56, 189, 248, 0.05));
+            border: 2px solid rgba(56, 189, 248, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition-property: transform, box-shadow, border-color;
+            transition-timing-function: ease-in-out;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.35);
+        }
+
+        .breath-circle.is-hold {
+            border-color: rgba(167, 139, 250, 0.65);
+            box-shadow: 0 0 50px rgba(167, 139, 250, 0.5);
+        }
+
+        .breath-circle.is-exhale {
+            border-color: rgba(74, 222, 128, 0.45);
+            box-shadow: 0 0 35px rgba(74, 222, 128, 0.4);
+        }
+
+        .time-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #e2e8f0;
+        }
+
+        .time-input:focus {
+            outline: none;
+            border-color: rgba(56, 189, 248, 0.8);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+
+        .primary-button {
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: #0f172a;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(56, 189, 248, 0.4);
+        }
+
+        .secondary-button {
+            background: rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .secondary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(148, 163, 184, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <main class="main-content container mx-auto px-4 py-10 lg:py-16">
+            <div class="max-w-5xl mx-auto space-y-10">
+                <header class="text-center space-y-4">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-200 text-sm font-medium">
+                        🧘 呼吸休息
+                    </span>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-100">跟随节奏，给自己一段安静的呼吸</h1>
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto">默认节奏：吸气 4 秒、停顿 2 秒、吐气 6 秒。你可以根据需要调整每一段时长。</p>
+                </header>
+
+                <section class="glass-card p-8 lg:p-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+                    <div class="space-y-8">
+                        <div class="flex flex-col items-center gap-6">
+                            <div id="breathCircle" class="breath-circle">
+                                <div class="text-center">
+                                    <div id="phaseLabel" class="text-2xl font-semibold text-sky-100">吸气</div>
+                                    <div id="phaseCountdown" class="text-5xl font-extrabold text-white">4s</div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-slate-400">保持平稳坐姿，视线自然放松。</div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 justify-center">
+                            <button id="startButton" class="primary-button px-6 py-3 rounded-2xl">开始</button>
+                            <button id="resetButton" class="secondary-button px-6 py-3 rounded-2xl">重置</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h2 class="text-xl font-semibold text-slate-100">节奏设置</h2>
+                            <p class="text-sm text-slate-400">建议保持稳定、顺畅的呼吸节奏。</p>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="block">
+                                <span class="text-sm font-medium text-slate-200">吸气时长（秒）</span>
+                                <input id="inhaleInput" type="number" min="1" value="4" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                            </label>
+                            <label class="block">
+                                <span class="text-sm font-medium text-slate-200">停顿时长（秒）</span>
+                                <input id="holdInput" type="number" min="0" value="2" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                            </label>
+                            <label class="block">
+                                <span class="text-sm font-medium text-slate-200">吐气时长（秒）</span>
+                                <input id="exhaleInput" type="number" min="1" value="6" class="time-input mt-2 w-full rounded-xl px-4 py-2" />
+                            </label>
+                        </div>
+                        <div class="rounded-2xl border border-slate-700/70 bg-slate-900/60 p-4 text-sm text-slate-300">
+                            <p class="font-semibold text-slate-200">当前节奏</p>
+                            <p id="rhythmSummary">吸气 4s · 停顿 2s · 吐气 6s</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="navigation.js"></script>
+    <script src="logo-fetcher.js"></script>
+    <script>
+        const inhaleInput = document.getElementById('inhaleInput');
+        const holdInput = document.getElementById('holdInput');
+        const exhaleInput = document.getElementById('exhaleInput');
+        const startButton = document.getElementById('startButton');
+        const resetButton = document.getElementById('resetButton');
+        const phaseLabel = document.getElementById('phaseLabel');
+        const phaseCountdown = document.getElementById('phaseCountdown');
+        const breathCircle = document.getElementById('breathCircle');
+        const rhythmSummary = document.getElementById('rhythmSummary');
+
+        const inputs = [inhaleInput, holdInput, exhaleInput];
+        let timerId = null;
+        let phases = [];
+        let currentPhaseIndex = 0;
+        let remainingSeconds = 0;
+        let isRunning = false;
+
+        const phaseScales = {
+            inhale: 1.15,
+            hold: 1.05,
+            exhale: 0.85
+        };
+
+        const sanitizeValue = (value, min) => {
+            const parsed = Number.parseInt(value, 10);
+            if (Number.isNaN(parsed)) return min;
+            return Math.max(parsed, min);
+        };
+
+        const buildPhases = () => {
+            const inhale = sanitizeValue(inhaleInput.value, 1);
+            const hold = sanitizeValue(holdInput.value, 0);
+            const exhale = sanitizeValue(exhaleInput.value, 1);
+
+            return [
+                { key: 'inhale', label: '吸气', duration: inhale },
+                { key: 'hold', label: '停顿', duration: hold },
+                { key: 'exhale', label: '吐气', duration: exhale }
+            ];
+        };
+
+        const getActivePhases = () => {
+            const list = buildPhases().filter(phase => phase.duration > 0);
+            return list.length ? list : [{ key: 'inhale', label: '吸气', duration: 1 }];
+        };
+
+        const updateSummary = () => {
+            const inhale = sanitizeValue(inhaleInput.value, 1);
+            const hold = sanitizeValue(holdInput.value, 0);
+            const exhale = sanitizeValue(exhaleInput.value, 1);
+            rhythmSummary.textContent = `吸气 ${inhale}s · 停顿 ${hold}s · 吐气 ${exhale}s`;
+        };
+
+        const updateCircleState = (phase) => {
+            breathCircle.classList.remove('is-hold', 'is-exhale');
+            if (phase.key === 'hold') {
+                breathCircle.classList.add('is-hold');
+            }
+            if (phase.key === 'exhale') {
+                breathCircle.classList.add('is-exhale');
+            }
+            breathCircle.style.transitionDuration = `${Math.max(phase.duration, 1)}s`;
+            breathCircle.style.transform = `scale(${phaseScales[phase.key]})`;
+        };
+
+        const updatePhaseDisplay = () => {
+            const phase = phases[currentPhaseIndex];
+            phaseLabel.textContent = phase.label;
+            phaseCountdown.textContent = `${remainingSeconds}s`;
+            updateCircleState(phase);
+        };
+
+        const setInputsDisabled = (disabled) => {
+            inputs.forEach((input) => {
+                input.disabled = disabled;
+                input.classList.toggle('opacity-60', disabled);
+                input.classList.toggle('cursor-not-allowed', disabled);
+            });
+        };
+
+        const tick = () => {
+            if (!isRunning) return;
+            remainingSeconds -= 1;
+            if (remainingSeconds <= 0) {
+                currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+                remainingSeconds = phases[currentPhaseIndex].duration || 0;
+                if (remainingSeconds === 0) {
+                    tick();
+                    return;
+                }
+                updatePhaseDisplay();
+            } else {
+                phaseCountdown.textContent = `${remainingSeconds}s`;
+            }
+        };
+
+        const startTimer = () => {
+            if (isRunning) return;
+            phases = getActivePhases();
+            currentPhaseIndex = 0;
+            remainingSeconds = phases[0].duration;
+            isRunning = true;
+            setInputsDisabled(true);
+            startButton.textContent = '暂停';
+            updatePhaseDisplay();
+            clearInterval(timerId);
+            timerId = setInterval(tick, 1000);
+        };
+
+        const pauseTimer = () => {
+            isRunning = false;
+            clearInterval(timerId);
+            startButton.textContent = '继续';
+        };
+
+        const resetTimer = () => {
+            clearInterval(timerId);
+            isRunning = false;
+            phases = getActivePhases();
+            currentPhaseIndex = 0;
+            remainingSeconds = phases[0].duration;
+            setInputsDisabled(false);
+            startButton.textContent = '开始';
+            updatePhaseDisplay();
+        };
+
+        startButton.addEventListener('click', () => {
+            if (isRunning) {
+                pauseTimer();
+            } else {
+                if (startButton.textContent === '继续') {
+                    isRunning = true;
+                    startButton.textContent = '暂停';
+                    setInputsDisabled(true);
+                    clearInterval(timerId);
+                    timerId = setInterval(tick, 1000);
+                    return;
+                }
+                startTimer();
+            }
+        });
+
+        resetButton.addEventListener('click', resetTimer);
+
+        inputs.forEach((input) => {
+            input.addEventListener('change', () => {
+                updateSummary();
+                if (!isRunning) {
+                    phases = getActivePhases();
+                    currentPhaseIndex = 0;
+                    remainingSeconds = phases[0].duration;
+                    updatePhaseDisplay();
+                }
+            });
+        });
+
+        updateSummary();
+        phases = getActivePhases();
+        remainingSeconds = phases[0].duration;
+        updatePhaseDisplay();
+    </script>
+</body>
+</html>

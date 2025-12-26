@@ -52,6 +52,7 @@ class NavigationManager {
         if (path.includes('aioffice.html')) return 'aioffice';
         if (path.includes('aiprompt.html')) return 'aiprompt';
         if (path.includes('aitimer.html')) return 'aitimer';
+        if (path.includes('rest.html')) return 'rest';
         if (path.includes('aiagent.html')) return 'aiagent';
         if (path.includes('batch-open.html')) return 'batch-open';
         if (path.includes('url-opener.html')) return 'url-opener';
@@ -177,6 +178,7 @@ class NavigationManager {
                     <a href="aioffice.html" class="nav-link" data-page="aioffice">💼 AI办公</a>
                     <a href="aiprompt.html" class="nav-link" data-page="aiprompt">💡 AI提示</a>
                     <a href="aitimer.html" class="nav-link" data-page="aitimer">⏰ AI计时器</a>
+                    <a href="rest.html" class="nav-link" data-page="rest">🧘 休息呼吸</a>
                     <a href="aiagent.html" class="nav-link" data-page="aiagent">🤖 AI代理</a>
                     <a href="url-opener.html" class="nav-link" data-page="url-opener">🔗 URL Opener</a>
                     <a href="batch-open.html" class="nav-link" data-page="batch-open">🚀 批量打开</a>
