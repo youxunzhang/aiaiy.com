@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宇宙运行模拟 | AIAIY</title>
+  <meta name="description" content="沉浸式宇宙运行模拟页面，展示星云、恒星与星系的动态轨迹。" />
+  <style>
+    :root {
+      --space-900: #020312;
+      --space-800: #070924;
+      --space-700: #0f1442;
+      --space-600: #1b1f5c;
+      --nebula-pink: rgba(255, 132, 207, 0.35);
+      --nebula-blue: rgba(94, 222, 255, 0.28);
+      --nebula-purple: rgba(148, 122, 255, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at top, var(--space-700), var(--space-900));
+      color: #f5f7ff;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: stretch;
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .nebula {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 30%, var(--nebula-pink), transparent 45%),
+        radial-gradient(circle at 85% 20%, var(--nebula-blue), transparent 40%),
+        radial-gradient(circle at 40% 80%, var(--nebula-purple), transparent 45%);
+      mix-blend-mode: screen;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .overlay {
+      position: relative;
+      z-index: 2;
+      padding: 48px 56px;
+      max-width: 420px;
+      backdrop-filter: blur(18px);
+      background: rgba(4, 8, 24, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: rgba(245, 247, 255, 0.8);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat-card span {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .stat-card strong {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .controls {
+      display: grid;
+      gap: 12px;
+    }
+
+    .controls label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: #8ee9ff;
+    }
+
+    .credit {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .overlay {
+        width: 100%;
+        max-width: none;
+        padding: 28px 24px 36px;
+      }
+
+      .title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <canvas id="universe"></canvas>
+    <div class="nebula"></div>
+
+    <section class="overlay">
+      <header>
+        <h1 class="title">宇宙运行模拟</h1>
+        <p class="subtitle">在这里观看星云流动、恒星聚合与星系旋转。拖动参数，感受宇宙尺度的律动。</p>
+      </header>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span>星体数量</span>
+          <strong id="starCount">1200</strong>
+        </div>
+        <div class="stat-card">
+          <span>旋转半径</span>
+          <strong id="radiusValue">240</strong>
+        </div>
+        <div class="stat-card">
+          <span>时间倍率</span>
+          <strong id="speedValue">1.2x</strong>
+        </div>
+        <div class="stat-card">
+          <span>星云亮度</span>
+          <strong id="glowValue">65%</strong>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label>
+          星体密度
+          <span id="densityLabel">高</span>
+        </label>
+        <input id="density" type="range" min="600" max="1800" value="1200" />
+
+        <label>
+          旋转速度
+          <span id="speedLabel">中</span>
+        </label>
+        <input id="speed" type="range" min="0.4" max="2.2" value="1.2" step="0.1" />
+
+        <label>
+          星云光晕
+          <span id="glowLabel">柔和</span>
+        </label>
+        <input id="glow" type="range" min="30" max="100" value="65" />
+      </div>
+
+      <p class="credit">提示：单击画面可重置星系中心，营造不同的运行轨迹。</p>
+    </section>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("universe");
+    const ctx = canvas.getContext("2d");
+
+    const densityInput = document.getElementById("density");
+    const speedInput = document.getElementById("speed");
+    const glowInput = document.getElementById("glow");
+
+    const starCountText = document.getElementById("starCount");
+    const radiusText = document.getElementById("radiusValue");
+    const speedText = document.getElementById("speedValue");
+    const glowText = document.getElementById("glowValue");
+    const densityLabel = document.getElementById("densityLabel");
+    const speedLabel = document.getElementById("speedLabel");
+    const glowLabel = document.getElementById("glowLabel");
+
+    let width = 0;
+    let height = 0;
+    let center = { x: 0, y: 0 };
+    let stars = [];
+    let rotationRadius = 240;
+    let timeScale = 1.2;
+    let glowStrength = 0.65;
+
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      center = { x: width * 0.55, y: height * 0.5 };
+      rotationRadius = Math.min(width, height) * 0.35;
+      radiusText.textContent = Math.round(rotationRadius);
+    };
+
+    const createStars = (count) => {
+      stars = Array.from({ length: count }, (_, i) => {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * rotationRadius * (0.3 + Math.random() * 0.7);
+        return {
+          angle,
+          distance,
+          size: Math.random() * 1.8 + 0.6,
+          speed: 0.0006 + Math.random() * 0.0012,
+          hue: 190 + Math.random() * 80,
+          drift: (Math.random() - 0.5) * 0.002,
+          twinkle: Math.random() * 0.6 + 0.4,
+        };
+      });
+      starCountText.textContent = count;
+      densityLabel.textContent = count > 1400 ? "极高" : count > 1000 ? "高" : "中";
+    };
+
+    const drawBackground = () => {
+      ctx.fillStyle = "#020312";
+      ctx.fillRect(0, 0, width, height);
+
+      const gradient = ctx.createRadialGradient(
+        center.x,
+        center.y,
+        rotationRadius * 0.2,
+        center.x,
+        center.y,
+        rotationRadius * 1.4
+      );
+      gradient.addColorStop(0, `rgba(120, 195, 255, ${0.15 + glowStrength * 0.35})`);
+      gradient.addColorStop(0.5, "rgba(37, 57, 135, 0.25)");
+      gradient.addColorStop(1, "rgba(4, 7, 23, 0.98)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+    };
+
+    const drawStars = (delta) => {
+      ctx.save();
+      ctx.translate(center.x, center.y);
+
+      for (const star of stars) {
+        star.angle += (star.speed + star.drift) * delta * timeScale;
+        const x = Math.cos(star.angle) * star.distance;
+        const y = Math.sin(star.angle) * star.distance * 0.7;
+        const alpha = star.twinkle + Math.sin(star.angle * 4) * 0.1;
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${star.hue}, 80%, 70%, ${alpha})`;
+        ctx.shadowColor = `hsla(${star.hue}, 90%, 80%, ${glowStrength})`;
+        ctx.shadowBlur = 12 * glowStrength;
+        ctx.arc(x, y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    };
+
+    let lastTime = performance.now();
+    const animate = (time) => {
+      const delta = time - lastTime;
+      lastTime = time;
+
+      drawBackground();
+      drawStars(delta);
+
+      requestAnimationFrame(animate);
+    };
+
+    densityInput.addEventListener("input", (event) => {
+      const value = Number(event.target.value);
+      createStars(value);
+    });
+
+    speedInput.addEventListener("input", (event) => {
+      timeScale = Number(event.target.value);
+      speedText.textContent = `${timeScale.toFixed(1)}x`;
+      speedLabel.textContent = timeScale > 1.6 ? "快" : timeScale > 0.9 ? "中" : "慢";
+    });
+
+    glowInput.addEventListener("input", (event) => {
+      glowStrength = Number(event.target.value) / 100;
+      glowText.textContent = `${event.target.value}%`;
+      glowLabel.textContent = glowStrength > 0.75 ? "高" : glowStrength > 0.5 ? "柔和" : "轻微";
+    });
+
+    canvas.addEventListener("click", (event) => {
+      center = { x: event.clientX, y: event.clientY };
+    });
+
+    window.addEventListener("resize", () => {
+      resize();
+      createStars(Number(densityInput.value));
+    });
+
+    resize();
+    createStars(Number(densityInput.value));
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
