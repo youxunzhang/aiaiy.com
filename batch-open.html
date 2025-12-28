@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>批量打开网站工具 | AIAIY</title>
-    <meta name="description" content="使用批量打开网站工具，一键打开常用的网址、工作站点或学习资源，支持顺序延迟、快速模板保存以及链接清理。">
-    <meta name="keywords" content="批量打开网站, 批量打开链接, 网站启动器, URL管理工具, 浏览器效率工具">
+    <title>Batch Open Website Tool | AIAIY</title>
+    <meta name="description" content="Open your essential sites in one click. Supports sequential delay, template saving, and link cleanup.">
+    <meta name="keywords" content="batch open websites, batch open links, website launcher, URL manager, browser productivity tools">
     <link rel="canonical" href="https://www.aiaiy.com/batch-open.html">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="modern-styles.css">
@@ -101,24 +101,24 @@
                         <span>🚀</span>
                         <span>Batch Launcher</span>
                     </span>
-                    <h1 class="text-4xl lg:text-5xl font-extrabold gradient-text">批量打开网站工具</h1>
+                    <h1 class="text-4xl lg:text-5xl font-extrabold gradient-text">Batch Open Website Tool</h1>
                     <p class="text-lg text-slate-200 max-w-3xl mx-auto">
-                        整理常用链接，一键批量启动工作流或学习资源。支持自动补全协议、顺序延迟打开、防止重复以及个人模板保存，让您的浏览器启动更高效。
+                        Organize your links and launch workflows or study resources in bulk. Supports protocol auto-complete, sequential delay, de-duplication, and personal templates for faster browser startup.
                     </p>
                 </header>
 
                 <section class="glass-card p-8 lg:p-10 space-y-6">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div>
-                            <h2 class="text-2xl font-semibold text-sky-200">链接列表</h2>
-                            <p class="text-slate-300 text-sm">每行一个链接，支持同时粘贴带空格、逗号的混合内容。</p>
+                            <h2 class="text-2xl font-semibold text-sky-200">Link List</h2>
+                            <p class="text-slate-300 text-sm">One link per line. You can paste mixed content with spaces or commas.</p>
                         </div>
                         <div class="flex items-center gap-3 text-slate-200 text-sm">
-                            <span class="status-badge status-info" id="urlCount">0 个链接</span>
-                            <button id="clearList" class="px-3 py-2 rounded-xl bg-slate-800/60 hover:bg-slate-700/70 border border-slate-600/60 transition">清空</button>
+                            <span class="status-badge status-info" id="urlCount">0 links</span>
+                            <button id="clearList" class="px-3 py-2 rounded-xl bg-slate-800/60 hover:bg-slate-700/70 border border-slate-600/60 transition">Clear</button>
                         </div>
                     </div>
-                    <textarea id="urlList" rows="10" class="w-full rounded-2xl p-4 text-base leading-relaxed" placeholder="例如：
+                    <textarea id="urlList" rows="10" class="w-full rounded-2xl p-4 text-base leading-relaxed" placeholder="Example:
 https://www.aiaiy.com
 https://www.google.com
 notion.so
@@ -126,28 +126,28 @@ https://www.producthunt.com"></textarea>
 
                     <div class="grid gap-4 md:grid-cols-2">
                         <label class="glass-card p-4 flex flex-col gap-2">
-                            <span class="text-slate-200 text-sm font-medium">逐个打开延迟（毫秒）</span>
+                            <span class="text-slate-200 text-sm font-medium">Sequential delay (ms)</span>
                             <input type="number" id="openDelay" min="0" value="800" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-400" />
-                            <span class="text-xs text-slate-400">为避免浏览器拦截，推荐设置 500-1500 毫秒。</span>
+                            <span class="text-xs text-slate-400">To avoid browser blocking, 500-1500 ms is recommended.</span>
                         </label>
                         <label class="glass-card p-4 flex flex-col gap-2">
-                            <span class="text-slate-200 text-sm font-medium">保存模板名称</span>
-                            <input type="text" id="presetName" placeholder="例如：每日启动、设计工具" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-400" />
+                            <span class="text-slate-200 text-sm font-medium">Template name</span>
+                            <input type="text" id="presetName" placeholder="Example: Daily start, design tools" class="rounded-xl bg-slate-900/60 border border-slate-700/60 px-4 py-2 text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                             <button id="savePreset" class="mt-2 inline-flex justify-center items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-400 hover:to-violet-400 font-semibold text-white transition">
-                                💾 保存为模板
+                                💾 Save as template
                             </button>
                         </label>
                     </div>
 
                     <div class="flex flex-wrap gap-3">
                         <button id="openAll" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 hover:from-sky-400 hover:via-cyan-400 hover:to-emerald-400 font-semibold text-slate-900 transition shadow-lg shadow-sky-900/40">
-                            🔓 立即全部打开
+                            🔓 Open all now
                         </button>
                         <button id="openSequential" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/70 border border-slate-600/70 hover:bg-slate-800/80 font-semibold text-slate-100 transition">
-                            ⏱️ 按延迟逐个打开
+                            ⏱️ Open sequentially
                         </button>
                         <button id="deduplicate" class="flex-1 md:flex-none px-5 py-3 rounded-2xl bg-slate-900/60 border border-slate-700/70 hover:bg-slate-800/70 font-semibold text-slate-200 transition">
-                            🧹 清理重复与空行
+                            🧹 Remove duplicates & blanks
                         </button>
                     </div>
 
@@ -157,32 +157,32 @@ https://www.producthunt.com"></textarea>
                 <section class="glass-card p-8 lg:p-10 space-y-6">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <div>
-                            <h2 class="text-2xl font-semibold text-sky-200">常用模板 & 快速填充</h2>
-                            <p class="text-slate-300 text-sm">点击即可填入上方链接区，可随时在右上角保存为自己的模板。</p>
+                            <h2 class="text-2xl font-semibold text-sky-200">Popular templates & quick fill</h2>
+                            <p class="text-slate-300 text-sm">Click to fill the link list above. Save your own template anytime in the top-right.</p>
                         </div>
-                        <button id="clearPresets" class="px-4 py-2 rounded-xl border border-slate-600/60 text-slate-300 hover:bg-slate-800/70 transition text-sm">重置默认模板</button>
+                        <button id="clearPresets" class="px-4 py-2 rounded-xl border border-slate-600/60 text-slate-300 hover:bg-slate-800/70 transition text-sm">Reset default templates</button>
                     </div>
 
                     <div class="space-y-4">
                         <div class="flex flex-wrap gap-3" id="presetContainer"></div>
                         <div class="divider"></div>
                         <div class="space-y-2 text-sm text-slate-300">
-                            <p class="font-semibold text-slate-200">使用建议：</p>
+                            <p class="font-semibold text-slate-200">Usage tips:</p>
                             <ul class="list-disc list-inside space-y-1">
-                                <li>浏览器可能会限制一次打开过多标签，请控制每批数量或使用延迟模式。</li>
-                                <li>如需在不同设备同步，可导出模板后发送给自己或团队。</li>
-                                <li>支持粘贴 Excel/表格中的链接，系统会自动提取有效 URL。</li>
+                                <li>Browsers may limit opening too many tabs at once. Reduce batch size or use delay mode.</li>
+                                <li>To sync across devices, export templates and share them with yourself or your team.</li>
+                                <li>Paste links from Excel or spreadsheets and valid URLs will be extracted automatically.</li>
                             </ul>
                         </div>
                     </div>
                 </section>
 
                 <section class="glass-card p-8 lg:p-10 space-y-6">
-                    <h2 class="text-2xl font-semibold text-sky-200">导出模板</h2>
-                    <p class="text-sm text-slate-300">快速备份当前所有模板，复制文本即可在其它浏览器导入。</p>
+                    <h2 class="text-2xl font-semibold text-sky-200">Export templates</h2>
+                    <p class="text-sm text-slate-300">Quickly back up all current templates and copy the text to import in another browser.</p>
                     <textarea id="exportArea" rows="6" readonly class="w-full rounded-2xl p-4 text-base bg-slate-950/60 border border-slate-700/60 text-slate-300"></textarea>
                     <button id="refreshExport" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-violet-500 to-indigo-500 hover:from-violet-400 hover:to-indigo-400 font-semibold text-white transition">
-                        🔄 更新导出内容
+                        🔄 Refresh export
                     </button>
                 </section>
             </div>
@@ -211,7 +211,7 @@ https://www.producthunt.com"></textarea>
 
         const defaultPresets = [
             {
-                name: '每日工作启动',
+                name: 'Daily Work Start',
                 urls: [
                     'https://mail.google.com',
                     'https://calendar.google.com',
@@ -221,7 +221,7 @@ https://www.producthunt.com"></textarea>
                 ]
             },
             {
-                name: 'AI 常用工具',
+                name: 'AI Daily Tools',
                 urls: [
                     'https://chat.openai.com',
                     'https://claude.ai',
@@ -230,7 +230,7 @@ https://www.producthunt.com"></textarea>
                 ]
             },
             {
-                name: '设计灵感',
+                name: 'Design Inspiration',
                 urls: [
                     'https://dribbble.com',
                     'https://www.behance.net',
@@ -248,7 +248,7 @@ https://www.producthunt.com"></textarea>
                 if (!Array.isArray(parsed)) return [...defaultPresets];
                 return parsed;
             } catch (error) {
-                console.error('读取模板失败', error);
+                console.error('Failed to load templates', error);
                 return [...defaultPresets];
             }
         }
@@ -276,7 +276,7 @@ https://www.producthunt.com"></textarea>
 
         function updateCount() {
             const urls = extractUrls(urlList.value);
-            urlCount.textContent = `${urls.length} 个链接`;
+            urlCount.textContent = `${urls.length} links`;
             return urls;
         }
 
@@ -292,16 +292,16 @@ https://www.producthunt.com"></textarea>
 
         function openUrls(urls, sequential = false) {
             if (urls.length === 0) {
-                showStatus('请先输入至少一个有效链接。', 'warning');
+                showStatus('Please enter at least one valid link.', 'warning');
                 return;
             }
 
             const delay = Math.max(0, parseInt(openDelayInput.value, 10) || 0);
-            showStatus(`准备打开 ${urls.length} 个链接${sequential ? `，每个延迟 ${delay} 毫秒` : ''}。`, 'info');
+            showStatus(`Preparing to open ${urls.length} links${sequential ? ` with ${delay} ms delay each` : ""}.`, 'info');
 
             if (!sequential) {
                 urls.forEach(url => window.open(url, '_blank'));
-                showStatus(`已尝试一次性打开 ${urls.length} 个链接。`, 'success');
+                showStatus(`Attempted to open ${urls.length} links at once.`, 'success');
                 return;
             }
 
@@ -309,7 +309,7 @@ https://www.producthunt.com"></textarea>
                 setTimeout(() => {
                     window.open(url, '_blank');
                     if (index === urls.length - 1) {
-                        showStatus(`已完成顺序打开 ${urls.length} 个链接。`, 'success');
+                        showStatus(`Finished opening ${urls.length} links sequentially.`, 'success');
                     }
                 }, index * delay);
             });
@@ -318,7 +318,7 @@ https://www.producthunt.com"></textarea>
         function fillUrls(urls) {
             urlList.value = urls.join('\n');
             updateCount();
-            showStatus(`已填充 ${urls.length} 个链接，可直接打开或保存。`, 'info');
+            showStatus(`Filled ${urls.length} links. Open now or save.`, 'info');
         }
 
         function renderPresets() {
@@ -340,7 +340,7 @@ https://www.producthunt.com"></textarea>
                     updated.splice(index, 1);
                     savePresets(updated);
                     renderPresets();
-                    showStatus(`已删除模板「${preset.name}」。`, 'warning');
+                    showStatus(`Deleted template "${preset.name}".`, 'warning');
                 });
 
                 chip.appendChild(removeBtn);
@@ -354,7 +354,7 @@ https://www.producthunt.com"></textarea>
                 const presets = getStoredPresets();
                 exportArea.value = JSON.stringify(presets, null, 2);
             } catch (error) {
-                exportArea.value = '导出失败，请重试。';
+                exportArea.value = 'Export failed. Please try again.';
             }
         }
 
@@ -362,13 +362,13 @@ https://www.producthunt.com"></textarea>
             const urls = extractUrls(urlList.value);
             urlList.value = urls.join('\n');
             updateCount();
-            showStatus(`已清理并保留 ${urls.length} 个唯一链接。`, 'success');
+            showStatus(`Cleaned and kept ${urls.length} unique links.`, 'success');
         }
 
         function clearList() {
             urlList.value = '';
             updateCount();
-            showStatus('已清空链接输入区。', 'info');
+            showStatus('Cleared the link list.', 'info');
         }
 
         function saveCurrentPreset() {
@@ -376,11 +376,11 @@ https://www.producthunt.com"></textarea>
             const urls = extractUrls(urlList.value);
 
             if (!name) {
-                showStatus('请填写模板名称后再保存。', 'warning');
+                showStatus('Please enter a template name before saving.', 'warning');
                 return;
             }
             if (urls.length === 0) {
-                showStatus('模板中至少需要包含一个链接。', 'warning');
+                showStatus('A template must contain at least one link.', 'warning');
                 return;
             }
 
@@ -388,10 +388,10 @@ https://www.producthunt.com"></textarea>
             const existingIndex = presets.findIndex(item => item.name === name);
             if (existingIndex >= 0) {
                 presets[existingIndex] = { name, urls };
-                showStatus(`已更新模板「${name}」。`, 'success');
+                showStatus(`Updated template "${name}".`, 'success');
             } else {
                 presets.push({ name, urls });
-                showStatus(`已保存模板「${name}」。`, 'success');
+                showStatus(`Saved template "${name}".`, 'success');
             }
             savePresets(presets);
             renderPresets();
@@ -400,7 +400,7 @@ https://www.producthunt.com"></textarea>
         function resetPresets() {
             savePresets([...defaultPresets]);
             renderPresets();
-            showStatus('已恢复默认模板。', 'info');
+            showStatus('Default templates restored.', 'info');
         }
 
         urlList.addEventListener('input', updateCount);
@@ -422,7 +422,7 @@ https://www.producthunt.com"></textarea>
         document.addEventListener('DOMContentLoaded', () => {
             renderPresets();
             updateCount();
-            showStatus('粘贴或输入链接，支持 Ctrl/Command + Enter 触发顺序打开。', 'info');
+            showStatus('Paste or type links. Press Ctrl/Command + Enter to open sequentially.', 'info');
         });
     </script>
 </body>
