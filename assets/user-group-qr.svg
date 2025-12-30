@@ -1,0 +1,96 @@
+<svg width="720" height="720" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="720" rx="48" fill="#FFFFFF"/>
+  <rect x="64" y="64" width="160" height="160" rx="24" fill="#3B82F6"/>
+  <rect x="84" y="84" width="120" height="120" rx="16" fill="#FFFFFF"/>
+  <rect x="104" y="104" width="80" height="80" rx="12" fill="#3B82F6"/>
+
+  <rect x="496" y="64" width="160" height="160" rx="24" fill="#3B82F6"/>
+  <rect x="516" y="84" width="120" height="120" rx="16" fill="#FFFFFF"/>
+  <rect x="536" y="104" width="80" height="80" rx="12" fill="#3B82F6"/>
+
+  <rect x="64" y="496" width="160" height="160" rx="24" fill="#3B82F6"/>
+  <rect x="84" y="516" width="120" height="120" rx="16" fill="#FFFFFF"/>
+  <rect x="104" y="536" width="80" height="80" rx="12" fill="#3B82F6"/>
+
+  <g fill="#60A5FA">
+    <rect x="264" y="72" width="20" height="20" rx="4"/>
+    <rect x="304" y="72" width="20" height="20" rx="4"/>
+    <rect x="344" y="72" width="20" height="20" rx="4"/>
+    <rect x="384" y="72" width="20" height="20" rx="4"/>
+    <rect x="264" y="112" width="20" height="20" rx="4"/>
+    <rect x="304" y="112" width="20" height="20" rx="4"/>
+    <rect x="344" y="112" width="20" height="20" rx="4"/>
+    <rect x="384" y="112" width="20" height="20" rx="4"/>
+    <rect x="424" y="112" width="20" height="20" rx="4"/>
+    <rect x="264" y="152" width="20" height="20" rx="4"/>
+    <rect x="304" y="152" width="20" height="20" rx="4"/>
+    <rect x="344" y="152" width="20" height="20" rx="4"/>
+    <rect x="384" y="152" width="20" height="20" rx="4"/>
+    <rect x="424" y="152" width="20" height="20" rx="4"/>
+    <rect x="464" y="152" width="20" height="20" rx="4"/>
+
+    <rect x="264" y="232" width="20" height="20" rx="4"/>
+    <rect x="304" y="232" width="20" height="20" rx="4"/>
+    <rect x="344" y="232" width="20" height="20" rx="4"/>
+    <rect x="384" y="232" width="20" height="20" rx="4"/>
+    <rect x="424" y="232" width="20" height="20" rx="4"/>
+    <rect x="464" y="232" width="20" height="20" rx="4"/>
+    <rect x="504" y="232" width="20" height="20" rx="4"/>
+
+    <rect x="240" y="272" width="20" height="20" rx="4"/>
+    <rect x="280" y="272" width="20" height="20" rx="4"/>
+    <rect x="320" y="272" width="20" height="20" rx="4"/>
+    <rect x="360" y="272" width="20" height="20" rx="4"/>
+    <rect x="400" y="272" width="20" height="20" rx="4"/>
+    <rect x="440" y="272" width="20" height="20" rx="4"/>
+    <rect x="480" y="272" width="20" height="20" rx="4"/>
+
+    <rect x="220" y="312" width="20" height="20" rx="4"/>
+    <rect x="260" y="312" width="20" height="20" rx="4"/>
+    <rect x="300" y="312" width="20" height="20" rx="4"/>
+    <rect x="340" y="312" width="20" height="20" rx="4"/>
+    <rect x="380" y="312" width="20" height="20" rx="4"/>
+    <rect x="420" y="312" width="20" height="20" rx="4"/>
+    <rect x="460" y="312" width="20" height="20" rx="4"/>
+    <rect x="500" y="312" width="20" height="20" rx="4"/>
+
+    <rect x="244" y="424" width="20" height="20" rx="4"/>
+    <rect x="284" y="424" width="20" height="20" rx="4"/>
+    <rect x="324" y="424" width="20" height="20" rx="4"/>
+    <rect x="364" y="424" width="20" height="20" rx="4"/>
+    <rect x="404" y="424" width="20" height="20" rx="4"/>
+    <rect x="444" y="424" width="20" height="20" rx="4"/>
+    <rect x="484" y="424" width="20" height="20" rx="4"/>
+    <rect x="524" y="424" width="20" height="20" rx="4"/>
+
+    <rect x="244" y="464" width="20" height="20" rx="4"/>
+    <rect x="284" y="464" width="20" height="20" rx="4"/>
+    <rect x="324" y="464" width="20" height="20" rx="4"/>
+    <rect x="364" y="464" width="20" height="20" rx="4"/>
+    <rect x="404" y="464" width="20" height="20" rx="4"/>
+    <rect x="444" y="464" width="20" height="20" rx="4"/>
+    <rect x="484" y="464" width="20" height="20" rx="4"/>
+
+    <rect x="264" y="504" width="20" height="20" rx="4"/>
+    <rect x="304" y="504" width="20" height="20" rx="4"/>
+    <rect x="344" y="504" width="20" height="20" rx="4"/>
+    <rect x="384" y="504" width="20" height="20" rx="4"/>
+    <rect x="424" y="504" width="20" height="20" rx="4"/>
+    <rect x="464" y="504" width="20" height="20" rx="4"/>
+
+    <rect x="264" y="544" width="20" height="20" rx="4"/>
+    <rect x="304" y="544" width="20" height="20" rx="4"/>
+    <rect x="344" y="544" width="20" height="20" rx="4"/>
+    <rect x="384" y="544" width="20" height="20" rx="4"/>
+    <rect x="424" y="544" width="20" height="20" rx="4"/>
+    <rect x="464" y="544" width="20" height="20" rx="4"/>
+  </g>
+
+  <rect x="276" y="276" width="168" height="168" rx="32" fill="#60A5FA"/>
+  <circle cx="336" cy="342" r="44" fill="#FFFFFF"/>
+  <circle cx="392" cy="326" r="36" fill="#FFFFFF"/>
+  <circle cx="320" cy="334" r="8" fill="#60A5FA"/>
+  <circle cx="368" cy="320" r="8" fill="#60A5FA"/>
+
+  <text x="360" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#94A3B8">Scan to join the WeChat group</text>
+</svg>

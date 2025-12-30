@@ -503,6 +503,10 @@
             font-weight: 500;
             padding: 0.5rem 0;
             transition: color 0.2s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
         }
 
         .simple-navbar__link:hover,
@@ -555,6 +559,101 @@
             opacity: 0.5;
             cursor: not-allowed;
             pointer-events: none;
+        }
+
+        .user-group-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .user-group-modal.is-open {
+            display: flex;
+        }
+
+        .user-group-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(6px);
+        }
+
+        .user-group-modal__panel {
+            position: relative;
+            max-width: 560px;
+            width: 100%;
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 2rem;
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .user-group-modal__title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a7f3d0;
+        }
+
+        .user-group-modal__subtitle {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0.35rem;
+            color: #f8fafc;
+        }
+
+        .user-group-modal__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .user-group-modal__close {
+            border: none;
+            background: rgba(148, 163, 184, 0.2);
+            color: #f8fafc;
+            border-radius: 999px;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-group-modal__qr {
+            display: flex;
+            justify-content: center;
+        }
+
+        .user-group-modal__qr img {
+            width: min(360px, 100%);
+            border-radius: 1.25rem;
+            box-shadow: 0 16px 40px rgba(59, 130, 246, 0.25);
+            background: #ffffff;
+            padding: 1rem;
+        }
+
+        .user-group-modal__description {
+            text-align: center;
+            font-size: 1.05rem;
+            color: #e2e8f0;
+        }
+
+        .user-group-modal__note {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .main-content {
@@ -1079,6 +1178,7 @@
                         <a href="ai-programming-tools.html" class="simple-navbar__link">AI Dev</a>
                         <a href="programming.html" class="simple-navbar__link">Dev & Sites</a>
                         <a href="rest.html" class="simple-navbar__link">Break</a>
+                        <button type="button" class="simple-navbar__link" data-user-group-trigger>用户群</button>
                         <div class="simple-navbar__dropdown">
                             <a href="ai-tools-landing.html" class="simple-navbar__link simple-navbar__link--parent">AI Tools</a>
                             <div class="simple-navbar__dropdown-menu" role="menu" aria-label="AI Tools">
@@ -1102,6 +1202,24 @@
             </div>
         </div>
     </header>
+
+    <div class="user-group-modal" data-user-group-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="加入用户交流">
+        <div class="user-group-modal__backdrop" data-user-group-close></div>
+        <div class="user-group-modal__panel" role="document">
+            <div class="user-group-modal__header">
+                <div>
+                    <div class="user-group-modal__title">加入用户交流群</div>
+                    <div class="user-group-modal__subtitle">群聊 seodog 用户</div>
+                </div>
+                <button type="button" class="user-group-modal__close" aria-label="关闭" data-user-group-close>×</button>
+            </div>
+            <div class="user-group-modal__qr">
+                <img src="assets/user-group-qr.svg" alt="加入用户交流群二维码">
+            </div>
+            <p class="user-group-modal__description">扫描二维码，加入我们的用户交流群，与其他用户一起探索使用心得。</p>
+            <p class="user-group-modal__note">二维码有效期 7 天，过期后请联系站长获取最新入口。群内会不定期分享使用技巧和更新信息。</p>
+        </div>
+    </div>
 
 
 
@@ -1421,6 +1539,38 @@
                 if (heroSubtitle) {
                     heroSubtitle.textContent = 'Find AI tools fast';
                 }
+            }
+
+            const userGroupModal = document.querySelector('[data-user-group-modal]');
+            const userGroupTriggers = document.querySelectorAll('[data-user-group-trigger]');
+            const userGroupCloses = document.querySelectorAll('[data-user-group-close]');
+
+            if (userGroupModal && userGroupTriggers.length) {
+                const openModal = () => {
+                    userGroupModal.classList.add('is-open');
+                    userGroupModal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                };
+
+                const closeModal = () => {
+                    userGroupModal.classList.remove('is-open');
+                    userGroupModal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                };
+
+                userGroupTriggers.forEach(trigger => {
+                    trigger.addEventListener('click', openModal);
+                });
+
+                userGroupCloses.forEach(closeButton => {
+                    closeButton.addEventListener('click', closeModal);
+                });
+
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && userGroupModal.classList.contains('is-open')) {
+                        closeModal();
+                    }
+                });
             }
 
             document.querySelectorAll('.ai-card').forEach(card => {
