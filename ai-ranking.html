@@ -13,15 +13,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-accent: #00f2fe;
+            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --secondary-gradient: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            --dark-gradient: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(148, 163, 184, 0.35);
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-accent: #2563eb;
         }
         
         * {
@@ -253,9 +253,9 @@
         
         /* Ranking cards */
         .ranking-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
+            backdrop-filter: blur(8px);
+            border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 1.5rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -264,6 +264,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
         }
         
         .ranking-card::before {
@@ -285,9 +286,9 @@
         .ranking-card:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 20px rgba(0, 242, 254, 0.3);
-            border-color: rgba(0, 242, 254, 0.5);
+                0 20px 40px rgba(15, 23, 42, 0.12),
+                0 0 20px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
         }
         
         /* Rank badge */
@@ -317,7 +318,7 @@
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--text-accent);
+            color: var(--text-primary);
         }
         
         .tool-desc {
@@ -412,8 +413,8 @@
         }
         
         .filter-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 8px;
             padding: 0.75rem 1.5rem;
             color: var(--text-secondary);
@@ -427,6 +428,80 @@
             background: var(--accent-gradient);
             color: white;
             border-color: var(--text-accent);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #1d4ed8;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .summary-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .summary-label {
+            color: #6b7280;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .summary-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #111827;
+            margin-top: 0.5rem;
+        }
+
+        .summary-subtitle {
+            color: #6b7280;
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            color: #111827;
+            background: #ffffff;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .select-control {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            background: #ffffff;
+            color: #374151;
+            font-size: 0.95rem;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .select-control:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
         
         /* Responsive design */
@@ -609,16 +684,55 @@
     <!-- Main content -->
     <main class="max-w-5xl mx-auto px-4 py-12">
         <section class="mb-20 fade-in">
-            <h1 class="category-title">🏆 AI Tools Rankings</h1>
-            <p class="text-center text-xl text-gray-300 mb-8">Revenue rankings based on Toolify data, showcasing popular AI products and services.</p>
+            <div class="flex flex-col items-center gap-4 text-center">
+                <span class="hero-badge">🚀 Updated ranking insights</span>
+                <h1 class="category-title">🏆 AI Tools Rankings</h1>
+                <p class="text-center text-xl text-gray-600 max-w-3xl">
+                    Revenue and traffic rankings based on Toolify data, highlighting the most popular AI products and
+                    services across chat, creative, productivity, and business categories.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="summary-card">
+                    <div class="summary-label">Total tools tracked</div>
+                    <div class="summary-value" id="totalTools">100</div>
+                    <div class="summary-subtitle">Across 4 key categories</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Top category</div>
+                    <div class="summary-value" id="topCategory">Creative</div>
+                    <div class="summary-subtitle">Highest representation</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Most used payment</div>
+                    <div class="summary-value" id="topPayment">Stripe</div>
+                    <div class="summary-subtitle">Payment platform leader</div>
+                </div>
+            </div>
             
             <!-- Filter buttons -->
-            <div class="filter-buttons">
+            <div class="filter-buttons mt-12">
                 <button class="filter-btn active" onclick="filterByCategory(event, 'all')">All</button>
                 <button class="filter-btn" onclick="filterByCategory(event, 'chat')">Chat</button>
                 <button class="filter-btn" onclick="filterByCategory(event, 'creative')">Creative Tools</button>
                 <button class="filter-btn" onclick="filterByCategory(event, 'productivity')">Productivity</button>
                 <button class="filter-btn" onclick="filterByCategory(event, 'business')">Business</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+                <div class="md:col-span-2">
+                    <label for="rankingSearch" class="summary-label">Search tools</label>
+                    <input id="rankingSearch" class="search-input mt-2" type="text" placeholder="Search by name, website, or payment platform">
+                </div>
+                <div>
+                    <label for="sortSelect" class="summary-label">Sort by</label>
+                    <select id="sortSelect" class="select-control mt-2 w-full">
+                        <option value="rank">Rank (default)</option>
+                        <option value="visits">Monthly visits</option>
+                        <option value="name">Name (A-Z)</option>
+                    </select>
+                </div>
             </div>
             
             <div id="rankingContainer">
@@ -692,19 +806,19 @@
                 </span>
                 <span class="text-2xl font-bold gradient-text">AI Tools Navigator</span>
             </div>
-            <p class="text-gray-300 mb-4 text-lg">Discover the best AI tools</p>
+            <p class="text-gray-600 mb-4 text-lg">Discover the best AI tools</p>
             <nav class="footer-nav" aria-label="Site Navigation">
-                                        <a href="index.html" class="text-gray-400 hover:text-white transition-colors mx-2">Home</a>
-                        <a href="ai-companies.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI Companies</a>
-                        <a href="play-game.html" class="text-gray-400 hover:text-white transition-colors mx-2">Games</a>
-                        <a href="ai-hotspots.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI Hotspots</a>
-                        <a href="real-needs.html" class="text-gray-400 hover:text-white transition-colors mx-2">Real Needs</a>
-                        <a href="ai-ranking.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI Rankings</a>
-                        <a href="ai-overseas.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI Global Expansion</a>
-                        <a href="ai-ads.html" class="text-gray-400 hover:text-white transition-colors mx-2">AI ADS</a>
-                        <a href="trends.html" class="text-gray-400 hover:text-white transition-colors mx-2">Trends</a>
+                                        <a href="index.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">Home</a>
+                        <a href="ai-companies.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">AI Companies</a>
+                        <a href="play-game.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">Games</a>
+                        <a href="ai-hotspots.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">AI Hotspots</a>
+                        <a href="real-needs.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">Real Needs</a>
+                        <a href="ai-ranking.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">AI Rankings</a>
+                        <a href="ai-overseas.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">AI Global Expansion</a>
+                        <a href="ai-ads.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">AI ADS</a>
+                        <a href="trends.html" class="text-gray-500 hover:text-blue-600 transition-colors mx-2">Trends</a>
             </nav>
-            <div class="text-sm text-gray-400 mt-4">© 2024 AI Tools Navigator. Data source: Toolify</div>
+            <div class="text-sm text-gray-500 mt-4">© 2024 AI Tools Navigator. Data source: Toolify</div>
         </div>
     </footer>
 
@@ -1712,11 +1826,100 @@
             }
         ];
 
+        let currentCategory = 'all';
+        let currentSearch = '';
+        let currentSort = 'rank';
+
+        const categoryLabels = {
+            chat: 'Chat',
+            creative: 'Creative',
+            productivity: 'Productivity',
+            business: 'Business'
+        };
+
+        function parseVisits(visitsText) {
+            if (!visitsText) return 0;
+            const numberMatch = visitsText.match(/[\d.]+/);
+            if (!numberMatch) return 0;
+            const value = parseFloat(numberMatch[0]);
+            if (visitsText.includes('hundred million')) {
+                return value * 100000000;
+            }
+            if (visitsText.includes('ten-thousand')) {
+                return value * 10000;
+            }
+            return value;
+        }
+
+        function updateSummaryCards(filteredData) {
+            const totalTools = document.getElementById('totalTools');
+            const topCategory = document.getElementById('topCategory');
+            const topPayment = document.getElementById('topPayment');
+
+            if (totalTools) {
+                totalTools.textContent = filteredData.length.toString();
+            }
+
+            const categoryCounts = filteredData.reduce((acc, item) => {
+                acc[item.category] = (acc[item.category] || 0) + 1;
+                return acc;
+            }, {});
+
+            const topCategoryEntry = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0];
+            if (topCategory && topCategoryEntry) {
+                const label = categoryLabels[topCategoryEntry[0]] || topCategoryEntry[0];
+                topCategory.textContent = label;
+            }
+
+            const paymentCounts = filteredData.reduce((acc, item) => {
+                const key = item.payment || 'Unknown';
+                acc[key] = (acc[key] || 0) + 1;
+                return acc;
+            }, {});
+
+            const topPaymentEntry = Object.entries(paymentCounts).sort((a, b) => b[1] - a[1])[0];
+            if (topPayment && topPaymentEntry) {
+                topPayment.textContent = topPaymentEntry[0];
+            }
+        }
+
+        function getFilteredData() {
+            return rankingData.filter((item) => {
+                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+                const searchTarget = `${item.name} ${item.website} ${item.payment}`.toLowerCase();
+                const matchesSearch = searchTarget.includes(currentSearch);
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        function sortRankingData(data) {
+            const sorted = [...data];
+            if (currentSort === 'visits') {
+                sorted.sort((a, b) => parseVisits(b.visits) - parseVisits(a.visits));
+            } else if (currentSort === 'name') {
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+            } else {
+                sorted.sort((a, b) => a.rank - b.rank);
+            }
+            return sorted;
+        }
+
         function renderRankingCards() {
             const rankingList = document.getElementById('rankingList');
             if (!rankingList) return;
-            const fragments = rankingData.map((item, index) => {
-                const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'rank-other';
+            const filteredData = sortRankingData(getFilteredData());
+            updateSummaryCards(filteredData);
+            if (filteredData.length === 0) {
+                rankingList.innerHTML = `
+                    <div class="summary-card text-center">
+                        <div class="summary-value">No results found</div>
+                        <div class="summary-subtitle">Try adjusting your search or filters.</div>
+                    </div>
+                `;
+                return;
+            }
+            const fragments = filteredData.map((item, index) => {
+                const rankClass = item.rank === 1 ? 'rank-1' : item.rank === 2 ? 'rank-2' : item.rank === 3 ? 'rank-3' : 'rank-other';
                 return `
                     <div class="ranking-card fade-in stagger-animation" data-category="${item.category}" style="--stagger-index: ${index};">
                         <div class="rank-badge ${rankClass}">${item.rank}</div>
@@ -1751,6 +1954,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mobileMenu = document.getElementById('mobileMenu');
+            const rankingSearch = document.getElementById('rankingSearch');
+            const sortSelect = document.getElementById('sortSelect');
             
             // Mobile menu toggle
             if (mobileMenuToggle && mobileMenu) {
@@ -1774,6 +1979,20 @@
                     link.classList.add('active');
                 }
             });
+
+            if (rankingSearch) {
+                rankingSearch.addEventListener('input', (event) => {
+                    currentSearch = event.target.value.trim().toLowerCase();
+                    renderRankingCards();
+                });
+            }
+
+            if (sortSelect) {
+                sortSelect.addEventListener('change', (event) => {
+                    currentSort = event.target.value;
+                    renderRankingCards();
+                });
+            }
         });
 
         // Particle effects
@@ -1796,17 +2015,20 @@
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenu = document.getElementById('closeMenu');
         
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-        });
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+        }
         
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
+        if (closeMenu && mobileMenu) {
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
         
         // Category filter
         function filterByCategory(event, category) {
-            const cards = document.querySelectorAll('.ranking-card');
             const buttons = document.querySelectorAll('.filter-btn');
 
             // Update button state
@@ -1815,14 +2037,8 @@
                 event.target.classList.add('active');
             }
 
-            // Filter cards
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            currentCategory = category;
+            renderRankingCards();
         }
         
         // Scroll animation
