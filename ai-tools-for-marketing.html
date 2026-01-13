@@ -17,6 +17,10 @@
         .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         .nav-links a { margin-right: 16px; font-weight: 600; text-decoration: none; color: #2563eb; }
         .tag { display: inline-block; background: #e2e8f0; padding: 4px 10px; border-radius: 999px; font-size: 0.85rem; margin-right: 8px; }
+        .tool-grid { margin-top: 24px; }
+        .tool-card { display: block; text-decoration: none; color: inherit; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; background: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12); }
+        .tool-rank { font-size: 0.85rem; font-weight: 700; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -33,6 +37,67 @@
             </nav>
         </div>
     </header>
+
+    <section class="section" style="background:#f8fafc;">
+        <div class="container">
+            <div class="card">
+                <h2>Top 10 AI Tools for Marketing Teams</h2>
+                <p>These platforms stand out for campaign impact, measurement readiness, and cross-channel performance.</p>
+                <div class="grid tool-grid">
+                    <a class="tool-card" href="https://www.hubspot.com/artificial-intelligence" target="_blank" rel="noopener">
+                        <div class="tool-rank">#1 CRM</div>
+                        <h3>HubSpot AI</h3>
+                        <p>AI-powered CRM, content, and automation in one suite.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.salesforce.com/products/einstein/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#2 Enterprise</div>
+                        <h3>Salesforce Einstein</h3>
+                        <p>Predictive insights and personalization for revenue teams.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.jasper.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#3 Content</div>
+                        <h3>Jasper</h3>
+                        <p>Brand-safe AI content with campaign workflows.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.copy.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#4 Copy</div>
+                        <h3>Copy.ai</h3>
+                        <p>AI copywriting with templates for ads and emails.</p>
+                    </a>
+                    <a class="tool-card" href="https://mailchimp.com/features/ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#5 Email</div>
+                        <h3>Mailchimp</h3>
+                        <p>AI-assisted email marketing and segmentation tools.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.semrush.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#6 SEO</div>
+                        <h3>Semrush</h3>
+                        <p>Competitive insights and AI content optimization.</p>
+                    </a>
+                    <a class="tool-card" href="https://ahrefs.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#7 Search</div>
+                        <h3>Ahrefs</h3>
+                        <p>Keyword intelligence and content gap analysis.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.canva.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#8 Creative</div>
+                        <h3>Canva</h3>
+                        <p>Fast creative production for ads and social content.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.hootsuite.com/platform" target="_blank" rel="noopener">
+                        <div class="tool-rank">#9 Social</div>
+                        <h3>Hootsuite</h3>
+                        <p>Social scheduling with AI-assisted content planning.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.klaviyo.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#10 Lifecycle</div>
+                        <h3>Klaviyo</h3>
+                        <p>AI personalization for email and SMS campaigns.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="container">

@@ -18,6 +18,10 @@
         .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
         .nav-links a { margin-right: 16px; font-weight: 600; text-decoration: none; color: #1d4ed8; }
         .badge { display: inline-block; background: #e2e8f0; padding: 4px 10px; border-radius: 999px; font-size: 0.85rem; margin-right: 8px; }
+        .tool-grid { margin-top: 24px; }
+        .tool-card { display: block; text-decoration: none; color: inherit; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; background: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12); }
+        .tool-rank { font-size: 0.85rem; font-weight: 700; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -34,6 +38,67 @@
             </nav>
         </div>
     </header>
+
+    <section class="section" style="background:#f8fafc;">
+        <div class="container">
+            <div class="card">
+                <h2>Top 10 AI Tools Across Categories</h2>
+                <p>These sites consistently score in Tier 1 across capability, usability, and trust. Use them as your starting list before drilling into category-specific rankings.</p>
+                <div class="grid tool-grid">
+                    <a class="tool-card" href="https://chat.openai.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#1 Assistant</div>
+                        <h3>ChatGPT</h3>
+                        <p>General-purpose assistant for research, drafting, and workflow support.</p>
+                    </a>
+                    <a class="tool-card" href="https://claude.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#2 Reasoning</div>
+                        <h3>Claude</h3>
+                        <p>Long-context analysis and reliable synthesis for knowledge teams.</p>
+                    </a>
+                    <a class="tool-card" href="https://gemini.google.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#3 Multimodal</div>
+                        <h3>Gemini</h3>
+                        <p>Strong cross-modal answers with Google ecosystem integration.</p>
+                    </a>
+                    <a class="tool-card" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#4 Productivity</div>
+                        <h3>Microsoft Copilot</h3>
+                        <p>Embedded AI for Microsoft 365, meetings, and enterprise workflows.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.perplexity.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#5 Research</div>
+                        <h3>Perplexity</h3>
+                        <p>Source-backed research assistant for fast, cited answers.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.notion.so/product/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#6 Workspace</div>
+                        <h3>Notion AI</h3>
+                        <p>All-in-one workspace that blends docs, wikis, and AI writing.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.midjourney.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#7 Image</div>
+                        <h3>Midjourney</h3>
+                        <p>High-fidelity image generation with art-direction controls.</p>
+                    </a>
+                    <a class="tool-card" href="https://runwayml.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#8 Video</div>
+                        <h3>Runway</h3>
+                        <p>AI video generation and editing for production teams.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.canva.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#9 Design</div>
+                        <h3>Canva</h3>
+                        <p>Template-led creative suite with fast AI-assisted visuals.</p>
+                    </a>
+                    <a class="tool-card" href="https://github.com/features/copilot" target="_blank" rel="noopener">
+                        <div class="tool-rank">#10 Coding</div>
+                        <h3>GitHub Copilot</h3>
+                        <p>Developer copilot for autocomplete, refactors, and tests.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="container">

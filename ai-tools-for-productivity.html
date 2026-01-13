@@ -17,6 +17,10 @@
         .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         .nav-links a { margin-right: 16px; font-weight: 600; text-decoration: none; color: #2563eb; }
         .tag { display: inline-block; background: #e2e8f0; padding: 4px 10px; border-radius: 999px; font-size: 0.85rem; margin-right: 8px; }
+        .tool-grid { margin-top: 24px; }
+        .tool-card { display: block; text-decoration: none; color: inherit; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; background: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12); }
+        .tool-rank { font-size: 0.85rem; font-weight: 700; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -33,6 +37,67 @@
             </nav>
         </div>
     </header>
+
+    <section class="section" style="background:#f8fafc;">
+        <div class="container">
+            <div class="card">
+                <h2>Top 10 AI Tools for Productivity</h2>
+                <p>These tools consistently deliver measurable time savings, fast onboarding, and strong integrations with everyday work systems.</p>
+                <div class="grid tool-grid">
+                    <a class="tool-card" href="https://www.notion.so/product/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#1 Workspace</div>
+                        <h3>Notion AI</h3>
+                        <p>Unified docs and knowledge with embedded AI drafting.</p>
+                    </a>
+                    <a class="tool-card" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#2 Microsoft 365</div>
+                        <h3>Microsoft Copilot</h3>
+                        <p>AI across Word, Excel, Outlook, and Teams.</p>
+                    </a>
+                    <a class="tool-card" href="https://workspace.google.com/solutions/ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#3 Google Workspace</div>
+                        <h3>Gemini for Workspace</h3>
+                        <p>AI assistance inside Gmail, Docs, and Slides.</p>
+                    </a>
+                    <a class="tool-card" href="https://slack.com/features/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#4 Team Chat</div>
+                        <h3>Slack AI</h3>
+                        <p>Channel summaries, answers, and message prioritization.</p>
+                    </a>
+                    <a class="tool-card" href="https://explore.zoom.us/en/products/ai-companion/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#5 Meetings</div>
+                        <h3>Zoom AI Companion</h3>
+                        <p>Meeting summaries, action items, and live notes.</p>
+                    </a>
+                    <a class="tool-card" href="https://otter.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#6 Transcription</div>
+                        <h3>Otter.ai</h3>
+                        <p>Accurate meeting capture and searchable notes.</p>
+                    </a>
+                    <a class="tool-card" href="https://fireflies.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#7 Knowledge</div>
+                        <h3>Fireflies.ai</h3>
+                        <p>Call summaries and CRM-ready conversation data.</p>
+                    </a>
+                    <a class="tool-card" href="https://asana.com/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#8 Project Work</div>
+                        <h3>Asana AI</h3>
+                        <p>Smart task creation, status updates, and prioritization.</p>
+                    </a>
+                    <a class="tool-card" href="https://monday.com/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#9 Operations</div>
+                        <h3>Monday AI</h3>
+                        <p>Workflow automation and AI updates for teams.</p>
+                    </a>
+                    <a class="tool-card" href="https://zapier.com/ai" target="_blank" rel="noopener">
+                        <div class="tool-rank">#10 Automation</div>
+                        <h3>Zapier AI</h3>
+                        <p>No-code automation that connects your daily apps.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="container">

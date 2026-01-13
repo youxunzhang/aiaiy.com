@@ -17,6 +17,10 @@
         .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         .nav-links a { margin-right: 16px; font-weight: 600; text-decoration: none; color: #2563eb; }
         .tag { display: inline-block; background: #e2e8f0; padding: 4px 10px; border-radius: 999px; font-size: 0.85rem; margin-right: 8px; }
+        .tool-grid { margin-top: 24px; }
+        .tool-card { display: block; text-decoration: none; color: inherit; border: 1px solid #e2e8f0; border-radius: 14px; padding: 18px; background: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12); }
+        .tool-rank { font-size: 0.85rem; font-weight: 700; color: #64748b; letter-spacing: 0.04em; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -33,6 +37,67 @@
             </nav>
         </div>
     </header>
+
+    <section class="section" style="background:#f8fafc;">
+        <div class="container">
+            <div class="card">
+                <h2>Top 10 AI Tools for Design Teams</h2>
+                <p>These tools are the highest-scoring picks for creative control, fidelity, and production readiness.</p>
+                <div class="grid tool-grid">
+                    <a class="tool-card" href="https://www.figma.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#1 UI Design</div>
+                        <h3>Figma</h3>
+                        <p>Collaborative interface design with growing AI features.</p>
+                    </a>
+                    <a class="tool-card" href="https://firefly.adobe.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#2 Creative Suite</div>
+                        <h3>Adobe Firefly</h3>
+                        <p>Generative design tools aligned with Adobe workflows.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.midjourney.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#3 Image Gen</div>
+                        <h3>Midjourney</h3>
+                        <p>Premium visual generation with art-direction control.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.canva.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#4 Templates</div>
+                        <h3>Canva</h3>
+                        <p>Quick creative production with brand kit controls.</p>
+                    </a>
+                    <a class="tool-card" href="https://runwayml.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#5 Motion</div>
+                        <h3>Runway</h3>
+                        <p>AI video generation and creative editing toolkit.</p>
+                    </a>
+                    <a class="tool-card" href="https://ideogram.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#6 Typography</div>
+                        <h3>Ideogram</h3>
+                        <p>Text-forward image generation with strong layout control.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.krea.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#7 Iteration</div>
+                        <h3>Krea</h3>
+                        <p>Rapid image iteration and style exploration.</p>
+                    </a>
+                    <a class="tool-card" href="https://www.framer.com/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#8 Web Design</div>
+                        <h3>Framer</h3>
+                        <p>AI-assisted site design with production-ready output.</p>
+                    </a>
+                    <a class="tool-card" href="https://uizard.io/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#9 Prototyping</div>
+                        <h3>Uizard</h3>
+                        <p>Rapid UI prototyping from prompts and sketches.</p>
+                    </a>
+                    <a class="tool-card" href="https://leonardo.ai/" target="_blank" rel="noopener">
+                        <div class="tool-rank">#10 Illustration</div>
+                        <h3>Leonardo AI</h3>
+                        <p>Character and asset generation for design teams.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="container">
