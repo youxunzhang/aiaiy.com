@@ -15,6 +15,8 @@ const elements = {
   selectedLevelText: document.querySelector('#selected-level-text'),
   selectionHint: document.querySelector('#selection-hint'),
   printButton: document.querySelector('#print-button'),
+  explanationTitle: document.querySelector('#emotion-explanation-title'),
+  explanationText: document.querySelector('#emotion-explanation-text'),
 };
 
 function setStep(step) {
@@ -50,6 +52,7 @@ function createLevelCard(level) {
     elements.selectedLevelText.textContent = level.name;
     renderEmotions();
     updateEmotionHint();
+    resetExplanation();
     setStep('2');
   });
   return button;
@@ -86,16 +89,37 @@ function createEmotionCard(item) {
       state.selectedEmotions.delete(item.id);
       updateSelected();
       updateEmotionHint();
+      setExplanation(item);
       return;
     }
 
     state.selectedEmotions.add(item.id);
     updateSelected();
     updateEmotionHint();
+    setExplanation(item);
   });
 
   updateSelected();
   return button;
+}
+
+function getEmotionExplanation(item) {
+  if (item.description) return item.description;
+  const level = state.levels.find((levelItem) => levelItem.key === item.level);
+  const levelName = level ? level.name : '当前层级';
+  return `「${item.emotion}」指你在${levelName}状态下的一种常见情绪反应，可能表现为对当下处境的主观感受、身体反应或想法变化。`;
+}
+
+function resetExplanation() {
+  if (!elements.explanationTitle || !elements.explanationText) return;
+  elements.explanationTitle.textContent = '请选择一个情绪';
+  elements.explanationText.textContent = '点击上方任意情绪卡片，查看该情绪的简要解释。';
+}
+
+function setExplanation(item) {
+  if (!elements.explanationTitle || !elements.explanationText) return;
+  elements.explanationTitle.textContent = item.emotion;
+  elements.explanationText.textContent = getEmotionExplanation(item);
 }
 
 function renderLevels() {
@@ -199,6 +223,7 @@ async function init() {
     state.items = data.items || [];
     renderLevels();
     updateEmotionHint();
+    resetExplanation();
   } catch (error) {
     elements.levelList.innerHTML =
       '<div class="rounded-2xl border border-dashed border-red-200 bg-white p-6 text-center text-sm text-red-500">数据加载失败，请稍后再试。</div>';
