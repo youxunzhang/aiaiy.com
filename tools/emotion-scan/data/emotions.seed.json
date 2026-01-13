@@ -1,159 +1,1176 @@
 {
   "levels": [
-    { "key": "wan_niu", "name": "万念俱灰", "order": 1 },
-    { "key": "bei_ku", "name": "悲苦", "order": 2 },
-    { "key": "kong_ju", "name": "恐惧", "order": 3 },
-    { "key": "tan_qiu", "name": "贪求", "order": 4 },
-    { "key": "fen_nu", "name": "愤怒", "order": 5 },
-    { "key": "zi_zun", "name": "自尊自傲", "order": 6 },
-    { "key": "wu_wei", "name": "无畏", "order": 7 },
-    { "key": "jie_na", "name": "接纳", "order": 8 },
-    { "key": "ping_he", "name": "平和", "order": 9 }
+    {
+      "key": "wan_niu",
+      "name": "万念俱灰",
+      "order": 1
+    },
+    {
+      "key": "bei_ku",
+      "name": "悲苦",
+      "order": 2
+    },
+    {
+      "key": "kong_ju",
+      "name": "恐惧",
+      "order": 3
+    },
+    {
+      "key": "tan_qiu",
+      "name": "贪求",
+      "order": 4
+    },
+    {
+      "key": "fen_nu",
+      "name": "愤怒",
+      "order": 5
+    },
+    {
+      "key": "zi_zun",
+      "name": "自尊自傲",
+      "order": 6
+    },
+    {
+      "key": "wu_wei",
+      "name": "无畏",
+      "order": 7
+    },
+    {
+      "key": "jie_na",
+      "name": "接纳",
+      "order": 8
+    },
+    {
+      "key": "ping_he",
+      "name": "平和",
+      "order": 9
+    }
   ],
   "items": [
     {
       "id": "wan_niu_001",
       "level": "wan_niu",
-      "emotion": "无聊",
-      "desc": "对任何事都提不起劲，缺少刺激与意义感。",
-      "actions": ["去户外走 10 分钟", "把今天最小目标写下来（只写 1 条）", "喝一杯温水并深呼吸 10 次"],
-      "next_level": "bei_ku"
+      "emotion": "无聊"
     },
     {
       "id": "wan_niu_002",
       "level": "wan_niu",
-      "emotion": "麻木",
-      "desc": "情绪像被按下静音键，感受变得迟钝。",
-      "actions": ["做 30 秒身体扫描：头-肩-胸-腹-腿", "洗把脸/换个姿势", "把‘我现在感到…’写 1 句"],
-      "next_level": "bei_ku"
+      "emotion": "麻木"
+    },
+    {
+      "id": "wan_niu_003",
+      "level": "wan_niu",
+      "emotion": "冷漠"
+    },
+    {
+      "id": "wan_niu_004",
+      "level": "wan_niu",
+      "emotion": "无助"
+    },
+    {
+      "id": "wan_niu_005",
+      "level": "wan_niu",
+      "emotion": "无望"
+    },
+    {
+      "id": "wan_niu_006",
+      "level": "wan_niu",
+      "emotion": "绝望"
+    },
+    {
+      "id": "wan_niu_007",
+      "level": "wan_niu",
+      "emotion": "心灰意冷"
+    },
+    {
+      "id": "wan_niu_008",
+      "level": "wan_niu",
+      "emotion": "放弃"
+    },
+    {
+      "id": "wan_niu_009",
+      "level": "wan_niu",
+      "emotion": "气馁"
+    },
+    {
+      "id": "wan_niu_010",
+      "level": "wan_niu",
+      "emotion": "失落"
+    },
+    {
+      "id": "wan_niu_011",
+      "level": "wan_niu",
+      "emotion": "空虚"
+    },
+    {
+      "id": "wan_niu_012",
+      "level": "wan_niu",
+      "emotion": "孤独"
+    },
+    {
+      "id": "wan_niu_013",
+      "level": "wan_niu",
+      "emotion": "崩溃"
+    },
+    {
+      "id": "wan_niu_014",
+      "level": "wan_niu",
+      "emotion": "退缩"
+    },
+    {
+      "id": "wan_niu_015",
+      "level": "wan_niu",
+      "emotion": "丧气"
+    },
+    {
+      "id": "wan_niu_016",
+      "level": "wan_niu",
+      "emotion": "枯竭"
+    },
+    {
+      "id": "wan_niu_017",
+      "level": "wan_niu",
+      "emotion": "疲惫"
+    },
+    {
+      "id": "wan_niu_018",
+      "level": "wan_niu",
+      "emotion": "昏沉"
+    },
+    {
+      "id": "wan_niu_019",
+      "level": "wan_niu",
+      "emotion": "迟钝"
+    },
+    {
+      "id": "wan_niu_020",
+      "level": "wan_niu",
+      "emotion": "无意义"
+    },
+    {
+      "id": "wan_niu_021",
+      "level": "wan_niu",
+      "emotion": "迷茫"
+    },
+    {
+      "id": "wan_niu_022",
+      "level": "wan_niu",
+      "emotion": "失败"
+    },
+    {
+      "id": "wan_niu_023",
+      "level": "wan_niu",
+      "emotion": "挫败"
+    },
+    {
+      "id": "wan_niu_024",
+      "level": "wan_niu",
+      "emotion": "无价值"
+    },
+    {
+      "id": "wan_niu_025",
+      "level": "wan_niu",
+      "emotion": "心如死灰"
     },
     {
       "id": "bei_ku_001",
       "level": "bei_ku",
-      "emotion": "被遗弃",
-      "desc": "感觉自己不被需要或被抛下，内心空落。",
-      "actions": ["联系一个可信任的人发一句‘我想聊聊’", "写下 3 个支持你的人/事", "做 2 分钟缓慢呼吸（吸4呼6）"],
-      "next_level": "jie_na"
+      "emotion": "被遗弃"
     },
     {
       "id": "bei_ku_002",
       "level": "bei_ku",
-      "emotion": "失望",
-      "desc": "期待落空导致的低落，容易否定自己或他人。",
-      "actions": ["把失望分两类：可控/不可控", "对可控项写 1 个行动", "暂停 10 分钟不做决定"],
-      "next_level": "jie_na"
+      "emotion": "被忽视"
+    },
+    {
+      "id": "bei_ku_003",
+      "level": "bei_ku",
+      "emotion": "被指责"
+    },
+    {
+      "id": "bei_ku_004",
+      "level": "bei_ku",
+      "emotion": "被误解"
+    },
+    {
+      "id": "bei_ku_005",
+      "level": "bei_ku",
+      "emotion": "被辜负"
+    },
+    {
+      "id": "bei_ku_006",
+      "level": "bei_ku",
+      "emotion": "伤心"
+    },
+    {
+      "id": "bei_ku_007",
+      "level": "bei_ku",
+      "emotion": "心痛"
+    },
+    {
+      "id": "bei_ku_008",
+      "level": "bei_ku",
+      "emotion": "悲伤"
+    },
+    {
+      "id": "bei_ku_009",
+      "level": "bei_ku",
+      "emotion": "难过"
+    },
+    {
+      "id": "bei_ku_010",
+      "level": "bei_ku",
+      "emotion": "失望"
+    },
+    {
+      "id": "bei_ku_011",
+      "level": "bei_ku",
+      "emotion": "失落"
+    },
+    {
+      "id": "bei_ku_012",
+      "level": "bei_ku",
+      "emotion": "惋惜"
+    },
+    {
+      "id": "bei_ku_013",
+      "level": "bei_ku",
+      "emotion": "哀伤"
+    },
+    {
+      "id": "bei_ku_014",
+      "level": "bei_ku",
+      "emotion": "后悔"
+    },
+    {
+      "id": "bei_ku_015",
+      "level": "bei_ku",
+      "emotion": "内疚"
+    },
+    {
+      "id": "bei_ku_016",
+      "level": "bei_ku",
+      "emotion": "羞愧"
+    },
+    {
+      "id": "bei_ku_017",
+      "level": "bei_ku",
+      "emotion": "痛苦"
+    },
+    {
+      "id": "bei_ku_018",
+      "level": "bei_ku",
+      "emotion": "受伤"
+    },
+    {
+      "id": "bei_ku_019",
+      "level": "bei_ku",
+      "emotion": "被背叛"
+    },
+    {
+      "id": "bei_ku_020",
+      "level": "bei_ku",
+      "emotion": "思念"
+    },
+    {
+      "id": "bei_ku_021",
+      "level": "bei_ku",
+      "emotion": "惆怅"
+    },
+    {
+      "id": "bei_ku_022",
+      "level": "bei_ku",
+      "emotion": "悲哀"
+    },
+    {
+      "id": "bei_ku_023",
+      "level": "bei_ku",
+      "emotion": "哭泣"
+    },
+    {
+      "id": "bei_ku_024",
+      "level": "bei_ku",
+      "emotion": "哀悼"
+    },
+    {
+      "id": "bei_ku_025",
+      "level": "bei_ku",
+      "emotion": "心酸"
     },
     {
       "id": "kong_ju_001",
       "level": "kong_ju",
-      "emotion": "焦虑",
-      "desc": "对未来不确定性的持续担忧，注意力被拉扯。",
-      "actions": ["2 分钟腹式呼吸", "写下担忧→只保留‘能立刻做的一条’", "把手机放远 15 分钟"],
-      "next_level": "jie_na"
+      "emotion": "害怕"
     },
     {
       "id": "kong_ju_002",
       "level": "kong_ju",
-      "emotion": "紧张",
-      "desc": "身体进入警觉状态，心跳加快、坐立不安。",
-      "actions": ["放松肩颈：耸肩-放下 10 次", "喝温水", "把任务拆成下一步 1 分钟能做的动作"],
-      "next_level": "jie_na"
+      "emotion": "恐惧"
+    },
+    {
+      "id": "kong_ju_003",
+      "level": "kong_ju",
+      "emotion": "焦虑"
+    },
+    {
+      "id": "kong_ju_004",
+      "level": "kong_ju",
+      "emotion": "紧张"
+    },
+    {
+      "id": "kong_ju_005",
+      "level": "kong_ju",
+      "emotion": "不安"
+    },
+    {
+      "id": "kong_ju_006",
+      "level": "kong_ju",
+      "emotion": "担心"
+    },
+    {
+      "id": "kong_ju_007",
+      "level": "kong_ju",
+      "emotion": "惶恐"
+    },
+    {
+      "id": "kong_ju_008",
+      "level": "kong_ju",
+      "emotion": "惊恐"
+    },
+    {
+      "id": "kong_ju_009",
+      "level": "kong_ju",
+      "emotion": "恐慌"
+    },
+    {
+      "id": "kong_ju_010",
+      "level": "kong_ju",
+      "emotion": "心慌"
+    },
+    {
+      "id": "kong_ju_011",
+      "level": "kong_ju",
+      "emotion": "慌张"
+    },
+    {
+      "id": "kong_ju_012",
+      "level": "kong_ju",
+      "emotion": "胆怯"
+    },
+    {
+      "id": "kong_ju_013",
+      "level": "kong_ju",
+      "emotion": "畏惧"
+    },
+    {
+      "id": "kong_ju_014",
+      "level": "kong_ju",
+      "emotion": "多疑"
+    },
+    {
+      "id": "kong_ju_015",
+      "level": "kong_ju",
+      "emotion": "提心吊胆"
+    },
+    {
+      "id": "kong_ju_016",
+      "level": "kong_ju",
+      "emotion": "戒备"
+    },
+    {
+      "id": "kong_ju_017",
+      "level": "kong_ju",
+      "emotion": "恐怖"
+    },
+    {
+      "id": "kong_ju_018",
+      "level": "kong_ju",
+      "emotion": "被威胁"
+    },
+    {
+      "id": "kong_ju_019",
+      "level": "kong_ju",
+      "emotion": "受惊"
+    },
+    {
+      "id": "kong_ju_020",
+      "level": "kong_ju",
+      "emotion": "畏缩"
+    },
+    {
+      "id": "kong_ju_021",
+      "level": "kong_ju",
+      "emotion": "惧怕"
+    },
+    {
+      "id": "kong_ju_022",
+      "level": "kong_ju",
+      "emotion": "惊吓"
+    },
+    {
+      "id": "kong_ju_023",
+      "level": "kong_ju",
+      "emotion": "忧虑"
+    },
+    {
+      "id": "kong_ju_024",
+      "level": "kong_ju",
+      "emotion": "不确定"
+    },
+    {
+      "id": "kong_ju_025",
+      "level": "kong_ju",
+      "emotion": "不信任"
     },
     {
       "id": "tan_qiu_001",
       "level": "tan_qiu",
-      "emotion": "渴望",
-      "desc": "强烈想得到某种结果，内心不安定。",
-      "actions": ["把渴望写成一句：我想要…因为…", "设一个‘延迟 10 分钟’再决定", "做 20 次慢走/深蹲(可选其一)"],
-      "next_level": "jie_na"
+      "emotion": "渴望"
     },
     {
       "id": "tan_qiu_002",
       "level": "tan_qiu",
-      "emotion": "强迫",
-      "desc": "必须立刻完成/得到，否则难以放松。",
-      "actions": ["用计时器 5 分钟先做一点点", "允许‘先粗糙再完善’", "关掉多余通知 1 小时"],
-      "next_level": "jie_na"
+      "emotion": "欲望"
+    },
+    {
+      "id": "tan_qiu_003",
+      "level": "tan_qiu",
+      "emotion": "贪婪"
+    },
+    {
+      "id": "tan_qiu_004",
+      "level": "tan_qiu",
+      "emotion": "占有"
+    },
+    {
+      "id": "tan_qiu_005",
+      "level": "tan_qiu",
+      "emotion": "执着"
+    },
+    {
+      "id": "tan_qiu_006",
+      "level": "tan_qiu",
+      "emotion": "强迫"
+    },
+    {
+      "id": "tan_qiu_007",
+      "level": "tan_qiu",
+      "emotion": "上瘾"
+    },
+    {
+      "id": "tan_qiu_008",
+      "level": "tan_qiu",
+      "emotion": "追逐"
+    },
+    {
+      "id": "tan_qiu_009",
+      "level": "tan_qiu",
+      "emotion": "羡慕"
+    },
+    {
+      "id": "tan_qiu_010",
+      "level": "tan_qiu",
+      "emotion": "嫉妒"
+    },
+    {
+      "id": "tan_qiu_011",
+      "level": "tan_qiu",
+      "emotion": "依赖"
+    },
+    {
+      "id": "tan_qiu_012",
+      "level": "tan_qiu",
+      "emotion": "放纵"
+    },
+    {
+      "id": "tan_qiu_013",
+      "level": "tan_qiu",
+      "emotion": "追求"
+    },
+    {
+      "id": "tan_qiu_014",
+      "level": "tan_qiu",
+      "emotion": "想要"
+    },
+    {
+      "id": "tan_qiu_015",
+      "level": "tan_qiu",
+      "emotion": "索取"
+    },
+    {
+      "id": "tan_qiu_016",
+      "level": "tan_qiu",
+      "emotion": "渴求"
+    },
+    {
+      "id": "tan_qiu_017",
+      "level": "tan_qiu",
+      "emotion": "沉迷"
+    },
+    {
+      "id": "tan_qiu_018",
+      "level": "tan_qiu",
+      "emotion": "贪恋"
+    },
+    {
+      "id": "tan_qiu_019",
+      "level": "tan_qiu",
+      "emotion": "急切"
+    },
+    {
+      "id": "tan_qiu_020",
+      "level": "tan_qiu",
+      "emotion": "迫切"
+    },
+    {
+      "id": "tan_qiu_021",
+      "level": "tan_qiu",
+      "emotion": "计较"
+    },
+    {
+      "id": "tan_qiu_022",
+      "level": "tan_qiu",
+      "emotion": "不满足"
+    },
+    {
+      "id": "tan_qiu_023",
+      "level": "tan_qiu",
+      "emotion": "好奇"
+    },
+    {
+      "id": "tan_qiu_024",
+      "level": "tan_qiu",
+      "emotion": "攀比"
+    },
+    {
+      "id": "tan_qiu_025",
+      "level": "tan_qiu",
+      "emotion": "控制欲"
     },
     {
       "id": "fen_nu_001",
       "level": "fen_nu",
-      "emotion": "恼怒",
-      "desc": "被冒犯或受阻时的烦躁，容易冲动回应。",
-      "actions": ["先停 10 秒再说话", "把感受换成陈述：我希望…", "离开现场/屏幕 2 分钟"],
-      "next_level": "jie_na"
+      "emotion": "愤怒"
     },
     {
       "id": "fen_nu_002",
       "level": "fen_nu",
-      "emotion": "怨恨",
-      "desc": "对过去伤害耿耿于怀，情绪反复翻涌。",
-      "actions": ["写一段‘我受伤的原因是…’", "把注意力放在可以改变的一件事", "散步 5 分钟让心率回落"],
-      "next_level": "jie_na"
+      "emotion": "恼怒"
+    },
+    {
+      "id": "fen_nu_003",
+      "level": "fen_nu",
+      "emotion": "气愤"
+    },
+    {
+      "id": "fen_nu_004",
+      "level": "fen_nu",
+      "emotion": "烦躁"
+    },
+    {
+      "id": "fen_nu_005",
+      "level": "fen_nu",
+      "emotion": "不满"
+    },
+    {
+      "id": "fen_nu_006",
+      "level": "fen_nu",
+      "emotion": "怨恨"
+    },
+    {
+      "id": "fen_nu_007",
+      "level": "fen_nu",
+      "emotion": "憎恨"
+    },
+    {
+      "id": "fen_nu_008",
+      "level": "fen_nu",
+      "emotion": "怒火"
+    },
+    {
+      "id": "fen_nu_009",
+      "level": "fen_nu",
+      "emotion": "暴躁"
+    },
+    {
+      "id": "fen_nu_010",
+      "level": "fen_nu",
+      "emotion": "暴怒"
+    },
+    {
+      "id": "fen_nu_011",
+      "level": "fen_nu",
+      "emotion": "愤慨"
+    },
+    {
+      "id": "fen_nu_012",
+      "level": "fen_nu",
+      "emotion": "敌意"
+    },
+    {
+      "id": "fen_nu_013",
+      "level": "fen_nu",
+      "emotion": "反感"
+    },
+    {
+      "id": "fen_nu_014",
+      "level": "fen_nu",
+      "emotion": "挑衅"
+    },
+    {
+      "id": "fen_nu_015",
+      "level": "fen_nu",
+      "emotion": "责怪"
+    },
+    {
+      "id": "fen_nu_016",
+      "level": "fen_nu",
+      "emotion": "指责"
+    },
+    {
+      "id": "fen_nu_017",
+      "level": "fen_nu",
+      "emotion": "嫉恨"
+    },
+    {
+      "id": "fen_nu_018",
+      "level": "fen_nu",
+      "emotion": "不耐烦"
+    },
+    {
+      "id": "fen_nu_019",
+      "level": "fen_nu",
+      "emotion": "挫败"
+    },
+    {
+      "id": "fen_nu_020",
+      "level": "fen_nu",
+      "emotion": "争吵"
+    },
+    {
+      "id": "fen_nu_021",
+      "level": "fen_nu",
+      "emotion": "仇恨"
+    },
+    {
+      "id": "fen_nu_022",
+      "level": "fen_nu",
+      "emotion": "怨气"
+    },
+    {
+      "id": "fen_nu_023",
+      "level": "fen_nu",
+      "emotion": "攻击性"
+    },
+    {
+      "id": "fen_nu_024",
+      "level": "fen_nu",
+      "emotion": "怒气"
+    },
+    {
+      "id": "fen_nu_025",
+      "level": "fen_nu",
+      "emotion": "报复"
     },
     {
       "id": "zi_zun_001",
       "level": "zi_zun",
-      "emotion": "自责",
-      "desc": "过度把责任揽在自己身上，内心压抑。",
-      "actions": ["列出 1 件你做对的小事", "对自己说一句‘我已尽力’", "把问题拆成可控/不可控"],
-      "next_level": "jie_na"
+      "emotion": "自尊"
     },
     {
       "id": "zi_zun_002",
       "level": "zi_zun",
-      "emotion": "羞耻",
-      "desc": "觉得自己不够好，害怕被否定。",
-      "actions": ["给自己 30 秒拥抱动作", "写下‘我仍然值得被善待’", "和一个安全的人分享一小句"],
-      "next_level": "jie_na"
+      "emotion": "自负"
+    },
+    {
+      "id": "zi_zun_003",
+      "level": "zi_zun",
+      "emotion": "自傲"
+    },
+    {
+      "id": "zi_zun_004",
+      "level": "zi_zun",
+      "emotion": "自大"
+    },
+    {
+      "id": "zi_zun_005",
+      "level": "zi_zun",
+      "emotion": "傲慢"
+    },
+    {
+      "id": "zi_zun_006",
+      "level": "zi_zun",
+      "emotion": "优越感"
+    },
+    {
+      "id": "zi_zun_007",
+      "level": "zi_zun",
+      "emotion": "自以为是"
+    },
+    {
+      "id": "zi_zun_008",
+      "level": "zi_zun",
+      "emotion": "虚荣"
+    },
+    {
+      "id": "zi_zun_009",
+      "level": "zi_zun",
+      "emotion": "好胜"
+    },
+    {
+      "id": "zi_zun_010",
+      "level": "zi_zun",
+      "emotion": "自恋"
+    },
+    {
+      "id": "zi_zun_011",
+      "level": "zi_zun",
+      "emotion": "自得"
+    },
+    {
+      "id": "zi_zun_012",
+      "level": "zi_zun",
+      "emotion": "刚愎"
+    },
+    {
+      "id": "zi_zun_013",
+      "level": "zi_zun",
+      "emotion": "藐视"
+    },
+    {
+      "id": "zi_zun_014",
+      "level": "zi_zun",
+      "emotion": "轻视"
+    },
+    {
+      "id": "zi_zun_015",
+      "level": "zi_zun",
+      "emotion": "自夸"
+    },
+    {
+      "id": "zi_zun_016",
+      "level": "zi_zun",
+      "emotion": "自命不凡"
+    },
+    {
+      "id": "zi_zun_017",
+      "level": "zi_zun",
+      "emotion": "目中无人"
+    },
+    {
+      "id": "zi_zun_018",
+      "level": "zi_zun",
+      "emotion": "得意"
+    },
+    {
+      "id": "zi_zun_019",
+      "level": "zi_zun",
+      "emotion": "逞强"
+    },
+    {
+      "id": "zi_zun_020",
+      "level": "zi_zun",
+      "emotion": "夸耀"
+    },
+    {
+      "id": "zi_zun_021",
+      "level": "zi_zun",
+      "emotion": "固执"
+    },
+    {
+      "id": "zi_zun_022",
+      "level": "zi_zun",
+      "emotion": "好面子"
+    },
+    {
+      "id": "zi_zun_023",
+      "level": "zi_zun",
+      "emotion": "骄傲"
+    },
+    {
+      "id": "zi_zun_024",
+      "level": "zi_zun",
+      "emotion": "自我中心"
+    },
+    {
+      "id": "zi_zun_025",
+      "level": "zi_zun",
+      "emotion": "逞能"
     },
     {
       "id": "wu_wei_001",
       "level": "wu_wei",
-      "emotion": "坚定",
-      "desc": "内心稳定，愿意直面挑战。",
-      "actions": ["写下今天最重要的一步", "感谢自己做出的努力", "主动完成一个小承诺"],
-      "next_level": "ping_he"
+      "emotion": "勇敢"
     },
     {
       "id": "wu_wei_002",
       "level": "wu_wei",
-      "emotion": "勇敢",
-      "desc": "带着紧张仍愿意尝试新的行动。",
-      "actions": ["把目标拆成 3 个小步骤", "找一个伙伴/工具做支持", "给自己一个小奖励"],
-      "next_level": "ping_he"
+      "emotion": "坚定"
+    },
+    {
+      "id": "wu_wei_003",
+      "level": "wu_wei",
+      "emotion": "自信"
+    },
+    {
+      "id": "wu_wei_004",
+      "level": "wu_wei",
+      "emotion": "果断"
+    },
+    {
+      "id": "wu_wei_005",
+      "level": "wu_wei",
+      "emotion": "无畏"
+    },
+    {
+      "id": "wu_wei_006",
+      "level": "wu_wei",
+      "emotion": "冒险"
+    },
+    {
+      "id": "wu_wei_007",
+      "level": "wu_wei",
+      "emotion": "挑战"
+    },
+    {
+      "id": "wu_wei_008",
+      "level": "wu_wei",
+      "emotion": "进取"
+    },
+    {
+      "id": "wu_wei_009",
+      "level": "wu_wei",
+      "emotion": "热情"
+    },
+    {
+      "id": "wu_wei_010",
+      "level": "wu_wei",
+      "emotion": "积极"
+    },
+    {
+      "id": "wu_wei_011",
+      "level": "wu_wei",
+      "emotion": "兴奋"
+    },
+    {
+      "id": "wu_wei_012",
+      "level": "wu_wei",
+      "emotion": "振奋"
+    },
+    {
+      "id": "wu_wei_013",
+      "level": "wu_wei",
+      "emotion": "鼓舞"
+    },
+    {
+      "id": "wu_wei_014",
+      "level": "wu_wei",
+      "emotion": "活力"
+    },
+    {
+      "id": "wu_wei_015",
+      "level": "wu_wei",
+      "emotion": "果敢"
+    },
+    {
+      "id": "wu_wei_016",
+      "level": "wu_wei",
+      "emotion": "豪迈"
+    },
+    {
+      "id": "wu_wei_017",
+      "level": "wu_wei",
+      "emotion": "开拓"
+    },
+    {
+      "id": "wu_wei_018",
+      "level": "wu_wei",
+      "emotion": "坚持"
+    },
+    {
+      "id": "wu_wei_019",
+      "level": "wu_wei",
+      "emotion": "乐观"
+    },
+    {
+      "id": "wu_wei_020",
+      "level": "wu_wei",
+      "emotion": "主动"
+    },
+    {
+      "id": "wu_wei_021",
+      "level": "wu_wei",
+      "emotion": "上进"
+    },
+    {
+      "id": "wu_wei_022",
+      "level": "wu_wei",
+      "emotion": "行动力"
+    },
+    {
+      "id": "wu_wei_023",
+      "level": "wu_wei",
+      "emotion": "专注"
+    },
+    {
+      "id": "wu_wei_024",
+      "level": "wu_wei",
+      "emotion": "责任感"
+    },
+    {
+      "id": "wu_wei_025",
+      "level": "wu_wei",
+      "emotion": "坚毅"
     },
     {
       "id": "jie_na_001",
       "level": "jie_na",
-      "emotion": "理解",
-      "desc": "看到情绪的来源，不再急于抗拒。",
-      "actions": ["写下‘我允许自己感到…’", "做 2 分钟深呼吸", "放下一个今天不必要的比较"],
-      "next_level": "ping_he"
+      "emotion": "接纳"
     },
     {
       "id": "jie_na_002",
       "level": "jie_na",
-      "emotion": "放下",
-      "desc": "愿意把不再适合的期待暂时搁置。",
-      "actions": ["把‘必须’改成‘可以’", "整理桌面/空间 5 分钟", "感谢自己已经走到这里"],
-      "next_level": "ping_he"
+      "emotion": "理解"
+    },
+    {
+      "id": "jie_na_003",
+      "level": "jie_na",
+      "emotion": "包容"
+    },
+    {
+      "id": "jie_na_004",
+      "level": "jie_na",
+      "emotion": "宽容"
+    },
+    {
+      "id": "jie_na_005",
+      "level": "jie_na",
+      "emotion": "慈悲"
+    },
+    {
+      "id": "jie_na_006",
+      "level": "jie_na",
+      "emotion": "感激"
+    },
+    {
+      "id": "jie_na_007",
+      "level": "jie_na",
+      "emotion": "感恩"
+    },
+    {
+      "id": "jie_na_008",
+      "level": "jie_na",
+      "emotion": "同理"
+    },
+    {
+      "id": "jie_na_009",
+      "level": "jie_na",
+      "emotion": "放下"
+    },
+    {
+      "id": "jie_na_010",
+      "level": "jie_na",
+      "emotion": "释然"
+    },
+    {
+      "id": "jie_na_011",
+      "level": "jie_na",
+      "emotion": "和解"
+    },
+    {
+      "id": "jie_na_012",
+      "level": "jie_na",
+      "emotion": "信任"
+    },
+    {
+      "id": "jie_na_013",
+      "level": "jie_na",
+      "emotion": "温柔"
+    },
+    {
+      "id": "jie_na_014",
+      "level": "jie_na",
+      "emotion": "体贴"
+    },
+    {
+      "id": "jie_na_015",
+      "level": "jie_na",
+      "emotion": "欣赏"
+    },
+    {
+      "id": "jie_na_016",
+      "level": "jie_na",
+      "emotion": "谅解"
+    },
+    {
+      "id": "jie_na_017",
+      "level": "jie_na",
+      "emotion": "容纳"
+    },
+    {
+      "id": "jie_na_018",
+      "level": "jie_na",
+      "emotion": "支持"
+    },
+    {
+      "id": "jie_na_019",
+      "level": "jie_na",
+      "emotion": "平衡"
+    },
+    {
+      "id": "jie_na_020",
+      "level": "jie_na",
+      "emotion": "尊重"
+    },
+    {
+      "id": "jie_na_021",
+      "level": "jie_na",
+      "emotion": "善意"
+    },
+    {
+      "id": "jie_na_022",
+      "level": "jie_na",
+      "emotion": "成熟"
+    },
+    {
+      "id": "jie_na_023",
+      "level": "jie_na",
+      "emotion": "自在"
+    },
+    {
+      "id": "jie_na_024",
+      "level": "jie_na",
+      "emotion": "柔和"
+    },
+    {
+      "id": "jie_na_025",
+      "level": "jie_na",
+      "emotion": "认可"
     },
     {
       "id": "ping_he_001",
       "level": "ping_he",
-      "emotion": "安心",
-      "desc": "身心回归平稳，能感受到轻松。",
-      "actions": ["做 3 次深呼吸并伸展", "记录今天的一件好事", "给身边的人一个善意"],
-      "next_level": "ping_he"
+      "emotion": "平和"
     },
     {
       "id": "ping_he_002",
       "level": "ping_he",
-      "emotion": "满足",
-      "desc": "对当下感到知足，心情宁静。",
-      "actions": ["保持当前节奏 10 分钟", "写一句感谢", "把一个好习惯延续下去"],
-      "next_level": "ping_he"
+      "emotion": "宁静"
+    },
+    {
+      "id": "ping_he_003",
+      "level": "ping_he",
+      "emotion": "安静"
+    },
+    {
+      "id": "ping_he_004",
+      "level": "ping_he",
+      "emotion": "安心"
+    },
+    {
+      "id": "ping_he_005",
+      "level": "ping_he",
+      "emotion": "安稳"
+    },
+    {
+      "id": "ping_he_006",
+      "level": "ping_he",
+      "emotion": "满足"
+    },
+    {
+      "id": "ping_he_007",
+      "level": "ping_he",
+      "emotion": "圆满"
+    },
+    {
+      "id": "ping_he_008",
+      "level": "ping_he",
+      "emotion": "完整"
+    },
+    {
+      "id": "ping_he_009",
+      "level": "ping_he",
+      "emotion": "自由"
+    },
+    {
+      "id": "ping_he_010",
+      "level": "ping_he",
+      "emotion": "轻松"
+    },
+    {
+      "id": "ping_he_011",
+      "level": "ping_he",
+      "emotion": "喜悦"
+    },
+    {
+      "id": "ping_he_012",
+      "level": "ping_he",
+      "emotion": "平静"
+    },
+    {
+      "id": "ping_he_013",
+      "level": "ping_he",
+      "emotion": "祥和"
+    },
+    {
+      "id": "ping_he_014",
+      "level": "ping_he",
+      "emotion": "和谐"
+    },
+    {
+      "id": "ping_he_015",
+      "level": "ping_he",
+      "emotion": "安然"
+    },
+    {
+      "id": "ping_he_016",
+      "level": "ping_he",
+      "emotion": "恬淡"
+    },
+    {
+      "id": "ping_he_017",
+      "level": "ping_he",
+      "emotion": "清明"
+    },
+    {
+      "id": "ping_he_018",
+      "level": "ping_he",
+      "emotion": "从容"
+    },
+    {
+      "id": "ping_he_019",
+      "level": "ping_he",
+      "emotion": "舒展"
+    },
+    {
+      "id": "ping_he_020",
+      "level": "ping_he",
+      "emotion": "自在"
+    },
+    {
+      "id": "ping_he_021",
+      "level": "ping_he",
+      "emotion": "幸福"
+    },
+    {
+      "id": "ping_he_022",
+      "level": "ping_he",
+      "emotion": "合一"
+    },
+    {
+      "id": "ping_he_023",
+      "level": "ping_he",
+      "emotion": "纯净"
+    },
+    {
+      "id": "ping_he_024",
+      "level": "ping_he",
+      "emotion": "安宁"
+    },
+    {
+      "id": "ping_he_025",
+      "level": "ping_he",
+      "emotion": "悠然"
     }
   ]
 }
