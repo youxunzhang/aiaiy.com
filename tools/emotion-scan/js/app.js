@@ -14,6 +14,7 @@ const elements = {
   nextButtons: document.querySelectorAll('[data-next]'),
   selectedLevelText: document.querySelector('#selected-level-text'),
   selectionHint: document.querySelector('#selection-hint'),
+  printButton: document.querySelector('#print-button'),
 };
 
 function setStep(step) {
@@ -56,10 +57,9 @@ function createLevelCard(level) {
 
 function updateEmotionHint() {
   const count = state.selectedEmotions.size;
-  const remaining = 3 - count;
   elements.selectionHint.textContent = count
-    ? `已选 ${count} 项，还可选 ${remaining} 项。`
-    : '最多可选 3 项，建议从最贴近的情绪开始。';
+    ? `已选 ${count} 项，可继续多选。`
+    : '可多选你当下最贴近的情绪分支。';
 }
 
 function createEmotionCard(item) {
@@ -72,7 +72,6 @@ function createEmotionCard(item) {
       <span class="text-lg font-semibold text-slate-900">${item.emotion}</span>
       <span class="rounded-full border border-slate-200 px-2 py-1 text-xs text-slate-500">${item.levelName}</span>
     </div>
-    <p class="text-sm text-slate-500">${item.desc}</p>
   `;
 
   function updateSelected() {
@@ -87,11 +86,6 @@ function createEmotionCard(item) {
       state.selectedEmotions.delete(item.id);
       updateSelected();
       updateEmotionHint();
-      return;
-    }
-
-    if (state.selectedEmotions.size >= 3) {
-      elements.selectionHint.textContent = '已达上限，请先取消一个选择。';
       return;
     }
 
@@ -137,53 +131,40 @@ function renderResults() {
   }
 
   const levelMap = new Map(state.levels.map((level) => [level.key, level.name]));
-  const cards = selectedItems
-    .map((item) => {
-      const actions = item.actions.map((action) => `<li class="flex gap-2"><span>•</span><span>${action}</span></li>`).join('');
+  const grouped = selectedItems.reduce((map, item) => {
+    const key = item.level;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(item);
+    return map;
+  }, new Map());
+
+  const cards = [...grouped.entries()]
+    .map(([levelKey, items]) => {
+      const tags = items
+        .map(
+          (item) =>
+            `<span class="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700">${item.emotion}</span>`,
+        )
+        .join('');
       return `
         <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <h3 class="text-lg font-semibold text-slate-900">${item.emotion}</h3>
-              <p class="text-sm text-slate-500">${item.desc}</p>
-            </div>
-            <span class="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">${levelMap.get(item.level)}</span>
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-semibold text-slate-900">${levelMap.get(levelKey)}</h3>
+            <span class="text-xs text-slate-400">共 ${items.length} 项</span>
           </div>
-          <div class="mt-4">
-            <p class="text-sm font-semibold text-slate-700">行动建议</p>
-            <ul class="mt-2 space-y-2 text-sm text-slate-600">${actions}</ul>
-          </div>
-          <div class="mt-4 rounded-xl bg-slate-50 p-3 text-sm text-slate-600">
-            下一步层级建议：<span class="font-semibold text-slate-800">${levelMap.get(item.next_level)}</span>
-          </div>
+          <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
         </div>
       `;
     })
     .join('');
 
-  const nextLevels = [...new Set(selectedItems.map((item) => item.next_level))]
-    .map((key) => levelMap.get(key))
-    .filter(Boolean)
-    .join(' / ');
-
   elements.resultPanel.innerHTML = `
     <div class="space-y-4">
       <div class="rounded-2xl bg-indigo-600 px-6 py-4 text-white">
         <h2 class="text-xl font-semibold">你的情绪扫描结果</h2>
-        <p class="mt-1 text-sm text-indigo-100">建议下一步尝试迈向：${nextLevels || '继续自检'}</p>
+        <p class="mt-1 text-sm text-indigo-100">共选择 ${selectedItems.length} 项情绪分支，可直接打印保存。</p>
       </div>
       <div class="grid gap-4 lg:grid-cols-2">${cards}</div>
-      <div class="rounded-2xl border border-dashed border-indigo-200 bg-white p-5">
-        <div class="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <h3 class="text-lg font-semibold text-slate-900">广告 / CTA 区块</h3>
-            <p class="text-sm text-slate-500">这里可以放课程、咨询、会员或品牌合作入口。</p>
-          </div>
-          <button class="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800">
-            立即了解
-          </button>
-        </div>
-      </div>
     </div>
   `;
 }
@@ -235,4 +216,8 @@ window.addEventListener('DOMContentLoaded', () => {
   elements.backButtons.forEach((btn) => {
     btn.addEventListener('click', () => handleBack(btn.dataset.back));
   });
+
+  if (elements.printButton) {
+    elements.printButton.addEventListener('click', () => window.print());
+  }
 });
