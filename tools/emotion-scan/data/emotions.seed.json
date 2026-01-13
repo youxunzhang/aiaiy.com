@@ -1,0 +1,159 @@
+{
+  "levels": [
+    { "key": "wan_niu", "name": "万念俱灰", "order": 1 },
+    { "key": "bei_ku", "name": "悲苦", "order": 2 },
+    { "key": "kong_ju", "name": "恐惧", "order": 3 },
+    { "key": "tan_qiu", "name": "贪求", "order": 4 },
+    { "key": "fen_nu", "name": "愤怒", "order": 5 },
+    { "key": "zi_zun", "name": "自尊自傲", "order": 6 },
+    { "key": "wu_wei", "name": "无畏", "order": 7 },
+    { "key": "jie_na", "name": "接纳", "order": 8 },
+    { "key": "ping_he", "name": "平和", "order": 9 }
+  ],
+  "items": [
+    {
+      "id": "wan_niu_001",
+      "level": "wan_niu",
+      "emotion": "无聊",
+      "desc": "对任何事都提不起劲，缺少刺激与意义感。",
+      "actions": ["去户外走 10 分钟", "把今天最小目标写下来（只写 1 条）", "喝一杯温水并深呼吸 10 次"],
+      "next_level": "bei_ku"
+    },
+    {
+      "id": "wan_niu_002",
+      "level": "wan_niu",
+      "emotion": "麻木",
+      "desc": "情绪像被按下静音键，感受变得迟钝。",
+      "actions": ["做 30 秒身体扫描：头-肩-胸-腹-腿", "洗把脸/换个姿势", "把‘我现在感到…’写 1 句"],
+      "next_level": "bei_ku"
+    },
+    {
+      "id": "bei_ku_001",
+      "level": "bei_ku",
+      "emotion": "被遗弃",
+      "desc": "感觉自己不被需要或被抛下，内心空落。",
+      "actions": ["联系一个可信任的人发一句‘我想聊聊’", "写下 3 个支持你的人/事", "做 2 分钟缓慢呼吸（吸4呼6）"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "bei_ku_002",
+      "level": "bei_ku",
+      "emotion": "失望",
+      "desc": "期待落空导致的低落，容易否定自己或他人。",
+      "actions": ["把失望分两类：可控/不可控", "对可控项写 1 个行动", "暂停 10 分钟不做决定"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "kong_ju_001",
+      "level": "kong_ju",
+      "emotion": "焦虑",
+      "desc": "对未来不确定性的持续担忧，注意力被拉扯。",
+      "actions": ["2 分钟腹式呼吸", "写下担忧→只保留‘能立刻做的一条’", "把手机放远 15 分钟"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "kong_ju_002",
+      "level": "kong_ju",
+      "emotion": "紧张",
+      "desc": "身体进入警觉状态，心跳加快、坐立不安。",
+      "actions": ["放松肩颈：耸肩-放下 10 次", "喝温水", "把任务拆成下一步 1 分钟能做的动作"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "tan_qiu_001",
+      "level": "tan_qiu",
+      "emotion": "渴望",
+      "desc": "强烈想得到某种结果，内心不安定。",
+      "actions": ["把渴望写成一句：我想要…因为…", "设一个‘延迟 10 分钟’再决定", "做 20 次慢走/深蹲(可选其一)"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "tan_qiu_002",
+      "level": "tan_qiu",
+      "emotion": "强迫",
+      "desc": "必须立刻完成/得到，否则难以放松。",
+      "actions": ["用计时器 5 分钟先做一点点", "允许‘先粗糙再完善’", "关掉多余通知 1 小时"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "fen_nu_001",
+      "level": "fen_nu",
+      "emotion": "恼怒",
+      "desc": "被冒犯或受阻时的烦躁，容易冲动回应。",
+      "actions": ["先停 10 秒再说话", "把感受换成陈述：我希望…", "离开现场/屏幕 2 分钟"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "fen_nu_002",
+      "level": "fen_nu",
+      "emotion": "怨恨",
+      "desc": "对过去伤害耿耿于怀，情绪反复翻涌。",
+      "actions": ["写一段‘我受伤的原因是…’", "把注意力放在可以改变的一件事", "散步 5 分钟让心率回落"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "zi_zun_001",
+      "level": "zi_zun",
+      "emotion": "自责",
+      "desc": "过度把责任揽在自己身上，内心压抑。",
+      "actions": ["列出 1 件你做对的小事", "对自己说一句‘我已尽力’", "把问题拆成可控/不可控"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "zi_zun_002",
+      "level": "zi_zun",
+      "emotion": "羞耻",
+      "desc": "觉得自己不够好，害怕被否定。",
+      "actions": ["给自己 30 秒拥抱动作", "写下‘我仍然值得被善待’", "和一个安全的人分享一小句"],
+      "next_level": "jie_na"
+    },
+    {
+      "id": "wu_wei_001",
+      "level": "wu_wei",
+      "emotion": "坚定",
+      "desc": "内心稳定，愿意直面挑战。",
+      "actions": ["写下今天最重要的一步", "感谢自己做出的努力", "主动完成一个小承诺"],
+      "next_level": "ping_he"
+    },
+    {
+      "id": "wu_wei_002",
+      "level": "wu_wei",
+      "emotion": "勇敢",
+      "desc": "带着紧张仍愿意尝试新的行动。",
+      "actions": ["把目标拆成 3 个小步骤", "找一个伙伴/工具做支持", "给自己一个小奖励"],
+      "next_level": "ping_he"
+    },
+    {
+      "id": "jie_na_001",
+      "level": "jie_na",
+      "emotion": "理解",
+      "desc": "看到情绪的来源，不再急于抗拒。",
+      "actions": ["写下‘我允许自己感到…’", "做 2 分钟深呼吸", "放下一个今天不必要的比较"],
+      "next_level": "ping_he"
+    },
+    {
+      "id": "jie_na_002",
+      "level": "jie_na",
+      "emotion": "放下",
+      "desc": "愿意把不再适合的期待暂时搁置。",
+      "actions": ["把‘必须’改成‘可以’", "整理桌面/空间 5 分钟", "感谢自己已经走到这里"],
+      "next_level": "ping_he"
+    },
+    {
+      "id": "ping_he_001",
+      "level": "ping_he",
+      "emotion": "安心",
+      "desc": "身心回归平稳，能感受到轻松。",
+      "actions": ["做 3 次深呼吸并伸展", "记录今天的一件好事", "给身边的人一个善意"],
+      "next_level": "ping_he"
+    },
+    {
+      "id": "ping_he_002",
+      "level": "ping_he",
+      "emotion": "满足",
+      "desc": "对当下感到知足，心情宁静。",
+      "actions": ["保持当前节奏 10 分钟", "写一句感谢", "把一个好习惯延续下去"],
+      "next_level": "ping_he"
+    }
+  ]
+}
