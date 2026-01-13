@@ -72,16 +72,30 @@ function createEmotionCard(item) {
     'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-indigo-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500';
   button.innerHTML = `
     <div class="flex items-center justify-between">
-      <span class="text-lg font-semibold text-slate-900">${item.emotion}</span>
-      <span class="rounded-full border border-slate-200 px-2 py-1 text-xs text-slate-500">${item.levelName}</span>
+      <span class="text-lg font-semibold text-slate-900" data-emotion-title>${item.emotion}</span>
+      <span class="rounded-full border border-slate-200 px-2 py-1 text-xs text-slate-500" data-emotion-level>${item.levelName}</span>
     </div>
   `;
+  const title = button.querySelector('[data-emotion-title]');
+  const levelBadge = button.querySelector('[data-emotion-level]');
 
   function updateSelected() {
     const isSelected = state.selectedEmotions.has(item.id);
-    button.classList.toggle('border-indigo-500', isSelected);
-    button.classList.toggle('bg-indigo-50', isSelected);
-    button.classList.toggle('text-indigo-700', isSelected);
+    button.classList.toggle('border-indigo-600', isSelected);
+    button.classList.toggle('bg-indigo-900', isSelected);
+    button.classList.toggle('shadow-md', isSelected);
+    if (title) {
+      title.classList.toggle('text-white', isSelected);
+      title.classList.toggle('text-slate-900', !isSelected);
+    }
+    if (levelBadge) {
+      levelBadge.classList.toggle('border-indigo-200', isSelected);
+      levelBadge.classList.toggle('bg-indigo-800', isSelected);
+      levelBadge.classList.toggle('text-indigo-100', isSelected);
+      levelBadge.classList.toggle('border-slate-200', !isSelected);
+      levelBadge.classList.toggle('bg-transparent', !isSelected);
+      levelBadge.classList.toggle('text-slate-500', !isSelected);
+    }
   }
 
   button.addEventListener('click', () => {
