@@ -19,6 +19,22 @@ const elements = {
   explanationText: document.querySelector('#emotion-explanation-text'),
 };
 
+const levelIcons = {
+  wan_niu: '🌫️',
+  bei_ku: '💧',
+  kong_ju: '😨',
+  tan_qiu: '✨',
+  fen_nu: '🔥',
+  zi_zun: '🦁',
+  wu_wei: '🛡️',
+  jie_na: '🌿',
+  ping_he: '🌤️',
+};
+
+function getLevelIcon(levelKey) {
+  return levelIcons[levelKey] || '🌟';
+}
+
 function setStep(step) {
   document.querySelectorAll('[data-step]').forEach((section) => {
     section.classList.toggle('hidden', section.dataset.step !== step);
@@ -43,7 +59,10 @@ function createLevelCard(level) {
     'group relative flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:-translate-y-1 hover:border-indigo-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500';
   button.innerHTML = `
     <span class="text-xs font-semibold uppercase tracking-wide text-slate-400">第 ${level.order} 层</span>
-    <span class="text-lg font-semibold text-slate-900">${level.name}</span>
+    <span class="text-lg font-semibold text-slate-900">
+      <span class="mr-2 text-xl" aria-hidden="true">${getLevelIcon(level.key)}</span>
+      ${level.name}
+    </span>
     <span class="text-sm text-slate-500">点击开始自检</span>
   `;
   button.addEventListener('click', () => {
@@ -72,7 +91,10 @@ function createEmotionCard(item) {
     'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition-colors transition hover:border-indigo-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500';
   button.innerHTML = `
     <div class="flex items-center justify-between">
-      <span class="text-lg font-semibold text-slate-900" data-emotion-title>${item.emotion}</span>
+      <span class="text-lg font-semibold text-slate-900" data-emotion-title>
+        <span class="mr-2 text-xl" aria-hidden="true">${getLevelIcon(item.level)}</span>
+        ${item.emotion}
+      </span>
       <span class="rounded-full border border-slate-200 px-2 py-1 text-xs text-slate-500" data-emotion-level>${item.levelName}</span>
     </div>
   `;
@@ -184,13 +206,16 @@ function renderResults() {
       const tags = items
         .map(
           (item) =>
-            `<span class="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700">${item.emotion}</span>`,
+            `<span class="inline-flex items-center gap-1 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700"><span aria-hidden="true">${getLevelIcon(item.level)}</span>${item.emotion}</span>`,
         )
         .join('');
       return `
         <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div class="flex items-center justify-between gap-4">
-            <h3 class="text-lg font-semibold text-slate-900">${levelMap.get(levelKey)}</h3>
+            <h3 class="text-lg font-semibold text-slate-900">
+              <span class="mr-2 text-xl" aria-hidden="true">${getLevelIcon(levelKey)}</span>
+              ${levelMap.get(levelKey)}
+            </h3>
             <span class="text-xs text-slate-400">共 ${items.length} 项</span>
           </div>
           <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
