@@ -169,6 +169,19 @@
                             <button id="startButton" class="primary-button px-6 py-3 rounded-2xl">开始</button>
                             <button id="resetButton" class="secondary-button px-6 py-3 rounded-2xl">重置</button>
                         </div>
+
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                                <div class="text-xs uppercase tracking-wider text-slate-500">计时器</div>
+                                <div id="sessionTimer" class="mt-2 text-2xl font-semibold text-slate-900">00:00</div>
+                                <p class="mt-1 text-xs text-slate-500">记录本次练习时长</p>
+                            </div>
+                            <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                                <div class="text-xs uppercase tracking-wider text-slate-500">循环次数</div>
+                                <div id="cycleCount" class="mt-2 text-2xl font-semibold text-slate-900">0</div>
+                                <p class="mt-1 text-xs text-slate-500">吸气 + 停顿 + 吐气 完成次数</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="space-y-6">
@@ -212,6 +225,8 @@
         const phaseCountdown = document.getElementById('phaseCountdown');
         const breathCircle = document.getElementById('breathCircle');
         const rhythmSummary = document.getElementById('rhythmSummary');
+        const sessionTimer = document.getElementById('sessionTimer');
+        const cycleCount = document.getElementById('cycleCount');
 
         const inputs = [inhaleInput, holdInput, exhaleInput];
         let timerId = null;
@@ -219,6 +234,8 @@
         let currentPhaseIndex = 0;
         let remainingSeconds = 0;
         let isRunning = false;
+        let elapsedSeconds = 0;
+        let completedCycles = 0;
 
         const phaseScales = {
             inhale: 1.15,
@@ -275,6 +292,17 @@
             updateCircleState(phase);
         };
 
+        const formatTime = (totalSeconds) => {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        };
+
+        const updateStats = () => {
+            sessionTimer.textContent = formatTime(elapsedSeconds);
+            cycleCount.textContent = `${completedCycles}`;
+        };
+
         const setInputsDisabled = (disabled) => {
             inputs.forEach((input) => {
                 input.disabled = disabled;
@@ -285,11 +313,17 @@
 
         const tick = () => {
             if (!isRunning) return;
+            elapsedSeconds += 1;
             remainingSeconds -= 1;
             if (remainingSeconds <= 0) {
-                currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+                const nextPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+                if (nextPhaseIndex === 0) {
+                    completedCycles += 1;
+                }
+                currentPhaseIndex = nextPhaseIndex;
                 remainingSeconds = phases[currentPhaseIndex].duration || 0;
                 if (remainingSeconds === 0) {
+                    updateStats();
                     tick();
                     return;
                 }
@@ -297,6 +331,7 @@
             } else {
                 phaseCountdown.textContent = `${remainingSeconds}s`;
             }
+            updateStats();
         };
 
         const startTimer = () => {
@@ -304,10 +339,13 @@
             phases = getActivePhases();
             currentPhaseIndex = 0;
             remainingSeconds = phases[0].duration;
+            elapsedSeconds = 0;
+            completedCycles = 0;
             isRunning = true;
             setInputsDisabled(true);
             startButton.textContent = '暂停';
             updatePhaseDisplay();
+            updateStats();
             clearInterval(timerId);
             timerId = setInterval(tick, 1000);
         };
@@ -324,9 +362,12 @@
             phases = getActivePhases();
             currentPhaseIndex = 0;
             remainingSeconds = phases[0].duration;
+            elapsedSeconds = 0;
+            completedCycles = 0;
             setInputsDisabled(false);
             startButton.textContent = '开始';
             updatePhaseDisplay();
+            updateStats();
         };
 
         startButton.addEventListener('click', () => {
@@ -339,6 +380,7 @@
                     setInputsDisabled(true);
                     clearInterval(timerId);
                     timerId = setInterval(tick, 1000);
+                    updateStats();
                     return;
                 }
                 startTimer();
@@ -363,6 +405,7 @@
         phases = getActivePhases();
         remainingSeconds = phases[0].duration;
         updatePhaseDisplay();
+        updateStats();
     </script>
 </body>
 </html>
