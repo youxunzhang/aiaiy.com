@@ -514,6 +514,21 @@
             color: var(--primary-color);
         }
 
+        .simple-navbar__link--user-group {
+            background: #15803d;
+            color: #ffffff;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            gap: 0.45rem;
+            font-weight: 600;
+            box-shadow: 0 8px 18px rgba(21, 128, 61, 0.25);
+        }
+
+        .simple-navbar__link--user-group:hover {
+            color: #ffffff;
+            background: #166534;
+        }
+
         .simple-navbar__dropdown {
             position: relative;
         }
@@ -1178,7 +1193,10 @@
                         <a href="ai-programming-tools.html" class="simple-navbar__link">AI Dev</a>
                         <a href="programming.html" class="simple-navbar__link">Dev & Sites</a>
                         <a href="rest.html" class="simple-navbar__link">Break</a>
-                        <button type="button" class="simple-navbar__link" data-user-group-trigger>User Group</button>
+                        <button type="button" class="simple-navbar__link simple-navbar__link--user-group" data-user-group-trigger>
+                            <span aria-hidden="true">👥</span>
+                            用户群
+                        </button>
                         <div class="simple-navbar__dropdown">
                             <a href="ai-tools-landing.html" class="simple-navbar__link simple-navbar__link--parent">AI Tools</a>
                             <div class="simple-navbar__dropdown-menu" role="menu" aria-label="AI Tools">
@@ -1203,21 +1221,21 @@
         </div>
     </header>
 
-    <div class="user-group-modal" data-user-group-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="Join the community">
+    <div class="user-group-modal" data-user-group-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="加入用户群">
         <div class="user-group-modal__backdrop" data-user-group-close></div>
         <div class="user-group-modal__panel" role="document">
             <div class="user-group-modal__header">
                 <div>
-                    <div class="user-group-modal__title">Join our user group</div>
-                    <div class="user-group-modal__subtitle">Seodog user chat</div>
+                    <div class="user-group-modal__title">加入用户交流群</div>
+                    <div class="user-group-modal__subtitle">群聊 seodog 用户</div>
                 </div>
-                <button type="button" class="user-group-modal__close" aria-label="Close" data-user-group-close>×</button>
+                <button type="button" class="user-group-modal__close" aria-label="关闭" data-user-group-close>×</button>
             </div>
             <div class="user-group-modal__qr">
-                <img src="assets/user-group-qr.svg" alt="User group QR code">
+                <img src="assets/user-group-qr.svg" alt="用户群二维码">
             </div>
-            <p class="user-group-modal__description">Scan the QR code to join our user group and share tips with others.</p>
-            <p class="user-group-modal__note">The QR code is valid for 7 days. If it expires, contact the site owner for a new link. We share tips and updates from time to time.</p>
+            <p class="user-group-modal__description">扫描二维码加入我们的用户群，与其他用户一起交流使用心得。</p>
+            <p class="user-group-modal__note">二维码 7 天（10 月 31 日前）有效，更新进入链接持续更新。群内会不定期分享使用技巧和更新信息。</p>
         </div>
     </div>
 
