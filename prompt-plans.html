@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>论文提示词方案库 | AIAIIY</title>
+    <meta name="description" content="收录论文写作提示词方案（方案01-方案40）。当前已导入方案标题，后续可逐条补充下载链接。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #111827;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+        }
+        .plan-card {
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
+            transition: all .25s ease;
+        }
+        .plan-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 26px rgba(99, 102, 241, .22);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="glass sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">论文提示词方案库</h1>
+                <p class="text-sm text-gray-600">已导入方案标题，下载链接待后续补充</p>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="aiprompt.html" class="px-3 py-2 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-semibold">返回 AI提示词导航</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <section class="glass rounded-3xl p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <h2 class="text-2xl font-bold">方案清单（40条）</h2>
+                <span class="text-xs md:text-sm px-3 py-1 rounded-full bg-amber-100 text-amber-700">说明：点击后暂时显示“链接待补充”</span>
+            </div>
+
+            <div id="planList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </section>
+    </main>
+
+    <script>
+        const plans = [
+            '方案01 写作全流程',
+            '方案02 精读一篇论文文献',
+            '方案03 内容润色',
+            '方案04 高效润色',
+            '方案05 论文全过程高阶提示词',
+            '方案06 从选题到参考文献',
+            '方案07 从开题到致谢',
+            '方案08 一键降AIGC率',
+            '方案09 高效高质量完成SCI',
+            '方案10 全方位提效率',
+            '方案11 写作全周期，十个细分场景化',
+            '方案12 高效润色+降重',
+            '方案13 高效完成文献综述',
+            '方案14 全流程保姆级方案 十大核心环节',
+            '方案15 高效仿写',
+            '方案16 高效优化',
+            '方案17 全套喂饭提示',
+            '方案18 从选题到成稿 高效辅助',
+            '方案19 写作加速 精细化提示词',
+            '方案20 顶级细分化提示词 内容终极进化',
+            '方案21 两小时逆袭文献综述',
+            '方案22 一天写完开题报告',
+            '方案23 精准制导文献调研',
+            '方案24 让导师闭嘴的选题方法',
+            '方案25 润色专用，拒绝低效率手动改稿',
+            '方案26 论文查重一次过',
+            '方案27 高阶提示词，助力查重一次过',
+            '方案28 deepseek改论文，查重5%闭眼…',
+            '方案29 初稿必备提示词',
+            '方案30 顶级提示词，让你的AIGC率一…',
+            '方案31 巧妙避免AI痕迹',
+            '方案32 组织思路、激发创意，克服写作…',
+            '方案33 肝出顶刊论文',
+            '方案34 必看 一键生成论文答辩PPT',
+            '方案35 降AIGC率实测，300字长文干货',
+            '方案36 两小时逆袭AIGC率',
+            '方案37 用DeepSeek复刻一篇硕士论文…',
+            '方案38 用DeepSeek当“小白读者”，自…',
+            '方案39 降低论文AI味',
+            '方案40 3000字长文教你修改和润色论文'
+        ];
+
+        const planList = document.getElementById('planList');
+
+        plans.forEach((title, index) => {
+            const card = document.createElement('a');
+            card.href = '#';
+            card.className = 'plan-card p-4 block';
+            card.innerHTML = `
+                <div class="flex items-start justify-between gap-3">
+                    <h3 class="font-semibold text-gray-900 leading-6">${title}</h3>
+                    <span class="text-xs shrink-0 px-2 py-1 rounded bg-gray-100 text-gray-600">DOC</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">下载链接：待补充</p>
+            `;
+
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(`【${title}】下载链接待补充。\n后续可直接替换为真实下载地址。`);
+            });
+
+            planList.appendChild(card);
+        });
+    </script>
+</body>
+</html>
