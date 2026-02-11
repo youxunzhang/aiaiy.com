@@ -83,11 +83,6 @@
         const REPORT_MANIFEST_PATH = `${REPORT_BASE_PATH}reports.json`;
         let reports = [];
 
-        const defaultReports = [
-            { name: '2025年超越瓶颈：人工智能集群组织报告-19页.pdf', file: '2025年超越瓶颈：人工智能集群组织报告-19页.pdf', size: '' },
-            { name: '2025年度全球人工智能治理报告-32页.pdf', file: '2025年度全球人工智能治理报告-32页.pdf', size: '' }
-        ];
-
         const reportList = document.getElementById('reportList');
         const reportCount = document.getElementById('reportCount');
         const searchInput = document.getElementById('searchInput');
@@ -98,6 +93,16 @@
             reportCount.textContent = `共 ${filtered.length} / ${reports.length} 份报告`;
 
             reportList.innerHTML = '';
+            if (!filtered.length) {
+                const empty = document.createElement('p');
+                empty.className = 'text-sm text-slate-500 px-1 py-3';
+                empty.textContent = reports.length
+                    ? '没有匹配的报告，请尝试其他关键词。'
+                    : '报告清单暂不可用，请稍后刷新重试。';
+                reportList.appendChild(empty);
+                return;
+            }
+
             filtered.forEach((item, index) => {
                 const href = `${REPORT_BASE_PATH}${encodeURIComponent(item.file)}`;
                 const el = document.createElement('article');
@@ -133,8 +138,8 @@
                         size: item.size || ''
                     }));
             } catch (error) {
-                console.warn('读取行业报告清单失败，使用默认展示数据。', error);
-                reports = defaultReports;
+                console.warn('读取行业报告清单失败。', error);
+                reports = [];
             } finally {
                 render(searchInput.value);
             }
