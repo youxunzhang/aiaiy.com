@@ -22,6 +22,16 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 26px rgba(59, 130, 246, .14);
         }
+        .share-menu {
+            position: relative;
+        }
+        .share-panel {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 220px;
+            z-index: 60;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -31,7 +41,24 @@
                 <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">行业报告下载中心</h1>
                 <p class="text-sm text-slate-600">收录 AI 行业研究报告 · 支持关键词筛选与一键下载</p>
             </div>
-            <a href="index.html" class="px-3 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 text-sm font-semibold">返回首页</a>
+            <div class="flex items-center gap-2">
+                <div class="share-menu">
+                    <button id="shareToggle" class="px-3 py-2 rounded-lg border border-blue-200 bg-white/90 text-blue-700 hover:bg-blue-50 text-sm font-semibold">分享页面</button>
+                    <div id="sharePanel" class="share-panel glass rounded-xl p-3 hidden">
+                        <p class="text-xs text-slate-500 mb-2">分享链接： https://aiaiy.com/</p>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="weibo">微博</a>
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="qzone">QQ空间</a>
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="x">X</a>
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="facebook">Facebook</a>
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="linkedin">LinkedIn</a>
+                            <a class="px-2 py-2 rounded bg-slate-100 hover:bg-slate-200 text-center" target="_blank" rel="noopener noreferrer" data-share="reddit">Reddit</a>
+                        </div>
+                        <button id="copyShareLink" class="w-full mt-3 px-3 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 text-xs font-semibold">复制链接</button>
+                    </div>
+                </div>
+                <a href="index.html" class="px-3 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 text-sm font-semibold">返回首页</a>
+            </div>
         </div>
     </header>
 
@@ -167,6 +194,48 @@
 
         searchInput.addEventListener('input', (e) => render(e.target.value));
         render();
+
+        const shareLink = 'https://aiaiy.com/';
+        const shareText = 'AIAIY - AI 资源与导航';
+        const shareRoutes = {
+            weibo: `https://service.weibo.com/share/share.php?url=${encodeURIComponent(shareLink)}&title=${encodeURIComponent(shareText)}`,
+            qzone: `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${encodeURIComponent(shareLink)}&title=${encodeURIComponent(shareText)}`,
+            x: `https://x.com/intent/tweet?url=${encodeURIComponent(shareLink)}&text=${encodeURIComponent(shareText)}`,
+            facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareLink)}`,
+            linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareLink)}`,
+            reddit: `https://www.reddit.com/submit?url=${encodeURIComponent(shareLink)}&title=${encodeURIComponent(shareText)}`,
+        };
+
+        const shareToggle = document.getElementById('shareToggle');
+        const sharePanel = document.getElementById('sharePanel');
+        const copyShareLink = document.getElementById('copyShareLink');
+
+        document.querySelectorAll('[data-share]').forEach((item) => {
+            item.href = shareRoutes[item.dataset.share] || shareLink;
+        });
+
+        shareToggle?.addEventListener('click', () => {
+            sharePanel?.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!sharePanel || !shareToggle) return;
+            if (!sharePanel.contains(event.target) && !shareToggle.contains(event.target)) {
+                sharePanel.classList.add('hidden');
+            }
+        });
+
+        copyShareLink?.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(shareLink);
+                copyShareLink.textContent = '已复制 ✅';
+                setTimeout(() => {
+                    copyShareLink.textContent = '复制链接';
+                }, 1400);
+            } catch {
+                copyShareLink.textContent = '复制失败，请手动复制';
+            }
+        });
     </script>
 </body>
 </html>
