@@ -22,7 +22,6 @@ class NavigationManager {
         if (path.includes('real-needs.html')) return 'real-needs';
         if (path.includes('ai-ranking.html')) return 'ai-ranking';
         if (path.includes('ai-overseas.html')) return 'ai-overseas';
-        if (path.includes('ai-ads.html')) return 'ai-ads';
         if (path.includes('trends.html')) return 'trends';
         if (path.includes('ai-capabilities.html')) return 'ai-capabilities';
         if (path.includes('lunch-recommendations.html')) return 'lunch-recommendations';
@@ -146,7 +145,6 @@ class NavigationManager {
                     <a href="real-needs.html" class="nav-link" data-page="real-needs">🎯 真需求</a>
                     <a href="ai-ranking.html" class="nav-link" data-page="ai-ranking">📊 AI榜单</a>
                     <a href="ai-overseas.html" class="nav-link" data-page="ai-overseas">🌍 AI出海</a>
-                    <a href="ai-ads.html" class="nav-link" data-page="ai-ads">📢 AI ADS</a>
                     <a href="trends.html" class="nav-link" data-page="trends">📈 趋势</a>
                     <a href="ai-capabilities.html" class="nav-link" data-page="ai-capabilities">⚡ AI功能</a>
                     <a href="lunch-recommendations.html" class="nav-link" data-page="lunch-recommendations">🍽️ 午餐推荐</a>
