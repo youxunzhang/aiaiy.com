@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>论文提示词方案库 | AIAIIY</title>
-    <meta name="description" content="收录论文写作提示词方案（方案01-方案40）。当前已导入方案标题，后续可逐条补充下载链接。">
+    <title>论文提示词方案库 | AIAIY</title>
+    <meta name="description" content="论文提示词方案库，支持在线打开和下载 assets/prompt-plans 目录中的 Word 文件。">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -35,7 +35,7 @@
         <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
             <div>
                 <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">论文提示词方案库</h1>
-                <p class="text-sm text-gray-600">已导入方案标题，下载链接待后续补充</p>
+                <p class="text-sm text-gray-600">已关联 assets/prompt-plans 文件夹，点击即可打开/下载 .docx 文件</p>
             </div>
             <div class="flex items-center gap-3 text-sm">
                 <a href="aiprompt.html" class="px-3 py-2 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-semibold">返回 AI提示词导航</a>
@@ -46,8 +46,8 @@
     <main class="max-w-7xl mx-auto px-4 py-8">
         <section class="glass rounded-3xl p-6 md:p-8">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-                <h2 class="text-2xl font-bold">方案清单（40条）</h2>
-                <span class="text-xs md:text-sm px-3 py-1 rounded-full bg-amber-100 text-amber-700">说明：点击后暂时显示“链接待补充”</span>
+                <h2 class="text-2xl font-bold">方案清单（已上传文件）</h2>
+                <span id="planCount" class="text-xs md:text-sm px-3 py-1 rounded-full bg-emerald-100 text-emerald-700"></span>
             </div>
 
             <div id="planList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
@@ -55,67 +55,66 @@
     </main>
 
     <script>
-        const plans = [
-            '方案01 写作全流程',
-            '方案02 精读一篇论文文献',
-            '方案03 内容润色',
-            '方案04 高效润色',
-            '方案05 论文全过程高阶提示词',
-            '方案06 从选题到参考文献',
-            '方案07 从开题到致谢',
-            '方案08 一键降AIGC率',
-            '方案09 高效高质量完成SCI',
-            '方案10 全方位提效率',
-            '方案11 写作全周期，十个细分场景化',
-            '方案12 高效润色+降重',
-            '方案13 高效完成文献综述',
-            '方案14 全流程保姆级方案 十大核心环节',
-            '方案15 高效仿写',
-            '方案16 高效优化',
-            '方案17 全套喂饭提示',
-            '方案18 从选题到成稿 高效辅助',
-            '方案19 写作加速 精细化提示词',
-            '方案20 顶级细分化提示词 内容终极进化',
-            '方案21 两小时逆袭文献综述',
-            '方案22 一天写完开题报告',
-            '方案23 精准制导文献调研',
-            '方案24 让导师闭嘴的选题方法',
-            '方案25 润色专用，拒绝低效率手动改稿',
-            '方案26 论文查重一次过',
-            '方案27 高阶提示词，助力查重一次过',
-            '方案28 deepseek改论文，查重5%闭眼…',
-            '方案29 初稿必备提示词',
-            '方案30 顶级提示词，让你的AIGC率一…',
-            '方案31 巧妙避免AI痕迹',
-            '方案32 组织思路、激发创意，克服写作…',
-            '方案33 肝出顶刊论文',
-            '方案34 必看 一键生成论文答辩PPT',
-            '方案35 降AIGC率实测，300字长文干货',
-            '方案36 两小时逆袭AIGC率',
-            '方案37 用DeepSeek复刻一篇硕士论文…',
-            '方案38 用DeepSeek当“小白读者”，自…',
-            '方案39 降低论文AI味',
-            '方案40 3000字长文教你修改和润色论文'
+        const planFiles = [
+            '方案01 写作全流程.docx',
+            '方案02  精读一篇论文文献.docx',
+            '方案03  内容润色.docx',
+            '方案04  高效润色.docx',
+            '方案05  论文全过程高阶提示词.docx',
+            '方案06  从选题到参考文献.docx',
+            '方案07  从开题到致谢.docx',
+            '方案08  一键降AIGC率.docx',
+            '方案09  高效高质量完成SCI.docx',
+            '方案10  全方位提效率.docx',
+            '方案11  写作全周期，十个细分场景化.docx',
+            '方案12  高效润色+降重.docx',
+            '方案13  高效完成文献综述.docx',
+            '方案14  全流程保姆级方案 十大核心环节.docx',
+            '方案15  高效仿写.docx',
+            '方案16  高效优化.docx',
+            '方案17  全套喂饭提示.docx',
+            '方案18  从选题到成稿 高效辅助.docx',
+            '方案19  写作加速  精细化提示词.docx',
+            '方案20 顶级细分化提示词 内容终极进化.docx',
+            '方案21  两小时逆袭文献综述.docx',
+            '方案22  一天写完开题报告.docx',
+            '方案23 精准制导文献调研.docx',
+            '方案24  让导师闭嘴的选题方法.docx',
+            '方案25  润色专用，拒绝低效率手动改稿.docx',
+            '方案26  论文查重一次过.docx',
+            '方案27  高阶提示词，助力查重一次过.docx',
+            '方案28  deepseek改论文，查重5%闭眼入.docx',
+            '方案29  初稿必备提示词.docx',
+            '方案30  顶级提示词，让你的AIGC率一落千丈.docx',
+            '方案31  巧妙避免AI痕迹.docx',
+            '方案32  组织思路、激发创意，克服写作障碍.docx',
+            '方案33  肝出顶刊论文.docx',
+            '方案34  必看  一键生成论文答辩PPT.docx',
+            '方案35  降AIGC率实测，300字长文干货.docx',
+            '方案36  两小时逆袭AIGC率.docx',
+            '方案37  用DeepSeek复刻一篇硕士论文结构，只靠9条提示词.docx'
         ];
 
         const planList = document.getElementById('planList');
+        const planCount = document.getElementById('planCount');
+        planCount.textContent = `共 ${planFiles.length} 个已上传方案`;
 
-        plans.forEach((title, index) => {
+        planFiles.forEach((fileName) => {
+            const href = `assets/prompt-plans/${encodeURIComponent(fileName)}`;
+            const title = fileName.replace(/\.docx$/i, '');
+
             const card = document.createElement('a');
-            card.href = '#';
+            card.href = href;
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
             card.className = 'plan-card p-4 block';
             card.innerHTML = `
                 <div class="flex items-start justify-between gap-3">
                     <h3 class="font-semibold text-gray-900 leading-6">${title}</h3>
-                    <span class="text-xs shrink-0 px-2 py-1 rounded bg-gray-100 text-gray-600">DOC</span>
+                    <span class="text-xs shrink-0 px-2 py-1 rounded bg-blue-100 text-blue-700">DOCX</span>
                 </div>
-                <p class="text-sm text-gray-600 mt-2">下载链接：待补充</p>
+                <p class="text-sm text-gray-600 mt-2">点击打开 · 右键可另存下载</p>
             `;
-
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert(`【${title}】下载链接待补充。\n后续可直接替换为真实下载地址。`);
-            });
 
             planList.appendChild(card);
         });
