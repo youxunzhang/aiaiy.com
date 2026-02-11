@@ -79,86 +79,13 @@
     </main>
 
     <script>
-        const reports = [
-            { file: '2025年超越瓶颈：人工智能集群组织报告-19页.pdf', size: '' },
-            { file: '2025年度全球人工智能治理报告-32页.pdf', size: '' },
-            { file: '2025年欧洲消费者人工智能采用的新兴趋势报告（英）-18页.pdf', size: '' },
-            { file: '2025年人工智能3.0：智能浪潮下的法律、博弈与战略报告-231页.pdf', size: '' },
-            { file: '2025年人工智能报告：产品设计与开发领域AI应用状况（英文版）-34页.pdf', size: '' },
-            { file: '2025年人工智能成熟度指数报告：行之有效的AI战略-17页.pdf', size: '' },
-            { file: '2025年人工智能全景报告-35页.pdf', size: '' },
-            { file: '2025年营销中人工智能现状报告（英）-33页.pdf', size: '' },
-            { file: '2025汽车人工智能应用案例集-24页.pdf', size: '3.5M' },
-            { file: '2025人工智能状况报告：拨开炒作迷雾，驾驭信任、安全与价值-61页.pdf', size: '11.2M' },
-            { file: '2025未来全球劳动力报告：职场人如何在人工智能时代茁壮成长-The Adecco Group-2025-77页.pdf', size: '6.4M' },
-            { file: '2026年供应链清单__如何应对关税、人工智能和地缘政治不确定性-13页.pdf', size: '4.1M' },
-            { file: '2026年人工智能全景报告（英文版）-33页.pdf', size: '9.9M' },
-            { file: '2026年数据分析和人工智能规划指南-13页.pdf', size: '1.2M' },
-            { file: '2026年通信行业年度策略：乘风人工智能，持续看好设施升级及应用落地-260129-长城证券-44页.pdf', size: '4.8M' },
-            { file: '2026年我国人工智能治理发展形势展望-12页.pdf', size: '7.2M' },
-            { file: '2026生成式人工智能服务合规备案指南-69页.pdf', size: '2.5M' },
-            { file: 'AI的真实幻觉：隐藏在人工智能错误背后的数据真相（英）-12页.pdf', size: '1.3M' },
-            { file: 'BIS_拥抱人工智能：意大利和美国家庭的比较-41页.pdf', size: '786KB' },
-            { file: 'Capgemini-C-Suite内部：人工智能如何悄然重塑决策（英）-2026.1-71页.pdf', size: '2.8M' },
-            { file: 'Capgemini-多年的人工智能优势-打造明天的企业（英）-2026.1-71页.pdf', size: '7.3M' },
-            { file: 'Capgemini-通过人工智能驱动的客户服务释放价值浪潮（英）-2026-8页.pdf', size: '9.7M' },
-            { file: 'Capgemini-无形的人工智能（英）-63页.pdf', size: '5.1M' },
-            { file: 'Capgemini-重要的是人工智能如何在2026年改变当今消费者的价值观（英）-82页.pdf', size: '3.3M' },
-            { file: 'CNCF_CNCF年度云原生调查：人工智能未来的基础设施-27页.pdf', size: '1.8M' },
-            { file: 'CoSchedule_营销领域人工智能（AI）应用状况-37页.pdf', size: '4.4M' },
-            { file: 'Digital Education Council_2025年全球人工智能教育委员会教师调查：人工智能与学术界的碰撞：教师观点-42页.pdf', size: '4.3M' },
-            { file: 'GEP_GEP SMART在Everest Group的代理人工智能创新观察中脱颖而出-19页.pdf', size: '980KB' },
-            { file: 'GEP_采购中失败的代理人工智能计划背后的三大陷阱-13页.pdf', size: '1.3M' },
-            { file: 'GEP_代理人工智能买家指南：如何评估企业级采购和供应链代理人工智能-14页.pdf', size: '2.3M' },
-            { file: 'GEP_终极购买指南：人工智能支付采购软件-22页.pdf', size: '1.7M' },
-            { file: 'IAB&alkshoppe_当AI引导购物旅程：人工智能驱动商业时代下营销人员的机会-40页.pdf', size: '7.9M' },
-            { file: 'IMF-弥合未来的技能差距：人工智能时代创造新的就业机会（英）-2026.1-49页.pdf', size: '2.1M' },
-            { file: 'OECD_经合组织2026年数字教育展望：探索生成性人工智能在教育中的有效应用-247页.pdf', size: '9.3M' },
-            { file: 'PitchBook-气候技术中的人工智能（英）-14页.pdf', size: '896KB' },
-            { file: 'PitchBook分析师笔记：电子商务的人工智能溢价（英）-22页.pdf', size: '941KB' },
-            { file: 'synthesia_从实验到日常：人工智能如何改变学习与发展 2026年AI学习与发展报告-25页.pdf', size: '3.5M' },
-            { file: 'Vi Labs_2026年健康领域人工智能（AI）应用状况报告-32页.pdf', size: '10.2M' },
-            { file: '《人工智能推动金融数据治理转型升级研究报告》发布稿-76页.pdf', size: '2.6M' },
-            { file: '【华创证券人工智能研究中心】多行业联合人工智能1月报：25年中美科技股复盘-260106-华创证券-22页.pdf', size: '2.1M' },
-            { file: '【融资商业计划-AI电子游戏】光胜人工智能-BP（电子游戏）.pdf', size: '4M' },
-            { file: '艾昆纬-从纸张到平台：人工智能驱动的质量管理体系演变（英）-12页.pdf', size: '1.5M' },
-            { file: '艾昆纬-一场由人工智能驱动的消费者健康革命（英）-2026-23页.pdf', size: '1.2M' },
-            { file: '艾昆纬-在医疗事务中利用人工智能的力量（英）-2026-16页.pdf', size: '996KB' },
-            { file: '北交所策略专题报告：“人工智能+制造”行动意见出台，北证算力基石与场景落地-260111-开源证券-19页.pdf', size: '1.9M' },
-            { file: '伯恩斯坦_亚洲半导体与全球存储器：2026年仍以人工智能为核心-50页.pdf', size: '4.2M' },
-            { file: '承诺兑现：2025 MINDS组织对现实世界人工智能应用的见解（英）-29页.pdf', size: '1.9M' },
-            { file: '传媒行业人工智能专题：从“生产力”到“变现力”，GEO重构流量入口与AI商业化拐点-260116-国信证券-34页.pdf', size: '3.9M' },
-            { file: '当代基础人工智能模型增加生物武器风险（英）-60页.pdf', size: '1M' },
-            { file: '第五范式—人工智能驱动的科技创新-68页.pdf', size: '15.3M' },
-            { file: '国际清算银行-人工智能的采用、生产力和就业：来自欧洲公司的证据（英）-2026.1-36页.pdf', size: '1.2M' },
-            { file: '国际清算银行-为人工智能热潮融资：从现金流到债务（英）-2026.1-8页.pdf', size: '1M' },
-            { file: '国际清算银行-拥抱人工智能：意大利和美国家庭的比较（英）-2026.1-41页.pdf', size: '1.1M' },
-            { file: '韩国央行-人工智能专业人员的劳动力市场和工作流动性（英）-2025-13页.pdf', size: '2.4M' },
-            { file: '解读《“人工智能%2b制造”专项行动实施意见》：AI加速落地：由“制造”迈向“智造”-260108-银河证券-13页.pdf', size: '1.8M' },
-            { file: '兰德-当代基础人工智能模型增加生物武器风险（英）-2025-60页.pdf', size: '1M' },
-            { file: '兰德-中美人工智能市场竞争-大型语言模型的全球使用模式分析（英）-2026.1-29页.pdf', size: '' },
-            { file: '普华永道_人工智能是旅游和酒店业的核心——驱动个性化、效率和发展-28页.pdf', size: '' },
-            { file: '全球人工智能技术应用洞察报告-41页.pdf', size: '' },
-            { file: '全球人工智能教职员工调查2025：人工智能与学术界：教师们的看法-36页.pdf', size: '' },
-            { file: '全球展望贸易、人工智能与能源转型（英）-40页.pdf', size: '' },
-            { file: '确保高级人工智能安全的四种治理方法（英）-8页.pdf', size: '' },
-            { file: '人工智能——历史、现状和未来-天津大学-2025-73页.pdf', size: '' },
-            { file: '人工智能安全治理研究报告（2025年）-48页.pdf', size: '' },
-            { file: '人工智能背景下大电网安全稳定的探索与思考-37页.pdf', size: '' },
-            { file: '人工智能采用、生产率和就业：来自欧洲企业的证据（英）-36页.pdf', size: '' },
-            { file: '人工智能时代的智能教育（英）-74页.pdf', size: '' },
-            { file: '人工智能时代国家实力与优势的新纪元（英）-210页.pdf', size: '' },
-            { file: '人工智能系统而非模型-14页.pdf', size: '' },
-            { file: '人工智能行业生成式引擎优化(GEO)：大模型商业化最先探索领域-260116-东吴证券-23页.pdf', size: '' },
-            { file: '人工智能行业算力系列报告一：海外云大厂提价，关注算力涨价周期-260129-国信证券-15页.pdf', size: '' },
-            { file: '人工智能行业月度跟踪：CES+2026+AI前沿信息汇总-260109-爱建证券-10页.pdf', size: '1.6M' },
-            { file: '人工智能行业专题(14)：大模型发展趋势复盘与展望-260105-国信证券-49页.pdf', size: '5.6M' },
-            { file: '人工智能行业专题：OpenAI发布医疗健康Gpt，开启AI医疗新时代-260113-国信证券-16页.pdf', size: '2M' },
-            { file: '人工智能与大分歧（英）-27页.pdf', size: '1.2M' },
-            { file: '人工智能在教育体系中的应用与采纳（英）-101页.pdf', size: '3.6M' },
-            { file: '人类优势：人工智能时代更强大脑（英）-33页.pdf', size: '6.7M' },
-            { file: '生成式人工智能2025专利布局智能-25页.pdf', size: '1.4M' },
-            { file: '生成式人工智能时代的网络搜索特征研究（英）-24页.pdf', size: '3.5M' }
+        const REPORT_BASE_PATH = 'assets/industry-reports/';
+        const REPORT_MANIFEST_PATH = `${REPORT_BASE_PATH}reports.json`;
+        let reports = [];
+
+        const defaultReports = [
+            { name: '2025年超越瓶颈：人工智能集群组织报告-19页.pdf', file: '2025年超越瓶颈：人工智能集群组织报告-19页.pdf', size: '' },
+            { name: '2025年度全球人工智能治理报告-32页.pdf', file: '2025年度全球人工智能治理报告-32页.pdf', size: '' }
         ];
 
         const reportList = document.getElementById('reportList');
@@ -167,19 +94,19 @@
 
         function render(keyword = '') {
             const key = keyword.trim().toLowerCase();
-            const filtered = reports.filter(item => item.file.toLowerCase().includes(key));
+            const filtered = reports.filter(item => (item.name || item.file).toLowerCase().includes(key));
             reportCount.textContent = `共 ${filtered.length} / ${reports.length} 份报告`;
 
             reportList.innerHTML = '';
             filtered.forEach((item, index) => {
-                const href = `assets/industry-reports/${encodeURIComponent(item.file)}`;
+                const href = `${REPORT_BASE_PATH}${encodeURIComponent(item.file)}`;
                 const el = document.createElement('article');
                 el.className = 'report-item transition-all bg-white rounded-xl border border-slate-200 p-4 md:p-5';
                 el.innerHTML = `
                     <div class="flex items-start gap-3">
                         <span class="mt-0.5 shrink-0 text-blue-600">📄</span>
                         <div class="min-w-0 flex-1">
-                            <h3 class="font-semibold text-slate-900 leading-7 break-words">${index + 1}. ${item.file}</h3>
+                            <h3 class="font-semibold text-slate-900 leading-7 break-words">${index + 1}. ${item.name || item.file}</h3>
                             <div class="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                                 <span class="px-2 py-1 rounded bg-slate-100">PDF</span>
                                 <span class="px-2 py-1 rounded bg-slate-100">${item.size || '待补充大小'}</span>
@@ -192,8 +119,29 @@
             });
         }
 
+        async function loadReports() {
+            try {
+                const response = await fetch(REPORT_MANIFEST_PATH, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`manifest http ${response.status}`);
+                const manifestReports = await response.json();
+                if (!Array.isArray(manifestReports)) throw new Error('manifest format invalid');
+                reports = manifestReports
+                    .filter(item => item?.file)
+                    .map(item => ({
+                        name: item.name || item.file,
+                        file: item.file,
+                        size: item.size || ''
+                    }));
+            } catch (error) {
+                console.warn('读取行业报告清单失败，使用默认展示数据。', error);
+                reports = defaultReports;
+            } finally {
+                render(searchInput.value);
+            }
+        }
+
         searchInput.addEventListener('input', (e) => render(e.target.value));
-        render();
+        loadReports();
 
         const shareLink = 'https://aiaiy.com/';
         const shareText = 'AIAIY - AI 资源与导航';
