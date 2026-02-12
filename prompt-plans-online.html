@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>论文提示词方案全文版 | AIAIY</title>
+    <meta name="description" content="在线查看论文提示词方案全文，不用下载文档，直接阅读与检索。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #111827;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+        }
+        .plan-item {
+            border: 1px solid rgba(99, 102, 241, 0.18);
+            border-radius: 14px;
+            overflow: hidden;
+            background: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="glass sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">论文提示词方案（在线全文）</h1>
+                <p class="text-sm text-gray-600">内容已从 Word 文件提取，支持直接浏览，无需下载。</p>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+                <a href="prompt-plans.html" class="px-3 py-2 rounded-lg bg-white/80 hover:bg-white text-blue-700 font-semibold">下载版入口</a>
+                <a href="aiprompt.html" class="px-3 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-semibold">返回 AI提示词导航</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <section class="glass rounded-3xl p-6 md:p-8">
+            <div class="flex flex-wrap gap-3 items-center justify-between mb-4">
+                <h2 class="text-xl md:text-2xl font-bold">方案列表</h2>
+                <span id="planCount" class="text-xs md:text-sm px-3 py-1 rounded-full bg-emerald-100 text-emerald-700"></span>
+            </div>
+
+            <label for="searchInput" class="sr-only">搜索方案</label>
+            <input id="searchInput" type="text" placeholder="输入关键词筛选，例如：文献综述 / AIGC / 开题报告"
+                class="w-full mb-5 rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            <div id="planContainer" class="space-y-4"></div>
+        </section>
+    </main>
+
+    <script>
+        const planContainer = document.getElementById('planContainer');
+        const planCount = document.getElementById('planCount');
+        const searchInput = document.getElementById('searchInput');
+        let planData = [];
+
+        function escapeHtml(text) {
+            return text
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+
+        function renderPlans(keyword = '') {
+            const normalized = keyword.trim().toLowerCase();
+            const filtered = normalized
+                ? planData.filter(plan => (`${plan.title}\n${plan.content}`).toLowerCase().includes(normalized))
+                : planData;
+
+            planCount.textContent = `共 ${filtered.length} / ${planData.length} 个方案`;
+
+            if (!filtered.length) {
+                planContainer.innerHTML = '<div class="rounded-xl bg-white p-5 text-gray-600">没有找到匹配方案，请更换关键词。</div>';
+                return;
+            }
+
+            planContainer.innerHTML = filtered.map((plan) => {
+                const lines = escapeHtml(plan.content).split('\n').filter(Boolean);
+                const formatted = lines.map(line => `<p class="mb-2 leading-7">${line}</p>`).join('');
+                return `
+                <details class="plan-item" id="plan-${plan.id}">
+                    <summary class="cursor-pointer px-5 py-4 bg-gradient-to-r from-indigo-50 to-blue-50 font-semibold text-gray-900 flex items-center justify-between gap-3">
+                        <span>${escapeHtml(plan.title)}</span>
+                        <span class="text-xs px-2 py-1 rounded bg-indigo-100 text-indigo-700 shrink-0">点击展开全文</span>
+                    </summary>
+                    <div class="px-5 py-4 text-gray-800 bg-white border-t border-indigo-100">
+                        ${formatted}
+                    </div>
+                </details>`;
+            }).join('');
+        }
+
+        fetch('assets/prompt-plans-content.json')
+            .then(res => res.json())
+            .then((data) => {
+                planData = Array.isArray(data) ? data : [];
+                renderPlans('');
+            })
+            .catch(() => {
+                planContainer.innerHTML = '<div class="rounded-xl bg-rose-50 text-rose-700 p-5">加载方案内容失败，请稍后重试。</div>';
+            });
+
+        searchInput.addEventListener('input', (event) => {
+            renderPlans(event.target.value);
+        });
+    </script>
+</body>
+</html>
