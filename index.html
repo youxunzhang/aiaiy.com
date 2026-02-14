@@ -841,6 +841,7 @@
         }
 
         .ai-card {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -853,10 +854,34 @@
             transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
 
+        .ai-card[target="_blank"]::after {
+            content: "↗";
+            position: absolute;
+            top: 0.5rem;
+            right: 0.7rem;
+            width: 1.15rem;
+            height: 1.15rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
         .ai-card:hover {
             border-color: var(--primary-color);
             box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
             transform: translateY(-2px);
+        }
+
+        .ai-card[target="_blank"]:hover::after {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
 
         .ai-card__logo {
