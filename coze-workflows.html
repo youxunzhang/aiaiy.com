@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coze 智能体工作流清单 | AIAIY</title>
+    <meta name="description" content="200+ Coze 工作流模板合集，覆盖行业、视频、自媒体、名人、创作等场景。点击任意条目可获取合集链接与教程。">
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --surface-color: #ffffff;
+            --surface-muted: #f8fafc;
+            --border-color: #dbe5f3;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #0ea5e9;
+            --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.08);
+            --shadow-md: 0 24px 45px rgba(15, 23, 42, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text-primary);
+            background: radial-gradient(circle at 0% 0%, #dbeafe 0%, #f8fafc 40%, #eef2ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        .hero {
+            padding: 2.8rem 0 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
+        }
+
+        .hero__title {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.15;
+        }
+
+        .hero__subtitle {
+            margin: 1rem 0;
+            font-size: 1.04rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 900px;
+        }
+
+        .hero__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 0.45rem 0.9rem;
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            text-decoration: none;
+            border-radius: 0.78rem;
+            padding: 0.72rem 1rem;
+            font-weight: 600;
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+        }
+
+        main { padding: 2rem 0 3rem; }
+
+        .content-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            padding: 1.2rem;
+        }
+
+        .notice {
+            margin: 0 0 1rem;
+            padding: 0.95rem 1rem;
+            border-radius: 0.85rem;
+            border: 1px solid #facc15;
+            background: #fffbeb;
+            color: #854d0e;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .workflow-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            width: 100%;
+            text-align: left;
+            padding: 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            background: var(--surface-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .workflow-item:hover {
+            border-color: #93c5fd;
+            background: #eff6ff;
+            transform: translateY(-1px);
+        }
+
+        .workflow-item__num {
+            min-width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .workflow-item__name {
+            line-height: 1.45;
+            font-size: 0.95rem;
+        }
+
+        .more-tip {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal.is-open { display: flex; }
+
+        .modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.58);
+        }
+
+        .modal__panel {
+            position: relative;
+            z-index: 1;
+            width: min(700px, 100%);
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .modal__header {
+            padding: 1rem 1.1rem;
+            background: linear-gradient(90deg, #dbeafe, #f0f9ff);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+
+        .modal__title {
+            margin: 0;
+            font-size: 1.08rem;
+        }
+
+        .modal__close {
+            border: none;
+            background: transparent;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #1e293b;
+        }
+
+        .modal__body {
+            padding: 1.1rem;
+        }
+
+        .link-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            padding: 0.85rem;
+            margin-bottom: 0.7rem;
+            background: var(--surface-muted);
+        }
+
+        .link-card a {
+            color: var(--primary-color);
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .guide-note {
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1 class="hero__title">Coze 智能体工作流清单</h1>
+            <p class="hero__subtitle">Coze 工具集，内含行业工作流、视频工作流、自媒体工作流、名人工作流、创作工作流等 200+ 套工作流，覆盖小说推文、历史人物的一生、心理学、育儿、教育、书单、国学等方向。</p>
+            <div class="hero__meta">
+                <span class="badge">🧩 200+ 工作流模板合集</span>
+                <span class="badge">📌 点击任意清单项即可获取链接</span>
+                <span class="badge">🔄 建议立即转存避免失效</span>
+            </div>
+            <a class="home-link" href="index.html">← 返回首页</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="content-card">
+                <p class="notice">● 注：工作流文件极易失效，请马上转存到自己的网盘！请马上转存！如失效请联系！</p>
+                <div class="workflow-grid" id="workflowGrid"></div>
+                <p class="more-tip">……（篇幅问题更多工作流不在这里展示）</p>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="linkModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="获取 Coze 工作流链接">
+        <div class="modal__backdrop" data-close-modal></div>
+        <div class="modal__panel">
+            <div class="modal__header">
+                <h2 class="modal__title">🎁 200+ Coze 工作流模版合集</h2>
+                <button type="button" class="modal__close" data-close-modal aria-label="关闭">×</button>
+            </div>
+            <div class="modal__body">
+                <div class="link-card">
+                    <div>夸/克链接：</div>
+                    <a href="https://pan.quark.cn/s/23ffd4e29f6c" target="_blank" rel="noopener noreferrer">https://pan.quark.cn/s/23ffd4e29f6c</a>
+                </div>
+                <div class="link-card">
+                    <div>商用智能体：</div>
+                    <a href="https://miheai.com/?share_id=14315#/ai" target="_blank" rel="noopener noreferrer">https://miheai.com/?share_id=14315#/ai</a>
+                </div>
+                <div class="link-card">
+                    <div>★ 使用工作流必看教程（福利版）：</div>
+                    <a href="https://biubcor9z65.feishu.cn/wiki/JYivwUZrkiqlslk4SYqc0WxxnYf?from=from_copylink" target="_blank" rel="noopener noreferrer">https://biubcor9z65.feishu.cn/wiki/JYivwUZrkiqlslk4SYqc0WxxnYf?from=from_copylink</a>
+                    <div class="guide-note">【飞书链接复制到浏览器中打开查看】</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const workflows = [
+            'coze智能体工作流：国学运势行业批量出图',
+            'coze智能体工作流：成语故事批量出图',
+            'coze智能体工作流：自媒体运营师批量出图',
+            'coze智能体工作流：祝福海報',
+            'coze智能体工作流：发票内容识别并写入到飞书',
+            'coze智能体工作流：法务合同审查',
+            'coze智能体工作流：电商生图工作流',
+            'coze智能体工作流：名画照相馆',
+            'coze智能体工作流：如果书籍会说话使用教程',
+            'coze智能体工作流：混剪短视频工作流的方法和说明',
+            'coze智能体工作流：养生动态视频使用教程',
+            'coze智能体工作流：像素视频工作流',
+            'coze智能体工作流：道教玄学视频工作流',
+            'coze智能体工作流：书单爆款视频类【高级版】',
+            'coze智能体工作流：爆款书单视频｜铅笔画风格',
+            'coze智能体工作流：沉浸式历史故事',
+            'coze智能体工作流：中式养生视频',
+            'coze智能体工作流：健康养生动态视频工作流',
+            'coze智能体工作流：历史人物的一生',
+            'coze智能体工作流：生成tk动画视频',
+            'coze智能体工作流：生成多人版心理学火柴人｜含封面祯',
+            'coze智能体工作流：小人国视频',
+            'coze智能体工作流：食材走秀视频',
+            'coze智能体工作流：老黄历升级版',
+            'coze智能体工作流：古风育儿经基础版视频',
+            'coze智能体工作流：每日音乐',
+            'coze智能体工作流：裸眼3D',
+            'coze智能体工作流：欧美卡通育儿工作流',
+            'coze智能体工作流：哲学主义',
+            'coze智能体工作流：歌手杨贵妃',
+            'coze智能体工作流：故事视频-经济',
+            'coze智能体工作流：书单带货工作流',
+            'coze智能体工作流：电商带货工作流 无背景声版',
+            'coze智能体工作流：电商带货工作流 广告解说版本',
+            'coze智能体工作流：历史人物独白',
+            'coze智能体工作流：炫酷书单3',
+            'coze智能体工作流：炫酷书单4',
+            'coze智能体工作流：歌手杨贵妃 无字幕版本',
+            'coze智能体工作流：爆款情感香烟',
+            'coze智能体工作流：一键制作商品视频（高端版）',
+            'coze智能体工作流：3D流体微缩视频',
+            'coze智能体工作流：每日感悟',
+            'coze智能体工作流：橘猫日常工作流',
+            'coze智能体工作流：励志爆款视频',
+            'coze智能体工作流：田园视频',
+            'coze智能体工作流：爆款解压切东西视频',
+            'coze智能体工作流：第一人称体验',
+            'coze智能体工作流：历史人物一生首尾帧',
+            'coze智能体工作流：万物进化视频',
+            'coze智能体工作流：老男人视频工作流',
+            'coze智能体工作流：一键混剪视频-直播同款',
+            'coze智能体工作流：美女跳舞2',
+            'coze智能体工作流：电商复刻视频',
+            'coze智能体工作流：爆款爆炸盒工作流veo3',
+            'coze智能体工作流：人物一致性视频',
+            'coze智能体工作流：小说推文工作流',
+            'coze智能体工作流：动漫角色进入现实世界',
+            'coze智能体工作流：女生心眼子训练',
+            'coze智能体工作流：英语话本工作流',
+            'coze智能体工作流：哲学最新版工作流',
+            'coze智能体工作流：每天认识一朵花',
+            'coze智能体工作流：今日话题-情感类',
+            'coze智能体工作流：像素认知视频',
+            'coze智能体工作流：少儿英语阅读工作流',
+            'coze智能体工作流：爆款古风诗词鉴赏',
+            'coze智能体工作流：公众号输入主题自动生成图文',
+            'coze智能体工作流：公众号输入链接自动二改图文',
+            'coze智能体工作流：公众号爆款并配图的智能体',
+            'coze智能体工作流：小红书输入主题自动生成图文',
+            'coze智能体工作流：小红书输入链接自动二改图文',
+            'coze智能体工作流：小红书行业关键词提取文案内容写入飞书多维表格',
+            'coze智能体工作流：抖音行业关键词提取文案内容写入飞书多维表格',
+            'coze智能体工作流：今日头条输入主题自动生成图文',
+            'coze智能体工作流：今日头条输入链接自动二改图文',
+            'coze智能体工作流：爆款标题制作系统',
+            'coze智能体工作流：抖音对标写入到飞书',
+            'coze智能体工作流：抖音关键字写入到飞书',
+            'coze智能体工作流：创作歌曲智能体',
+            'coze智能体工作流：笔画教育智能体',
+            'coze智能体工作流：人物换装智能体',
+            'coze智能体工作流：数字人工作流'
+        ];
+
+        const grid = document.getElementById('workflowGrid');
+        const modal = document.getElementById('linkModal');
+
+        workflows.forEach((name, index) => {
+            const button = document.createElement('button');
+            button.className = 'workflow-item';
+            button.type = 'button';
+            button.innerHTML = `<span class="workflow-item__num">${index + 1}</span><span class="workflow-item__name">${name}</span>`;
+            button.addEventListener('click', () => {
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+            });
+            grid.appendChild(button);
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+        };
+
+        document.querySelectorAll('[data-close-modal]').forEach((node) => {
+            node.addEventListener('click', closeModal);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
