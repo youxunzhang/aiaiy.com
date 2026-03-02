@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品详情 | AIAIY</title>
+  <meta name="description" content="查看 AIAIY 首页产品详情介绍及访问地址。">
+  <link rel="canonical" href="https://www.aiaiy.com/product-detail.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <main class="max-w-4xl mx-auto px-4 py-10">
+    <a href="index.html#ai-tool-ranking" class="text-blue-600 hover:text-blue-700 text-sm">← 返回首页</a>
+
+    <section class="mt-4 bg-white border border-slate-200 rounded-2xl shadow-sm p-6 md:p-8">
+      <p id="detailTag" class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">产品详情</p>
+      <h1 id="detailTitle" class="text-3xl font-bold mt-3">加载中...</h1>
+      <p id="detailDesc" class="text-slate-600 mt-3 leading-7"></p>
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold">访问地址</h2>
+        <p class="text-slate-600 text-sm mt-1">可点击下方链接直接访问该页面：</p>
+        <a id="detailUrl" href="#" class="inline-block mt-3 px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition">立即访问</a>
+      </div>
+    </section>
+
+    <section class="mt-6 bg-white border border-slate-200 rounded-2xl p-5">
+      <h2 class="text-base font-semibold">其他产品</h2>
+      <div id="relatedList" class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+    </section>
+  </main>
+
+  <script>
+    const productMap = {
+      "ai-tool-ranking": {
+        title: "AI工具排行榜",
+        desc: "汇总热门 AI 产品榜单，帮助你快速找到高频使用的工具与平台。",
+        url: "ai-tool-ranking.html"
+      },
+      "best-ai-tools-2026": {
+        title: "2026最佳AI工具",
+        desc: "跨类别精选推荐，适合希望一次了解前沿工具的用户。",
+        url: "best-ai-tools-2026.html"
+      },
+      "ai-tools-for-productivity": {
+        title: "AI效率工具",
+        desc: "聚焦自动化与效率提升场景，帮助个人和团队节省时间。",
+        url: "ai-tools-for-productivity.html"
+      },
+      "ai-tools-for-marketing": {
+        title: "AI营销工具",
+        desc: "覆盖内容生成、投放优化与数据洞察等营销核心环节。",
+        url: "ai-tools-for-marketing.html"
+      },
+      "ai-tools-for-design": {
+        title: "AI设计工具",
+        desc: "为视觉创作与原型设计提供灵感、素材与效率支持。",
+        url: "ai-tools-for-design.html"
+      },
+      "writing": {
+        title: "AI写作工具",
+        desc: "支持草稿生成、润色改写与长文创作等多类写作需求。",
+        url: "writing.html"
+      },
+      "coding": {
+        title: "AI编程工具",
+        desc: "帮助开发者进行代码生成、重构、调试与文档辅助。",
+        url: "coding.html"
+      },
+      "video": {
+        title: "AI视频工具",
+        desc: "适用于视频生成、剪辑增强和内容生产发布流程。",
+        url: "video.html"
+      },
+      "image": {
+        title: "AI图像工具",
+        desc: "用于图像生成、编辑、修复与增强等视觉内容创作场景。",
+        url: "image.html"
+      },
+      "aioffice": {
+        title: "AI商业工具",
+        desc: "面向团队协作、运营流程与办公文档管理的 AI 能力集合。",
+        url: "aioffice.html"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const productKey = params.get("product");
+
+    const titleEl = document.getElementById("detailTitle");
+    const descEl = document.getElementById("detailDesc");
+    const urlEl = document.getElementById("detailUrl");
+    const tagEl = document.getElementById("detailTag");
+    const relatedEl = document.getElementById("relatedList");
+
+    function setDetail(data) {
+      titleEl.textContent = data.title;
+      descEl.textContent = data.desc;
+      urlEl.href = data.url;
+      urlEl.textContent = data.url;
+      tagEl.textContent = "产品详情";
+      document.title = `${data.title} | 产品详情 | AIAIY`;
+    }
+
+    if (productKey && productMap[productKey]) {
+      setDetail(productMap[productKey]);
+    } else {
+      titleEl.textContent = "未找到该产品";
+      descEl.textContent = "请返回首页重新选择需要查看的产品详情。";
+      urlEl.href = "index.html#ai-tool-ranking";
+      urlEl.textContent = "返回首页";
+      tagEl.textContent = "提示";
+    }
+
+    Object.entries(productMap).forEach(([key, item]) => {
+      const a = document.createElement("a");
+      a.href = `product-detail.html?product=${encodeURIComponent(key)}`;
+      a.className = "px-3 py-2 rounded-lg border border-slate-200 hover:border-blue-300 hover:bg-blue-50 text-sm";
+      a.textContent = item.title;
+      relatedEl.appendChild(a);
+    });
+  </script>
+</body>
+</html>
