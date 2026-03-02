@@ -1,0 +1,10 @@
+{
+  "name": "aiaiy-static-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static site build shim for Cloudflare Pages",
+  "scripts": {
+    "build": "node -e \"console.log('Static site: no build step required.');\"",
+    "test": "node -e \"console.log('No automated tests configured');\""
+  }
+}
