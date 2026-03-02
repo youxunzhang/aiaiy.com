@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品详情 | AIAIY</title>
+    <meta name="description" content="查看 AI 产品详情介绍、适用场景与访问地址。">
+    <link rel="stylesheet" href="modern-styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .detail-shell {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            color: #1d4ed8;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .detail-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+            padding: 2rem;
+        }
+
+        .detail-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .detail-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .detail-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .detail-title {
+            margin: 0;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+        }
+
+        .detail-tagline {
+            margin: .35rem 0 0;
+            color: #475569;
+        }
+
+        .detail-section {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed #cbd5e1;
+        }
+
+        .detail-section h2 {
+            margin: 0 0 .75rem;
+            font-size: 1.05rem;
+        }
+
+        .detail-section p {
+            margin: 0;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .detail-url {
+            display: inline-flex;
+            margin-top: .6rem;
+            color: #1d4ed8;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .detail-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: .7rem 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #0f172a;
+            background: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            border-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <main class="detail-shell">
+        <a class="detail-back" href="index.html">← 返回首页</a>
+
+        <article class="detail-card">
+            <header class="detail-header">
+                <div class="detail-logo" id="product-logo-wrap" aria-hidden="true"></div>
+                <div>
+                    <h1 class="detail-title" id="product-name">AI 产品</h1>
+                    <p class="detail-tagline" id="product-tagline">产品介绍加载中...</p>
+                </div>
+            </header>
+
+            <section class="detail-section">
+                <h2>产品详情信息</h2>
+                <p id="product-description"></p>
+            </section>
+
+            <section class="detail-section">
+                <h2>访问地址</h2>
+                <a id="product-url" class="detail-url" href="#" target="_blank" rel="noopener noreferrer"></a>
+            </section>
+
+            <div class="detail-actions">
+                <a id="visit-button" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">立即访问</a>
+                <a class="btn" href="index.html">继续浏览其他工具</a>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get('name') || 'AI 产品';
+        const productTagline = params.get('tagline') || '该产品暂无简介';
+        const productUrl = params.get('url') || 'https://www.aiaiy.com/';
+        const productLogo = params.get('logo') || '';
+
+        document.title = `${productName} - 产品详情 | AIAIY`;
+        document.getElementById('product-name').textContent = productName;
+        document.getElementById('product-tagline').textContent = productTagline;
+        document.getElementById('product-description').textContent = `${productName} 是首页收录的 AI 产品。你可以在这里查看该工具的简要介绍，并通过下方访问地址直接跳转到产品官网进行体验。`;
+
+        const urlLink = document.getElementById('product-url');
+        const visitButton = document.getElementById('visit-button');
+        urlLink.href = productUrl;
+        urlLink.textContent = productUrl;
+        visitButton.href = productUrl;
+
+        if (productLogo) {
+            const img = document.createElement('img');
+            img.src = productLogo;
+            img.alt = `${productName} logo`;
+            img.loading = 'lazy';
+            document.getElementById('product-logo-wrap').appendChild(img);
+        } else {
+            document.getElementById('product-logo-wrap').textContent = productName.slice(0, 1);
+        }
+    </script>
+</body>
+</html>

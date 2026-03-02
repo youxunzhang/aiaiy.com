@@ -2061,6 +2061,32 @@
                 card.appendChild(meta);
             });
 
+            const buildDetailPageLinks = () => {
+                document.querySelectorAll('.ai-card').forEach(card => {
+                    const productName = card.querySelector('.ai-card__name')?.textContent?.trim();
+                    const productTagline = card.querySelector('.ai-card__tagline')?.textContent?.trim();
+                    const productLogo = card.querySelector('.ai-card__logo img')?.getAttribute('src') || '';
+                    const productUrl = card.dataset.url || card.getAttribute('href');
+
+                    if (!productName || !productUrl || productUrl.startsWith('product-detail.html')) {
+                        return;
+                    }
+
+                    const detailUrl = new URL('product-detail.html', window.location.href);
+                    detailUrl.searchParams.set('name', productName);
+                    detailUrl.searchParams.set('tagline', productTagline || '查看详情介绍');
+                    detailUrl.searchParams.set('url', productUrl);
+                    detailUrl.searchParams.set('logo', productLogo);
+
+                    card.dataset.url = productUrl;
+                    card.href = `${detailUrl.pathname}${detailUrl.search}`;
+                    card.removeAttribute('target');
+                    card.removeAttribute('rel');
+                });
+            };
+
+            buildDetailPageLinks();
+
             const sidebar链接 = Array.from(document.querySelectorAll('.category-sidebar__link'));
             const sectionIds = sidebar链接.map(link => link.dataset.target).filter(Boolean);
 
