@@ -282,9 +282,17 @@ class AICompaniesLogoManager {
                 url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Baidu_logo.svg/1200px-Baidu_logo.svg.png',
                 fallback: '🔍'
             },
+            'www.alibaba.com': {
+                url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Alibaba_Group_logo.svg/1200px-Alibaba_Group_logo.svg.png',
+                fallback: '🛍️'
+            },
             'ai.tencent.com': {
                 url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tencent_logo.svg/1200px-Tencent_logo.svg.png',
                 fallback: '🐧'
+            },
+            'www.iflytek.com': {
+                url: 'https://www.iflytek.com/favicon.ico',
+                fallback: '🗣️'
             },
             'volcengine.com': {
                 url: 'https://www.volcengine.com/favicon.ico',
@@ -293,6 +301,18 @@ class AICompaniesLogoManager {
             'sensetime.com': {
                 url: 'https://www.sensetime.com/favicon.ico',
                 fallback: '👁️'
+            },
+            'www.hikvision.com': {
+                url: 'https://www.hikvision.com/favicon.ico',
+                fallback: '📹'
+            },
+            'www.cambricon.com': {
+                url: 'https://www.cambricon.com/favicon.ico',
+                fallback: '🧠'
+            },
+            'www.cloudwalk.com': {
+                url: 'https://www.cloudwalk.com/favicon.ico',
+                fallback: '🚶'
             },
             'megvii.com': {
                 url: 'https://www.megvii.com/favicon.ico',
