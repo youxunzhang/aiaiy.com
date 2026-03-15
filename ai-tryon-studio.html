@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 商品图试穿生成器（静态页面）</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --primary: #4f46e5;
+      --primary-soft: #eef0ff;
+      --text: #111827;
+      --muted: #6b7280;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f9fbff 0%, var(--bg) 45%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .kpi {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .kpi-item {
+      background: var(--primary-soft);
+      border-radius: 12px;
+      padding: 10px 14px;
+      min-width: 130px;
+    }
+
+    .kpi-item b {
+      display: block;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .main {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 360px 1fr;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .upload-zone {
+      border: 2px dashed #c7d2fe;
+      background: #f8faff;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      display: grid;
+      gap: 10px;
+    }
+
+    .upload-zone .icon {
+      font-size: 32px;
+    }
+
+    .upload-zone button,
+    .primary,
+    .ghost {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .upload-zone button,
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .ghost {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .field {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .field select,
+    .field input[type="range"],
+    .field input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .status-pill {
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .queued { background: #fff7ed; color: var(--warning); }
+    .running { background: #ecfeff; color: #0369a1; }
+    .done { background: #ecfdf5; color: var(--success); }
+    .failed { background: #fef2f2; color: var(--danger); }
+
+    .progress {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress > div {
+      height: 100%;
+      width: 72%;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    }
+
+    .results-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .result-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .result-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .thumb {
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(160deg, #ddd6fe 0%, #bfdbfe 45%, #fbcfe8 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f2937;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .thumb::after {
+      content: "AI LOOK";
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(4px);
+    }
+
+    .result-meta {
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .compare {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fafafa;
+    }
+
+    .compare .bar {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .history-table {
+      width: 100%;
+      margin-top: 12px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .history-table th,
+    .history-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      text-align: left;
+    }
+
+    .history-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div>
+        <h1>AI 商品图 → 模特穿搭图 生成器</h1>
+        <p>面向电商运营与设计团队的静态页面原型：支持上传商品图、选择模特属性与场景风格、查看生成状态、预览结果并下载。用于快速验证业务流程与页面信息架构。</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi-item"><b>95%+</b><span>首次生成成功率目标</span></div>
+        <div class="kpi-item"><b>≤ 15s</b><span>P50 生成时延目标</span></div>
+        <div class="kpi-item"><b>30%+</b><span>下载转化率目标</span></div>
+      </div>
+    </section>
+
+    <section class="main">
+      <aside class="card">
+        <h2>1) 输入与参数配置</h2>
+
+        <div class="upload-zone">
+          <div class="icon">🖼️</div>
+          <strong>拖拽上传产品图</strong>
+          <p class="hint">支持 JPG / PNG / WebP，≤ 10MB，建议 ≥ 512×512</p>
+          <button>点击上传</button>
+          <p class="hint">示例校验：主体识别通过 · 清晰度良好</p>
+        </div>
+
+        <div class="field">
+          <label>模特性别</label>
+          <select>
+            <option>女</option>
+            <option>男</option>
+            <option>中性</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>年龄段</label>
+          <select>
+            <option>青年</option>
+            <option>中年</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>体型</label>
+          <select>
+            <option>标准</option>
+            <option>偏瘦</option>
+            <option>微胖</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>风格</label>
+          <select>
+            <option>通勤</option>
+            <option>休闲</option>
+            <option>运动</option>
+            <option>时尚</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>场景</label>
+          <select>
+            <option>纯色背景</option>
+            <option>室内棚拍</option>
+            <option>街景</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>生成数量</label>
+          <select>
+            <option>1 张</option>
+            <option>2 张</option>
+            <option>4 张</option>
+          </select>
+        </div>
+
+        <details class="field">
+          <summary><strong>高级选项（可折叠）</strong></summary>
+          <div class="field">
+            <label>构图比例</label>
+            <select>
+              <option>1:1</option>
+              <option>3:4</option>
+              <option>9:16</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>姿势偏好</label>
+            <input type="text" value="自然站姿，双手下垂" />
+          </div>
+          <div class="field">
+            <label>背景简洁度</label>
+            <input type="range" min="1" max="100" value="70" />
+          </div>
+        </details>
+
+        <div class="field" style="margin-top:16px;">
+          <button class="primary">生成穿搭图</button>
+          <p class="hint">规则：至少上传 1 张产品图；免费版单次最多 2 张。</p>
+        </div>
+      </aside>
+
+      <div style="display:grid; gap:20px;">
+        <section class="card">
+          <h2>2) 任务状态</h2>
+          <div class="status-list">
+            <span class="status-pill queued">● 排队中：等待 GPU 资源</span>
+            <span class="status-pill running">● 处理中：商品纹理映射与人体融合</span>
+            <div>
+              <span class="status-pill done">● 已完成：返回 4 张候选图</span>
+              <div class="progress"><div></div></div>
+            </div>
+            <span class="status-pill failed">● 失败示例：图片主体识别失败（可重试）</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="results-head">
+            <h2>3) 结果展示</h2>
+            <div class="actions">
+              <button class="ghost">再生成一版</button>
+              <button class="primary">一键下载全部</button>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <article class="result-card">
+              <div class="thumb">LOOK 01</div>
+              <div class="result-meta">
+                <small>参数：女 · 青年 · 通勤 · 室内</small>
+                <div class="actions">
+                  <button class="ghost">放大</button>
+                  <button class="primary">下载</button>
+                </div>
+              </div>
+            </article>
+            <article class="result-card">
+              <div class="thumb">LOOK 02</div>
+              <div class="result-meta">
+                <small>参数：女 · 青年 · 休闲 · 纯色</small>
+                <div class="actions">
+                  <button class="ghost">放大</button>
+                  <button class="primary">下载</button>
+                </div>
+              </div>
+            </article>
+            <article class="result-card">
+              <div class="thumb">LOOK 03</div>
+              <div class="result-meta">
+                <small>参数：女 · 青年 · 时尚 · 街景</small>
+                <div class="actions">
+                  <button class="ghost">放大</button>
+                  <button class="primary">下载</button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="compare">
+            <strong>原图 vs 结果图（对比滑块示意）</strong>
+            <div class="bar">
+              <span>原图</span>
+              <input type="range" min="0" max="100" value="50" style="width:100%;" />
+              <span>结果图</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>4) 历史记录（最近任务）</h2>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>商品</th>
+                <th>参数</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-03-15 14:02</td>
+                <td>女款风衣</td>
+                <td>通勤 / 室内 / 2张</td>
+                <td><span class="status-pill done">已完成</span></td>
+                <td><button class="ghost">复用参数</button></td>
+              </tr>
+              <tr>
+                <td>2026-03-15 13:44</td>
+                <td>运动鞋</td>
+                <td>运动 / 街景 / 4张</td>
+                <td><span class="status-pill running">处理中</span></td>
+                <td><button class="ghost">查看进度</button></td>
+              </tr>
+              <tr>
+                <td>2026-03-15 12:51</td>
+                <td>皮质手袋</td>
+                <td>时尚 / 纯色 / 1张</td>
+                <td><span class="status-pill failed">失败</span></td>
+                <td><button class="primary">重试</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="footer-note">注：结果图可选加隐形水印用于版权溯源；失败任务保留错误码便于排查。</p>
+        </section>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
