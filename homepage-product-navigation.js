@@ -21,13 +21,13 @@
         const section = anchor.closest('section');
         if (!section) {
             return {
-                title: '首页推荐',
+                title: 'Home Picks',
                 id: 'overview'
             };
         }
 
         const heading = section.querySelector('h2, h3');
-        const title = heading ? heading.textContent.trim() : '首页推荐';
+        const title = heading ? heading.textContent.trim() : 'Home Picks';
         return {
             title,
             id: section.id || slugify(title)
@@ -54,16 +54,16 @@
         const keyFeatures = [];
         if (description) keyFeatures.push(description);
         if (badge && (!description || !description.includes(badge))) {
-            keyFeatures.push(`特色：${badge}`);
+            keyFeatures.push(`Feature: ${badge}`);
         }
 
-        const idealUsers = sectionInfo.title ? [`适用于关注${sectionInfo.title}的用户`] : [];
-        const highlights = badge ? [`重点优势：${badge}`] : [];
+        const idealUsers = sectionInfo.title ? [`Best for visitors exploring ${sectionInfo.title}`] : [];
+        const highlights = badge ? [`Highlight: ${badge}`] : [];
 
         return {
             id,
             name: name || website,
-            category: category || sectionInfo.title || 'AI 工具',
+            category: category || sectionInfo.title || 'AI Tools',
             summary,
             tagline: anchor.dataset.productTagline || summary,
             website,
@@ -71,7 +71,7 @@
             logo: logoImg,
             keyFeatures,
             idealUsers,
-            pricing: ['访问官网了解定价信息'],
+            pricing: ['See official site for pricing details'],
             highlights,
             integrations: [],
             relatedTools: [],

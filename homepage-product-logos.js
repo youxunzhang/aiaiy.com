@@ -237,11 +237,11 @@ class HomepageProductLogoOptimizer {
         const palette = this.pickPalette(domain || name, entry && entry.brandColor);
         const gradientId = `grad-${this.hashCode(domain || name)}`;
 
-        const svg = `<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="${this.escapeXml(name || domain)} 通用标识"><defs><linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${palette[0]}"/><stop offset="100%" stop-color="${palette[1]}"/></linearGradient></defs><rect width="128" height="128" rx="24" fill="url(#${gradientId})"/><text x="50%" y="52%" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#f8fafc" text-anchor="middle" dominant-baseline="middle">${this.escapeXml(label)}</text></svg>`;
+        const svg = `<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="${this.escapeXml(name || domain)} generic mark"><defs><linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${palette[0]}"/><stop offset="100%" stop-color="${palette[1]}"/></linearGradient></defs><rect width="128" height="128" rx="24" fill="url(#${gradientId})"/><text x="50%" y="52%" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#f8fafc" text-anchor="middle" dominant-baseline="middle">${this.escapeXml(label)}</text></svg>`;
 
         return {
             src: this.svgToDataUri(svg),
-            alt: `${name || domain} 通用LOGO`
+            alt: `${name || domain} generic logo`
         };
     }
 
