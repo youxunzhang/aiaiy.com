@@ -136,51 +136,51 @@ class NavigationManager {
 
                 <!-- 导航菜单 -->
                 <nav class="space-y-2">
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">主要页面</div>
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">Main Pages</div>
                     <a href="index.html" class="nav-link" data-page="index">🏠 Home</a>
-                    <a href="ai-companies.html" class="nav-link" data-page="ai-companies">🏢 AI公司</a>
-                    <a href="play-game.html" class="nav-link" data-page="play-game">🎮 游戏</a>
-                    <a href="ai-hotspots.html" class="nav-link" data-page="ai-hotspots">🔥 AI热点</a>
+                    <a href="ai-companies.html" class="nav-link" data-page="ai-companies">🏢 AI Companies</a>
+                    <a href="play-game.html" class="nav-link" data-page="play-game">🎮 Games</a>
+                    <a href="ai-hotspots.html" class="nav-link" data-page="ai-hotspots">🔥 AI Hotspots</a>
                     <a href="ai-news.html" class="nav-link" data-page="ai-news">📰 AI NEWS</a>
-                    <a href="real-needs.html" class="nav-link" data-page="real-needs">🎯 真需求</a>
-                    <a href="ai-ranking.html" class="nav-link" data-page="ai-ranking">📊 AI榜单</a>
-                    <a href="ai-overseas.html" class="nav-link" data-page="ai-overseas">🌍 AI出海</a>
-                    <a href="trends.html" class="nav-link" data-page="trends">📈 趋势</a>
-                    <a href="ai-capabilities.html" class="nav-link" data-page="ai-capabilities">⚡ AI功能</a>
-                    <a href="lunch-recommendations.html" class="nav-link" data-page="lunch-recommendations">🍽️ 午餐推荐</a>
+                    <a href="real-needs.html" class="nav-link" data-page="real-needs">🎯 Real Needs</a>
+                    <a href="ai-ranking.html" class="nav-link" data-page="ai-ranking">📊 AI Rankings</a>
+                    <a href="ai-overseas.html" class="nav-link" data-page="ai-overseas">🌍 AI Global</a>
+                    <a href="trends.html" class="nav-link" data-page="trends">📈 Trends</a>
+                    <a href="ai-capabilities.html" class="nav-link" data-page="ai-capabilities">⚡ AI Capabilities</a>
+                    <a href="lunch-recommendations.html" class="nav-link" data-page="lunch-recommendations">🍽️ Lunch Picks</a>
 
-                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4 mt-8">工具页面</div>
-                    <a href="ai-programming.html" class="nav-link" data-page="ai-programming">🧑‍💻 AI编程</a>
-                    <a href="coding.html" class="nav-link" data-page="coding">💻 编程工具</a>
-                    <a href="designer.html" class="nav-link" data-page="designer">🎨 设计师工具</a>
-                    <a href="writing.html" class="nav-link" data-page="writing">✍️ 写作工具</a>
-                    <a href="image.html" class="nav-link" data-page="image">🖼️ 图像处理</a>
-                    <a href="video.html" class="nav-link" data-page="video">🎬 视频制作</a>
-                    <a href="audio.html" class="nav-link" data-page="audio">🎵 音频处理</a>
-                    <a href="music.html" class="nav-link" data-page="music">🎼 音乐创作</a>
-                    <a href="social.html" class="nav-link" data-page="social">📱 社交媒体</a>
-                    <a href="seo.html" class="nav-link" data-page="seo">🔍 SEO工具</a>
-                    <a href="game.html" class="nav-link" data-page="game">🎮 游戏开发</a>
-                    <a href="prayer.html" class="nav-link" data-page="prayer">🙏 祈祷工具</a>
-                    <a href="words.html" class="nav-link" data-page="words">📝 词汇工具</a>
-                    <a href="xiaohongshu.html" class="nav-link" data-page="xiaohongshu">📖 小红书工具</a>
-                    <a href="hanghai.html" class="nav-link" data-page="hanghai">🚢 航海工具</a>
-                    <a href="chuhai.html" class="nav-link" data-page="chuhai">🌊 出海工具</a>
-                    <a href="img.html" class="nav-link" data-page="img">🖼️ 图片工具</a>
-                    <a href="links.html" class="nav-link" data-page="links">🔗 链接工具</a>
-                    <a href="ailinks.html" class="nav-link" data-page="ailinks">🤖 AI链接</a>
-                    <a href="aicommunity.html" class="nav-link" data-page="aicommunity">👥 AI社区</a>
-                    <a href="aicontent.html" class="nav-link" data-page="aicontent">📄 AI内容</a>
-                    <a href="ailearn.html" class="nav-link" data-page="ailearn">📚 AI学习</a>
-                    <a href="ainum.html" class="nav-link" data-page="ainum">🔢 AI数字</a>
-                    <a href="aioffice.html" class="nav-link" data-page="aioffice">💼 AI办公</a>
-                    <a href="aiprompt.html" class="nav-link" data-page="aiprompt">💡 AI提示</a>
-                    <a href="aitimer.html" class="nav-link" data-page="aitimer">⏰ AI计时器</a>
-                    <a href="rest.html" class="nav-link" data-page="rest">🧘 休息呼吸</a>
-                    <a href="aiagent.html" class="nav-link" data-page="aiagent">🤖 AI代理</a>
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4 mt-8">Tool Pages</div>
+                    <a href="ai-programming.html" class="nav-link" data-page="ai-programming">🧑‍💻 AI Programming</a>
+                    <a href="coding.html" class="nav-link" data-page="coding">💻 Coding Tools</a>
+                    <a href="designer.html" class="nav-link" data-page="designer">🎨 Design Tools</a>
+                    <a href="writing.html" class="nav-link" data-page="writing">✍️ Writing Tools</a>
+                    <a href="image.html" class="nav-link" data-page="image">🖼️ Image Tools</a>
+                    <a href="video.html" class="nav-link" data-page="video">🎬 Video Tools</a>
+                    <a href="audio.html" class="nav-link" data-page="audio">🎵 Audio Tools</a>
+                    <a href="music.html" class="nav-link" data-page="music">🎼 Music Tools</a>
+                    <a href="social.html" class="nav-link" data-page="social">📱 Social Media</a>
+                    <a href="seo.html" class="nav-link" data-page="seo">🔍 SEO Tools</a>
+                    <a href="game.html" class="nav-link" data-page="game">🎮 Game Development</a>
+                    <a href="prayer.html" class="nav-link" data-page="prayer">🙏 Prayer Tools</a>
+                    <a href="words.html" class="nav-link" data-page="words">📝 Vocabulary Tools</a>
+                    <a href="xiaohongshu.html" class="nav-link" data-page="xiaohongshu">📖 Xiaohongshu Tools</a>
+                    <a href="hanghai.html" class="nav-link" data-page="hanghai">🚢 Maritime Tools</a>
+                    <a href="chuhai.html" class="nav-link" data-page="chuhai">🌊 Overseas Growth</a>
+                    <a href="img.html" class="nav-link" data-page="img">🖼️ Image Resources</a>
+                    <a href="links.html" class="nav-link" data-page="links">🔗 Link Tools</a>
+                    <a href="ailinks.html" class="nav-link" data-page="ailinks">🤖 AI Links</a>
+                    <a href="aicommunity.html" class="nav-link" data-page="aicommunity">👥 AI Community</a>
+                    <a href="aicontent.html" class="nav-link" data-page="aicontent">📄 AI Content</a>
+                    <a href="ailearn.html" class="nav-link" data-page="ailearn">📚 AI Learning</a>
+                    <a href="ainum.html" class="nav-link" data-page="ainum">🔢 AI Numbers</a>
+                    <a href="aioffice.html" class="nav-link" data-page="aioffice">💼 AI Office</a>
+                    <a href="aiprompt.html" class="nav-link" data-page="aiprompt">💡 AI Prompts</a>
+                    <a href="aitimer.html" class="nav-link" data-page="aitimer">⏰ AI Timer</a>
+                    <a href="rest.html" class="nav-link" data-page="rest">🧘 Rest & Breathe</a>
+                    <a href="aiagent.html" class="nav-link" data-page="aiagent">🤖 AI Agents</a>
                     <a href="url-opener.html" class="nav-link" data-page="url-opener">🔗 URL Opener</a>
-                    <a href="batch-open.html" class="nav-link" data-page="batch-open">🚀 批量打开</a>
-                    <a href="gametest.html" class="nav-link" data-page="gametest">🎯 游戏测试</a>
+                    <a href="batch-open.html" class="nav-link" data-page="batch-open">🚀 Batch Open</a>
+                    <a href="gametest.html" class="nav-link" data-page="gametest">🎯 Game Testing</a>
                 </nav>
 
                 <!-- 语言切换 -->
