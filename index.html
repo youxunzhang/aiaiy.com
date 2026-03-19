@@ -587,87 +587,81 @@
         }
 
         .main-content {
-            padding: 0 0 2rem;
+            padding: 1rem 0 2.5rem;
             width: 100%;
         }
 
-        .homepage-layout {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            width: 100%;
-            margin: 0;
-            padding-top: 1rem;
-        }
-
-        .homepage-content {
-            flex: 1;
-            min-width: 0;
+        .homepage-shell {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.9rem;
-            align-items: start;
+            gap: 1rem;
         }
 
-        .category-sidebar {
-            position: sticky;
-            top: 82px;
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            box-shadow: var(--shadow-sm);
-            padding: 0.9rem;
-            min-width: 220px;
-        }
-
-        .category-sidebar__title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .category-sidebar__intro {
-            margin: 0 0 0.85rem;
-            font-size: 0.84rem;
-            color: var(--text-secondary);
-            line-height: 1.45;
-        }
-
-        .category-sidebar__list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .homepage-toolbar {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .category-sidebar__link {
-            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             align-items: center;
-            gap: 0.65rem;
-            padding: 0.55rem 0.75rem;
-            border-radius: 0.75rem;
-            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1rem;
+            padding: 0.85rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+        }
+
+        .homepage-toolbar__label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-right: 0.25rem;
+        }
+
+        .homepage-toolbar__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.95rem;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
             text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
             transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
         }
 
-        .category-sidebar__link:hover {
-            background: var(--surface-muted);
+        .homepage-toolbar__link:hover {
             color: var(--primary-color);
+            border-color: #bfdbfe;
+            background: #eff6ff;
         }
 
-        .category-sidebar__icon {
+        .homepage-toolbar__count {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 1.75rem;
-            height: 1.75rem;
-            border-radius: 0.5rem;
-            background: var(--surface-muted);
-            font-size: 1.1rem;
+            min-width: 1.5rem;
+            height: 1.5rem;
+            padding: 0 0.4rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .homepage-content {
+            min-width: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            align-items: start;
         }
 
         .category-panel {
@@ -675,9 +669,8 @@
             border: 1px solid var(--border-color);
             border-radius: 1rem;
             box-shadow: var(--shadow-sm);
-            padding: 0.9rem;
+            padding: 1rem;
             margin-bottom: 0;
-            min-height: 100%;
         }
 
         .category-panel__header {
@@ -710,12 +703,6 @@
             line-height: 1.15;
         }
 
-        .category-panel__meta {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            margin: 0;
-        }
 
         .category-panel__cta {
             color: var(--danger-color);
@@ -755,8 +742,8 @@
 
         .ai-card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
-            gap: 0.55rem;
+            grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+            gap: 0.7rem;
         }
 
         .ai-card {
@@ -764,10 +751,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.35rem;
-            padding: 0.65rem 0.55rem;
+            gap: 0.45rem;
+            padding: 0.9rem 0.7rem;
             border: 1px solid var(--border-color);
-            border-radius: 0.85rem;
+            border-radius: 0.95rem;
             text-decoration: none;
             background: #ffffff;
             min-height: 100%;
@@ -805,9 +792,9 @@
         }
 
         .ai-card__logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             background: var(--surface-muted);
             display: flex;
@@ -937,9 +924,9 @@
         }
 
         .ai-card__icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -948,30 +935,16 @@
         }
 
         .ai-card__name {
-            font-size: 0.93rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             color: var(--text-primary);
             text-align: center;
             line-height: 1.25;
         }
 
-        .ai-card__tagline {
-            font-size: 0.76rem;
-            color: var(--text-secondary);
-            text-align: center;
-            line-height: 1.35;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
+        .ai-card__tagline,
         .ai-card__meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            margin-top: 0.6rem;
-            justify-content: center;
+            display: none;
         }
 
         .ai-card__meta-item {
@@ -1061,7 +1034,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
-            margin-top: 0.15rem;
+            margin-top: 0.2rem;
         }
 
         .panel-kpi {
@@ -1076,33 +1049,6 @@
             font-weight: 600;
         }
 
-        .sidebar-stats {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.45rem;
-            margin-top: 0.85rem;
-        }
-
-        .sidebar-stat {
-            padding: 0.7rem;
-            border-radius: 0.85rem;
-            border: 1px solid var(--border-color);
-            background: linear-gradient(180deg, #ffffff, #f8fafc);
-        }
-
-        .sidebar-stat strong {
-            display: block;
-            font-size: 1rem;
-            color: var(--text-primary);
-        }
-
-        .sidebar-stat span {
-            display: block;
-            margin-top: 0.15rem;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            line-height: 1.35;
-        }
 
         @media (min-width: 1280px) {
             .ai-card-grid {
@@ -1111,45 +1057,33 @@
         }
 
         @media (max-width: 1024px) {
-            .homepage-layout {
-                flex-direction: column;
-                padding-inline: 0;
-            }
-
-            .homepage-content {
-                grid-template-columns: 1fr;
-            }
-
-            .category-sidebar {
-                position: static;
-                width: 100%;
-                overflow-x: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 0.75rem;
-                padding: 1rem;
-            }
-
-            .category-sidebar__list {
-                flex-direction: row;
-            }
-
-            .category-sidebar__item {
-                flex: 0 0 auto;
+            .main-content {
+                padding-top: 0.85rem;
             }
         }
 
         @media (max-width: 640px) {
-            .main-content {
-                padding: 0 1rem 2.5rem;
+            .homepage-shell {
+                padding: 0 0.75rem;
+            }
+
+            .homepage-toolbar {
+                gap: 0.55rem;
+                padding: 0.75rem;
+            }
+
+            .homepage-toolbar__label {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .homepage-toolbar__link {
+                flex: 1 1 calc(50% - 0.55rem);
+                justify-content: space-between;
             }
 
             .category-panel {
-                padding: 1rem;
-            }
-
-            .sidebar-stats {
-                grid-template-columns: 1fr 1fr;
+                padding: 0.9rem;
             }
         }
     </style>
@@ -1253,25 +1187,14 @@
 
     <!-- Primary navigation content -->
     <main class="main-content">
-        <div class="homepage-layout">
-            <aside class="category-sidebar" aria-label="Sections">
-                <h2 class="category-sidebar__title">Quick Browse</h2>
-                <p class="category-sidebar__intro">相似板块已合并成 4 个入口，首屏即可快速浏览模型、创作、榜单与企业开发资源。</p>
-                <nav>
-                    <ul class="category-sidebar__list">
-                        <li class="category-sidebar__item"><a href="#models-hub" class="category-sidebar__link" data-target="models-hub"><span class="category-sidebar__icon">🧠</span><span>Models</span></a></li>
-                        <li class="category-sidebar__item"><a href="#creative-suite" class="category-sidebar__link" data-target="creative-suite"><span class="category-sidebar__icon">🎨</span><span>Creative</span></a></li>
-                        <li class="category-sidebar__item"><a href="#build-rankings" class="category-sidebar__link" data-target="build-rankings"><span class="category-sidebar__icon">🏆</span><span>Rankings</span></a></li>
-                        <li class="category-sidebar__item"><a href="#company-stack" class="category-sidebar__link" data-target="company-stack"><span class="category-sidebar__icon">🏢</span><span>Companies & Dev</span></a></li>
-                    </ul>
-                </nav>
-                <div class="sidebar-stats" aria-label="Overview stats">
-                    <div class="sidebar-stat"><strong>4</strong><span>Merged sections</span></div>
-                    <div class="sidebar-stat"><strong>24</strong><span>Key tools surfaced</span></div>
-                    <div class="sidebar-stat"><strong>1</strong><span>Screen-first layout</span></div>
-                    <div class="sidebar-stat"><strong>Fast</strong><span>Less scrolling</span></div>
-                </div>
-            </aside>
+        <div class="homepage-shell">
+            <nav class="homepage-toolbar" aria-label="Homepage sections">
+                <span class="homepage-toolbar__label">Browse</span>
+                <a href="#models-hub" class="homepage-toolbar__link"><span>🧠 Models</span><span class="homepage-toolbar__count">6</span></a>
+                <a href="#creative-suite" class="homepage-toolbar__link"><span>🎨 Creative</span><span class="homepage-toolbar__count">6</span></a>
+                <a href="#build-rankings" class="homepage-toolbar__link"><span>🏆 Rankings</span><span class="homepage-toolbar__count">6</span></a>
+                <a href="#company-stack" class="homepage-toolbar__link"><span>🏢 Companies & Dev</span><span class="homepage-toolbar__count">6</span></a>
+            </nav>
 
             <div class="homepage-content">
                 <section id="models-hub" class="category-panel" aria-labelledby="models-hub-title">
@@ -1279,7 +1202,6 @@
                         <div class="category-panel__title">
                             <span class="category-panel__eyebrow">Models</span>
                             <h2 id="models-hub-title" class="category-panel__heading">Chat & reasoning hub</h2>
-                            <p class="category-panel__meta">把全球主流对话模型与中国热门助手合并展示，首屏直接对比。</p>
                             <div class="panel-kpis"><span class="panel-kpi">Global + China</span><span class="panel-kpi">Chat</span><span class="panel-kpi">Multimodal</span></div>
                         </div>
                     </div>
@@ -1298,7 +1220,6 @@
                         <div class="category-panel__title">
                             <span class="category-panel__eyebrow">Creative</span>
                             <h2 id="creative-suite-title" class="category-panel__heading">Image, video & audio studio</h2>
-                            <p class="category-panel__meta">把图像、视频、音频板块合并，适合内容生产型用户快速选工具。</p>
                             <div class="panel-kpis"><span class="panel-kpi">Image</span><span class="panel-kpi">Video</span><span class="panel-kpi">Audio</span></div>
                         </div>
                     </div>
@@ -1317,7 +1238,6 @@
                         <div class="category-panel__title">
                             <span class="category-panel__eyebrow">Discover</span>
                             <h2 id="build-rankings-title" class="category-panel__heading">Rankings & use-case shortcuts</h2>
-                            <p class="category-panel__meta">把榜单、分类入口和概览卡片合并，减少重复入口并保持核心导航清晰。</p>
                             <div class="panel-kpis"><span class="panel-kpi">Rankings</span><span class="panel-kpi">Use cases</span><span class="panel-kpi">Fast jump</span></div>
                         </div>
                     </div>
@@ -1336,7 +1256,6 @@
                         <div class="category-panel__title">
                             <span class="category-panel__eyebrow">Build</span>
                             <h2 id="company-stack-title" class="category-panel__heading">Companies, cloud & dev stack</h2>
-                            <p class="category-panel__meta">把 AI 巨头、开发工具与 SaaS 入口合并，更适合技术与商业用户一屏浏览。</p>
                             <div class="panel-kpis"><span class="panel-kpi">Companies</span><span class="panel-kpi">Dev tools</span><span class="panel-kpi">Cloud</span></div>
                         </div>
                     </div>
@@ -1402,30 +1321,6 @@
                 }
             });
 
-            const heroSearchForm = document.getElementById('heroSearchForm');
-            const heroSearchInput = document.getElementById('heroSearchInput');
-
-            if (heroSearchForm && heroSearchInput) {
-                heroSearchForm.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    const query = heroSearchInput.value.trim();
-                    if (!query) {
-                        heroSearchInput.focus();
-                        return;
-                    }
-                    const targetUrl = `https://www.google.com/search?q=${encodeURIComponent(`site:aiaiy.com ${query}`)}`;
-                    window.location.href = targetUrl;
-                });
-
-                document.querySelectorAll('.hero__chip').forEach(chip => {
-                    chip.addEventListener('click', () => {
-                        const preset = chip.dataset.query || chip.textContent;
-                        heroSearchInput.value = preset.trim();
-                        heroSearchInput.focus();
-                    });
-                });
-            }
-
             const urlParams = new URLSearchParams(window.location.search);
             const lang = urlParams.get('lang');
             const detectedLang = lang || (currentPage.includes('index-en') ? 'en' : 'zh');
@@ -1435,111 +1330,6 @@
                     button.classList.add('is-active');
                 }
             });
-
-            if (lang === 'zh') {
-                const heroTitle = document.getElementById('heroTitle');
-                const heroSubtitle = document.getElementById('heroSubtitle');
-                if (heroTitle) {
-                    heroTitle.textContent = 'AI Tools';
-                }
-                if (heroSubtitle) {
-                    heroSubtitle.textContent = 'Find AI tools fast';
-                }
-            } else if (lang === 'en') {
-                const heroTitle = document.getElementById('heroTitle');
-                const heroSubtitle = document.getElementById('heroSubtitle');
-                if (heroTitle) {
-                    heroTitle.textContent = 'AI Tools';
-                }
-                if (heroSubtitle) {
-                    heroSubtitle.textContent = 'Find AI tools fast';
-                }
-            }
-
-            document.querySelectorAll('.ai-card').forEach(card => {
-                if (card.querySelector('.ai-card__meta')) {
-                    return;
-                }
-                const region = card.dataset.region || 'Global';
-                const languages = card.dataset.languages || 'Multimodal';
-                const meta = document.createElement('div');
-                meta.className = 'ai-card__meta';
-
-                const regionItem = document.createElement('span');
-                regionItem.className = 'ai-card__meta-item';
-                const regionLabel = document.createElement('strong');
-                regionLabel.textContent = 'Region';
-                regionItem.appendChild(regionLabel);
-                regionItem.append(` ${region}`);
-
-                const languageItem = document.createElement('span');
-                languageItem.className = 'ai-card__meta-item';
-                const languageLabel = document.createElement('strong');
-                languageLabel.textContent = 'Language';
-                languageItem.appendChild(languageLabel);
-                languageItem.append(` ${languages}`);
-
-                meta.append(regionItem, languageItem);
-                card.appendChild(meta);
-            });
-
-            const sidebarLinks = Array.from(document.querySelectorAll('.category-sidebar__link'));
-            const sectionIds = sidebarLinks.map(link => link.dataset.target).filter(Boolean);
-
-            const setActiveSidebarLink = (id) => {
-                if (!id) return;
-                sidebarLinks.forEach(link => {
-                    if (link.dataset.target === id) {
-                        link.classList.add('category-sidebar__link--active');
-                        link.setAttribute('aria-current', 'true');
-                    } else {
-                        link.classList.remove('category-sidebar__link--active');
-                        link.removeAttribute('aria-current');
-                    }
-                });
-            };
-
-            if (sectionIds.length && 'IntersectionObserver' in window) {
-                const sectionObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setActiveSidebarLink(entry.target.id);
-                        }
-                    });
-                }, {
-                    rootMargin: '-40% 0px -50% 0px',
-                    threshold: 0
-                });
-
-                sectionIds.forEach(id => {
-                    const section = document.getElementById(id);
-                    if (section) {
-                        sectionObserver.observe(section);
-                    }
-                });
-            }
-
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    const targetId = link.dataset.target;
-                    if (!targetId) return;
-                    setActiveSidebarLink(targetId);
-                });
-            });
-
-            window.addEventListener('hashchange', () => {
-                const currentHash = window.location.hash.replace('#', '');
-                if (sectionIds.includes(currentHash)) {
-                    setActiveSidebarLink(currentHash);
-                }
-            });
-
-            const initialHash = window.location.hash.replace('#', '');
-            if (sectionIds.includes(initialHash)) {
-                setActiveSidebarLink(initialHash);
-            } else if (sectionIds.length) {
-                setActiveSidebarLink(sectionIds[0]);
-            }
 
             createParticles();
         });
