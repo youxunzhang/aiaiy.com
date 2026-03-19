@@ -603,6 +603,10 @@
         .homepage-content {
             flex: 1;
             min-width: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+            align-items: start;
         }
 
         .category-sidebar {
@@ -612,15 +616,22 @@
             border: 1px solid var(--border-color);
             border-radius: 1rem;
             box-shadow: var(--shadow-sm);
-            padding: 1rem;
-            min-width: 190px;
+            padding: 0.9rem;
+            min-width: 220px;
         }
 
         .category-sidebar__title {
             font-size: 1rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-sidebar__intro {
+            margin: 0 0 0.85rem;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
         }
 
         .category-sidebar__list {
@@ -664,8 +675,9 @@
             border: 1px solid var(--border-color);
             border-radius: 1rem;
             box-shadow: var(--shadow-sm);
-            padding: 1rem;
-            margin-bottom: 1rem;
+            padding: 0.9rem;
+            margin-bottom: 0;
+            min-height: 100%;
         }
 
         .category-panel__header {
@@ -743,8 +755,8 @@
 
         .ai-card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
-            gap: 0.6rem;
+            grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+            gap: 0.55rem;
         }
 
         .ai-card {
@@ -752,10 +764,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.75rem 0.65rem;
+            gap: 0.35rem;
+            padding: 0.65rem 0.55rem;
             border: 1px solid var(--border-color);
-            border-radius: 0.9rem;
+            border-radius: 0.85rem;
             text-decoration: none;
             background: #ffffff;
             min-height: 100%;
@@ -1045,9 +1057,56 @@
             font-size: 0.85rem;
         }
 
+        .panel-kpis {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.15rem;
+        }
+
+        .panel-kpi {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.22rem 0.55rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.74rem;
+            font-weight: 600;
+        }
+
+        .sidebar-stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.45rem;
+            margin-top: 0.85rem;
+        }
+
+        .sidebar-stat {
+            padding: 0.7rem;
+            border-radius: 0.85rem;
+            border: 1px solid var(--border-color);
+            background: linear-gradient(180deg, #ffffff, #f8fafc);
+        }
+
+        .sidebar-stat strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .sidebar-stat span {
+            display: block;
+            margin-top: 0.15rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.35;
+        }
+
         @media (min-width: 1280px) {
             .ai-card-grid {
-                grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
             }
         }
 
@@ -1057,11 +1116,16 @@
                 padding-inline: 0;
             }
 
+            .homepage-content {
+                grid-template-columns: 1fr;
+            }
+
             .category-sidebar {
                 position: static;
                 width: 100%;
                 overflow-x: auto;
                 display: flex;
+                flex-direction: column;
                 gap: 0.75rem;
                 padding: 1rem;
             }
@@ -1081,7 +1145,11 @@
             }
 
             .category-panel {
-                padding: 1.25rem;
+                padding: 1rem;
+            }
+
+            .sidebar-stats {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -1187,350 +1255,98 @@
     <main class="main-content">
         <div class="homepage-layout">
             <aside class="category-sidebar" aria-label="Sections">
-                <h2 class="category-sidebar__title">Browse</h2>
+                <h2 class="category-sidebar__title">Quick Browse</h2>
+                <p class="category-sidebar__intro">相似板块已合并成 4 个入口，首屏即可快速浏览模型、创作、榜单与企业开发资源。</p>
                 <nav>
                     <ul class="category-sidebar__list">
-                        <li class="category-sidebar__item"><a href="#ai-writing-showcase" class="category-sidebar__link" data-target="ai-writing-showcase"><span class="category-sidebar__icon">🧠</span><span>Large Language Models</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-images" class="category-sidebar__link" data-target="ai-images"><span class="category-sidebar__icon">🖼️</span><span>AI Images</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-video" class="category-sidebar__link" data-target="ai-video"><span class="category-sidebar__icon">🎬</span><span>AI Video</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-audio" class="category-sidebar__link" data-target="ai-audio"><span class="category-sidebar__icon">🎧</span><span>AI Audio</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-tool-ranking" class="category-sidebar__link" data-target="ai-tool-ranking"><span class="category-sidebar__icon">🏆</span><span>AI Tool Rankings</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-giants" class="category-sidebar__link" data-target="ai-giants"><span class="category-sidebar__icon">🏢</span><span>AI Giants</span></a></li>
-                        <li class="category-sidebar__item"><a href="#llm-showcase" class="category-sidebar__link" data-target="llm-showcase"><span class="category-sidebar__icon">🧠</span><span>Large Language Models</span></a></li>
-                        <li class="category-sidebar__item"><a href="#programming-stack" class="category-sidebar__link" data-target="programming-stack"><span class="category-sidebar__icon">👨‍💻</span><span>Programming / Websites & SaaS</span></a></li>
-                        <li class="category-sidebar__item"><a href="#ai-china-dialogue" class="category-sidebar__link" data-target="ai-china-dialogue"><span class="category-sidebar__icon">🇨🇳</span><span>AI in China</span></a></li>
-                        <li class="category-sidebar__item"><a href="#directory-overview" class="category-sidebar__link" data-target="directory-overview"><span class="category-sidebar__icon">📚</span><span>Overview</span></a></li>
+                        <li class="category-sidebar__item"><a href="#models-hub" class="category-sidebar__link" data-target="models-hub"><span class="category-sidebar__icon">🧠</span><span>Models</span></a></li>
+                        <li class="category-sidebar__item"><a href="#creative-suite" class="category-sidebar__link" data-target="creative-suite"><span class="category-sidebar__icon">🎨</span><span>Creative</span></a></li>
+                        <li class="category-sidebar__item"><a href="#build-rankings" class="category-sidebar__link" data-target="build-rankings"><span class="category-sidebar__icon">🏆</span><span>Rankings</span></a></li>
+                        <li class="category-sidebar__item"><a href="#company-stack" class="category-sidebar__link" data-target="company-stack"><span class="category-sidebar__icon">🏢</span><span>Companies & Dev</span></a></li>
                     </ul>
                 </nav>
+                <div class="sidebar-stats" aria-label="Overview stats">
+                    <div class="sidebar-stat"><strong>4</strong><span>Merged sections</span></div>
+                    <div class="sidebar-stat"><strong>24</strong><span>Key tools surfaced</span></div>
+                    <div class="sidebar-stat"><strong>1</strong><span>Screen-first layout</span></div>
+                    <div class="sidebar-stat"><strong>Fast</strong><span>Less scrolling</span></div>
+                </div>
             </aside>
 
             <div class="homepage-content">
-                <section id="ai-writing-showcase" class="category-panel" aria-labelledby="ai-writing-latest">
+                <section id="models-hub" class="category-panel" aria-labelledby="models-hub-title">
                     <div class="category-panel__header">
                         <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">LLM</span>
-                            <h2 id="ai-writing-latest" class="category-panel__heading">Large Language Models</h2>
-                            <p class="category-panel__meta">Compare leading chat models and multimodal assistants.</p>
-                            <p class="category-panel__meta">This section surfaces refreshed logos for major model providers.</p>
+                            <span class="category-panel__eyebrow">Models</span>
+                            <h2 id="models-hub-title" class="category-panel__heading">Chat & reasoning hub</h2>
+                            <p class="category-panel__meta">把全球主流对话模型与中国热门助手合并展示，首屏直接对比。</p>
+                            <div class="panel-kpis"><span class="panel-kpi">Global + China</span><span class="panel-kpi">Chat</span><span class="panel-kpi">Multimodal</span></div>
                         </div>
                     </div>
                     <div class="ai-card-grid">
-                        <a class="ai-card" href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://www.doubao.com/favicon.ico" alt="Doubao logo" loading="lazy"></span>
-                            <span class="ai-card__name">Doubao</span>
-                            <span class="ai-card__tagline">ByteDance AI Chat Assistant</span>
-                        </a>
-                        <a class="ai-card" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://chat.deepseek.com/favicon.ico" alt="DeepSeek logo" loading="lazy"></span>
-                            <span class="ai-card__name">DeepSeek</span>
-                            <span class="ai-card__tagline">Deep Learning Chat Model</span>
-                        </a>
-                        <a class="ai-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://chatgpt.com/favicon.ico" alt="ChatGPT logo" loading="lazy"></span>
-                            <span class="ai-card__name">ChatGPT</span>
-                            <span class="ai-card__tagline">GPT-4o Multimodal AI Assistant</span>
-                        </a>
-                        <a class="ai-card" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://claude.ai/favicon.ico" alt="Claude logo" loading="lazy"></span>
-                            <span class="ai-card__name">Claude</span>
-                            <span class="ai-card__tagline">Anthropic AI Assistant</span>
-                        </a>
-                        <a class="ai-card" href="https://xinghuo.xfyun.cn/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://xinghuo.xfyun.cn/favicon.ico" alt="SparkDesk logo" loading="lazy"></span>
-                            <span class="ai-card__name">SparkDesk</span>
-                            <span class="ai-card__tagline">iFLYTEK model focused on Chinese understanding and multimodal Q&A.</span>
-                        </a>
-                        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://www.gstatic.com/lamda/images/share-favicon-512x512.png" alt="Gemini logo" loading="lazy"></span>
-                            <span class="ai-card__name">Gemini</span>
-                            <span class="ai-card__tagline">Google multimodal assistant for images, audio, and code.</span>
-                        </a>
+                        <a class="ai-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://chatgpt.com/favicon.ico" alt="ChatGPT logo" loading="lazy"></span><span class="ai-card__name">ChatGPT</span><span class="ai-card__tagline">General-purpose multimodal assistant.</span></a>
+                        <a class="ai-card" href="https://claude.ai/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://claude.ai/favicon.ico" alt="Claude logo" loading="lazy"></span><span class="ai-card__name">Claude</span><span class="ai-card__tagline">Long-form reasoning and writing.</span></a>
+                        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.gstatic.com/lamda/images/share-favicon-512x512.png" alt="Gemini logo" loading="lazy"></span><span class="ai-card__name">Gemini</span><span class="ai-card__tagline">Google multimodal search companion.</span></a>
+                        <a class="ai-card" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://chat.deepseek.com/favicon.ico" alt="DeepSeek logo" loading="lazy"></span><span class="ai-card__name">DeepSeek</span><span class="ai-card__tagline">Reasoning-focused Chinese AI chat.</span></a>
+                        <a class="ai-card" href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.doubao.com/favicon.ico" alt="Doubao logo" loading="lazy"></span><span class="ai-card__name">Doubao</span><span class="ai-card__tagline">ByteDance assistant for daily tasks.</span></a>
+                        <a class="ai-card" href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/moonshot.cn" alt="Kimi logo" loading="lazy"></span><span class="ai-card__name">Kimi</span><span class="ai-card__tagline">Long-context Chinese research assistant.</span></a>
                     </div>
                 </section>
 
-                <section id="ai-video" class="category-panel" aria-labelledby="ai-video-title">
+                <section id="creative-suite" class="category-panel" aria-labelledby="creative-suite-title">
                     <div class="category-panel__header">
                         <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">Video</span>
-                            <h2 id="ai-video-title" class="category-panel__heading">AI Video</h2>
-                            <p class="category-panel__meta">Popular tools for text-to-video generation and editing workflows.</p>
-                            <p class="category-panel__meta">Featured China-based picks: Kuaishou Kling AI and ByteDance Jimeng AI.</p>
+                            <span class="category-panel__eyebrow">Creative</span>
+                            <h2 id="creative-suite-title" class="category-panel__heading">Image, video & audio studio</h2>
+                            <p class="category-panel__meta">把图像、视频、音频板块合并，适合内容生产型用户快速选工具。</p>
+                            <div class="panel-kpis"><span class="panel-kpi">Image</span><span class="panel-kpi">Video</span><span class="panel-kpi">Audio</span></div>
                         </div>
                     </div>
                     <div class="ai-card-grid">
-                        <a class="ai-card" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/runwayml.com" alt="Runway logo" loading="lazy"></span>
-                            <span class="ai-card__name">Runway</span>
-                            <span class="ai-card__tagline">Gen-3 video generation studio.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.heygen.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/heygen.com" alt="HeyGen logo" loading="lazy"></span>
-                            <span class="ai-card__name">HeyGen</span>
-                            <span class="ai-card__tagline">Avatar-led video production.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.capcut.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/capcut.com" alt="CapCut logo" loading="lazy"></span>
-                            <span class="ai-card__name">CapCut</span>
-                            <span class="ai-card__tagline">Professional video editor.</span>
-                        </a>
-                        <a class="ai-card" href="https://jimeng.jianying.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/jianying.com" alt="Jimeng logo" loading="lazy"></span>
-                            <span class="ai-card__name">Jimeng</span>
-                            <span class="ai-card__tagline">AI video creation tool.</span>
-                        </a>
-                        <a class="ai-card" href="https://klingai.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/klingai.com" alt="Kling logo" loading="lazy"></span>
-                            <span class="ai-card__name">Kling</span>
-                            <span class="ai-card__tagline">AI video generation platform.</span>
-                        </a>
+                        <a class="ai-card" href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/midjourney.com" alt="Midjourney logo" loading="lazy"></span><span class="ai-card__name">Midjourney</span><span class="ai-card__tagline">High-end concept and visual generation.</span></a>
+                        <a class="ai-card" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/runwayml.com" alt="Runway logo" loading="lazy"></span><span class="ai-card__name">Runway</span><span class="ai-card__tagline">Generative video and visual editing.</span></a>
+                        <a class="ai-card" href="https://klingai.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/klingai.com" alt="Kling logo" loading="lazy"></span><span class="ai-card__name">Kling</span><span class="ai-card__tagline">Popular China-based video generation.</span></a>
+                        <a class="ai-card" href="https://jimeng.jianying.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/jianying.com" alt="Jimeng logo" loading="lazy"></span><span class="ai-card__name">Jimeng</span><span class="ai-card__tagline">ByteDance AI video creation workflow.</span></a>
+                        <a class="ai-card" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/elevenlabs.io" alt="ElevenLabs logo" loading="lazy"></span><span class="ai-card__name">ElevenLabs</span><span class="ai-card__tagline">Voice cloning and dubbing.</span></a>
+                        <a class="ai-card" href="https://suno.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/suno.com" alt="Suno logo" loading="lazy"></span><span class="ai-card__name">Suno</span><span class="ai-card__tagline">Prompt-to-music generation.</span></a>
                     </div>
                 </section>
 
-                <section id="ai-images" class="category-panel" aria-labelledby="ai-images-title">
+                <section id="build-rankings" class="category-panel" aria-labelledby="build-rankings-title">
                     <div class="category-panel__header">
                         <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">Visuals</span>
-                            <h2 id="ai-images-title" class="category-panel__heading">AI Images</h2>
-                            <p class="category-panel__meta">Visual design tools for image generation, assets, and background removal.</p>
-                            <p class="category-panel__meta">Featured China-based picks: Meitu Design Studio and Wondershare Virbo.</p>
+                            <span class="category-panel__eyebrow">Discover</span>
+                            <h2 id="build-rankings-title" class="category-panel__heading">Rankings & use-case shortcuts</h2>
+                            <p class="category-panel__meta">把榜单、分类入口和概览卡片合并，减少重复入口并保持核心导航清晰。</p>
+                            <div class="panel-kpis"><span class="panel-kpi">Rankings</span><span class="panel-kpi">Use cases</span><span class="panel-kpi">Fast jump</span></div>
                         </div>
                     </div>
                     <div class="ai-card-grid">
-                        <a class="ai-card" href="https://pixabay.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/pixabay.com" alt="Pixabay logo" loading="lazy"></span>
-                            <span class="ai-card__name">Pixabay</span>
-                            <span class="ai-card__tagline">Free image asset library.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/midjourney.com" alt="Midjourney logo" loading="lazy"></span>
-                            <span class="ai-card__name">Midjourney</span>
-                            <span class="ai-card__tagline">High-quality artistic image generation.</span>
-                        </a>
-                        <a class="ai-card" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/runwayml.com" alt="Runway logo" loading="lazy"></span>
-                            <span class="ai-card__name">Runway Gen-3</span>
-                            <span class="ai-card__tagline">Professional-grade video and image generation platform.</span>
-                        </a>
+                        <a class="ai-card" href="ai-tool-ranking.html"><span class="ai-card__icon" aria-hidden="true">🏆</span><span class="sr-only">ranking icon</span><span class="ai-card__name">AI Tool Rankings</span><span class="ai-card__tagline">Curated lists across major categories.</span></a>
+                        <a class="ai-card" href="best-ai-tools-2026.html"><span class="ai-card__icon" aria-hidden="true">📅</span><span class="sr-only">year icon</span><span class="ai-card__name">Best of 2026</span><span class="ai-card__tagline">Annual shortlist of standout tools.</span></a>
+                        <a class="ai-card" href="ai-tools-for-productivity.html"><span class="ai-card__icon" aria-hidden="true">✅</span><span class="sr-only">productivity icon</span><span class="ai-card__name">Productivity</span><span class="ai-card__tagline">Automation, planning, and focus tools.</span></a>
+                        <a class="ai-card" href="ai-tools-for-marketing.html"><span class="ai-card__icon" aria-hidden="true">📣</span><span class="sr-only">marketing icon</span><span class="ai-card__name">Marketing</span><span class="ai-card__tagline">Growth, ads, and campaign support.</span></a>
+                        <a class="ai-card" href="ai-tools-for-design.html"><span class="ai-card__icon" aria-hidden="true">🎨</span><span class="sr-only">design icon</span><span class="ai-card__name">Design</span><span class="ai-card__tagline">Visual creation and rapid prototyping.</span></a>
+                        <a class="ai-card" href="writing.html"><span class="ai-card__icon" aria-hidden="true">✍️</span><span class="sr-only">writing icon</span><span class="ai-card__name">Writing</span><span class="ai-card__tagline">Draft, polish, and structure content.</span></a>
                     </div>
                 </section>
 
-                <section id="ai-audio" class="category-panel" aria-labelledby="ai-audio-title">
+                <section id="company-stack" class="category-panel" aria-labelledby="company-stack-title">
                     <div class="category-panel__header">
                         <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">Audio</span>
-                            <h2 id="ai-audio-title" class="category-panel__heading">AI Audio</h2>
-                            <p class="category-panel__meta">Generate voice, music, and podcast content with AI.</p>
-                            <p class="category-panel__meta">Featured China-based picks: MiniMax Hailuo AI and NetEase Tianyin.</p>
+                            <span class="category-panel__eyebrow">Build</span>
+                            <h2 id="company-stack-title" class="category-panel__heading">Companies, cloud & dev stack</h2>
+                            <p class="category-panel__meta">把 AI 巨头、开发工具与 SaaS 入口合并，更适合技术与商业用户一屏浏览。</p>
+                            <div class="panel-kpis"><span class="panel-kpi">Companies</span><span class="panel-kpi">Dev tools</span><span class="panel-kpi">Cloud</span></div>
                         </div>
                     </div>
                     <div class="ai-card-grid">
-                        <a class="ai-card" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/elevenlabs.io" alt="ElevenLabs logo" loading="lazy"></span>
-                            <span class="ai-card__name">ElevenLabs</span>
-                            <span class="ai-card__tagline">Natural voice synthesis and dubbing.</span>
-                        </a>
-                        <a class="ai-card" href="https://suno.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/suno.com" alt="Suno logo" loading="lazy"></span>
-                            <span class="ai-card__name">Suno</span>
-                            <span class="ai-card__tagline">Text-to-music generation.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.aiva.ai/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/aiva.ai" alt="AIVA logo" loading="lazy"></span>
-                            <span class="ai-card__name">AIVA</span>
-                            <span class="ai-card__tagline">AI composition for soundtracks.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.descript.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/descript.com" alt="Descript logo" loading="lazy"></span>
-                            <span class="ai-card__name">Descript</span>
-                            <span class="ai-card__tagline">AI noise reduction and audio editing.</span>
-                        </a>
-                        <a class="ai-card" href="https://play.ht/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/play.ht" alt="PlayHT logo" loading="lazy"></span>
-                            <span class="ai-card__name">PlayHT</span>
-                            <span class="ai-card__tagline">Voice cloning and narration.</span>
-                        </a>
-                    </div>
-                </section>
-
-                <section id="ai-tool-ranking" class="category-panel" aria-labelledby="ai-tool-ranking-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">Rankings</span>
-                            <h2 id="ai-tool-ranking-title" class="category-panel__heading">AI Tool Rankings</h2>
-                            <p class="category-panel__meta">Discover popular AI tools by category and use case.</p>
-                            <p class="category-panel__meta">Featured China-based picks: ByteDance Doubao and Moonshot Kimi.</p>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="ai-tool-ranking.html">
-                            <span class="ai-card__icon" aria-hidden="true">🏆</span>
-                            <span class="sr-only">ranking icon</span>
-                            <span class="ai-card__name">AI Tool Rankings</span>
-                            <span class="ai-card__tagline">Curated AI product lists.</span>
-                        </a>
-                        <a class="ai-card" href="best-ai-tools-2026.html">
-                            <span class="ai-card__icon" aria-hidden="true">📅</span>
-                            <span class="sr-only">calendar icon</span>
-                            <span class="ai-card__name">Best AI Tools of 2026</span>
-                            <span class="ai-card__tagline">Forward-looking picks across categories.</span>
-                        </a>
-                        <a class="ai-card" href="ai-tools-for-productivity.html">
-                            <span class="ai-card__icon" aria-hidden="true">✅</span>
-                            <span class="sr-only">productivity icon</span>
-                            <span class="ai-card__name">AI Productivity Tools</span>
-                            <span class="ai-card__tagline">Focus, automate, and save time.</span>
-                        </a>
-                        <a class="ai-card" href="ai-tools-for-marketing.html">
-                            <span class="ai-card__icon" aria-hidden="true">📣</span>
-                            <span class="sr-only">marketing icon</span>
-                            <span class="ai-card__name">AI Marketing Tools</span>
-                            <span class="ai-card__tagline">Campaigns, growth, and insights.</span>
-                        </a>
-                        <a class="ai-card" href="ai-tools-for-design.html">
-                            <span class="ai-card__icon" aria-hidden="true">🎨</span>
-                            <span class="sr-only">design icon</span>
-                            <span class="ai-card__name">AI Design Tools</span>
-                            <span class="ai-card__tagline">Visual creativity and rapid prototyping.</span>
-                        </a>
-                        <a class="ai-card" href="writing.html">
-                            <span class="ai-card__icon" aria-hidden="true">✍️</span>
-                            <span class="sr-only">writing icon</span>
-                            <span class="ai-card__name">AI Writing Tools</span>
-                            <span class="ai-card__tagline">Drafting, polishing, and long-form writing.</span>
-                        </a>
-                        <a class="ai-card" href="coding.html">
-                            <span class="ai-card__icon" aria-hidden="true">💻</span>
-                            <span class="sr-only">coding icon</span>
-                            <span class="ai-card__name">AI Coding Tools</span>
-                            <span class="ai-card__tagline">Ship faster with AI coding assistants.</span>
-                        </a>
-                        <a class="ai-card" href="video.html">
-                            <span class="ai-card__icon" aria-hidden="true">🎬</span>
-                            <span class="sr-only">video icon</span>
-                            <span class="ai-card__name">AI Video Tools</span>
-                            <span class="ai-card__tagline">Generate, edit, and publish video.</span>
-                        </a>
-                        <a class="ai-card" href="image.html">
-                            <span class="ai-card__icon" aria-hidden="true">🖼️</span>
-                            <span class="sr-only">image icon</span>
-                            <span class="ai-card__name">AI Image Tools</span>
-                            <span class="ai-card__tagline">Generate and enhance visual content.</span>
-                        </a>
-                        <a class="ai-card" href="aioffice.html">
-                            <span class="ai-card__icon" aria-hidden="true">🏢</span>
-                            <span class="sr-only">business icon</span>
-                            <span class="ai-card__name">AI Business Tools</span>
-                            <span class="ai-card__tagline">Operations, docs, and team workflows.</span>
-                        </a>
-                    </div>
-                </section>
-                <section id="ai-giants" class="category-panel" aria-labelledby="ai-giants-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">AI</span>
-                            <h2 id="ai-giants-title" class="category-panel__heading">AI Giants</h2>
-                            <p class="category-panel__meta">Official entry points to leading global AI companies.</p>
-                            <p class="category-panel__meta">Featured China-based picks: Alibaba Cloud Qwen and Baidu ERNIE.</p>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://www.nvidia.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA logo" loading="lazy"></span>
-                            <span class="ai-card__name">NVIDIA</span>
-                            <span class="ai-card__tagline">AI chips and compute platform.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google logo" loading="lazy"></span>
-                            <span class="ai-card__name">Google</span>
-                            <span class="ai-card__tagline">Search and AI infrastructure.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/amazon.com" alt="Amazon logo" loading="lazy"></span>
-                            <span class="ai-card__name">Amazon</span>
-                            <span class="ai-card__tagline">AWS cloud services and AI capabilities.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.apple.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/apple.com" alt="Apple logo" loading="lazy"></span>
-                            <span class="ai-card__name">Apple</span>
-                            <span class="ai-card__tagline">Device ecosystem and AI experiences.</span>
-                        </a>
-                        <a class="ai-card" href="https://about.meta.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/meta.com" alt="Meta logo" loading="lazy"></span>
-                            <span class="ai-card__name">Meta</span>
-                            <span class="ai-card__tagline">Open models and social AI.</span>
-                        </a>
-                        <a class="ai-card" href="https://www.microsoft.com/" target="_blank" rel="noopener noreferrer">
-                            <span class="ai-card__logo"><img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft logo" loading="lazy"></span>
-                            <span class="ai-card__name">Microsoft</span>
-                            <span class="ai-card__tagline">Copilot and cloud AI.</span>
-                        </a>
-                    </div>
-                </section>
-
-                <section id="programming-stack" class="category-panel" aria-labelledby="programming-stack-title">
-                    <div class="category-panel__header"><div class="category-panel__title"><span class="category-panel__eyebrow">Dev & Web</span><h2 id="programming-stack-title" class="category-panel__heading">Programming / Websites & SaaS</h2></div></div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://windsurf.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/windsurf.com" alt="Windsurf" loading="lazy"></span><span class="ai-card__name">Windsurf</span><span class="ai-card__tagline">AI coding assistant.</span></a>
-                        <a class="ai-card" href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/visualstudio.com" alt="VS Code" loading="lazy"></span><span class="ai-card__name">VS Code</span><span class="ai-card__tagline">Professional code editor.</span></a>
-                        <a class="ai-card" href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/tailwindcss.com" alt="Tailwind CSS" loading="lazy"></span><span class="ai-card__name">Tailwind CSS</span><span class="ai-card__tagline">Utility-first CSS framework.</span></a>
-                        <a class="ai-card" href="https://www.aliyun.com/minisite/goods?userCode=njtf2yef" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="Alibaba Cloud Server Coupons" loading="lazy"></span><span class="ai-card__name">Alibaba Cloud Server Coupons</span><span class="ai-card__tagline">Partner discount and subsidy link for Alibaba Cloud.</span></a>
-                        <a class="ai-card" href="https://www.aliyun.com/activity/ecs/clawdbot?userCode=njtf2yef" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="OpenClaw AI Employee" loading="lazy"></span><span class="ai-card__name">OpenClaw AI Employee</span><span class="ai-card__tagline">Deploy in 30 minutes and keep it working for you 24/7.</span></a>
-                        <a class="ai-card" href="https://github.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/github.com" alt="GitHub" loading="lazy"></span><span class="ai-card__name">GitHub</span><span class="ai-card__tagline">The world's largest open-source collaboration platform.</span></a>
-                    </div>
-                </section>
-
-                <section id="ai-china-dialogue" class="category-panel" aria-labelledby="ai-china-dialogue-title">
-                    <div class="category-panel__header"><div class="category-panel__title"><span class="category-panel__eyebrow">CN</span><h2 id="ai-china-dialogue-title" class="category-panel__heading">AI in China</h2><p class="category-panel__meta">Selected leading AI products from China.</p><p class="category-panel__meta"><strong>AI Chat</strong>: leading assistants for Chinese-language understanding.</p></div></div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://xinghuo.xfyun.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/xfyun.cn" alt="SparkDesk logo" loading="lazy"></span><span class="ai-card__name">SparkDesk</span><span class="ai-card__tagline">iFLYTEK cognitive large model.</span></a>
-                        <a class="ai-card" href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/doubao.com" alt="Doubao logo" loading="lazy"></span><span class="ai-card__name">Doubao</span><span class="ai-card__tagline">AI assistant from ByteDance.</span></a>
-                        <a class="ai-card" href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/moonshot.cn" alt="Kimi logo" loading="lazy"></span><span class="ai-card__name">Kimi</span><span class="ai-card__tagline">Chinese large model with long-context support.</span></a>
-                        <a class="ai-card" href="https://chatglm.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/chatglm.cn" alt="ChatGLM logo" loading="lazy"></span><span class="ai-card__name">ChatGLM</span><span class="ai-card__tagline">Chinese conversational assistant from Zhipu AI.</span></a>
-                        <a class="ai-card" href="https://yuanbao.tencent.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/tencent.com" alt="Tencent Yuanbao logo" loading="lazy"></span><span class="ai-card__name">Tencent Yuanbao</span><span class="ai-card__tagline">Assistant powered by Tencent Hunyuan.</span></a>
-                        <a class="ai-card" href="https://yiyan.baidu.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/baidu.com" alt="ERNIE Bot logo" loading="lazy"></span><span class="ai-card__name">ERNIE Bot</span><span class="ai-card__tagline">Baidu multimodal Chinese model assistant.</span></a>
-                        <a class="ai-card" href="https://www.lingyiwanwu.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/lingyiwanwu.com" alt="01.AI logo" loading="lazy"></span><span class="ai-card__name">01.AI</span><span class="ai-card__tagline">Chinese AI brand behind the Yi model family.</span></a>
-                        <a class="ai-card" href="https://www.stepfun.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/stepfun.com" alt="StepFun logo" loading="lazy"></span><span class="ai-card__name">StepFun</span><span class="ai-card__tagline">Chinese reasoning models and enterprise solutions.</span></a>
-                    </div>
-                </section>
-
-                <section id="directory-overview" class="category-panel" aria-labelledby="directory-intro">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">Overview</span>
-                            <h2 id="directory-intro" class="category-panel__heading">Find AI tools fast</h2>
-                            <p class="category-panel__meta">Continuously track new tool launches.</p>
-                            <p class="category-panel__meta">Featured China-based picks: iFLYTEK SparkDesk and SenseTime SenseNova.</p>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <div class="ai-card">
-                            <span class="ai-card__icon" aria-hidden="true">🗂️</span>
-                            <span class="sr-only">coverage icon</span>
-                            <span class="ai-card__badge">Comprehensive</span>
-                            <span class="ai-card__name">200+ categories</span>
-                            <span class="ai-card__tagline">Covering writing, design, and development tools.</span>
-                        </div>
-                        <div class="ai-card">
-                            <span class="ai-card__icon" aria-hidden="true">⚡</span>
-                            <span class="sr-only">weekly updates icon</span>
-                            <span class="ai-card__badge">Weekly</span>
-                            <span class="ai-card__name">Always updated</span>
-                            <span class="ai-card__tagline">Model launches, pricing changes, and plugin updates.</span>
-                        </div>
-                        <div class="ai-card">
-                            <span class="ai-card__icon" aria-hidden="true">📄</span>
-                            <span class="sr-only">template icon</span>
-                            <span class="ai-card__badge">Templates</span>
-                            <span class="ai-card__name">Industry templates</span>
-                            <span class="ai-card__tagline">SOPs and prompts.</span>
-                        </div>
-                        <div class="ai-card">
-                            <span class="ai-card__icon" aria-hidden="true">📣</span>
-                            <span class="sr-only">community icon</span>
-                            <span class="ai-card__badge">Community</span>
-                            <span class="ai-card__name">Submit your tool</span>
-                            <span class="ai-card__tagline">Share your project.</span>
-                        </div>
+                        <a class="ai-card" href="https://www.nvidia.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA logo" loading="lazy"></span><span class="ai-card__name">NVIDIA</span><span class="ai-card__tagline">Compute and AI infrastructure leader.</span></a>
+                        <a class="ai-card" href="https://www.google.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google logo" loading="lazy"></span><span class="ai-card__name">Google</span><span class="ai-card__tagline">Search, Gemini, and cloud AI ecosystem.</span></a>
+                        <a class="ai-card" href="https://www.microsoft.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft logo" loading="lazy"></span><span class="ai-card__name">Microsoft</span><span class="ai-card__tagline">Copilot and enterprise AI platform.</span></a>
+                        <a class="ai-card" href="https://windsurf.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/windsurf.com" alt="Windsurf logo" loading="lazy"></span><span class="ai-card__name">Windsurf</span><span class="ai-card__tagline">AI-native coding environment.</span></a>
+                        <a class="ai-card" href="https://github.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/github.com" alt="GitHub logo" loading="lazy"></span><span class="ai-card__name">GitHub</span><span class="ai-card__tagline">Code hosting and collaboration hub.</span></a>
+                        <a class="ai-card" href="https://www.aliyun.com/minisite/goods?userCode=njtf2yef" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="Alibaba Cloud logo" loading="lazy"></span><span class="ai-card__name">Alibaba Cloud</span><span class="ai-card__tagline">Cloud deals and deployment resources.</span></a>
                     </div>
                 </section>
             </div>
