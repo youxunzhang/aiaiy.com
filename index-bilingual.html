@@ -254,7 +254,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen md:h-screen md:overflow-hidden">
+<body class="min-h-screen">
     <!-- Header -->
     <header class="glass-effect sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4">
@@ -286,13 +286,13 @@
     </header>
 
     <!-- Search Section -->
-    <section class="hero-section py-6">
+    <section class="hero-section py-12">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
                 <span class="lang-zh">发现最好的AI工具</span>
                 <span class="lang-en hidden">Discover the Best AI Tools</span>
             </h2>
-            <p class="text-base text-gray-600 mb-4 max-w-2xl mx-auto">
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 <span class="lang-zh">精选最优质的人工智能工具，提升您的工作效率和创造力</span>
                 <span class="lang-en hidden">Curated collection of the finest AI tools to enhance your productivity and creativity</span>
             </p>
@@ -301,7 +301,7 @@
                     type="text" 
                     id="searchInput"
                     placeholder="搜索AI工具..." 
-                    class="search-box w-full px-5 py-3 rounded-2xl text-base outline-none"
+                    class="search-box w-full px-6 py-4 rounded-2xl text-lg outline-none"
                     data-placeholder-zh="搜索AI工具..."
                     data-placeholder-en="Search AI tools..."
                 >
@@ -310,79 +310,414 @@
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-6">
-        <section class="glass-effect rounded-2xl p-5 md:p-6 fade-in">
-            <div class="flex items-center justify-between gap-3 mb-4">
-                <h2 class="text-xl md:text-2xl font-bold text-gray-800">
-                    <span class="lang-zh">⚡ 常用 AI 一页直达</span>
-                    <span class="lang-en hidden">⚡ Top AI Picks on One Screen</span>
-                </h2>
-                <span class="text-xs md:text-sm text-gray-500">
-                    <span class="lang-zh">简洁版 · 12 个高频工具</span>
-                    <span class="lang-en hidden">Simple mode · 12 popular tools</span>
-                </span>
+    <main class="container mx-auto px-4 py-8">
+        <!-- 大模型 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-大模型 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">🤖 大模型</span>
+                <span class="lang-en hidden">🤖 Large Language Models</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://www.doubao.com/chat/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-cyan-500">豆</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">豆包</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">字节跳动AI对话助手</span>
+                                <span class="lang-en hidden">ByteDance AI Chat Assistant</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-indigo-500 to-purple-500">DS</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Deepseek</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">深度学习对话模型</span>
+                                <span class="lang-en hidden">Deep Learning Chat Model</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-600 to-indigo-600">G</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">谷歌Gemini</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">Google最新AI助手</span>
+                                <span class="lang-en hidden">Google's Latest AI Assistant</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">P</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Perplexity</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">智能搜索引擎</span>
+                                <span class="lang-en hidden">Intelligent Search Engine</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://chat.chatbot.app/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-green-500 to-emerald-500">G4</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">GPT-4o</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">GPT-4o多模态AI助手</span>
+                                <span class="lang-en hidden">GPT-4o Multimodal AI Assistant</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-orange-500 to-red-500">C</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Claude</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">Anthropic AI助手</span>
+                                <span class="lang-en hidden">Anthropic AI Assistant</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
+        </section>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <a href="https://www.doubao.com/chat/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">豆包</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">中文对话</span><span class="lang-en hidden">CN chat</span></p>
+        <!-- 文字处理 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-文字处理 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">📝 文字处理</span>
+                <span class="lang-en hidden">📝 Text Processing</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://flomoapp.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-indigo-500">F</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Flomo</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">轻松记录想法和灵感</span>
+                                <span class="lang-en hidden">Easy idea and inspiration recording</span>
+                            </p>
+                        </div>
+                    </div>
                 </a>
-                <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">DeepSeek</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">推理助手</span><span class="lang-en hidden">Reasoning</span></p>
+                <a href="https://www.biji.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-green-500 to-emerald-500">笔</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Get笔记</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">智能笔记应用</span>
+                                <span class="lang-en hidden">Smart note-taking app</span>
+                            </p>
+                        </div>
+                    </div>
                 </a>
-                <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Claude</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">写作总结</span><span class="lang-en hidden">Writing</span></p>
-                </a>
-                <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Gemini</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">Google AI</span><span class="lang-en hidden">Google AI</span></p>
-                </a>
-                <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Perplexity</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">AI 搜索</span><span class="lang-en hidden">AI search</span></p>
-                </a>
-                <a href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Midjourney</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">图片生成</span><span class="lang-en hidden">Image gen</span></p>
-                </a>
-                <a href="https://runwayml.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Runway</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">视频生成</span><span class="lang-en hidden">Video gen</span></p>
-                </a>
-                <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Canva</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">设计排版</span><span class="lang-en hidden">Design</span></p>
-                </a>
-                <a href="https://monica.im/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Monica</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">写作辅助</span><span class="lang-en hidden">Writing aid</span></p>
-                </a>
-                <a href="https://github.com/copilot" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Copilot</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">代码助手</span><span class="lang-en hidden">Coding</span></p>
-                </a>
-                <a href="https://zapier.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Zapier</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">自动化</span><span class="lang-en hidden">Automation</span></p>
-                </a>
-                <a href="https://www.tableau.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-3 rounded-xl">
-                    <h3 class="font-semibold">Tableau</h3>
-                    <p class="text-xs text-gray-600"><span class="lang-zh">数据分析</span><span class="lang-en hidden">Data</span></p>
+                <a href="https://monica.im/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">M</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Monica</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI写作助手</span>
+                                <span class="lang-en hidden">AI Writing Assistant</span>
+                            </p>
+                        </div>
+                    </div>
                 </a>
             </div>
+        </section>
 
-            <div class="mt-4 text-xs text-gray-500 text-center">
-                <span class="lang-zh">需要更多工具可使用上方搜索框快速筛选。</span>
-                <span class="lang-en hidden">Use the search box above for more tools.</span>
+        <!-- 图片处理 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-图片处理 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">🎨 图片处理</span>
+                <span class="lang-en hidden">🎨 Image Processing</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">MJ</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Midjourney</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI艺术图像生成</span>
+                                <span class="lang-en hidden">AI Art Image Generation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://openai.com/dall-e-2" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-cyan-500">D2</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">DALL-E 2</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">OpenAI图像生成</span>
+                                <span class="lang-en hidden">OpenAI Image Generation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-600 to-indigo-600">C</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Canva</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">在线设计工具</span>
+                                <span class="lang-en hidden">Online Design Tool</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 视频处理 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-视频处理 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">🎬 视频处理</span>
+                <span class="lang-en hidden">🎬 Video Processing</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://runwayml.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-orange-500 to-red-500">R</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Runway</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI视频编辑平台</span>
+                                <span class="lang-en hidden">AI Video Editing Platform</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.descript.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-green-500 to-emerald-500">D</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Descript</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI音视频编辑</span>
+                                <span class="lang-en hidden">AI Audio & Video Editing</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.synthesia.io/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">S</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Synthesia</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI视频生成</span>
+                                <span class="lang-en hidden">AI Video Generation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 智能体 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-智能体 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">🤖 智能体</span>
+                <span class="lang-en hidden">🤖 AI Agents</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://www.agentflow.ai/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-cyan-500">AF</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">AgentFlow</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI智能体工作流</span>
+                                <span class="lang-en hidden">AI Agent Workflow</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.automate.io/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-green-500 to-emerald-500">A</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Automate.io</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">工作流程自动化</span>
+                                <span class="lang-en hidden">Workflow Automation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://zapier.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-orange-500 to-red-500">Z</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Zapier</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">应用集成自动化</span>
+                                <span class="lang-en hidden">App Integration Automation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 声音处理 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-声音处理 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">🎵 声音处理</span>
+                <span class="lang-en hidden">🎵 Audio Processing</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://www.mubert.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">M</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Mubert</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI音乐生成</span>
+                                <span class="lang-en hidden">AI Music Generation</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.descript.com/audio" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-cyan-500">D</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Descript Audio</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI音频编辑</span>
+                                <span class="lang-en hidden">AI Audio Editing</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.synthesia.io/audio" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-green-500 to-emerald-500">S</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Synthesia Audio</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI语音合成</span>
+                                <span class="lang-en hidden">AI Voice Synthesis</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 编程 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-编程 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">💻 编程</span>
+                <span class="lang-en hidden">💻 Programming</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://github.com/copilot" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-gray-700 to-gray-900">GH</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">GitHub Copilot</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI编程助手</span>
+                                <span class="lang-en hidden">AI Programming Assistant</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.replit.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-indigo-500">R</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Replit</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">在线编程平台</span>
+                                <span class="lang-en hidden">Online Programming Platform</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.cursor.sh/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-purple-500 to-pink-500">C</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Cursor</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">AI代码编辑器</span>
+                                <span class="lang-en hidden">AI Code Editor</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 数据分析 -->
+        <section class="mb-12 fade-in">
+            <h2 class="category-header category-数据分析 text-2xl font-bold p-4 rounded-t-2xl mb-0">
+                <span class="lang-zh">📊 数据分析</span>
+                <span class="lang-en hidden">📊 Data Analysis</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-white rounded-b-2xl shadow-lg">
+                <a href="https://www.tableau.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-500 to-cyan-500">T</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Tableau</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">数据可视化平台</span>
+                                <span class="lang-en hidden">Data Visualization Platform</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-yellow-500 to-orange-500">P</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Power BI</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">微软商业智能</span>
+                                <span class="lang-en hidden">Microsoft Business Intelligence</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="tool-card p-4 rounded-xl hover:shadow-lg transition-all">
+                    <div class="tool-card-header">
+                        <div class="tool-logo bg-gradient-to-r from-blue-600 to-indigo-600">Py</div>
+                        <div class="tool-card-content">
+                            <h3 class="font-semibold text-lg mb-2">Python</h3>
+                            <p class="text-gray-600 text-sm">
+                                <span class="lang-zh">数据分析编程语言</span>
+                                <span class="lang-en hidden">Data Analysis Programming Language</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="glass-effect py-4 mt-4">
+    <footer class="glass-effect py-8 mt-16">
         <div class="container mx-auto px-4 text-center">
             <div class="flex items-center justify-center space-x-3 mb-4">
                 <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
