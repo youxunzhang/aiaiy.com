@@ -1168,7 +1168,7 @@
                 </a>
                 <div class="simple-navbar__actions">
                     <nav class="simple-navbar__links" aria-label="主导航">
-                        <a href="user-group.html" class="simple-navbar__link simple-navbar__link--user-group">
+                        <a href="user-group.html" id="community-link" class="simple-navbar__link simple-navbar__link--user-group">
                             👥 社群交流
                         </a>
                         <div class="simple-navbar__dropdown">
@@ -1346,6 +1346,14 @@
             });
 
             createParticles();
+
+            const communityLink = document.getElementById('community-link');
+            if (communityLink) {
+                communityLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    window.alert('微信号：zhangyouxun2013');
+                });
+            }
         });
 
         // Particles
