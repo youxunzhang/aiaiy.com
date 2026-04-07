@@ -532,6 +532,23 @@
             background: #166534;
         }
 
+        .simple-navbar__link--utility {
+            background: #ffffff;
+            color: var(--text-secondary);
+            padding: 0.38rem 0.72rem;
+            border-radius: 999px;
+            gap: 0.35rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .simple-navbar__link--utility:hover {
+            color: var(--primary-color);
+            border-color: rgba(37, 99, 235, 0.35);
+            background: #eff6ff;
+        }
+
         .simple-navbar__dropdown {
             position: relative;
         }
@@ -1171,6 +1188,12 @@
                         <a href="user-group.html" id="community-link" class="simple-navbar__link simple-navbar__link--user-group">
                             👥 社群交流
                         </a>
+                        <button id="favorite-btn" class="simple-navbar__link simple-navbar__link--utility" type="button" aria-label="收藏本站">
+                            ⭐ 收藏
+                        </button>
+                        <button id="share-btn" class="simple-navbar__link simple-navbar__link--utility" type="button" aria-label="分享本站到社交媒体">
+                            📣 分享
+                        </button>
                         <div class="simple-navbar__dropdown">
                             <span class="simple-navbar__link simple-navbar__link--parent" role="button" aria-haspopup="true">更多</span>
                             <div class="simple-navbar__dropdown-menu" role="menu" aria-label="更多">
@@ -1352,6 +1375,43 @@
                 communityLink.addEventListener('click', (event) => {
                     event.preventDefault();
                     window.alert('微信号：zhangyouxun2013');
+                });
+            }
+
+            const favoriteBtn = document.getElementById('favorite-btn');
+            if (favoriteBtn) {
+                favoriteBtn.addEventListener('click', () => {
+                    const isMac = navigator.platform.toUpperCase().includes('MAC');
+                    const shortcut = isMac ? '⌘ + D' : 'Ctrl + D';
+                    window.alert(`请使用 ${shortcut} 将 AIAIY 添加到浏览器收藏夹。`);
+                });
+            }
+
+            const shareBtn = document.getElementById('share-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', async () => {
+                    const shareData = {
+                        title: 'AIAIY | 2026年优质AI工具导航',
+                        text: '我在 AIAIY 找到了很多实用 AI 工具，推荐给你。',
+                        url: window.location.href
+                    };
+
+                    try {
+                        if (navigator.share) {
+                            await navigator.share(shareData);
+                            return;
+                        }
+
+                        if (navigator.clipboard?.writeText) {
+                            await navigator.clipboard.writeText(window.location.href);
+                            window.alert('链接已复制，快分享到微信、X、小红书或朋友圈吧！');
+                            return;
+                        }
+                    } catch (error) {
+                        console.warn('分享失败：', error);
+                    }
+
+                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`, '_blank', 'noopener,noreferrer');
                 });
             }
         });
