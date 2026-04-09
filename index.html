@@ -1393,29 +1393,53 @@
 
             const shareBtn = document.getElementById('share-btn');
             if (shareBtn) {
-                shareBtn.addEventListener('click', async () => {
+                shareBtn.addEventListener('click', () => {
                     const shareData = {
                         title: 'AIAIY | 2026年优质AI工具导航',
                         text: '我在 AIAIY 找到了很多实用 AI 工具，推荐给你。',
                         url: window.location.href
                     };
-
-                    try {
-                        if (navigator.share) {
-                            await navigator.share(shareData);
-                            return;
+                    const shareText = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+                    const openTweet = () => {
+                        const tweetUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`;
+                        const popup = window.open(tweetUrl, '_blank', 'noopener,noreferrer');
+                        if (!popup) {
+                            window.prompt('浏览器拦截了弹窗，请复制以下链接手动分享：', shareData.url);
                         }
+                    };
 
-                        if (navigator.clipboard?.writeText) {
-                            await navigator.clipboard.writeText(window.location.href);
-                            window.alert('链接已复制，快分享到微信、X、小红书或朋友圈吧！');
-                            return;
-                        }
-                    } catch (error) {
-                        console.warn('分享失败：', error);
+                    if (navigator.share) {
+                        navigator.share(shareData)
+                            .then(() => {})
+                            .catch((error) => {
+                                console.warn('系统分享失败，尝试其他方式：', error);
+                                if (navigator.clipboard?.writeText) {
+                                    navigator.clipboard.writeText(shareData.url)
+                                        .then(() => {
+                                            window.alert('链接已复制，快分享到微信、X、小红书或朋友圈吧！');
+                                        })
+                                        .catch(() => {
+                                            openTweet();
+                                        });
+                                    return;
+                                }
+                                openTweet();
+                            });
+                        return;
                     }
 
-                    window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(`${shareData.text} ${shareData.url}`)}`, '_blank', 'noopener,noreferrer');
+                    if (navigator.clipboard?.writeText) {
+                        navigator.clipboard.writeText(shareData.url)
+                            .then(() => {
+                                window.alert('链接已复制，快分享到微信、X、小红书或朋友圈吧！');
+                            })
+                            .catch(() => {
+                                window.prompt('请复制以下链接手动分享：', shareData.url);
+                            });
+                        return;
+                    }
+
+                    window.prompt('请复制以下内容手动分享：', shareText);
                 });
             }
         });
