@@ -7,10 +7,6 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437"
      crossorigin="anonymous"></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8794607118520437"
-    crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-8794607118520437">
-
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -31,7 +27,6 @@
     <meta charset="UTF-8">
 <!-- Google tag (gtag.js) -->
  
-    <meta name="google-adsense-account" content="ca-pub-8794607118520437">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIAIY | 2026年优质AI工具导航</title>
     <meta name="description" content="发现 2026 年实用 AI 工具，覆盖图像、视频、对话、音频、编程与效率场景。">
@@ -45,7 +40,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AIAIY | 2026年优质AI工具导航">
     <meta name="twitter:description" content="对比 2026 年图像、视频、聊天与效率领域的热门免费 AI 工具。">
-    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.aiaiy.com/">
     <script type="application/ld+json">
     {
@@ -62,10 +56,10 @@
     }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="modern-styles.css">
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    </style>
             <style>
         :root {
             --primary-color: #2563eb;
@@ -1344,13 +1338,13 @@
     <script src="homepage-product-logos.js" defer></script>
 
     <!-- Homepage logo optimizer -->
-    <script src="homepage-logo-optimizer.js"></script>
+    <script src="homepage-logo-optimizer.js" defer></script>
 
     <!-- Page introduction component -->
-    <script src="page-introductions.js"></script>
+    <script src="page-introductions.js" defer></script>
 
     <!-- Homepage product navigation interceptor -->
-    <script src="homepage-product-navigation.js"></script>
+    <script src="homepage-product-navigation.js" defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1374,7 +1368,11 @@
                 }
             });
 
-            createParticles();
+            if (window.requestIdleCallback) {
+                requestIdleCallback(createParticles);
+            } else {
+                setTimeout(createParticles, 0);
+            }
 
             const communityLink = document.getElementById('community-link');
             if (communityLink) {
@@ -1449,7 +1447,7 @@
         // Particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = window.innerWidth < 768 ? 16 : 28;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1482,36 +1480,30 @@
             observer.observe(el);
         });
     </script>
-    
-    <!-- Homepage logo optimizer -->
-    <script src="homepage-logo-optimizer.js"></script>
-
-    <!-- Page introduction component -->
-    <script src="page-introductions.js"></script>
-
     <!-- Simplified favicon loader -->
-    <script src="simple-favicon-loader.js"></script>
+    <script src="simple-favicon-loader.js" defer></script>
 
     <!-- Brand logo background -->
-    <script src="brand-logo-background.js"></script>
+    <script src="brand-logo-background.js" defer></script>
 
     <!-- Homepage logo manager -->
-    <script src="homepage-logo-manager.js"></script>
+    <script src="homepage-logo-manager.js" defer></script>
 
     <!-- Homepage brand logo background -->
-    <script src="homepage-brand-logos.js"></script>
+    <script src="homepage-brand-logos.js" defer></script>
 
     <!-- Homepage section favicon enhancer -->
-    <script src="homepage-section-favicons.js"></script>
+    <script src="homepage-section-favicons.js" defer></script>
 
     <!-- Homepage tool card logo manager -->
-    <script src="homepage-tool-logos.js"></script>
+    <script src="homepage-tool-logos.js" defer></script>
 
     <!-- Homepage real website logo upgrade -->
-    <script src="homepage-real-logo-upgrade.js"></script>
+    <script src="homepage-real-logo-upgrade.js" defer></script>
 
     <!-- Homepage logo verifier -->
-    <script src="verify-homepage-logos.js"></script>
+    <script src="verify-homepage-logos.js" defer></script>
+
 
 </body>
 </html>
