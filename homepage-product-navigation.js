@@ -17,20 +17,29 @@
         return element ? element.textContent.trim() : '';
     };
 
+    const normalizeSectionId = (section) => {
+        if (!section) return '';
+        if (section.id) return section.id;
+
+        const heading = section.querySelector('h2, h3');
+        const headingText = heading ? heading.textContent.trim() : '';
+        return slugify(headingText);
+    };
+
     const findSectionInfo = (anchor) => {
         const section = anchor.closest('section');
         if (!section) {
             return {
-                title: 'Home Picks',
-                id: 'overview'
+                title: '首页推荐',
+                id: 'home-picks'
             };
         }
 
         const heading = section.querySelector('h2, h3');
-        const title = heading ? heading.textContent.trim() : 'Home Picks';
+        const title = heading ? heading.textContent.trim() : '首页推荐';
         return {
             title,
-            id: section.id || slugify(title)
+            id: normalizeSectionId(section) || slugify(title)
         };
     };
 
@@ -38,9 +47,9 @@
         if (!(anchor instanceof HTMLAnchorElement)) return null;
 
         const sectionInfo = findSectionInfo(anchor);
-        const name = anchor.dataset.productName || extractText(anchor, '.modern-card__title, .tool-card__title, h3');
-        const description = anchor.dataset.productSummary || extractText(anchor, '.modern-card__description, p');
-        const category = anchor.dataset.productCategory || extractText(anchor, '.modern-card__badge');
+        const name = anchor.dataset.productName || extractText(anchor, '.ai-card__name, .modern-card__title, .tool-card__title, h3');
+        const description = anchor.dataset.productSummary || extractText(anchor, '.ai-card__tagline, .modern-card__description, p');
+        const category = anchor.dataset.productCategory || extractText(anchor, '.ai-card__meta-item strong, .modern-card__badge');
         const badge = extractText(anchor, '.modern-card__badge');
         const logoImg = anchor.dataset.productLogo || (anchor.querySelector('img') ? anchor.querySelector('img').src : '');
         const website = anchor.dataset.productUrl || anchor.getAttribute('href');
@@ -54,16 +63,22 @@
         const keyFeatures = [];
         if (description) keyFeatures.push(description);
         if (badge && (!description || !description.includes(badge))) {
-            keyFeatures.push(`Feature: ${badge}`);
+            keyFeatures.push(`产品标签：${badge}`);
         }
 
-        const idealUsers = sectionInfo.title ? [`Best for visitors exploring ${sectionInfo.title}`] : [];
-        const highlights = badge ? [`Highlight: ${badge}`] : [];
+        const idealUsers = sectionInfo.title ? [`适合关注「${sectionInfo.title}」方向的用户`] : [];
+        const highlights = [];
+        if (badge) {
+            highlights.push(`亮点：${badge}`);
+        }
+        if (description) {
+            highlights.push(`首页推荐语：${description}`);
+        }
 
         return {
             id,
             name: name || website,
-            category: category || sectionInfo.title || 'AI Tools',
+            category: category || sectionInfo.title || 'AI 工具',
             summary,
             tagline: anchor.dataset.productTagline || summary,
             website,
@@ -71,7 +86,7 @@
             logo: logoImg,
             keyFeatures,
             idealUsers,
-            pricing: ['See official site for pricing details'],
+            pricing: ['请前往官网查看最新价格与套餐信息'],
             highlights,
             integrations: [],
             relatedTools: [],
@@ -106,10 +121,12 @@
     const attachInterceptors = () => {
         const candidates = new Set();
         const selectors = [
+            'a.ai-card',
             'a.modern-card',
             'a.tool-card',
             '.tool-card a',
-            '.modern-card a'
+            '.modern-card a',
+            '.ai-card a'
         ];
 
         selectors.forEach((selector) => {
