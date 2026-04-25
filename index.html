@@ -1124,6 +1124,154 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
+
+        .google-products-page {
+            padding: 1.5rem 0 2rem;
+            background: #f5f5f5;
+        }
+
+        .google-products-shell {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .google-products-tabs {
+            width: min(860px, 100%);
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 999px;
+            box-shadow: 0 1px 2px rgba(60, 64, 67, 0.15);
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+        }
+
+        .google-products-tab {
+            color: #5f6368;
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.3rem 0.55rem;
+            border-radius: 999px;
+        }
+
+        .google-products-tab:hover {
+            background: #f1f3f4;
+            color: #202124;
+        }
+
+        .google-products-hero {
+            text-align: center;
+            padding: 1.5rem 0 2rem;
+        }
+
+        .google-products-title {
+            font-size: clamp(2.1rem, 4.5vw, 4rem);
+            line-height: 1.1;
+            font-weight: 500;
+            margin: 0;
+            color: #202124;
+        }
+
+        .google-products-search {
+            width: min(840px, 100%);
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+
+        .google-products-search input {
+            width: 100%;
+            height: 4.3rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e0e3e7;
+            background: #fff;
+            font-size: 1.15rem;
+            padding: 0 3.2rem 0 1.3rem;
+            color: #3c4043;
+        }
+
+        .google-products-search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9aa0a6;
+            font-size: 1.2rem;
+        }
+
+        .google-products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+            padding-bottom: 2rem;
+        }
+
+        .google-product-card {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            border-radius: 1rem;
+            border: 1px solid #d2d6dc;
+            background: #fff;
+            min-height: 88px;
+            padding: 1rem 1rem 1rem 1.1rem;
+            text-decoration: none;
+            color: #202124;
+            font-size: 1.06rem;
+        }
+
+        .google-product-card:hover {
+            border-color: #aab0b8;
+            box-shadow: 0 2px 8px rgba(60, 64, 67, 0.15);
+        }
+
+        .google-product-card img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 0.6rem;
+            flex: 0 0 48px;
+        }
+
+        .google-product-card span {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .google-product-card__arrow {
+            flex: 0 0 auto !important;
+            color: #1a73e8;
+            font-size: 1.25rem;
+        }
+
+        .google-product-card--active {
+            border: 2px solid #1a73e8;
+        }
+
+        @media (max-width: 1100px) {
+            .google-products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .google-products-tabs {
+                border-radius: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .google-products-search input {
+                height: 3.5rem;
+                font-size: 1rem;
+            }
+
+            .google-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
     <meta name="theme-color" content="#00f2fe">
     <meta name="msapplication-TileColor" content="#00f2fe">
@@ -1230,109 +1378,53 @@
     </header>
 
     <!-- Primary navigation content -->
-    <main class="main-content">
-        <div class="homepage-shell">
-            <nav class="homepage-toolbar" aria-label="首页分区">
-                <span class="homepage-toolbar__label">浏览分区</span>
-                <a href="#models-hub" class="homepage-toolbar__link"><span>🧠 大模型</span><span class="homepage-toolbar__count">7</span></a>
-                <a href="#creative-suite" class="homepage-toolbar__link"><span>🎨 创作</span><span class="homepage-toolbar__count">8</span></a>
-                <a href="#company-stack" class="homepage-toolbar__link"><span>🏢 AI 软件</span><span class="homepage-toolbar__count">12</span></a>
+    <main class="main-content google-products-page">
+        <div class="google-products-shell">
+            <nav class="google-products-tabs" aria-label="产品导航标签">
+                <a href="#" class="google-products-tab">常用服务</a>
+                <a href="#" class="google-products-tab">按设备分类</a>
+                <a href="#" class="google-products-tab">按场景分类</a>
+                <a href="#" class="google-products-tab">更多产品</a>
             </nav>
 
-            <div class="homepage-content">
-                <section id="models-hub" class="category-panel" aria-labelledby="models-hub-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">大模型</span>
-                            <h2 id="models-hub-title" class="category-panel__heading">大模型</h2>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://chatgpt.com/favicon.ico" alt="ChatGPT logo" loading="lazy"></span><span class="ai-card__name">ChatGPT</span><span class="ai-card__tagline">通用型多模态智能助手。</span></a>
-                        <a class="ai-card" href="https://claude.ai/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://claude.ai/favicon.ico" alt="Claude logo" loading="lazy"></span><span class="ai-card__name">Claude</span><span class="ai-card__tagline">擅长长文本推理与写作。</span></a>
-                        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.gstatic.com/lamda/images/share-favicon-512x512.png" alt="Gemini logo" loading="lazy"></span><span class="ai-card__name">Gemini</span><span class="ai-card__tagline">Google 生态下的多模态助手。</span></a>
-                        <a class="ai-card" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://chat.deepseek.com/favicon.ico" alt="DeepSeek logo" loading="lazy"></span><span class="ai-card__name">DeepSeek</span><span class="ai-card__tagline">偏推理能力的中文对话模型。</span></a>
-                        <a class="ai-card" href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.doubao.com/favicon.ico" alt="Doubao logo" loading="lazy"></span><span class="ai-card__name">Doubao</span><span class="ai-card__tagline">字节系日常效率助手。</span></a>
-                        <a class="ai-card" href="https://www.volcengine.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.volcengine.com/favicon.ico" alt="Volcengine logo" loading="lazy"></span><span class="ai-card__name">Volcengine</span><span class="ai-card__tagline">火山引擎企业级模型与云服务平台。</span></a>
-                        <a class="ai-card" href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/moonshot.cn" alt="Kimi logo" loading="lazy"></span><span class="ai-card__name">Kimi</span><span class="ai-card__tagline">长上下文中文研究助手。</span></a>
-                        <a class="ai-card" href="https://robotics-transformer-x.github.io/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://robotics-transformer-x.github.io/favicon.ico" alt="Robotics Transformer X logo" loading="lazy"></span><span class="ai-card__name">Robotics Transformer X</span><span class="ai-card__tagline">机器人通用策略与具身智能模型。</span></a>
-                    </div>
-                </section>
+            <section class="google-products-hero" aria-labelledby="google-products-title">
+                <h1 id="google-products-title" class="google-products-title">Google 产品</h1>
+                <div class="google-products-search" role="search">
+                    <label class="sr-only" for="google-product-search">搜索 Google 产品</label>
+                    <input id="google-product-search" type="search" placeholder="搜索产品，例如：Gmail、Chrome、Google 日历">
+                    <span class="google-products-search-icon" aria-hidden="true">⌕</span>
+                </div>
+            </section>
 
-                <section id="creative-suite" class="category-panel" aria-labelledby="creative-suite-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">创作</span>
-                            <h2 id="creative-suite-title" class="category-panel__heading">多模态</h2>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/midjourney.com" alt="Midjourney logo" loading="lazy"></span><span class="ai-card__name">Midjourney</span><span class="ai-card__tagline">高质量概念图与视觉生成。</span></a>
-                        <a class="ai-card" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/runwayml.com" alt="Runway logo" loading="lazy"></span><span class="ai-card__name">Runway</span><span class="ai-card__tagline">生成式视频与视觉编辑。</span></a>
-                        <a class="ai-card" href="https://klingai.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/klingai.com" alt="Kling logo" loading="lazy"></span><span class="ai-card__name">Kling</span><span class="ai-card__tagline">热门国产视频生成工具。</span></a>
-                        <a class="ai-card" href="https://jimeng.jianying.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/jianying.com" alt="Jimeng logo" loading="lazy"></span><span class="ai-card__name">Jimeng</span><span class="ai-card__tagline">字节系 AI 视频创作流程。</span></a>
-                        <a class="ai-card" href="https://www.heygen.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/heygen.com" alt="HeyGen logo" loading="lazy"></span><span class="ai-card__name">HeyGen</span><span class="ai-card__tagline">数字人视频生成与口型同步。</span></a>
-                        <a class="ai-card" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/elevenlabs.io" alt="ElevenLabs logo" loading="lazy"></span><span class="ai-card__name">ElevenLabs</span><span class="ai-card__tagline">语音克隆与配音工具。</span></a>
-                        <a class="ai-card" href="https://aistudio.google.com/generate-speech" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aistudio.google.com" alt="Google AI Studio logo" loading="lazy"></span><span class="ai-card__name">Google AI Studio Voice</span><span class="ai-card__tagline">音色生成与语音合成体验。</span></a>
-                        <a class="ai-card" href="https://suno.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/suno.com" alt="Suno logo" loading="lazy"></span><span class="ai-card__name">Suno</span><span class="ai-card__tagline">输入提示词即可生成音乐。</span></a>
-                    </div>
-                </section>
+            <section class="google-products-grid" aria-label="Google 产品列表">
+                <a class="google-product-card" href="https://www.android.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/marketing-cms/assets/images/95/4b/7db258a4495a8ebaf4bd76f4f6b8/android-logo.svg" alt="Android"><span>Android</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://www.android.com/auto/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/marketing-cms/assets/images/e7/17/59ad6b5848a8afd9f72f87967c2e/android-auto-logo.svg" alt="Android Auto"><span>Android Auto</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://tv.google/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/marketing-cms/assets/images/1d/76/4ab67dcb42098f4deab89f4f299f/android-tv-logo.svg" alt="Android TV"><span>Android TV</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://built-in.google/cars/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png" alt="内置 Google 的汽车"><span>内置Google的汽车</span><span class="google-product-card__arrow">↗</span></a>
 
+                <a class="google-product-card" href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/chrome/static/images/chrome-logo.svg" alt="Chrome"><span>Chrome</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://www.google.com/chromebook/chromeos/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/chrome/static/images/chrome-logo.svg" alt="Chromebook 和 ChromeOS"><span>Chromebook 和 ChromeOS</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://contacts.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_contacts_48x48.png" alt="Google 通讯录"><span>Google 通讯录</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://www.google.com/fit/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_fit_48x48.png" alt="数字健康"><span>数字健康</span><span class="google-product-card__arrow">↗</span></a>
 
-                <section id="company-stack" class="category-panel" aria-labelledby="company-stack-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">构建</span>
-                            <h2 id="company-stack-title" class="category-panel__heading">AI 软件</h2>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://www.nvidia.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/nvidia.com" alt="NVIDIA logo" loading="lazy"></span><span class="ai-card__name">NVIDIA</span><span class="ai-card__tagline">算力与 AI 基础设施领导者。</span></a>
-                        <a class="ai-card" href="https://www.google.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google logo" loading="lazy"></span><span class="ai-card__name">Google</span><span class="ai-card__tagline">搜索、Gemini 与云端 AI 生态。</span></a>
-                        <a class="ai-card" href="https://www.microsoft.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft logo" loading="lazy"></span><span class="ai-card__name">Microsoft</span><span class="ai-card__tagline">Copilot 与企业级 AI 平台。</span></a>
-                        <a class="ai-card" href="https://windsurf.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/windsurf.com" alt="Windsurf logo" loading="lazy"></span><span class="ai-card__name">Windsurf</span><span class="ai-card__tagline">AI 原生编程环境。</span></a>
-                        <a class="ai-card" href="https://github.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/github.com" alt="GitHub logo" loading="lazy"></span><span class="ai-card__name">GitHub</span><span class="ai-card__tagline">代码托管与协作平台。</span></a>
-                        <a class="ai-card" href="https://www.aliyun.com/minisite/goods?userCode=njtf2yef" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="Alibaba Cloud logo" loading="lazy"></span><span class="ai-card__name">Alibaba Cloud</span><span class="ai-card__tagline">云服务优惠与部署资源。</span></a>
-                        <a class="ai-card" href="https://cloud.tencent.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/tencent.com" alt="Tencent Cloud logo" loading="lazy"></span><span class="ai-card__name">Tencent Cloud</span><span class="ai-card__tagline">腾讯云产品与 AI 开发服务入口。</span></a>
-                        <a class="ai-card" href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/docker.com" alt="Docker logo" loading="lazy"></span><span class="ai-card__name">Docker Desktop</span><span class="ai-card__tagline">本地容器化开发与部署环境。</span></a>
-                        <a class="ai-card" href="https://n8n.io/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/n8n.io" alt="n8n logo" loading="lazy"></span><span class="ai-card__name">n8n</span><span class="ai-card__tagline">可视化 AI Agent 与自动化工作流。</span></a>
-                        <a class="ai-card" href="https://zapier.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/zapier.com" alt="Zapier logo" loading="lazy"></span><span class="ai-card__name">Zapier</span><span class="ai-card__tagline">无代码连接 SaaS 的自动化平台。</span></a>
-                        <a class="ai-card" href="https://www.make.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/make.com" alt="Make logo" loading="lazy"></span><span class="ai-card__name">Make</span><span class="ai-card__tagline">多步骤可视化编排自动化流程。</span></a>
-                        <a class="ai-card" href="https://dify.ai/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/dify.ai" alt="Dify logo" loading="lazy"></span><span class="ai-card__name">Dify</span><span class="ai-card__tagline">构建 AI 应用与工作流的开源平台。</span></a>
-                    </div>
-                </section>
+                <a class="google-product-card" href="https://drive.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png" alt="Google 文件极客"><span>Google 文件极客</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://wallet.google/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_wallet_48x48.png" alt="Google 财经"><span>Google 财经</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://www.fitbit.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/images/branding/product/2x/fitbit_48dp.png" alt="Fitbit"><span>Fitbit</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://www.google.com/travel/flights" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_flights_48x48.png" alt="Google 机票"><span>Google 机票</span><span class="google-product-card__arrow">↗</span></a>
 
-                <section id="self-media-platforms" class="category-panel" aria-labelledby="self-media-platforms-title">
-                    <div class="category-panel__header">
-                        <div class="category-panel__title">
-                            <span class="category-panel__eyebrow">分发</span>
-                            <h2 id="self-media-platforms-title" class="category-panel__heading">自媒体平台</h2>
-                        </div>
-                    </div>
-                    <div class="ai-card-grid">
-                        <a class="ai-card" href="https://channels.weixin.qq.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/weixin.qq.com" alt="公众号 logo" loading="lazy"></span><span class="ai-card__name">公众号</span><span class="ai-card__tagline">微信生态图文内容发布入口。</span></a>
-                        <a class="ai-card" href="https://channels.weixin.qq.com/platform" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/weixin.qq.com" alt="视频号 logo" loading="lazy"></span><span class="ai-card__name">视频号</span><span class="ai-card__tagline">微信生态短视频与直播平台。</span></a>
-                        <a class="ai-card" href="https://www.douyin.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/douyin.com" alt="抖音 logo" loading="lazy"></span><span class="ai-card__name">抖音</span><span class="ai-card__tagline">短视频创作与流量分发平台。</span></a>
-                        <a class="ai-card" href="https://www.toutiao.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/toutiao.com" alt="头条 logo" loading="lazy"></span><span class="ai-card__name">头条</span><span class="ai-card__tagline">资讯与内容推荐分发平台。</span></a>
-                        <a class="ai-card" href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/bilibili.com" alt="B站 logo" loading="lazy"></span><span class="ai-card__name">B站</span><span class="ai-card__tagline">中长视频与社区互动平台。</span></a>
-                        <a class="ai-card" href="https://trends.google.com/trends" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/google.com" alt="Google Trends logo" loading="lazy"></span><span class="ai-card__name">Google Trends</span><span class="ai-card__tagline">追踪热点趋势，辅助选题与内容策划。</span></a>
-                        <a class="ai-card" href="https://www.kaogujia.com/home" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/kaogujia.com" alt="考古家 logo" loading="lazy"></span><span class="ai-card__name">考古家</span><span class="ai-card__tagline">自媒体数据分析与内容选题洞察平台。</span></a>
-                        <a class="ai-card" href="https://matrix.tencent.com/ai-detect/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/tencent.com" alt="腾讯朱雀 AI 检测 logo" loading="lazy"></span><span class="ai-card__name">腾讯朱雀 AI 检测</span><span class="ai-card__tagline">AI 生成内容检测与文本风险识别工具。</span></a>
-                        <a class="ai-card" href="https://x.com/home" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/x.com" alt="X logo" loading="lazy"></span><span class="ai-card__name">X</span><span class="ai-card__tagline">全球话题传播与实时讨论社区。</span></a>
-                        <a class="ai-card" href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/reddit.com" alt="Reddit logo" loading="lazy"></span><span class="ai-card__name">Reddit</span><span class="ai-card__tagline">海外社区讨论与内容分发平台。</span></a>
-                        <a class="ai-card" href="https://www.hepankeji.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/hepankeji.com" alt="河畔科技 logo" loading="lazy"></span><span class="ai-card__name">视频号下载神器</span><span class="ai-card__tagline">河畔科技下载机器人，支持视频号与多平台视频下载。</span></a>
-                        <a class="ai-card" href="https://tingwu.aliyun.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/aliyun.com" alt="通义听悟 logo" loading="lazy"></span><span class="ai-card__name">飞书妙计 / 通义听悟</span><span class="ai-card__tagline">免费提取视频文案，通义听悟提取速度更快。</span></a>
-                        <a class="ai-card" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://www.gstatic.com/lamda/images/share-favicon-512x512.png" alt="Gemini logo" loading="lazy"></span><span class="ai-card__name">Gemini 剧本分镜</span><span class="ai-card__tagline">用于改文案、生成剧本与分镜，适合内容二创。</span></a>
-                        <a class="ai-card" href="https://www.zopia.ai/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/zopia.ai" alt="Zopia logo" loading="lazy"></span><span class="ai-card__name">Zopia 出图工具</span><span class="ai-card__tagline">生成人物视图、场景图与道具图。</span></a>
-                        <a class="ai-card" href="https://jimeng.jianying.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/jianying.com" alt="即梦 logo" loading="lazy"></span><span class="ai-card__name">即梦</span><span class="ai-card__tagline">用于生成分镜视频，产出质量高但耗时与成本较高。</span></a>
-                        <a class="ai-card" href="https://aic.oceanengine.com/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/oceanengine.com" alt="即创 logo" loading="lazy"></span><span class="ai-card__name">即创</span><span class="ai-card__tagline">生成数字人口播视频，降低制作成本。</span></a>
-                        <a class="ai-card" href="https://www.liuliangbao.cn/" target="_blank" rel="noopener noreferrer"><span class="ai-card__logo"><img src="https://logo.clearbit.com/liuliangbao.cn" alt="流速工具 logo" loading="lazy"></span><span class="ai-card__name">流速工具</span><span class="ai-card__tagline">监测视频实时流速，辅助选择直播开启时机。</span></a>
-                    </div>
-                </section>
-            </div>
+                <a class="google-product-card" href="https://www.gstatic.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/gboard_48x48.png" alt="Gboard"><span>Gboard</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card google-product-card--active" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/lamda/images/gemini_wordmark_lockup_dark.svg" alt="Gemini"><span>Gemini</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://mail.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" alt="Gmail"><span>Gmail</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://artsandculture.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_arts_culture_48x48.png" alt="Google 艺术与文化"><span>Google 艺术与文化</span><span class="google-product-card__arrow">↗</span></a>
+
+                <a class="google-product-card" href="https://assistant.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/images/branding/product/2x/google_assistant_48dp.png" alt="Google 助理"><span>Google 助理</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://myaccount.google.com/security-checkup" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/onebox/sports/logos/google_authenticator_48x48.png" alt="Google 身份验证器"><span>Google 身份验证器</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://calendar.google.com/" target="_blank" rel="noopener noreferrer"><img src="https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_31_2x.png" alt="Google 日历"><span>Google 日历</span><span class="google-product-card__arrow">↗</span></a>
+                <a class="google-product-card" href="https://tv.google/" target="_blank" rel="noopener noreferrer"><img src="https://www.gstatic.com/images/branding/product/2x/chromecast_48dp.png" alt="Google Cast"><span>Google Cast</span><span class="google-product-card__arrow">↗</span></a>
+            </section>
         </div>
-
     </main>
+
 
         <!-- Footer -->
         <footer class="footer" style="margin-top: 0; padding: 0 0 0.65rem;">
