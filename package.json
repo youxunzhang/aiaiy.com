@@ -1,0 +1,9 @@
+{
+  "name": "aiaiy-com",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build helper for Cloudflare Pages static deploy",
+  "scripts": {
+    "build": "node scripts/build-dist.mjs"
+  }
+}
