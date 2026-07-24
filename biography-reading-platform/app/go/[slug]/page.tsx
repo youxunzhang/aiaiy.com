@@ -1,0 +1,4 @@
+import type {Metadata} from "next";import Link from "next/link";import {notFound} from "next/navigation";import {SiteHeader} from "@/components/SiteHeader";import {getBook,getBooks} from "@/lib/content";
+export const metadata:Metadata={title:"选择购买渠道",robots:{index:false,follow:false}};export function generateStaticParams(){return getBooks().map(b=>({slug:b.slug}))}
+export default async function GoPage({params}:{params:Promise<{slug:string}>}){const b=getBook((await params).slug);if(!b)notFound();return <><SiteHeader/><main className="redirect-box"><p className="eyebrow">PURCHASE REDIRECT</p><h1>购买《{b.title}》</h1><p>你即将离开人物志前往第三方平台。价格、库存和售后服务由对应平台提供。</p><div className="redirect-actions">{b.buyLinks.jd&&<a href={b.buyLinks.jd} rel="nofollow sponsored">前往京东</a>}{b.buyLinks.taobao&&<a href={b.buyLinks.taobao} rel="nofollow sponsored">前往淘宝</a>}</div><p><Link href={`/books/${b.slug}`}>← 返回书籍详情</Link></p></main></>}
+

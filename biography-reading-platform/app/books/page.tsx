@@ -1,0 +1,4 @@
+import type { Metadata } from "next";import Link from "next/link";import {SiteHeader} from "@/components/SiteHeader";import {SiteFooter} from "@/components/SiteFooter";import {getBooks} from "@/lib/content";
+export const metadata:Metadata={title:"人物书架",description:"围绕重要人物精选的传记、作品与延伸阅读。"};
+export default function Books(){const books=getBooks();return <><SiteHeader/><main className="page-shell"><div className="page-hero"><div><p className="eyebrow">CURATED BOOKS</p><h1>人物书架</h1></div><p>一本好传记，既记录一段人生，也保存一个时代的体温。</p></div><div className="book-grid">{books.map(b=><Link className="book-card" href={`/books/${b.slug}`} key={b.slug}><div className="cover"><small>人物志 · 精选</small><b>{b.title}</b><small>{b.author}</small></div><h3>{b.title}</h3><p>{b.author} · {b.publisher}</p></Link>)}</div></main><SiteFooter/></>}
+
