@@ -95,27 +95,6 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
           <p>{current.note}</p>
         </div>
 
-        <div className="relation-panel">
-          <div>
-            <p className="eyebrow">你的历史关键词</p>
-            <h3>你更相信哪一种力量？</h3>
-          </div>
-          <div className="relation-options">
-            {relationWords.map((word) => (
-              <button key={word} className={relation === word ? "active" : ""} onClick={() => setRelation(word)}>
-                {word}
-              </button>
-            ))}
-          </div>
-          {match ? (
-            <p className="match-line">
-              在{current.label}，与你最同频的是 <Link href={`/people/${match.slug}`}>{match.name} <span>→</span></Link>
-            </p>
-          ) : (
-            <p className="match-line">这个朝代的人物正在陆续收录中。</p>
-          )}
-        </div>
-
         <div className="people-heading">
           <div><span>{String(visible.length).padStart(2, "0")}</span><h2>{current.label}代表人物</h2></div>
           <p>点击人物，查看生平时间线、成就与关系网络</p>
@@ -149,6 +128,27 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
             <button onClick={() => setSelected("all")}>浏览全部人物</button>
           </div>
         )}
+
+        <div className="relation-panel relation-panel-after">
+          <div>
+            <p className="eyebrow">你的历史关键词</p>
+            <h3>你更相信哪一种力量？</h3>
+          </div>
+          <div className="relation-options">
+            {relationWords.map((word) => (
+              <button key={word} className={relation === word ? "active" : ""} onClick={() => setRelation(word)}>
+                {word}
+              </button>
+            ))}
+          </div>
+          {match ? (
+            <p className="match-line">
+              在{current.label}，与你最同频的是 <Link href={`/people/${match.slug}`}>{match.name} <span>→</span></Link>
+            </p>
+          ) : (
+            <p className="match-line">这个朝代的人物正在陆续收录中。</p>
+          )}
+        </div>
       </section>
     </div>
   );
