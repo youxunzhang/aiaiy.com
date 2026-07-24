@@ -67,19 +67,6 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
 
   return (
     <div className="dynasty-home">
-      <section className="dynasty-hero">
-        <div className="hero-copy">
-          <p className="hero-kicker"><span /> 先选朝代，再遇见一个人</p>
-          <h1>你想回到<br /><em>哪个朝代？</em></h1>
-          <p className="hero-lead">从朝代进入历史，看见那些改变时代的人，也发现你与他们之间意外的相似。</p>
-        </div>
-        <div className="hero-orbit" aria-hidden="true">
-          <span className="orbit-year">公元</span>
-          <b>二〇二六</b>
-          <i>历史从未走远</i>
-        </div>
-      </section>
-
       <section className="dynasty-picker" aria-label="选择朝代">
         <div className="timeline-line" />
         <div className="dynasty-tabs" role="tablist">
