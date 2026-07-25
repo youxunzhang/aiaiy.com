@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import { supplementalPeople } from "./supplemental-people";
 
 export type Person = {
   slug: string; name: string; alias: string; dynasty: string; country: string;
@@ -34,10 +35,9 @@ function readCollection<T>(folder: string): T[] {
   });
 }
 
-export const getPeople = () => readCollection<Person>("people");
+export const getPeople = () => [...readCollection<Person>("people"), ...supplementalPeople];
 export const getBooks = () => readCollection<Book>("books");
 export const getTopics = () => readCollection<Topic>("topics");
 export const getPerson = (slug: string) => getPeople().find((item) => item.slug === slug);
 export const getBook = (slug: string) => getBooks().find((item) => item.slug === slug);
 export const getTopic = (slug: string) => getTopics().find((item) => item.slug === slug);
-
