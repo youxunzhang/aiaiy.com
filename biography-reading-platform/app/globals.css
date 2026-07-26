@@ -78,7 +78,7 @@ footer{background:#232a26;color:#eae4d9;padding:45px max(24px,calc((100vw - 1172
 .first-card-symbol{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#bda27a}
 .first-card-symbol:after{content:"";position:absolute;width:140px;height:140px;border:1px solid #ffffff55;border-radius:50%;bottom:-82px}
 .first-card-symbol span{font-size:61px;opacity:.82}
-.first-card-symbol small{position:absolute;left:11px;top:12px;font:9px Arial;letter-spacing:.05em}
+.first-card-symbol small{position:absolute;left:11px;top:12px;font:700 11px Arial,sans-serif;letter-spacing:.12em;color:#302b24}
 .first-card-body{min-width:0;padding:21px 20px 18px;display:flex;flex-direction:column}
 .first-card-body>p:first-child{font:10px Arial,sans-serif;letter-spacing:.11em;color:var(--red);margin:0}
 .first-card-body h2{font-size:25px;margin:7px 0 4px}

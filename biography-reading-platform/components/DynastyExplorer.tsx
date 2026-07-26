@@ -41,6 +41,7 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
         const bi = featured.indexOf(b.slug);
         return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
       })
+      .map((person, index) => ({ ...person, catalogNumber: index + 1 }))
       .filter(
         (person) =>
           !needle ||
@@ -71,11 +72,11 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
 
       {visible.length ? (
         <div className="people-first-grid">
-          {visible.map((person, index) => (
+          {visible.map((person) => (
             <Link className="people-first-card" href={`/people/${person.slug}`} key={person.slug}>
-              <div className={`first-card-symbol symbol-${index % 5}`}>
+              <div className={`first-card-symbol symbol-${(person.catalogNumber - 1) % 5}`}>
                 <span>{person.name.slice(-1)}</span>
-                <small>{person.birth}</small>
+                <small>NO. {String(person.catalogNumber).padStart(2, "0")}</small>
               </div>
               <div className="first-card-body">
                 <p>{person.dynasty} · {person.identity}</p>
