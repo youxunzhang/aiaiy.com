@@ -10,23 +10,25 @@ type PersonPreview = {
   identity: string;
   birth: string;
   death: string;
+  avatar: string;
   summary: string;
   tags: string[];
 };
 
 const featured = [
-  "li-shimin",
-  "kangxi",
+  "confucius",
+  "qin-shi-huang",
   "wu-zetian",
-  "lin-zexu",
   "li-bai",
-  "cao-xueqin",
-  "li-longji",
-  "wei-zheng",
-  "zeng-guofan",
-  "xuan-zang",
   "du-fu",
-  "zuo-zongtang",
+  "su-shi",
+  "wang-an-shi",
+  "sima-qian",
+  "wang-yangming",
+  "zhang-juzheng",
+  "zeng-guofan",
+  "lu-xun",
+  "ren-zhengfei",
 ];
 
 export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
@@ -36,11 +38,7 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
     const needle = query.trim().toLowerCase();
 
     return [...people]
-      .sort((a, b) => {
-        const ai = featured.indexOf(a.slug);
-        const bi = featured.indexOf(b.slug);
-        return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
-      })
+      .sort((a, b) => featured.indexOf(a.slug) - featured.indexOf(b.slug))
       .map((person, index) => ({ ...person, catalogNumber: index + 1 }))
       .filter(
         (person) =>
@@ -56,8 +54,11 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
     <section className="people-directory" aria-label="历史人物">
       <div className="people-directory-bar">
         <div className="people-directory-heading">
-          <h1>人物</h1>
-          <span>{visible.length}</span>
+          <div>
+            <p>人物志 · PEOPLE</p>
+            <h1>认识改变时代的人</h1>
+          </div>
+          <span>{visible.length} 位人物</span>
         </div>
         <label className="directory-search">
           <span aria-hidden="true">⌕</span>
@@ -74,8 +75,8 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
         <div className="people-first-grid">
           {visible.map((person) => (
             <Link className="people-first-card" href={`/people/${person.slug}`} key={person.slug}>
-              <div className={`first-card-symbol symbol-${(person.catalogNumber - 1) % 5}`}>
-                <span>{person.name.slice(-1)}</span>
+              <div className="first-card-symbol">
+                <img src={person.avatar} alt={`${person.name}人物肖像`} loading="lazy" />
                 <small>NO. {String(person.catalogNumber).padStart(2, "0")}</small>
               </div>
               <div className="first-card-body">
@@ -85,7 +86,7 @@ export function DynastyExplorer({ people }: { people: PersonPreview[] }) {
                 <p className="first-card-summary">{person.summary}</p>
                 <div className="first-card-foot">
                   <span>{person.tags.slice(0, 2).join(" · ")}</span>
-                  <b>查看人物 <i>↗</i></b>
+                  <b>查看人物 <i>→</i></b>
                 </div>
               </div>
             </Link>
