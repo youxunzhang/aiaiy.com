@@ -1,0 +1,358 @@
+{
+  "generatedAt": "2026-07-26T14:01:35.302Z",
+  "sources": [
+    {
+      "slug": "confucius",
+      "name": "孔子",
+      "articleTitle": "孔子",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E5%AD%94%E5%AD%90",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/%E5%AD%94%E5%AD%90%E7%87%95%E5%B1%85%E5%83%8F.png/960px-%E5%AD%94%E5%AD%90%E7%87%95%E5%B1%85%E5%83%8F.png",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E5%AD%94%E5%AD%90%E7%87%95%E5%B1%85%E5%83%8F.png",
+      "author": "\n未知Unknown author ",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "qin-shi-huang",
+      "name": "秦始皇",
+      "articleTitle": "秦始皇",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E7%A7%A6%E5%A7%8B%E7%9A%87",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Qinshihuang.jpg/960px-Qinshihuang.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:Qinshihuang.jpg",
+      "author": "未知Unknown artist",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "sima-qian",
+      "name": "司马迁",
+      "articleTitle": "司馬遷",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E5%8F%B8%E9%A6%AC%E9%81%B7",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Sima_Qian_%28painted_portrait%29.jpg",
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null
+    },
+    {
+      "slug": "li-bai",
+      "name": "李白",
+      "articleTitle": "李白",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E7%99%BD",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/LiBai.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:LiBai.jpg",
+      "author": "梁楷",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "du-fu",
+      "name": "杜甫",
+      "articleTitle": "杜甫",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E6%9D%9C%E7%94%AB",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Dufu.jpg/960px-Dufu.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:Dufu.jpg",
+      "author": "\n未知Unknown author ",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "wang-an-shi",
+      "name": "王安石",
+      "articleTitle": "王安石",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E5%AE%89%E7%9F%B3",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/%E6%AD%B7%E4%BB%A3%E8%81%96%E8%B3%A2%E5%90%8D%E4%BA%BA%E5%83%8F-29-%E5%AE%8B%E4%B8%9E%E7%9B%B8%E7%8E%8B%E8%8D%86%E5%85%AC%E5%AE%89%E7%9F%B3.jpg/960px-%E6%AD%B7%E4%BB%A3%E8%81%96%E8%B3%A2%E5%90%8D%E4%BA%BA%E5%83%8F-29-%E5%AE%8B%E4%B8%9E%E7%9B%B8%E7%8E%8B%E8%8D%86%E5%85%AC%E5%AE%89%E7%9F%B3.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E6%AD%B7%E4%BB%A3%E8%81%96%E8%B3%A2%E5%90%8D%E4%BA%BA%E5%83%8F-29-%E5%AE%8B%E4%B8%9E%E7%9B%B8%E7%8E%8B%E8%8D%86%E5%85%AC%E5%AE%89%E7%9F%B3.jpg",
+      "author": "\n未知Unknown author ",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "wang-yangming",
+      "name": "王阳明",
+      "articleTitle": "王陽明",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E9%99%BD%E6%98%8E",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/%E8%94%A1%E4%B8%96%E6%96%B0_%E7%8E%8B%E9%98%B3%E6%98%8E%E8%82%96%E5%83%8F%E8%BD%B4_%28cropped%29.jpg/960px-%E8%94%A1%E4%B8%96%E6%96%B0_%E7%8E%8B%E9%98%B3%E6%98%8E%E8%82%96%E5%83%8F%E8%BD%B4_%28cropped%29.jpg",
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null
+    },
+    {
+      "slug": "lu-xun",
+      "name": "鲁迅",
+      "articleTitle": "鲁迅",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E9%B2%81%E8%BF%85",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/%E9%B2%81%E8%BF%85_1933%E5%B9%B45%E6%9C%8826%E6%97%A5%E6%91%84%E4%BA%8E%E4%B8%8A%E6%B5%B7.jpg",
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null
+    },
+    {
+      "slug": "li-shimin",
+      "name": "唐太宗",
+      "articleTitle": "唐太宗",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E5%94%90%E5%A4%AA%E5%AE%97",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/TangTaizong.jpg/960px-TangTaizong.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:TangTaizong.jpg",
+      "author": "\n未知Unknown artist",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "li-yuan",
+      "name": "唐高祖",
+      "articleTitle": "李渊",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E6%B8%8A",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/TangGaozu.jpg/960px-TangGaozu.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:TangGaozu.jpg",
+      "author": "\n未知Unknown author",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "yang-yuhuan",
+      "name": "杨贵妃",
+      "articleTitle": "杨贵妃",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E6%9D%A8%E8%B4%B5%E5%A6%83",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/%E4%B8%8A%E9%A9%AC%E5%9B%BE.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E4%B8%8A%E9%A9%AC%E5%9B%BE.jpg",
+      "author": "钱选",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "di-renjie",
+      "name": "狄仁杰",
+      "articleTitle": "狄仁杰",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E7%8B%84%E4%BB%81%E6%9D%B0",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/%E7%8B%84%E4%BB%81%E6%9D%B0.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E7%8B%84%E4%BB%81%E6%9D%B0.jpg",
+      "author": "\n未知Unknown author ",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "fang-xuanling",
+      "name": "房玄龄",
+      "articleTitle": "房玄龄",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E6%88%BF%E7%8E%84%E9%BE%84",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/%E6%88%BF%E7%8E%84%E9%BE%84.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E6%88%BF%E7%8E%84%E9%BE%84.jpg",
+      "author": "\n未知Unknown author",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "guo-ziyi",
+      "name": "郭子仪",
+      "articleTitle": "郭子仪",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E9%83%AD%E5%AD%90%E4%BB%AA",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/%E5%94%90%E5%B0%9A%E7%88%B6%E6%B1%BE%E9%98%B3%E5%BF%A0%E6%AD%A6%E7%8E%8B%E5%83%8F.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E5%94%90%E5%B0%9A%E7%88%B6%E6%B1%BE%E9%98%B3%E5%BF%A0%E6%AD%A6%E7%8E%8B%E5%83%8F.jpg",
+      "author": "\n未知Unknown author ",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "heshen",
+      "name": "和珅",
+      "articleTitle": "和珅",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E5%92%8C%E7%8F%85",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Hesen.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:Hesen.jpg",
+      "author": "未知Unknown author",
+      "license": "Public domain",
+      "licenseUrl": null
+    },
+    {
+      "slug": "zheng-chenggong",
+      "name": "郑成功",
+      "articleTitle": "鄭成功",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E9%84%AD%E6%88%90%E5%8A%9F",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/%E5%AE%89%E5%B9%B3%E5%8F%A4%E5%A0%A1%E4%B9%8B%E7%BE%8E.jpg/960px-%E5%AE%89%E5%B9%B3%E5%8F%A4%E5%A0%A1%E4%B9%8B%E7%BE%8E.jpg",
+      "fileUrl": "https://commons.wikimedia.org/wiki/File:%E5%AE%89%E5%B9%B3%E5%8F%A4%E5%A0%A1%E4%B9%8B%E7%BE%8E.jpg",
+      "author": "王崎",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    },
+    {
+      "slug": "liu-bei",
+      "name": "刘备",
+      "articleTitle": "刘备",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E5%88%98%E5%A4%87",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Liu_Bei_Tang.jpg",
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null
+    },
+    {
+      "slug": "huang-renxun",
+      "name": "黄仁勋",
+      "articleTitle": "黃仁勳",
+      "articleUrl": "https://zh.wikipedia.org/wiki/%E9%BB%83%E4%BB%81%E5%8B%B3",
+      "thumbnailUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Jen-Hsun_Huang_2025.jpg",
+      "fileUrl": null,
+      "author": null,
+      "license": null,
+      "licenseUrl": null
+    }
+  ],
+  "missing": [
+    {
+      "slug": "su-shi",
+      "title": "苏轼",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "wu-zetian",
+      "title": "武则天",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "zeng-guofan",
+      "title": "曾国藩",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "zhang-juzheng",
+      "title": "张居正",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "ren-zhengfei",
+      "title": "任正非",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "li-longji",
+      "title": "唐玄宗",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "wei-zheng",
+      "title": "魏徵",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "an-lushan",
+      "title": "安禄山",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "bai-juyi",
+      "title": "白居易",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "han-yu",
+      "title": "韩愈",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "xuan-zang",
+      "title": "玄奘",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "kangxi",
+      "title": "康熙帝",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "yongzheng",
+      "title": "雍正帝",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "qianlong",
+      "title": "乾隆帝",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "xiaozhuang",
+      "title": "孝庄文皇后",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "dorgon",
+      "title": "多尔衮",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "lin-zexu",
+      "title": "林则徐",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "zuo-zongtang",
+      "title": "左宗棠",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "li-hongzhang",
+      "title": "李鸿章",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "cao-xueqin",
+      "title": "曹雪芹",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "nian-gengyao",
+      "title": "年羹尧",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "liu-bang",
+      "title": "汉高祖",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "liu-che",
+      "title": "汉武帝",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "liu-xiu",
+      "title": "汉光武帝",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "cao-pi",
+      "title": "曹丕",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "sun-quan",
+      "title": "孙权",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "sam-altman",
+      "title": "萨姆·奥尔特曼",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "fei-fei-li",
+      "title": "李飞飞"
+    },
+    {
+      "slug": "andrew-ng",
+      "title": "吴恩达",
+      "error": "Error: image 429"
+    },
+    {
+      "slug": "demis-hassabis",
+      "title": "德米斯·哈萨比斯"
+    },
+    {
+      "slug": "geoffrey-hinton",
+      "title": "杰弗里·辛顿",
+      "error": "Error: image 429"
+    }
+  ]
+}
