@@ -1,1 +1,15 @@
-import type {MetadataRoute} from "next";import {getPeople,getBooks,getTopics} from "@/lib/content";export const dynamic="force-static";export default function sitemap():MetadataRoute.Sitemap{const base="https://aiaiy.com";return[{url:base,priority:1,changeFrequency:"weekly"},{url:`${base}/people`,priority:.9},{url:`${base}/books`,priority:.7},{url:`${base}/topics`,priority:.8},...getPeople().map(x=>({url:`${base}/people/${x.slug}`,priority:.8 as const,changeFrequency:"monthly" as const})),...getBooks().map(x=>({url:`${base}/books/${x.slug}`,priority:.6 as const})),...getTopics().map(x=>({url:`${base}/topics/${x.slug}`,priority:.7 as const}))]}
+import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = "https://aiaiy.com";
+  return [
+    { url: base, priority: 1, changeFrequency: "daily" },
+    ...Array.from({ length: 81 }, (_, index) => ({
+      url: `${base}/tao-te-ching/chapter-${index + 1}`,
+      priority: .8,
+      changeFrequency: "monthly" as const,
+    })),
+  ];
+}
