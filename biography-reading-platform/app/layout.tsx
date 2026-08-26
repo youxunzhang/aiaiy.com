@@ -3,24 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aiaiy.com"),
-  title: { default: "ReadTao — Ancient Taoist Wisdom for Modern Life", template: "%s | ReadTao" },
-  description: "Read the Tao Te Ching in Chinese and English, find daily wisdom, and explore practical guidance for calm, balance, and modern life.",
-  keywords: ["Tao Te Ching", "Lao Tzu", "Daily Tao", "Taoism", "道德经", "Chinese philosophy"],
-  openGraph: {
-    title: "ReadTao — Ancient Taoist Wisdom for Modern Life",
-    description: "Find calm in the wisdom of Tao.",
-    type: "website",
-    locale: "en_US",
-    images: [{ url: "/og-readtao.png", width: 1536, height: 1024, alt: "ReadTao — Find calm in the wisdom of Tao" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ReadTao — Ancient Taoist Wisdom for Modern Life",
-    description: "Find calm in the wisdom of Tao.",
-    images: ["/og-readtao.png"],
-  },
+  title: "AIAIY — 实用 AI 工具黄页导航",
+  description: "发现真正实用的 AI 网站与工具，覆盖 AI 对话、内容检测、写作辅助、文字转语音等场景。",
+  keywords: ["AI工具", "AI导航", "ChatGPT", "AI检测", "文字转语音", "AI黄页"],
+  openGraph: { title: "AIAIY — 实用 AI 工具黄页导航", description: "少一点寻找，多一点创造。发现真正实用的 AI 工具。", type: "website", locale: "zh_CN", images: [{ url: "/og.png", width: 1536, height: 1024, alt: "AIAIY AI 工具黄页导航" }] },
+  twitter: { card: "summary_large_image", title: "AIAIY — 实用 AI 工具黄页导航", description: "少一点寻找，多一点创造。", images: ["/og.png"] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="zh-CN"><body>{children}</body></html>;
 }
