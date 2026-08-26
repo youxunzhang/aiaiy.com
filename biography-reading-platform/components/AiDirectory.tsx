@@ -27,17 +27,14 @@ export function AiDirectory() {
     <div className="directory-page">
       <header className="directory-header">
         <a className="directory-brand" href="#top" aria-label="AIAIY 首页"><span className="brand-symbol">AI</span><span><b>AIAIY</b><small>AI 黄页</small></span></a>
-        <nav aria-label="主导航"><a href="#tools">工具导航</a><a href="#categories">分类</a><a href="#about">关于本站</a></nav>
+        <p className="header-count">已收录 {tools.length} 个常用工具</p>
         <a className="submit-link" href="mailto:hello@aiaiy.com?subject=提交 AI 工具">提交工具 <span>↗</span></a>
       </header>
 
       <main id="top">
-        <section className="directory-hero">
-          <div className="hero-badge"><i></i> 精选实用 AI 工具</div>
-          <h1>发现好用的<br /><em>AI 工具</em></h1>
-          <p>收录真正实用的 AI 网站，帮你更快找到适合工作、创作与学习的智能工具。</p>
-          <div className="search-shell"><span aria-hidden="true">⌕</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索 AI 工具、功能或关键词…" aria-label="搜索 AI 工具" /><kbd>⌘ K</kbd></div>
-          <div className="quick-searches"><span>热门搜索</span>{['AI 检测', 'ChatGPT', '文字转语音', 'AI 降痕'].map((item) => <button key={item} onClick={() => setQuery(item)}>{item}</button>)}</div>
+        <section className="directory-intro">
+          <div><p>AIAIY.COM</p><h1>AI 工具导航</h1></div>
+          <div className="search-shell"><span aria-hidden="true">⌕</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索工具…" aria-label="搜索 AI 工具" /></div>
         </section>
 
         <section className="directory-content" id="tools">
@@ -46,7 +43,7 @@ export function AiDirectory() {
             {categories.map((item) => <button className={category === item ? "active" : ""} key={item} onClick={() => setCategory(item)}><span>{item}</span><b>{item === "全部工具" ? tools.length : tools.filter((tool) => tool.category === item).length}</b></button>)}
           </aside>
           <div className="tools-panel">
-            <div className="section-heading"><div><span>CURATED DIRECTORY</span><h2>{category}</h2></div><p>共 {filtered.length} 个工具</p></div>
+            <div className="section-heading"><div><span>TOOLS</span><h2>{category}</h2></div><p>共 {filtered.length} 个工具</p></div>
             <div className="tool-grid">
               {filtered.map((tool, index) => <a className="tool-card" href={tool.url} target="_blank" rel="noreferrer" key={tool.url}>
                 <div className={`tool-icon ${tool.color}`}>{tool.short}</div><div className="tool-card-top"><span>{tool.category}</span><b>0{index + 1}</b></div>
@@ -58,10 +55,9 @@ export function AiDirectory() {
           </div>
         </section>
 
-        <section className="about-strip" id="about"><span>AI TOOLS, SIMPLIFIED.</span><h2>少一点寻找，<br />多一点创造。</h2><p>AIAIY 持续整理可靠、实用的 AI 工具，为每一次创作和工作提速。</p></section>
       </main>
 
-      <footer className="directory-footer"><div><b>AIAIY</b><span>AI 黄页导航</span></div><p>发现工具 · 提升效率 · 激发创造</p><span>© 2026 AIAIY.COM</span></footer>
+      <footer className="directory-footer"><div><b>AIAIY</b><span>AI 黄页导航</span></div><span>© 2026 AIAIY.COM</span></footer>
     </div>
   );
 }
