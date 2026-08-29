@@ -7,9 +7,10 @@ const tools = [
   { name: "AI 降重降痕", short: "降", url: "https://zy.ai-or.com/ai-reduce", category: "写作辅助", description: "优化 AI 生成文本的表达方式，让内容更自然、更贴近日常写作。", tags: ["AI 降痕", "润色", "写作"], color: "amber" },
   { name: "ChatGPT", short: "GPT", url: "https://chatgpt.com/", category: "AI 对话", description: "通用 AI 助手，用于问答、写作、研究、编程与创意工作。", tags: ["对话", "写作", "编程"], color: "green" },
   { name: "Aura TTS", short: "声", url: "https://tts.aurastd.com/", category: "音频工具", description: "在线文字转语音工具，快速生成自然语音与多场景配音。", tags: ["文字转语音", "配音", "音频"], color: "blue" },
+  { name: "生财有术", short: "财", url: "https://scys.com/", category: "创业社区", description: "面向创业者的实战社群，提供 AI、自媒体、电商与商业增长内容。", tags: ["创业", "商业", "实战社群"], color: "red" },
 ] as const;
 
-const categories = ["全部工具", "AI 对话", "AI 检测", "写作辅助", "音频工具"];
+const categories = ["全部工具", "AI 对话", "AI 检测", "写作辅助", "音频工具", "创业社区"];
 
 export function AiDirectory() {
   const [query, setQuery] = useState("");
