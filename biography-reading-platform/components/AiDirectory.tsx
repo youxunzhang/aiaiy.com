@@ -8,6 +8,7 @@ const tools = [
   { name: "ChatGPT", short: "GPT", url: "https://chatgpt.com/", category: "AI 对话", description: "通用 AI 助手，用于问答、写作、研究、编程与创意工作。", tags: ["对话", "写作", "编程"], color: "green" },
   { name: "Aura TTS", short: "声", url: "https://tts.aurastd.com/", category: "音频工具", description: "在线文字转语音工具，快速生成自然语音与多场景配音。", tags: ["文字转语音", "配音", "音频"], color: "blue" },
   { name: "生财有术", short: "财", url: "https://scys.com/", category: "创业社区", description: "面向创业者的实战社群，提供 AI、自媒体、电商与商业增长内容。", tags: ["创业", "商业", "实战社群"], color: "red" },
+  { name: "生财赚钱点子 #376", short: "点子", url: "https://scys.com/money-ideas/detail/376", category: "创业社区", description: "生财有术赚钱点子详情页，查看具体项目思路与实践信息。", tags: ["赚钱点子", "项目思路", "创业"], color: "red" },
   { name: "Google Search Console", short: "SC", url: "https://search.google.com/search-console/about", category: "网站运营", description: "查看网站在 Google 搜索中的表现、收录状态与页面问题。", tags: ["SEO", "网站收录", "搜索表现"], color: "blue" },
   { name: "Google Analytics", short: "GA", url: "https://analytics.google.com/", category: "网站运营", description: "分析网站流量、用户来源与访问行为，了解内容运营效果。", tags: ["流量分析", "用户行为", "数据"], color: "amber" },
   { name: "Google AdSense", short: "AD", url: "https://adsense.google.com/", category: "网站运营", description: "通过在网站展示相关广告，管理内容变现与广告收益。", tags: ["网站变现", "广告", "收益"], color: "green" },
