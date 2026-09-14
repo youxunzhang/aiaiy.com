@@ -50,6 +50,7 @@ class NavigationManager {
         if (path.includes('ainum.html')) return 'ainum';
         if (path.includes('aioffice.html')) return 'aioffice';
         if (path.includes('aiprompt.html')) return 'aiprompt';
+        if (path.includes('text-simplify-prompt.html')) return 'text-simplify-prompt';
         if (path.includes('aitimer.html')) return 'aitimer';
         if (path.includes('rest.html')) return 'rest';
         if (path.includes('aiagent.html')) return 'aiagent';
@@ -175,6 +176,7 @@ class NavigationManager {
                     <a href="ainum.html" class="nav-link" data-page="ainum">🔢 AI Numbers</a>
                     <a href="aioffice.html" class="nav-link" data-page="aioffice">💼 AI Office</a>
                     <a href="aiprompt.html" class="nav-link" data-page="aiprompt">💡 AI Prompts</a>
+                    <a href="text-simplify-prompt.html" class="nav-link" data-page="text-simplify-prompt">✂️ 文字精简提示词</a>
                     <a href="aitimer.html" class="nav-link" data-page="aitimer">⏰ AI Timer</a>
                     <a href="rest.html" class="nav-link" data-page="rest">🧘 Rest & Breathe</a>
                     <a href="aiagent.html" class="nav-link" data-page="aiagent">🤖 AI Agents</a>
