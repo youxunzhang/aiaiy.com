@@ -5,7 +5,10 @@ import { useMemo, useState } from "react";
 const tools = [
   { name: "腾讯朱雀 AI 检测", short: "朱", url: "https://matrix.tencent.com/ai-detect", category: "AI 检测", description: "检测文本是否可能由 AI 生成，适合内容审核与写作自查。", tags: ["文本检测", "中文", "腾讯"], color: "violet" },
   { name: "AI 降重降痕", short: "降", url: "https://zy.ai-or.com/ai-reduce", category: "写作辅助", description: "优化 AI 生成文本的表达方式，让内容更自然、更贴近日常写作。", tags: ["AI 降痕", "润色", "写作"], color: "amber" },
+  { name: "问皮皮文字精简", short: "简", url: "http://www.wenpipi.com/sim", category: "写作辅助", description: "在线精简冗余文字，帮助内容表达更清晰、更紧凑。", tags: ["文字精简", "改写", "写作"], color: "amber" },
   { name: "ChatGPT", short: "GPT", url: "https://chatgpt.com/", category: "AI 对话", description: "通用 AI 助手，用于问答、写作、研究、编程与创意工作。", tags: ["对话", "写作", "编程"], color: "green" },
+  { name: "DeepSeek", short: "DS", url: "https://chat.deepseek.com/", category: "AI 对话", description: "面向中文问答、推理、写作与编程场景的 AI 对话助手。", tags: ["对话", "推理", "编程"], color: "blue" },
+  { name: "豆包", short: "豆", url: "https://www.doubao.com/chat/", category: "AI 对话", description: "字节跳动推出的 AI 对话与创作助手，适合日常问答和内容生成。", tags: ["对话", "中文", "内容创作"], color: "violet" },
   { name: "Aura TTS", short: "声", url: "https://tts.aurastd.com/", category: "音频工具", description: "在线文字转语音工具，快速生成自然语音与多场景配音。", tags: ["文字转语音", "配音", "音频"], color: "blue" },
   { name: "生财有术", short: "财", url: "https://scys.com/", category: "创业社区", description: "面向创业者的实战社群，提供 AI、自媒体、电商与商业增长内容。", tags: ["创业", "商业", "实战社群"], color: "red" },
   { name: "生财赚钱点子 #376", short: "点子", url: "https://scys.com/money-ideas/detail/376", category: "创业社区", description: "生财有术赚钱点子详情页，查看具体项目思路与实践信息。", tags: ["赚钱点子", "项目思路", "创业"], color: "red" },
@@ -13,6 +16,8 @@ const tools = [
   { name: "Google Analytics", short: "GA", url: "https://analytics.google.com/", category: "网站运营", description: "分析网站流量、用户来源与访问行为，了解内容运营效果。", tags: ["流量分析", "用户行为", "数据"], color: "amber" },
   { name: "Google AdSense", short: "AD", url: "https://adsense.google.com/", category: "网站运营", description: "通过在网站展示相关广告，管理内容变现与广告收益。", tags: ["网站变现", "广告", "收益"], color: "green" },
   { name: "Google Trends", short: "趋势", url: "https://trends.google.com/trends/", category: "趋势研究", description: "查看全球用户正在搜索的内容，比较关键词热度与变化趋势。", tags: ["搜索趋势", "关键词", "热点"], color: "violet" },
+  { name: "Gemini Notebook", short: "NB", url: "https://notebook.google/?location=unsupported", category: "趋势研究", description: "Google 推出的 AI 研究与思考工具，用于整理资料、探索主题与生成洞察。", tags: ["资料研究", "知识整理", "Google"], color: "blue" },
+  { name: "今日热榜", short: "热", url: "https://tophub.today/", category: "趋势研究", description: "聚合多个平台的实时热门资讯与排行榜，快速发现全网热点。", tags: ["热门资讯", "排行榜", "热点"], color: "red" },
 ] as const;
 
 const categories = ["全部工具", "AI 对话", "AI 检测", "写作辅助", "音频工具", "网站运营", "趋势研究", "创业社区"];
