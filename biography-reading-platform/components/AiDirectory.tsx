@@ -1,76 +1,133 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { aiTools, categories, popularSearches, type ToolCategory } from "@/lib/ai-tools";
 
-const tools = [
-  { name: "腾讯朱雀 AI 检测", short: "朱", url: "https://matrix.tencent.com/ai-detect", category: "AI 检测", description: "检测文本是否可能由 AI 生成，适合内容审核与写作自查。", tags: ["文本检测", "中文", "腾讯"], color: "violet" },
-  { name: "AI 降重降痕", short: "降", url: "https://zy.ai-or.com/ai-reduce", category: "写作辅助", description: "优化 AI 生成文本的表达方式，让内容更自然、更贴近日常写作。", tags: ["AI 降痕", "润色", "写作"], color: "amber" },
-  { name: "问皮皮文字精简", short: "简", url: "http://www.wenpipi.com/sim", category: "写作辅助", description: "在线精简冗余文字，帮助内容表达更清晰、更紧凑。", tags: ["文字精简", "改写", "写作"], color: "amber" },
-  { name: "Winston AI 文本对比", short: "比", url: "https://app.gowinston.ai/text-compare", category: "写作辅助", description: "在线比较两段文本，高亮新增、删除和相同内容，并显示文本相似度。", tags: ["文本对比", "差异检查", "相似度"], color: "blue" },
-  { name: "ChatGPT", short: "GPT", url: "https://chatgpt.com/", category: "AI 对话", description: "通用 AI 助手，用于问答、写作、研究、编程与创意工作。", tags: ["对话", "写作", "编程"], color: "green" },
-  { name: "DeepSeek", short: "DS", url: "https://chat.deepseek.com/", category: "AI 对话", description: "面向中文问答、推理、写作与编程场景的 AI 对话助手。", tags: ["对话", "推理", "编程"], color: "blue" },
-  { name: "豆包", short: "豆", url: "https://www.doubao.com/chat/", category: "AI 对话", description: "字节跳动推出的 AI 对话与创作助手，适合日常问答和内容生成。", tags: ["对话", "中文", "内容创作"], color: "violet" },
-  { name: "Cherry Studio", short: "CS", url: "https://cherry-ai.com/", category: "AI 对话", description: "跨平台 AI 工作站，支持多模型对话、知识库、Agent 与 MCP 扩展。", tags: ["多模型", "知识库", "Agent"], color: "red" },
-  { name: "Aura TTS", short: "声", url: "https://tts.aurastd.com/", category: "音频工具", description: "在线文字转语音工具，快速生成自然语音与多场景配音。", tags: ["文字转语音", "配音", "音频"], color: "blue" },
-  { name: "生财有术", short: "财", url: "https://scys.com/", category: "创业社区", description: "面向创业者的实战社群，提供 AI、自媒体、电商与商业增长内容。", tags: ["创业", "商业", "实战社群"], color: "red" },
-  { name: "生财赚钱点子 #376", short: "点子", url: "https://scys.com/money-ideas/detail/376", category: "创业社区", description: "生财有术赚钱点子详情页，查看具体项目思路与实践信息。", tags: ["赚钱点子", "项目思路", "创业"], color: "red" },
-  { name: "Google Search Console", short: "SC", url: "https://search.google.com/search-console/about", category: "网站运营", description: "查看网站在 Google 搜索中的表现、收录状态与页面问题。", tags: ["SEO", "网站收录", "搜索表现"], color: "blue" },
-  { name: "Google Analytics", short: "GA", url: "https://analytics.google.com/", category: "网站运营", description: "分析网站流量、用户来源与访问行为，了解内容运营效果。", tags: ["流量分析", "用户行为", "数据"], color: "amber" },
-  { name: "Google AdSense", short: "AD", url: "https://adsense.google.com/", category: "网站运营", description: "通过在网站展示相关广告，管理内容变现与广告收益。", tags: ["网站变现", "广告", "收益"], color: "green" },
-  { name: "Google Trends", short: "趋势", url: "https://trends.google.com/trends/", category: "趋势研究", description: "查看全球用户正在搜索的内容，比较关键词热度与变化趋势。", tags: ["搜索趋势", "关键词", "热点"], color: "violet" },
-  { name: "Gemini Notebook", short: "NB", url: "https://notebook.google/?location=unsupported", category: "趋势研究", description: "Google 推出的 AI 研究与思考工具，用于整理资料、探索主题与生成洞察。", tags: ["资料研究", "知识整理", "Google"], color: "blue" },
-  { name: "今日热榜", short: "热", url: "https://tophub.today/", category: "趋势研究", description: "聚合多个平台的实时热门资讯与排行榜，快速发现全网热点。", tags: ["热门资讯", "排行榜", "热点"], color: "red" },
-] as const;
-
-const categories = ["全部工具", "AI 对话", "AI 检测", "写作辅助", "音频工具", "网站运营", "趋势研究", "创业社区"];
+const categoryIcons: Record<ToolCategory, string> = {
+  "AI 助手": "✦",
+  "搜索研究": "⌕",
+  "写作办公": "文",
+  "编程开发": "</>",
+  "图像设计": "◫",
+  "视频创作": "▶",
+  "音频音乐": "♪",
+  "演示文档": "▤",
+  "自动化智能体": "⌘",
+  "检测翻译": "译",
+};
 
 export function AiDirectory() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("全部工具");
+  const [category, setCategory] = useState<(typeof categories)[number]>("全部工具");
+
+  const counts = useMemo(
+    () => Object.fromEntries(categories.slice(1).map((item) => [item, aiTools.filter((tool) => tool.category === item).length])),
+    [],
+  );
+
   const filtered = useMemo(() => {
-    const keyword = query.trim().toLowerCase();
-    return tools.filter((tool) => {
+    const keyword = query.trim().toLocaleLowerCase("zh-CN");
+    return aiTools.filter((tool) => {
       const categoryMatch = category === "全部工具" || tool.category === category;
-      const keywordMatch = !keyword || [tool.name, tool.category, tool.description, ...tool.tags].join(" ").toLowerCase().includes(keyword);
-      return categoryMatch && keywordMatch;
+      const searchable = [tool.name, tool.category, tool.description, ...tool.tags].join(" ").toLocaleLowerCase("zh-CN");
+      return categoryMatch && (!keyword || searchable.includes(keyword));
     });
   }, [query, category]);
+
+  function chooseCategory(item: (typeof categories)[number]) {
+    setCategory(item);
+    document.querySelector("#directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
     <div className="directory-page">
       <header className="directory-header">
-        <a className="directory-brand" href="#top" aria-label="AIAIY 首页"><span className="brand-symbol">AI</span><span><b>AIAIY</b><small>AI 黄页</small></span></a>
-        <p className="header-count">已收录 {tools.length} 个常用工具</p>
+        <a className="directory-brand" href="#top" aria-label="AIAIY AI 工具导航首页">
+          <span className="brand-symbol">AI</span>
+          <span><b>AIAIY</b><small>AI 工具导航</small></span>
+        </a>
+        <nav aria-label="主导航">
+          <a href="#directory">工具库</a>
+          <a href="#about">关于本站</a>
+        </nav>
         <a className="submit-link" href="mailto:hello@aiaiy.com?subject=提交 AI 工具">提交工具 <span>↗</span></a>
       </header>
 
       <main id="top">
-        <section className="directory-intro">
-          <div><p>AIAIY.COM</p><h1>AI 工具导航</h1></div>
-          <div className="search-shell"><span aria-hidden="true">⌕</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索工具…" aria-label="搜索 AI 工具" /></div>
-        </section>
-
-        <section className="directory-content" id="tools">
-          <aside id="categories">
-            <p>浏览分类</p>
-            {categories.map((item) => <button className={category === item ? "active" : ""} key={item} onClick={() => setCategory(item)}><span>{item}</span><b>{item === "全部工具" ? tools.length : tools.filter((tool) => tool.category === item).length}</b></button>)}
-          </aside>
-          <div className="tools-panel">
-            <div className="section-heading"><div><span>TOOLS</span><h2>{category}</h2></div><p>共 {filtered.length} 个工具</p></div>
-            <div className="tool-grid">
-              {filtered.map((tool, index) => <a className="tool-card" href={tool.url} target="_blank" rel="noreferrer" key={tool.url}>
-                <div className={`tool-icon ${tool.color}`}>{tool.short}</div><div className="tool-card-top"><span>{tool.category}</span><b>0{index + 1}</b></div>
-                <h3>{tool.name}</h3><p>{tool.description}</p><div className="tag-list">{tool.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <div className="visit-row"><span>{new URL(tool.url).hostname}</span><b>访问工具 ↗</b></div>
-              </a>)}
+        <section className="directory-hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow"><span /> 2026 精选 AI 工具库</p>
+            <h1 id="hero-title">找到合适的 AI 工具，<br /><em>把想法变成作品。</em></h1>
+            <p className="hero-description">精选全球 100 个主流 AI 工具，覆盖对话、搜索、写作、编程、图像、视频、音频和自动化。一个页面，快速找到下一款生产力工具。</p>
+            <div className="hero-actions">
+              <a className="primary-action" href="#directory">浏览全部工具 <span>↓</span></a>
+              <a className="secondary-action" href="mailto:hello@aiaiy.com?subject=推荐 AI 工具">推荐新工具</a>
             </div>
-            {filtered.length === 0 && <div className="empty-state">没有找到相关工具，试试其他关键词。</div>}
+          </div>
+          <div className="hero-stats" aria-label="工具库数据">
+            <div><strong>{aiTools.length}</strong><span>精选工具</span></div>
+            <div><strong>{categories.length - 1}</strong><span>应用场景</span></div>
+            <div><strong>中英</strong><span>全球覆盖</span></div>
+            <p>持续筛选真正有用、可直接访问的 AI 产品。</p>
           </div>
         </section>
 
+        <section className="search-section" aria-label="搜索工具">
+          <label className="search-shell">
+            <span aria-hidden="true">⌕</span>
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="搜索名称、用途或关键词…" aria-label="搜索 AI 工具" />
+            {query && <button type="button" onClick={() => setQuery("")} aria-label="清除搜索">×</button>}
+          </label>
+          <div className="popular-searches"><span>热门：</span>{popularSearches.map((item) => <button type="button" key={item} onClick={() => setQuery(item)}>{item}</button>)}</div>
+        </section>
+
+        <section className="directory-content" id="directory">
+          <aside aria-label="工具分类">
+            <p>按场景浏览</p>
+            {categories.map((item) => (
+              <button type="button" className={category === item ? "active" : ""} key={item} onClick={() => chooseCategory(item)} aria-pressed={category === item}>
+                <span className="category-label"><i aria-hidden="true">{item === "全部工具" ? "#" : categoryIcons[item]}</i>{item}</span>
+                <b>{item === "全部工具" ? aiTools.length : counts[item]}</b>
+              </button>
+            ))}
+          </aside>
+
+          <div className="tools-panel">
+            <div className="section-heading">
+              <div><span>CURATED DIRECTORY</span><h2>{category}</h2></div>
+              <p aria-live="polite">找到 <b>{filtered.length}</b> 个工具</p>
+            </div>
+            <div className="tool-grid">
+              {filtered.map((tool) => {
+                const number = String(aiTools.indexOf(tool) + 1).padStart(3, "0");
+                return (
+                  <a className="tool-card" href={tool.url} target="_blank" rel="noopener noreferrer" key={tool.url} aria-label={`访问 ${tool.name}（新窗口打开）`}>
+                    <div className="tool-card-header">
+                      <div className={`tool-icon tone-${categories.indexOf(tool.category) % 5}`}>{tool.short}</div>
+                      <div className="tool-meta"><span>{tool.category}</span><b>{number}</b></div>
+                    </div>
+                    <div className="tool-title-row"><h3>{tool.name}</h3>{"featured" in tool && tool.featured && <span className="featured-badge">热门</span>}</div>
+                    <p>{tool.description}</p>
+                    <div className="tag-list">{tool.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                    <div className="visit-row"><span>{new URL(tool.url).hostname.replace(/^www\./, "")}</span><b>访问工具 <i>↗</i></b></div>
+                  </a>
+                );
+              })}
+            </div>
+            {filtered.length === 0 && <div className="empty-state"><b>没有找到匹配的工具</b><span>换个关键词，或清除筛选后再试试。</span><button type="button" onClick={() => { setQuery(""); setCategory("全部工具"); }}>查看全部 100 个工具</button></div>}
+          </div>
+        </section>
+
+        <section className="about-section" id="about">
+          <div><span>ABOUT AIAIY</span><h2>少一点寻找，<br />多一点创造。</h2></div>
+          <div><p>AIAIY 是面向中文用户的 AI 工具导航。我们按真实使用场景整理产品，不堆砌链接，让你更快找到适合工作、学习和创作的工具。</p><p>工具市场变化很快，我们会持续检查链接、更新分类并补充值得关注的新产品。</p></div>
+        </section>
       </main>
 
-      <footer className="directory-footer"><div><b>AIAIY</b><span>AI 黄页导航</span></div><span>© 2026 AIAIY.COM</span></footer>
+      <footer className="directory-footer">
+        <div><b>AIAIY</b><span>100 个主流 AI 工具，一站发现。</span></div>
+        <div className="footer-links"><a href="#top">返回顶部 ↑</a><a href="mailto:hello@aiaiy.com">联系我们</a><span>© 2026 AIAIY.COM</span></div>
+      </footer>
     </div>
   );
 }
