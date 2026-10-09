@@ -54,24 +54,6 @@ export function AiDirectory() {
       </header>
 
       <main id="top">
-        <section className="directory-hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow"><span /> 2026 精选 AI 工具库</p>
-            <h1 id="hero-title">找到合适的 AI 工具，<br /><em>把想法变成作品。</em></h1>
-            <p className="hero-description">精选全球 100 个主流 AI 工具，覆盖对话、搜索、写作、编程、图像、视频、音频和自动化。一个页面，快速找到下一款生产力工具。</p>
-            <div className="hero-actions">
-              <a className="primary-action" href="#directory">浏览全部工具 <span>↓</span></a>
-              <a className="secondary-action" href="mailto:hello@aiaiy.com?subject=推荐 AI 工具">推荐新工具</a>
-            </div>
-          </div>
-          <div className="hero-stats" aria-label="工具库数据">
-            <div><strong>{aiTools.length}</strong><span>精选工具</span></div>
-            <div><strong>{categories.length - 1}</strong><span>应用场景</span></div>
-            <div><strong>中英</strong><span>全球覆盖</span></div>
-            <p>持续筛选真正有用、可直接访问的 AI 产品。</p>
-          </div>
-        </section>
-
         <section className="search-section" aria-label="搜索工具">
           <label className="search-shell">
             <span aria-hidden="true">⌕</span>
@@ -94,7 +76,7 @@ export function AiDirectory() {
 
           <div className="tools-panel">
             <div className="section-heading">
-              <div><span>CURATED DIRECTORY</span><h2>{category}</h2></div>
+              <div><span>100 AI TOOLS</span><h1>{category}</h1></div>
               <p aria-live="polite">找到 <b>{filtered.length}</b> 个工具</p>
             </div>
             <div className="tool-grid">
