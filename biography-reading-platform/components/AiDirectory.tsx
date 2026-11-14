@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { aiTools, categories, popularSearches, type ToolCategory } from "@/lib/ai-tools";
 import { categoryDetails } from "@/lib/ai-directory";
 import { DirectoryFooter, DirectoryHeader } from "@/components/DirectoryShell";
+import { SiteIcon } from "@/components/SiteIcon";
 import { ToolCard } from "@/components/ToolCard";
 import { countSectionItems, homeSections } from "@/lib/home-sections";
 
@@ -169,7 +170,7 @@ export function AiDirectory() {
           <div className="task-shortcuts"><span>按任务进入</span>{quickTasks.map((item) => <button type="button" key={item.label} onClick={() => chooseTask(item)}>{item.label}</button>)}</div>
           {query && <div className="unified-search-results" aria-live="polite">
             <header><div><span>SEARCH RESULTS</span><b>{searchResults.length > 0 ? `找到 ${searchResults.length} 个快捷入口` : "没有匹配入口"}</b></div><button type="button" onClick={() => setQuery("")}>清除搜索 ×</button></header>
-            {searchResults.length > 0 && <div>{searchResults.map((item) => <a href={item.url} target="_blank" rel="noopener noreferrer nofollow" key={item.url}><span>{item.icon}</span><div><b>{item.name}</b><small>{item.group} · {item.description}</small></div><i>↗</i></a>)}</div>}
+            {searchResults.length > 0 && <div>{searchResults.map((item) => <a href={item.url} target="_blank" rel="noopener noreferrer nofollow" key={item.url}><SiteIcon className="search-result-icon" url={item.url} fallback={item.icon} /><div><b>{item.name}</b><small>{item.group} · {item.description}</small></div><i>↗</i></a>)}</div>}
           </div>}
         </section>
 
@@ -193,7 +194,7 @@ export function AiDirectory() {
                       <div className="portal-grid">
                         {group.items.map((item) => (
                           <a className="portal-card" href={item.url} target="_blank" rel="noopener noreferrer nofollow" key={item.url}>
-                            <span>{item.icon}</span><div><b>{item.name}</b><small>{item.description}</small></div><i>↗</i>
+                            <SiteIcon className="portal-icon" url={item.url} fallback={item.icon} /><div><b>{item.name}</b><small>{item.description}</small></div><i>↗</i>
                           </a>
                         ))}
                       </div>

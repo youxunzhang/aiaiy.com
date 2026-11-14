@@ -2,6 +2,7 @@
 
 import { categories, type AiTool } from "@/lib/ai-tools";
 import { getToolSlug } from "@/lib/ai-directory";
+import { SiteIcon } from "@/components/SiteIcon";
 
 type Props = {
   tool: AiTool;
@@ -16,7 +17,7 @@ export function ToolCard({ tool, number, favorite = false, compact = false, onTo
   return (
     <article className={compact ? "tool-card compact" : "tool-card"}>
       <div className="tool-card-header">
-        <div className={`tool-icon tone-${categories.indexOf(tool.category) % 5}`}>{tool.short}</div>
+        <SiteIcon className={`tool-icon tone-${categories.indexOf(tool.category) % 5}`} url={tool.url} fallback={tool.short} />
         <div className="tool-meta">
           <span>{tool.category}</span><b>{displayNumber}</b>
           {onToggleFavorite && <button type="button" className={favorite ? "favorite-button active" : "favorite-button"} onClick={() => onToggleFavorite(tool.url)} aria-label={favorite ? `取消收藏 ${tool.name}` : `收藏 ${tool.name}`} title={favorite ? "取消收藏" : "收藏"}>{favorite ? "★" : "☆"}</button>}
