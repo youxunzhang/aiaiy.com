@@ -65,8 +65,6 @@ export const aiTools = [
   { name: "WPS AI", short: "WPS", url: "https://ai.wps.cn/", category: "写作办公", description: "融入文字、表格和演示文稿的国产 AI 办公与文档助手。", tags: ["办公", "文档", "国产"] },
   { name: "ima copilot", short: "IMA", url: "https://ima.qq.com/", category: "写作办公", description: "腾讯推出的知识库与智能工作台，用于资料收集、阅读和创作。", tags: ["知识库", "阅读", "腾讯"] },
   { name: "ChatPDF", short: "PDF", url: "https://www.chatpdf.com/", category: "写作办公", description: "上传 PDF 后进行问答、总结与信息提取的文档阅读工具。", tags: ["PDF", "问答", "总结"] },
-  { name: "问皮皮文字精简", short: "简", url: "http://www.wenpipi.com/sim", category: "写作办公", description: "在线精简冗余文字，帮助内容表达更清晰、更紧凑。", tags: ["文字精简", "改写", "中文"] },
-  { name: "AI 降重降痕", short: "降", url: "https://zy.ai-or.com/ai-reduce", category: "写作办公", description: "优化 AI 生成文本的表达方式，让内容更自然、更贴近日常写作。", tags: ["AI 降痕", "润色", "写作"] },
 
   { name: "GitHub Copilot", short: "GH", url: "https://github.com/features/copilot", category: "编程开发", description: "集成于编辑器与 GitHub 工作流的 AI 编程助手和代码智能体。", tags: ["代码补全", "GitHub", "Agent"], featured: true },
   { name: "Cursor", short: "CU", url: "https://www.cursor.com/", category: "编程开发", description: "AI 原生代码编辑器，支持代码库理解、自动修改和智能体开发。", tags: ["AI IDE", "代码库", "Agent"], featured: true },
@@ -89,7 +87,6 @@ export const aiTools = [
   { name: "Canva Magic Studio", short: "CV", url: "https://www.canva.com/magic-studio/", category: "图像设计", description: "集成于 Canva 的 AI 设计套件，支持图片、文案和版式快速生成。", tags: ["设计", "模板", "营销"] },
   { name: "Microsoft Designer", short: "MD", url: "https://designer.microsoft.com/", category: "图像设计", description: "微软的 AI 平面设计与图片编辑工具，适合社媒和营销素材制作。", tags: ["微软", "平面设计", "图片"] },
   { name: "Recraft", short: "RC", url: "https://www.recraft.ai/", category: "图像设计", description: "面向品牌设计的 AI 图像与矢量生成工具，支持一致风格控制。", tags: ["矢量", "品牌", "图像"] },
-  { name: "Playground", short: "PG", url: "https://playground.com/", category: "图像设计", description: "易用的 AI 图像设计画布，用于生成、合成和编辑视觉内容。", tags: ["图像", "编辑", "画布"] },
   { name: "Clipdrop", short: "CD", url: "https://clipdrop.co/", category: "图像设计", description: "集成抠图、扩图、清理、放大和生成能力的 AI 图片工具箱。", tags: ["抠图", "扩图", "修图"] },
   { name: "remove.bg", short: "BG", url: "https://www.remove.bg/", category: "图像设计", description: "自动识别人像与物体并快速移除图片背景的在线 AI 工具。", tags: ["去背景", "抠图", "图片"] },
   { name: "Photoroom", short: "PR", url: "https://www.photoroom.com/", category: "图像设计", description: "面向电商与品牌素材的 AI 商品图、背景生成和批量编辑平台。", tags: ["商品图", "电商", "背景"] },

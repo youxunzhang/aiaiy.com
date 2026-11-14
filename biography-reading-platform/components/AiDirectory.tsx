@@ -32,6 +32,33 @@ const quickTasks: { label: string; category: ToolCategory }[] = [
 
 const portalEntries = homeSections.flatMap((section) => section.groups.flatMap((group) => group.items.map((item) => ({ ...item, section: section.title }))));
 
+const homepageCategoryLimits: Record<ToolCategory, number> = {
+  "AI 助手": 6,
+  "搜索研究": 4,
+  "写作办公": 4,
+  "编程开发": 5,
+  "图像设计": 5,
+  "视频创作": 4,
+  "音频音乐": 3,
+  "演示文档": 3,
+  "自动化智能体": 3,
+  "检测翻译": 3,
+  "国学阅读": 2,
+};
+
+function normalizeExternalUrl(url: string) {
+  return url.replace(/^https?:\/\/(?:www\.)?/, "").replace(/\/$/, "");
+}
+
+const portalUrls = new Set(portalEntries.map((item) => normalizeExternalUrl(item.url)));
+const homepageCategories = categories.slice(1) as readonly ToolCategory[];
+const homepageAiTools = homepageCategories.flatMap((item) =>
+  aiTools
+    .filter((tool) => tool.category === item && !portalUrls.has(normalizeExternalUrl(tool.url)))
+    .slice(0, homepageCategoryLimits[item]),
+);
+const homepageLinkCount = portalEntries.length + homepageAiTools.length;
+
 export function AiDirectory() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<(typeof categories)[number]>("全部工具");
@@ -64,13 +91,13 @@ export function AiDirectory() {
   }, []);
 
   const counts = useMemo(
-    () => Object.fromEntries(categories.slice(1).map((item) => [item, aiTools.filter((tool) => tool.category === item).length])),
+    () => Object.fromEntries(homepageCategories.map((item) => [item, homepageAiTools.filter((tool) => tool.category === item).length])),
     [],
   );
 
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase("zh-CN");
-    const result = aiTools.filter((tool) => {
+    const result = homepageAiTools.filter((tool) => {
       const categoryMatch = category === "全部工具" || tool.category === category;
       const scopeMatch = scope === "all" || (scope === "featured" ? ("featured" in tool && tool.featured) : favorites.includes(tool.url));
       const searchable = [tool.name, tool.category, tool.description, ...tool.tags].join(" ").toLocaleLowerCase("zh-CN");
@@ -85,7 +112,7 @@ export function AiDirectory() {
     const seen = new Set<string>();
     return [
       ...portalEntries.map((item) => ({ icon: item.icon, name: item.name, description: item.description, url: item.url, group: item.section })),
-      ...aiTools.map((tool) => ({ icon: tool.short, name: tool.name, description: tool.description, url: tool.url, group: tool.category })),
+      ...homepageAiTools.map((tool) => ({ icon: tool.short, name: tool.name, description: tool.description, url: tool.url, group: tool.category })),
     ].filter((item) => {
       if (seen.has(item.url)) return false;
       const matches = [item.name, item.description, item.group].join(" ").toLocaleLowerCase("zh-CN").includes(keyword);
@@ -128,7 +155,7 @@ export function AiDirectory() {
           <header className="finder-heading">
             <div><span>AI DIRECTORY</span><h1>AI 工具与常用网站</h1></div>
             <p>按任务进入，或者直接搜索名称、功能和平台。</p>
-            <b>{portalEntries.length} 个常用入口 · {aiTools.length} 个 AI 工具</b>
+            <b>{homepageLinkCount} 个精选链接 · 覆盖 {categories.length - 1} 类场景</b>
           </header>
           <div className="search-section">
             <label className="search-shell">
@@ -182,13 +209,13 @@ export function AiDirectory() {
         <section className="directory-content" id="directory">
           <header className="library-heading">
             <div><span>AI TOOL LIBRARY</span><h2>全部 AI 工具</h2></div>
-            <p>按分类筛选，紧凑浏览 {aiTools.length} 个工具。</p>
+            <p>从 100 个主流工具中，再精选 {homepageAiTools.length} 个不重复入口。</p>
           </header>
           <div className="category-strip" aria-label="工具分类">
             {categories.map((item) => (
               <button type="button" className={category === item ? "active" : ""} key={item} onClick={() => chooseCategory(item)} aria-pressed={category === item}>
                 <span className="category-label"><i aria-hidden="true">{item === "全部工具" ? "#" : categoryIcons[item]}</i>{item}</span>
-                <b>{item === "全部工具" ? aiTools.length : counts[item]}</b>
+                <b>{item === "全部工具" ? homepageAiTools.length : counts[item]}</b>
               </button>
             ))}
             <a href="/categories/">分类专题 ↗</a>
@@ -196,7 +223,7 @@ export function AiDirectory() {
 
           <div className="tools-panel">
             <div className="section-heading">
-              <div><span>{aiTools.length} AI TOOLS</span><h2>{category}</h2></div>
+              <div><span>{homepageAiTools.length} CURATED AI TOOLS</span><h2>{category}</h2></div>
               <div className="heading-actions">
                 {category !== "全部工具" && <a href={`/category/${categoryDetails[category].slug}/`}>分类专题页 ↗</a>}
                 <p aria-live="polite">找到 <b>{filtered.length}</b> 个工具</p>
@@ -214,9 +241,9 @@ export function AiDirectory() {
             </div>
 
             <div className={viewMode === "compact" ? "tool-grid compact-grid" : "tool-grid"}>
-              {filtered.map((tool) => <ToolCard key={tool.url} tool={tool} compact={viewMode === "compact"} number={aiTools.indexOf(tool) + 1} favorite={favorites.includes(tool.url)} onToggleFavorite={toggleFavorite} />)}
+              {filtered.map((tool) => <ToolCard key={tool.url} tool={tool} compact={viewMode === "compact"} number={homepageAiTools.indexOf(tool) + 1} favorite={favorites.includes(tool.url)} onToggleFavorite={toggleFavorite} />)}
             </div>
-            {filtered.length === 0 && <div className="empty-state"><b>{scope === "favorites" ? "还没有收藏工具" : "没有找到匹配的工具"}</b><span>{scope === "favorites" ? "点击工具卡片右上角的星标，建立你的常用 AI 工具箱。" : "换个关键词，或清除筛选后再试试。"}</span><button type="button" onClick={() => { setQuery(""); setCategory("全部工具"); setScope("all"); }}>查看全部 {aiTools.length} 个工具</button></div>}
+            {filtered.length === 0 && <div className="empty-state"><b>{scope === "favorites" ? "还没有收藏工具" : "没有找到匹配的工具"}</b><span>{scope === "favorites" ? "点击工具卡片右上角的星标，建立你的常用 AI 工具箱。" : "换个关键词，或清除筛选后再试试。"}</span><button type="button" onClick={() => { setQuery(""); setCategory("全部工具"); setScope("all"); }}>查看全部 {homepageAiTools.length} 个精选工具</button></div>}
           </div>
         </section>
 
