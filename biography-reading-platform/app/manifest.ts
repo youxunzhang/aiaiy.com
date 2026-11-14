@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "AIAIY AI工具导航",
     short_name: "AIAIY",
-    description: "精选100个主流AI工具，按使用场景分类整理。",
+    description: "精选103个AI工具与优质网站，按使用场景分类整理。",
     start_url: "/",
     display: "standalone",
     background_color: "#f3f5ef",

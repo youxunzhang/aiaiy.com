@@ -10,6 +10,7 @@ export const categories = [
   "演示文档",
   "自动化智能体",
   "检测翻译",
+  "国学阅读",
 ] as const;
 
 export type ToolCategory = Exclude<(typeof categories)[number], "全部工具">;
@@ -25,6 +26,7 @@ export type AiTool = {
 };
 
 export const aiTools = [
+  { name: "朱雀工作台", short: "雀", url: "https://zy.ai-or.com/zhuque-workbench", category: "写作办公", description: "集成 AI 写作、文本处理与内容检测能力的中文创作工作台。", tags: ["AI 写作", "文本处理", "中文"], featured: true },
   { name: "ChatGPT", short: "GPT", url: "https://chatgpt.com/", category: "AI 助手", description: "OpenAI 推出的通用 AI 助手，覆盖问答、写作、分析、编程与创作。", tags: ["对话", "多模态", "推理"], featured: true },
   { name: "Claude", short: "CL", url: "https://claude.ai/", category: "AI 助手", description: "Anthropic 的 AI 助手，擅长长文本理解、写作、推理与代码任务。", tags: ["长文本", "写作", "编程"], featured: true },
   { name: "Gemini", short: "GE", url: "https://gemini.google.com/", category: "AI 助手", description: "Google 的多模态 AI 助手，可处理文本、图片、文件与研究任务。", tags: ["Google", "多模态", "研究"], featured: true },
@@ -134,6 +136,9 @@ export const aiTools = [
   { name: "Originality.ai", short: "OR", url: "https://originality.ai/", category: "检测翻译", description: "面向出版和内容团队的 AI 文本检测、抄袭检查与事实核验平台。", tags: ["AI 检测", "查重", "事实核验"] },
   { name: "DeepL", short: "DL", url: "https://www.deepl.com/translator", category: "检测翻译", description: "高质量 AI 翻译与写作辅助工具，支持多语言文本和文档翻译。", tags: ["翻译", "多语言", "文档"] },
   { name: "沉浸式翻译", short: "译", url: "https://immersivetranslate.com/", category: "检测翻译", description: "网页双语对照、PDF 和视频字幕翻译的跨平台 AI 翻译工具。", tags: ["网页翻译", "双语", "PDF"] },
+
+  { name: "中国哲学书电子化计划 · 道德经", short: "道", url: "https://ctext.org/dao-de-jing/zhs", category: "国学阅读", description: "《道德经》简体中文原文在线阅读，来自中国哲学书电子化计划。", tags: ["道德经", "古籍原文", "中文经典"], featured: true },
+  { name: "数位经典", short: "典", url: "https://www.chineseclassic.com/", category: "国学阅读", description: "收录中国古典文献原文、导读、校注与电子书资源的经典阅读网站。", tags: ["国学", "古籍", "电子书"] },
 ] as const satisfies readonly AiTool[];
 
-export const popularSearches = ["ChatGPT", "DeepSeek", "AI 编程", "AI 绘画", "视频生成", "PPT"] as const;
+export const popularSearches = ["ChatGPT", "DeepSeek", "AI 编程", "AI 绘画", "视频生成", "道德经"] as const;

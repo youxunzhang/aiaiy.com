@@ -1,5 +1,6 @@
 import { AiDirectory } from "@/components/AiDirectory";
 import { aiTools } from "@/lib/ai-tools";
+import { getToolSlug } from "@/lib/ai-directory";
 
 export default function Home() {
   const structuredData = {
@@ -10,14 +11,14 @@ export default function Home() {
         "@id": "https://aiaiy.com/#website",
         url: "https://aiaiy.com/",
         name: "AIAIY AI工具导航",
-        description: "精选100个主流AI工具，按真实使用场景分类整理。",
+        description: `汇集搜索研究、内容发布、SEO与社交媒体入口，并精选${aiTools.length}个主流AI工具和优质资源。`,
         inLanguage: "zh-CN",
       },
       {
         "@type": "CollectionPage",
         "@id": "https://aiaiy.com/#directory",
         url: "https://aiaiy.com/",
-        name: "AI工具导航｜100个主流AI网站大全",
+        name: `AI工具导航｜${aiTools.length}个主流AI网站大全`,
         isPartOf: { "@id": "https://aiaiy.com/#website" },
         mainEntity: {
           "@type": "ItemList",
@@ -26,7 +27,7 @@ export default function Home() {
             "@type": "ListItem",
             position: index + 1,
             name: tool.name,
-            url: tool.url,
+            url: `https://aiaiy.com/tool/${getToolSlug(tool)}/`,
           })),
         },
       },
